@@ -1,0 +1,167 @@
+import React, { useState, memo } from 'react';
+import { Copy, Code2, Download, Heart, Check } from 'lucide-react';
+import { getSvgContent, convertSvgToReact, downloadSvgFile } from '../utils/exportUtils';
+
+export const IconCard = memo(function IconCard({
+  icon,
+  priority = false,
+  onSelect,
+  isFavorite,
+  onToggleFavorite,
+  onShowToast
+}) {
+  const variantsList = Array.isArray(icon?.variants)
+    ? icon.variants
+    : Object.keys(icon?.variants || {});
+
+  const categoryName = icon?.category || (Array.isArray(icon?.categories) && icon.categories[0]) || 'Software';
+
+  const [selectedVariant, setSelectedVariant] = useState(() => {
+    if (variantsList.includes('color')) return 'color';
+    if (variantsList.includes('default')) return 'default';
+    return variantsList[0] || 'default';
+  });
+
+  const [copiedType, setCopiedType] = useState(null);
+
+  const iconUrl = `/icons/${icon.id}/${selectedVariant}.svg`;
+
+  const handleQuickCopySvg = async (e) => {
+    e.stopPropagation();
+    const svgText = await getSvgContent(icon.id, selectedVariant);
+    if (svgText) {
+      navigator.clipboard.writeText(svgText);
+      setCopiedType('svg');
+      setTimeout(() => setCopiedType(null), 1500);
+      onShowToast?.({
+        type: 'success',
+        title: 'Copied SVG to Clipboard',
+        message: `${icon.name} (${selectedVariant}) XML copied.`
+      });
+    }
+  };
+
+  const handleQuickCopyReact = async (e) => {
+    e.stopPropagation();
+    const svgText = await getSvgContent(icon.id, selectedVariant);
+    if (svgText) {
+      const reactCode = convertSvgToReact(svgText, icon.name);
+      navigator.clipboard.writeText(reactCode);
+      setCopiedType('react');
+      setTimeout(() => setCopiedType(null), 1500);
+      onShowToast?.({
+        type: 'success',
+        title: 'Copied React JSX',
+        message: `<${icon.name.replace(/[^a-zA-Z0-9]/g, '')}Icon /> copied.`
+      });
+    }
+  };
+
+  const handleQuickDownload = async (e) => {
+    e.stopPropagation();
+    const svgText = await getSvgContent(icon.id, selectedVariant);
+    if (svgText) {
+      downloadSvgFile(svgText, `${icon.id}-${selectedVariant}.svg`);
+      onShowToast?.({
+        type: 'success',
+        title: 'SVG Downloaded',
+        message: `${icon.id}-${selectedVariant}.svg saved.`
+      });
+    }
+  };
+
+  const handleFavoriteClick = (e) => {
+    e.stopPropagation();
+    onToggleFavorite(icon);
+  };
+
+  return (
+    <div
+      className="md-card"
+      onClick={() => onSelect(icon, selectedVariant)}
+      tabIndex={0}
+      role="button"
+      aria-label={`View ${icon.name} icon`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelect(icon, selectedVariant);
+        }
+      }}
+    >
+      {/* Top Header Row of Card: Category Tag & Favorite Button */}
+      <div className="md-card-top-bar" onClick={(e) => e.stopPropagation()}>
+        <span className="md-card-single-tag">{categoryName}</span>
+
+        <button
+          className={`md-card-fav-btn ${isFavorite ? 'active' : ''}`}
+          onClick={handleFavoriteClick}
+          title={isFavorite ? 'Remove from favorites' : 'Add to collection'}
+          aria-label="Favorite toggle"
+        >
+          <Heart size={14} fill={isFavorite ? 'currentColor' : 'none'} />
+        </button>
+      </div>
+
+      {/* Center Icon Display with Nested Squircle Frame */}
+      <div className="md-card-icon-frame">
+        <img
+          src={iconUrl}
+          alt={icon.name}
+          width="40"
+          height="40"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          decoding="async"
+          className="md-card-icon-img"
+          onError={() => {
+            if (selectedVariant !== 'default' && variantsList.includes('default')) {
+              setSelectedVariant('default');
+            }
+          }}
+        />
+      </div>
+
+      {/* Bottom Metadata */}
+      <div className="md-card-meta">
+        <div className="md-card-title" title={icon.name}>
+          {icon.name}
+        </div>
+        <div className="md-card-subtitle">
+          {categoryName}
+        </div>
+      </div>
+
+      {/* Hover Action Bar */}
+      <div className="md-card-hover-toolbar" onClick={(e) => e.stopPropagation()}>
+        <button
+          className={`md-card-action-pill ${copiedType === 'svg' ? 'copied' : ''}`}
+          onClick={handleQuickCopySvg}
+          title="Copy SVG XML"
+        >
+          {copiedType === 'svg' ? <Check size={13} /> : <Copy size={13} />}
+          <span>{copiedType === 'svg' ? 'Copied' : 'SVG'}</span>
+        </button>
+
+        <button
+          className={`md-card-action-pill ${copiedType === 'react' ? 'copied' : ''}`}
+          onClick={handleQuickCopyReact}
+          title="Copy React JSX"
+        >
+          {copiedType === 'react' ? <Check size={13} /> : <Code2 size={13} />}
+          <span>{copiedType === 'react' ? 'Copied' : 'JSX'}</span>
+        </button>
+
+        <button
+          className="md-card-action-icon"
+          onClick={handleQuickDownload}
+          title="Download .SVG"
+        >
+          <Download size={14} />
+        </button>
+      </div>
+    </div>
+  );
+});
+
+export default IconCard;
