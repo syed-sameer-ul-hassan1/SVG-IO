@@ -21,6 +21,8 @@ import {
   Eye
 } from 'lucide-react';
 
+const MAX_SVG_SIZE_BYTES = 20 * 1024; // Strict 20 KB maximum limit per SVG
+
 const POPULAR_CATEGORIES = [
   'Software', 'Developer Tools', 'Framework', 'AI', 'Cloud',
   'Database', 'Design', 'Analytics', 'Security', 'DevOps',
@@ -29,7 +31,7 @@ const POPULAR_CATEGORIES = [
 ];
 
 const PRESET_VARIANT_NAMES = [
-  'default', 'dark', 'light', 'mono', 'wordmark', 'symbol', 'outline', 'solid', 'duotone'
+  'default', 'light', 'dark', 'wordmark-dark', 'wordmark-light', 'mono', 'symbol', 'outline', 'solid', 'duotone'
 ];
 
 export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 6516 }) {
@@ -153,6 +155,8 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
   // Determine smart variant name from filename
   const getSmartVariantName = (filename, existingCount) => {
     const lower = filename.toLowerCase().replace(/\.svg$/i, '');
+    if (lower.includes('wordmark-dark') || lower.includes('wordmark_dark')) return 'wordmark-dark';
+    if (lower.includes('wordmark-light') || lower.includes('wordmark_light')) return 'wordmark-light';
     if (lower.includes('dark')) return 'dark';
     if (lower.includes('light')) return 'light';
     if (lower.includes('mono')) return 'mono';
@@ -166,28 +170,60 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
     return lower.replace(/[^a-z0-9-]/g, '') || `variant-${existingCount + 1}`;
   };
 
-  // Process single or multiple SVG files
+  // Process single or multiple SVG files with 20 KB limit and security scanner
   const processFiles = (files) => {
     if (!files || files.length === 0) return;
     const fileList = Array.from(files);
 
-    const validFiles = fileList.filter((f) => f.name.endsWith('.svg') || f.type === 'image/svg+xml');
+    const validFiles = fileList.filter((f) => f.name.toLowerCase().endsWith('.svg') || f.type === 'image/svg+xml');
     if (validFiles.length === 0) {
       onShowToast?.({
         type: 'error',
         title: 'Invalid File Format',
-        message: 'Please upload only .svg vector files.'
+        message: 'Only .svg vector files are allowed.'
       });
       return;
     }
 
     let currentVariants = [...variants];
     const extractedColorsSet = new Set(detectedHexes);
+    let acceptedCount = 0;
 
     validFiles.forEach((file, idx) => {
+      // 1. Strict 20 KB size limit enforcement
+      if (file.size > MAX_SVG_SIZE_BYTES) {
+        onShowToast?.({
+          type: 'error',
+          title: 'File Size Exceeded (Max 20 KB)',
+          message: `"${file.name}" (${(file.size / 1024).toFixed(1)} KB) exceeds the 20 KB limit.`
+        });
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (event) => {
-        const content = event.target.result;
+        let content = event.target.result;
+
+        // 2. Strict Security Scan: Block scripts and executable markup
+        if (/<script|javascript:|<iframe|<embed|<object|data:text\/html/i.test(content)) {
+          onShowToast?.({
+            type: 'error',
+            title: 'Unsafe SVG Blocked',
+            message: `"${file.name}" contains prohibited scripts or external tags.`
+          });
+          return;
+        }
+
+        // 3. Ensure viewBox is present
+        if (!/<svg[^>]*\bviewBox=/i.test(content)) {
+          const wMatch = content.match(/\bwidth=["']?(\d+)/i);
+          const hMatch = content.match(/\bheight=["']?(\d+)/i);
+          if (wMatch && hMatch) {
+            content = content.replace(/<svg\b/i, `<svg viewBox="0 0 ${wMatch[1]} ${hMatch[1]}"`);
+          }
+        }
+
+        acceptedCount++;
         const initialVariantName = getSmartVariantName(file.name, currentVariants.length);
         
         // Auto-extract all colors from this SVG
@@ -212,7 +248,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
         if (!iconName && currentVariants.length === 0 && idx === 0) {
           const baseName = file.name
             .replace(/\.svg$/i, '')
-            .replace(/-(default|dark|light|mono|wordmark|logo)/i, '')
+            .replace(/-(default|dark|light|mono|wordmark|wordmark-dark|wordmark-light|logo)/i, '')
             .replace(/[-_]+/g, ' ');
           if (baseName) {
             const formatted = baseName.charAt(0).toUpperCase() + baseName.slice(1);
@@ -245,8 +281,8 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
 
     onShowToast?.({
       type: 'success',
-      title: 'SVG Loaded',
-      message: `Added ${validFiles.length} SVG variant${validFiles.length > 1 ? 's' : ''}. Auto-detecting colors...`
+      title: 'SVG Processing',
+      message: `Analyzing ${validFiles.length} file(s)... (≤ 20KB limit checked)`
     });
   };
 
@@ -607,17 +643,63 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
                 <Sparkles size={11} />
                 <span>{totalIcons.toLocaleString()}+ icons and growing</span>
               </span>
+              <span className="sv-submit-hero-pill sv-pill-amber">
+                <span>📦 400+ Icons Pack Requirement for PRs</span>
+              </span>
             </div>
 
-            <h1 className="sv-submit-main-title">Submit an Icon</h1>
+            <h1 className="sv-submit-main-title">Submit SVG Icons</h1>
             <p className="sv-submit-main-sub">
-              Every brand deserves a place. No gatekeeping. Drop multiple SVG variants, name them, fill in the details, and auto-generate icon packages directly.
+              Contribute new brands or submit entire icon packs. Quick submit directly on the site, or fork the repository to contribute large sets.
             </p>
+          </div>
+
+          {/* PR / Repo Contribution Pack Requirement Box */}
+          <div className="sv-pack-requirement-card glass-panel">
+            <div className="sv-pack-header">
+              <div className="sv-pack-badge">REPO PR REQUIREMENT</div>
+              <h3 className="sv-pack-title">400+ Icons Pack & Full Variant Sets</h3>
+            </div>
+            <p className="sv-pack-desc">
+              To maintain the highest quality standards, Pull Requests to the repository must contain at least <strong>400+ distinct icons</strong> (or a complete brand family).
+            </p>
+            <div className="sv-pack-variants-grid">
+              <div className="sv-pack-variant-pill">
+                <span className="sv-pv-dot" style={{ backgroundColor: '#FF5F02' }} />
+                <code>default</code>
+                <span className="sv-pv-sub">Standard Color</span>
+              </div>
+              <div className="sv-pack-variant-pill">
+                <span className="sv-pv-dot" style={{ backgroundColor: '#FFFFFF' }} />
+                <code>light</code>
+                <span className="sv-pv-sub">For Dark Mode</span>
+              </div>
+              <div className="sv-pack-variant-pill">
+                <span className="sv-pv-dot" style={{ backgroundColor: '#111827' }} />
+                <code>dark</code>
+                <span className="sv-pv-sub">For Light Mode</span>
+              </div>
+              <div className="sv-pack-variant-pill">
+                <span className="sv-pv-dot" style={{ backgroundColor: '#3B82F6' }} />
+                <code>wordmark-dark</code>
+                <span className="sv-pv-sub">Logo + Typography</span>
+              </div>
+              <div className="sv-pack-variant-pill">
+                <span className="sv-pv-dot" style={{ backgroundColor: '#93C5FD' }} />
+                <code>wordmark-light</code>
+                <span className="sv-pv-sub">Logo + Dark Mode</span>
+              </div>
+              <div className="sv-pack-variant-pill">
+                <span className="sv-pv-dot" style={{ backgroundColor: '#6B7280' }} />
+                <code>mono</code>
+                <span className="sv-pv-sub">Single Color Glyph</span>
+              </div>
+            </div>
           </div>
 
           {/* How It Works Section */}
           <div className="sv-how-it-works-section">
-            <h2 className="sv-section-header-title">How it works</h2>
+            <h2 className="sv-section-header-title">How to Contribute via Fork & PR</h2>
             <div className="sv-how-cards-grid">
               {/* Step 1 */}
               <div className="sv-how-card step-blue glass-panel">
@@ -628,7 +710,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
                   <span className="sv-step-tag">#1 Fork the repo</span>
                 </div>
                 <p className="sv-step-desc">
-                  Fork <code>github.com/orildo/orildo-svg</code> and clone locally.
+                  Fork <code>github.com/syed-sameer-ul-hassan1/SVG-IO</code> and clone locally.
                 </p>
               </div>
 
@@ -638,10 +720,10 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
                   <div className="sv-how-icon-wrap">
                     <FolderPlus size={14} />
                   </div>
-                  <span className="sv-step-tag">#2 Add your SVGs</span>
+                  <span className="sv-step-tag">#2 Add 400+ SVGs</span>
                 </div>
                 <p className="sv-step-desc">
-                  Place files in <code>public/icons/[slug]/</code> with proper naming.
+                  Place files in <code>public/icons/[slug]/</code> with all required variants.
                 </p>
               </div>
 
@@ -654,7 +736,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
                   <span className="sv-step-tag">#3 Update icons.json</span>
                 </div>
                 <p className="sv-step-desc">
-                  Add your entry to <code>public/icons.json</code>.
+                  Add entries to <code>public/icons.json</code> and run <code>npm run build:icons</code>.
                 </p>
               </div>
 
@@ -667,7 +749,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
                   <span className="sv-step-tag">#4 Open a PR</span>
                 </div>
                 <p className="sv-step-desc">
-                  Run validation, then open a pull request.
+                  Verify metadata and open your PR for automated CI merge.
                 </p>
               </div>
             </div>
@@ -675,31 +757,31 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
 
           {/* SVG Requirements Card */}
           <div className="sv-req-card glass-panel">
-            <h3 className="sv-req-title">SVG Requirements</h3>
+            <h3 className="sv-req-title">SVG Limits & Quality Standards</h3>
             <ul className="sv-req-list">
               <li>
                 <CheckCircle2 size={15} className="sv-req-check" />
-                <span>Valid SVG/XML markup</span>
+                <span><strong>Maximum 20 KB</strong> file size limit per SVG</span>
               </li>
               <li>
                 <CheckCircle2 size={15} className="sv-req-check" />
-                <span>Under 50KB file size per variant</span>
+                <span><strong>Only .svg</strong> vector format accepted</span>
               </li>
               <li>
                 <CheckCircle2 size={15} className="sv-req-check" />
-                <span>No embedded scripts or external references</span>
+                <span><strong>viewBox attribute</strong> mandatory on root &lt;svg&gt;</span>
               </li>
               <li>
                 <CheckCircle2 size={15} className="sv-req-check" />
-                <span>viewBox attribute present</span>
+                <span><strong>Strictly no scripts</strong>, foreign objects, or embedded raster images</span>
               </li>
               <li>
                 <CheckCircle2 size={15} className="sv-req-check" />
-                <span>Gradients and multi-color SVGs welcome</span>
+                <span><strong>Full variant coverage</strong>: default, light, dark, wordmark-dark, wordmark-light</span>
               </li>
               <li>
                 <CheckCircle2 size={15} className="sv-req-check" />
-                <span>Multiple named variants supported (e.g. default, dark, mono, wordmark)</span>
+                <span><strong>Multi-color &amp; gradients</strong> fully supported with auto-detected hex palette</span>
               </li>
             </ul>
           </div>
@@ -707,22 +789,22 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
           {/* Action Links */}
           <div className="sv-repo-links-row">
             <a
-              href="https://github.com/hummingbirdui/hummingbird"
+              href="https://github.com/syed-sameer-ul-hassan1/SVG-IO"
               target="_blank"
               rel="noopener noreferrer"
               className="sv-repo-action-btn"
             >
               <Github size={14} />
-              <span>View Repository ↗</span>
+              <span>GitHub Repository ↗</span>
             </a>
             <a
-              href="https://github.com/hummingbirdui/hummingbird/issues"
+              href="https://github.com/syed-sameer-ul-hassan1/SVG-IO/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="sv-repo-action-btn"
             >
               <AlertCircle size={14} />
-              <span>Open Issues ↗</span>
+              <span>Issues &amp; Requests ↗</span>
             </a>
           </div>
 
@@ -743,7 +825,15 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
           <form className="sv-submit-form-card glass-panel" onSubmit={handleSubmit}>
             <div className="sv-form-header">
               <h2 className="sv-form-title">Quick Submit</h2>
-              <p className="sv-form-sub">Drop one or multiple SVGs, name each variant, and save directly.</p>
+              <p className="sv-form-sub">Drop one or multiple SVGs, name each variant, and save directly to Supabase &amp; GitHub.</p>
+            </div>
+
+            {/* Quality Checklist Badges */}
+            <div className="sv-quality-badges-row">
+              <span className="sv-q-badge"><Check size={11} /> Max 20 KB / SVG</span>
+              <span className="sv-q-badge"><Check size={11} /> .svg Only</span>
+              <span className="sv-q-badge"><Check size={11} /> viewBox Ready</span>
+              <span className="sv-q-badge"><Check size={11} /> Auto Hex Detection</span>
             </div>
 
             {/* SVG Multi-File Drag & Drop Area */}
@@ -795,7 +885,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
                     <UploadCloud size={28} className="sv-dropzone-icon" />
                   </div>
                   <span className="sv-dropzone-main-text">Drag & drop your SVG files (Single or Multiple)</span>
-                  <span className="sv-dropzone-sub-text">or click to browse • .svg files only, max 50KB each</span>
+                  <span className="sv-dropzone-sub-text">or click to browse • .svg files only, max 20KB per SVG</span>
                 </div>
               ) : null}
 
