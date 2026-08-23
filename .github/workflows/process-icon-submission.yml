@@ -42,14 +42,11 @@ jobs:
           ICON_VARIANTS: ${{ toJson(github.event.client_payload.variants) }}
         run: node scripts/process-submission.js
 
-      - name: Regenerate metadata
-        run: node scripts/generate-metadata.js
-
       - name: Commit and push icon files
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add public/icons/ public/icons.json public/icons-metadata.json public/icons-paths.json
+          git add public/icons/ public/icons.json
           
           # Only commit if there are changes
           if git diff --cached --quiet; then

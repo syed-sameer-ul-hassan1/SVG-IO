@@ -61,22 +61,106 @@ export function App() {
     }
   }, [favorites]);
 
-  // Fetch metadata
+  // Fetch and normalize directly from single source-of-truth /icons.json
   useEffect(() => {
-    async function loadMetadata() {
+    async function loadIcons() {
       try {
-        const res = await fetch('/icons-metadata.json');
-        if (!res.ok) throw new Error('Failed to load icons metadata');
-        const data = await res.json();
-        setMetadata(data);
+        const res = await fetch('/icons.json');
+        if (!res.ok) throw new Error('Failed to load icons.json');
+        const rawIcons = await res.json();
+
+        const normalized = rawIcons.map((icon) => {
+          const id = icon.slug || icon.id;
+          const name = icon.title || icon.name || id;
+          const category = (Array.isArray(icon.categories) && icon.categories[0]) || icon.category || 'Brands & Ecosystem';
+          const hex = icon.hex ? (icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}`) : '#FF5F02';
+          const hexes = Array.isArray(icon.hexes) && icon.hexes.length > 0
+            ? icon.hexes.map((h) => (h.startsWith('#') ? h : `#${h}`))
+            : [hex];
+          const url = icon.url || `https://${id}.dev`;
+          const license = icon.license || 'Apache-2.0';
+
+          let variants = [];
+          let variantPaths = {};
+
+          if (icon.variants && typeof icon.variants === 'object' && !Array.isArray(icon.variants)) {
+            variants = Object.keys(icon.variants);
+            variantPaths = icon.variants;
+          } else if (Array.isArray(icon.variants)) {
+            variants = icon.variants;
+            variants.forEach((v) => {
+              variantPaths[v] = `/icons/${id}/${v}.svg`;
+            });
+          } else {
+            variants = ['default'];
+            variantPaths = { default: `/icons/${id}/default.svg` };
+          }
+
+          const defaultPath = variantPaths.default || variantPaths[variants[0]] || `/icons/${id}/default.svg`;
+
+          return {
+            id,
+            slug: id,
+            name,
+            title: name,
+            aliases: Array.isArray(icon.aliases) ? icon.aliases : [],
+            guidelines: icon.guidelines || '',
+            category,
+            categories: Array.isArray(icon.categories) && icon.categories.length > 0 ? icon.categories : [category],
+            hex,
+            hexes,
+            url,
+            license,
+            path: defaultPath,
+            variants,
+            variantPaths,
+            variantCount: variants.length,
+            availableVariants: variants,
+            dateAdded: icon.dateAdded || '2026-08-23',
+            collection: icon.collection || 'community'
+          };
+        });
+
+        // Pin 'orildo' or 'thesvg' at index 0
+        normalized.sort((a, b) => {
+          if (a.id === 'orildo' || a.id === 'thesvg') return -1;
+          if (b.id === 'orildo' || b.id === 'thesvg') return 1;
+          return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
+        });
+
+        // Compute categories
+        const categoryCounts = {};
+        normalized.forEach((icon) => {
+          if (Array.isArray(icon.categories)) {
+            icon.categories.forEach((cat) => {
+              categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+            });
+          } else if (icon.category) {
+            categoryCounts[icon.category] = (categoryCounts[icon.category] || 0) + 1;
+          }
+        });
+
+        const categories = Object.keys(categoryCounts)
+          .map((name) => ({
+            name,
+            count: categoryCounts[name]
+          }))
+          .sort((a, b) => a.name.localeCompare(b.name));
+
+        setMetadata({
+          totalIcons: normalized.length,
+          categoryCount: categories.length,
+          categories,
+          icons: normalized
+        });
       } catch (err) {
-        console.error('Error loading metadata:', err);
+        console.error('Error loading icons.json:', err);
       } finally {
         setIsLoading(false);
       }
     }
 
-    loadMetadata();
+    loadIcons();
   }, []);
 
   // Global shortcut '/' and ⌘K / Ctrl+K
