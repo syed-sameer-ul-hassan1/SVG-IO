@@ -10,7 +10,7 @@ export function CookieBanner({ onNavigate }) {
     try {
       const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
       if (!consent) {
-        // Show after 800ms for smooth initial load
+
         const timer = setTimeout(() => setIsVisible(true), 800);
         return () => clearTimeout(timer);
       }
@@ -55,8 +55,8 @@ export function CookieBanner({ onNavigate }) {
             className="md-cookie-close-btn"
             onClick={handleReject}
             title="Dismiss & keep essential only"
-            aria-label="Close cookie banner"
-          >
+            aria-label="Close cookie banner">
+            
             <X size={15} />
           </button>
         </div>
@@ -65,8 +65,8 @@ export function CookieBanner({ onNavigate }) {
           <button
             type="button"
             className="md-cookie-policy-link"
-            onClick={() => onNavigate?.('privacy')}
-          >
+            onClick={() => onNavigate?.('privacy')}>
+            
             <span>Learn more in Privacy Policy</span>
             <ArrowRight size={12} />
           </button>
@@ -75,24 +75,24 @@ export function CookieBanner({ onNavigate }) {
             <button
               type="button"
               className="md-btn md-btn-secondary md-cookie-reject-btn"
-              onClick={handleReject}
-            >
+              onClick={handleReject}>
+              
               <span>Reject Non-Essential</span>
             </button>
 
             <button
               type="button"
               className="md-btn md-btn-primary md-cookie-accept-btn"
-              onClick={handleAccept}
-            >
+              onClick={handleAccept}>
+              
               <Check size={14} />
               <span>Accept All</span>
             </button>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default CookieBanner;

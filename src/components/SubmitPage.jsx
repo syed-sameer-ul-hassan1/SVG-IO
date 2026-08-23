@@ -3,8 +3,8 @@ import React, {
   useMemo,
   useRef,
   useEffect,
-  useCallback,
-} from "react";
+  useCallback } from
+"react";
 import {
   UploadCloud,
   CheckCircle2,
@@ -25,86 +25,86 @@ import {
   Plus,
   Trash2,
   Eye,
-  Package,
-} from "lucide-react";
+  Package } from
+"lucide-react";
 
-const MAX_SVG_SIZE_BYTES = 20 * 1024; // Strict 20 KB maximum limit per SVG
+const MAX_SVG_SIZE_BYTES = 20 * 1024;
 
 const POPULAR_CATEGORIES = [
-  "Software",
-  "Developer Tools",
-  "Framework",
-  "AI",
-  "Cloud",
-  "Database",
-  "Design",
-  "Analytics",
-  "Security",
-  "DevOps",
-  "E-commerce",
-  "Crypto",
-  "Gaming",
-  "Mobile",
-  "Hosting",
-  "Marketing",
-  "Finance",
-  "Media",
-  "Education",
-  "Social",
-];
+"Software",
+"Developer Tools",
+"Framework",
+"AI",
+"Cloud",
+"Database",
+"Design",
+"Analytics",
+"Security",
+"DevOps",
+"E-commerce",
+"Crypto",
+"Gaming",
+"Mobile",
+"Hosting",
+"Marketing",
+"Finance",
+"Media",
+"Education",
+"Social"];
+
 
 const PRESET_VARIANT_NAMES = [
-  "default",
-  "light",
-  "dark",
-  "wordmark-dark",
-  "wordmark-light",
-  "mono",
-  "symbol",
-  "outline",
-  "solid",
-  "duotone",
-];
+"default",
+"light",
+"dark",
+"wordmark-dark",
+"wordmark-light",
+"mono",
+"symbol",
+"outline",
+"solid",
+"duotone"];
+
 
 export function SubmitPage({
   onIconAdded,
   onShowToast,
   onNavigate,
-  totalIcons = 6516,
+  totalIcons = 6516
 }) {
-  // Form State
+
   const [iconName, setIconName] = useState("");
   const [iconSlug, setIconSlug] = useState("");
   const [websiteUrl, setWebsiteUrl] = useState("");
   const [brandGuidelinesUrl, setBrandGuidelinesUrl] = useState("");
-  const [hexColors, setHexColors] = useState(["FF5F02"]); // Multiple brand hex colors (primary is index 0)
-  const [detectedHexes, setDetectedHexes] = useState([]); // All auto-detected hexes from uploaded SVGs
+  const [hexColors, setHexColors] = useState(["FF5F02"]);
+  const [detectedHexes, setDetectedHexes] = useState([]);
   const [license, setLicense] = useState("Apache-2.0");
   const [selectedCategories, setSelectedCategories] = useState(["Software"]);
 
-  // Multi-SVG Uploaded Variants: array of { id, variantName, fileName, fileSize, svgContent }
+
   const [variants, setVariants] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const [submissionResult, setSubmissionResult] = useState(null);
-  const [countdown, setCountdown] = useState(60); // 60-second live countdown after submit
+  const [countdown, setCountdown] = useState(60);
 
   const fileInputRef = useRef(null);
   const addMoreInputRef = useRef(null);
 
-  // Auto-generate slug from name
+
   const handleNameChange = (e) => {
     const val = e.target.value;
     setIconName(val);
-    const autoSlug = val
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
+    const autoSlug = val.
+    toLowerCase().
+    replace(/[^a-z0-9]+/g, "-").
+    replace(/(^-|-$)/g, "");
     setIconSlug(autoSlug);
   };
 
-  // Toggle Category selection
+
   const handleToggleCategory = (cat) => {
     if (selectedCategories.includes(cat)) {
       if (selectedCategories.length > 1) {
@@ -115,23 +115,23 @@ export function SubmitPage({
     }
   };
 
-  // Normalize any hex code to 6-char uppercase hex without '#'
+
   const normalizeHex = (hexStr) => {
     if (!hexStr) return null;
     let h = hexStr.replace(/^#/, "").trim();
     if (h.length === 3) {
-      h = h
-        .split("")
-        .map((c) => c + c)
-        .join("");
+      h = h.
+      split("").
+      map((c) => c + c).
+      join("");
     } else if (h.length === 8) {
       h = h.substring(0, 6);
     } else if (h.length === 4) {
-      h = h
-        .substring(0, 3)
-        .split("")
-        .map((c) => c + c)
-        .join("");
+      h = h.
+      substring(0, 3).
+      split("").
+      map((c) => c + c).
+      join("");
     }
     if (/^[0-9a-fA-F]{6}$/.test(h)) {
       return h.toUpperCase();
@@ -139,18 +139,18 @@ export function SubmitPage({
     return null;
   };
 
-  // Convert rgb/rgba to hex
+
   const rgbToHex = (r, g, b) => {
     const toHex = (n) => {
       const hex = Math.max(0, Math.min(255, Math.round(Number(n)))).toString(
-        16,
+        16
       );
       return hex.length === 1 ? "0" + hex : hex;
     };
     return `${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
   };
 
-  // Extract all unique colors from SVG content
+
   const extractAllSvgColors = (svgContent) => {
     if (!svgContent || typeof svgContent !== "string") return [];
     const colorCounts = new Map();
@@ -159,10 +159,10 @@ export function SubmitPage({
       if (!rawColor) return;
       const clean = rawColor.trim();
       if (
-        ["none", "transparent", "currentcolor", "inherit", "initial"].includes(
-          clean.toLowerCase(),
-        )
-      ) {
+      ["none", "transparent", "currentcolor", "inherit", "initial"].includes(
+        clean.toLowerCase()
+      ))
+      {
         return;
       }
 
@@ -175,7 +175,7 @@ export function SubmitPage({
       }
 
       const rgbMatch = clean.match(
-        /rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i,
+        /rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i
       );
       if (rgbMatch) {
         const hex = rgbToHex(rgbMatch[1], rgbMatch[2], rgbMatch[3]);
@@ -184,42 +184,42 @@ export function SubmitPage({
       }
     };
 
-    // 1. Attributes: fill, stroke, stop-color, color
+
     const attrMatches = svgContent.matchAll(
-      /(?:fill|stroke|stop-color|color)\s*=\s*["']([^"']+)["']/gi,
+      /(?:fill|stroke|stop-color|color)\s*=\s*["']([^"']+)["']/gi
     );
     for (const m of attrMatches) {
       addColor(m[1]);
     }
 
-    // 2. CSS styles
+
     const styleMatches = svgContent.matchAll(
-      /(?:fill|stroke|stop-color|color)\s*:\s*([^;}"'\s]+)/gi,
+      /(?:fill|stroke|stop-color|color)\s*:\s*([^;}"'\s]+)/gi
     );
     for (const m of styleMatches) {
       addColor(m[1]);
     }
 
-    // 3. Fallback general hex pattern search
+
     const generalHexMatches = svgContent.matchAll(
-      /#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b/g,
+      /#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b/g
     );
     for (const m of generalHexMatches) {
       addColor(m[0]);
     }
 
-    return Array.from(colorCounts.entries())
-      .sort((a, b) => b[1] - a[1])
-      .map(([hex]) => hex);
+    return Array.from(colorCounts.entries()).
+    sort((a, b) => b[1] - a[1]).
+    map(([hex]) => hex);
   };
 
-  // Determine smart variant name from filename
+
   const getSmartVariantName = (filename, existingCount) => {
     const lower = filename.toLowerCase().replace(/\.svg$/i, "");
     if (lower.includes("wordmark-dark") || lower.includes("wordmark_dark"))
-      return "wordmark-dark";
+    return "wordmark-dark";
     if (lower.includes("wordmark-light") || lower.includes("wordmark_light"))
-      return "wordmark-light";
+    return "wordmark-light";
     if (lower.includes("dark")) return "dark";
     if (lower.includes("light")) return "light";
     if (lower.includes("mono")) return "mono";
@@ -233,17 +233,17 @@ export function SubmitPage({
     return lower.replace(/[^a-z0-9-]/g, "") || `variant-${existingCount + 1}`;
   };
 
-  // Process single or multiple SVG files with 20 KB limit and security scanner
+
   const processFiles = async (files) => {
     if (!files || files.length === 0) return;
     const fileList = Array.from(files);
 
     const validFiles = fileList.filter(
       (f) =>
-        f.name.toLowerCase().endsWith('.svg') ||
-        f.type.includes('svg') ||
-        f.type.includes('xml') ||
-        f.type === ''
+      f.name.toLowerCase().endsWith('.svg') ||
+      f.type.includes('svg') ||
+      f.type.includes('xml') ||
+      f.type === ''
     );
 
     if (validFiles.length === 0) {
@@ -257,7 +257,7 @@ export function SubmitPage({
 
     const fileReadPromises = validFiles.map((file, idx) => {
       return new Promise((resolve) => {
-        // 1. Strict 20 KB size limit enforcement
+
         if (file.size > MAX_SVG_SIZE_BYTES) {
           onShowToast?.({
             type: 'error',
@@ -272,7 +272,7 @@ export function SubmitPage({
           let content = event.target?.result;
           if (typeof content !== 'string') return resolve(null);
 
-          // 2. Strict Security Scan: Block scripts and executable markup
+
           if (/<script|javascript:|<iframe|<embed|<object|data:text\/html/i.test(content)) {
             onShowToast?.({
               type: 'error',
@@ -282,7 +282,7 @@ export function SubmitPage({
             return resolve(null);
           }
 
-          // 3. Ensure viewBox is present
+
           if (!/<svg[^>]*\bviewBox=/i.test(content)) {
             const wMatch = content.match(/\bwidth=["']?(\d+)/i);
             const hMatch = content.match(/\bheight=["']?(\d+)/i);
@@ -305,7 +305,7 @@ export function SubmitPage({
     const parsedResults = (await Promise.all(fileReadPromises)).filter(Boolean);
     if (parsedResults.length === 0) return;
 
-    // Collect all detected colors across all uploaded SVGs
+
     const combinedColorsSet = new Set(detectedHexes);
     parsedResults.forEach(({ content }) => {
       const colors = extractAllSvgColors(content);
@@ -321,17 +321,17 @@ export function SubmitPage({
 
     if (nonNeutralColors.length > 0) {
       setHexColors(nonNeutralColors);
-    } else if (allColorsArray.length > 0 && (hexColors.length === 1 && hexColors[0] === 'FF5F02')) {
+    } else if (allColorsArray.length > 0 && hexColors.length === 1 && hexColors[0] === 'FF5F02') {
       setHexColors(allColorsArray);
     }
 
-    // Auto-fill icon name from first file if blank
+
     if (!iconName && variants.length === 0 && parsedResults.length > 0) {
       const firstFile = parsedResults[0].file;
-      const baseName = firstFile.name
-        .replace(/\.svg$/i, '')
-        .replace(/-(default|dark|light|mono|wordmark|wordmark-dark|wordmark-light|logo)/i, '')
-        .replace(/[-_]+/g, ' ');
+      const baseName = firstFile.name.
+      replace(/\.svg$/i, '').
+      replace(/-(default|dark|light|mono|wordmark|wordmark-dark|wordmark-light|logo)/i, '').
+      replace(/[-_]+/g, ' ');
       if (baseName) {
         const formatted = baseName.charAt(0).toUpperCase() + baseName.slice(1);
         setIconName(formatted);
@@ -339,7 +339,7 @@ export function SubmitPage({
       }
     }
 
-    // Atomically append all new variants with deduplicated smart names
+
     setVariants((prev) => {
       const updated = [...prev];
       const usedNames = new Set(updated.map((v) => v.variantName.toLowerCase()));
@@ -373,44 +373,44 @@ export function SubmitPage({
     });
   };
 
-  // Handle selecting a detected color chip
+
   const handleSelectDetectedColor = (color) => {
     const clean = color.replace(/^#/, "").toUpperCase();
     if (!hexColors.includes(clean)) {
       setHexColors((prev) => [clean, ...prev]);
     } else {
-      // Move to primary (index 0)
+
       setHexColors((prev) => [clean, ...prev.filter((c) => c !== clean)]);
     }
   };
 
-  // Update a specific hex color by index
+
   const handleUpdateHex = (index, newHex) => {
     const clean = newHex.replace(/[^0-9a-fA-F]/g, "").toUpperCase();
-    setHexColors((prev) => prev.map((c, i) => (i === index ? clean : c)));
+    setHexColors((prev) => prev.map((c, i) => i === index ? clean : c));
   };
 
-  // Add another custom color input
+
   const handleAddCustomColor = () => {
     const defaultNewColor =
-      detectedHexes.find((d) => !hexColors.includes(d)) || "3B82F6";
+    detectedHexes.find((d) => !hexColors.includes(d)) || "3B82F6";
     setHexColors((prev) => [...prev, defaultNewColor]);
   };
 
-  // Remove a color from list
+
   const handleRemoveHex = (index) => {
     if (hexColors.length > 1) {
       setHexColors((prev) => prev.filter((_, i) => i !== index));
     }
   };
 
-  // Set color as primary (index 0)
+
   const handleSetPrimary = (index) => {
     if (index === 0) return;
     setHexColors((prev) => [
-      prev[index],
-      ...prev.filter((_, i) => i !== index),
-    ]);
+    prev[index],
+    ...prev.filter((_, i) => i !== index)]
+    );
   };
 
   const handleDragOver = (e) => {
@@ -430,20 +430,20 @@ export function SubmitPage({
     }
   };
 
-  // Update variant name
+
   const handleUpdateVariantName = (id, newName) => {
     const sanitized = newName.toLowerCase().replace(/[^a-z0-9-_]/g, "");
     setVariants((prev) =>
-      prev.map((v) => (v.id === id ? { ...v, variantName: sanitized } : v)),
+    prev.map((v) => v.id === id ? { ...v, variantName: sanitized } : v)
     );
   };
 
-  // Remove a variant
+
   const handleRemoveVariant = (id) => {
     setVariants((prev) => prev.filter((v) => v.id !== id));
   };
 
-  // Computed JSON Schema Preview
+
   const schemaPreview = useMemo(() => {
     const s = iconSlug || "your-brand";
     const variantMap = {};
@@ -470,7 +470,7 @@ export function SubmitPage({
       categories: selectedCategories,
       variants: variantMap,
       license,
-      url: websiteUrl || `https://${s}.com`,
+      url: websiteUrl || `https://${s}.com`
     };
 
     if (cleanHexes.length > 1) {
@@ -479,16 +479,16 @@ export function SubmitPage({
 
     return JSON.stringify(schemaObj, null, 2);
   }, [
-    iconSlug,
-    iconName,
-    hexColors,
-    selectedCategories,
-    variants,
-    license,
-    websiteUrl,
-  ]);
+  iconSlug,
+  iconName,
+  hexColors,
+  selectedCategories,
+  variants,
+  license,
+  websiteUrl]
+  );
 
-  // ── Form Submit Handler (fully client-side — no Cloudflare Function needed) ──
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
@@ -496,22 +496,22 @@ export function SubmitPage({
     if (!iconName.trim()) newErrors.name = "Icon name is required";
     if (!iconSlug.trim()) newErrors.slug = "Slug is required";
     if (variants.length === 0)
-      newErrors.svg = "Please upload at least one SVG file";
+    newErrors.svg = "Please upload at least one SVG file";
 
     const variantNames = variants.map((v) => v.variantName.trim());
     if (variantNames.some((v) => !v))
-      newErrors.variants = "All variants must have a name";
+    newErrors.variants = "All variants must have a name";
     const uniqueNames = new Set(variantNames);
     if (uniqueNames.size !== variantNames.length)
-      newErrors.variants =
-        "Each variant must have a unique name (e.g., default, dark, mono)";
+    newErrors.variants =
+    "Each variant must have a unique name (e.g., default, dark, mono)";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       onShowToast?.({
         type: "error",
         title: "Validation Error",
-        message: Object.values(newErrors)[0],
+        message: Object.values(newErrors)[0]
       });
       return;
     }
@@ -521,22 +521,22 @@ export function SubmitPage({
 
     const slug = iconSlug.trim().toLowerCase();
     const title = iconName.trim();
-    const primaryHex = (hexColors[0] || "FF5F02")
-      .replace(/^#/, "")
-      .toUpperCase();
+    const primaryHex = (hexColors[0] || "FF5F02").
+    replace(/^#/, "").
+    toUpperCase();
     const allHexes = hexColors.map((h) => h.replace(/^#/, "").toUpperCase());
     const iconUrl = websiteUrl.trim() || `https://${slug}.com`;
     const brandGuidelines = brandGuidelinesUrl.trim() || undefined;
     const SUPABASE_URL = (
-      import.meta.env.VITE_DATABASE_URL ||
-      "https://wexavetbwvlazhusuouu.supabase.co"
-    ).replace(/\/+$/, "");
+    import.meta.env.VITE_DATABASE_URL ||
+    "https://wexavetbwvlazhusuouu.supabase.co").
+    replace(/\/+$/, "");
     const SUPABASE_ANON_KEY =
-      import.meta.env.VITE_DATABASE_KEY ||
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndleGF2ZXRid3ZsYXpodXN1b3V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MDA2NzgsImV4cCI6MjEwMzA3NjY3OH0.dWhB2MYM-yNdmvGIkHRf53tTSsgVD6sFcfY_xIAnEms";
+    import.meta.env.VITE_DATABASE_KEY ||
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndleGF2ZXRid3ZsYXpodXN1b3V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MDA2NzgsImV4cCI6MjEwMzA3NjY3OH0.dWhB2MYM-yNdmvGIkHRf53tTSsgVD6sFcfY_xIAnEms";
 
     try {
-      // ── Step 1: Upload all SVG variants in parallel to Supabase Storage ──
+
       const uploadPromises = variants.map(async (v) => {
         const variantKey = v.variantName.trim().toLowerCase();
         const filePath = `${slug}/${variantKey}.svg`;
@@ -550,9 +550,9 @@ export function SubmitPage({
               Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
               apikey: SUPABASE_ANON_KEY,
               "Content-Type": "image/svg+xml",
-              "x-upsert": "true",
+              "x-upsert": "true"
             },
-            body: svgBytes,
+            body: svgBytes
           }
         );
 
@@ -573,14 +573,14 @@ export function SubmitPage({
         storageUrls[r.key] = r.url;
       });
 
-      // ── Step 2: Trigger submission via Supabase Edge Function ─────────────
-      // (The Edge function securely reads GitHub PAT from Supabase app_config and fires GitHub Action)
+
+
       const edgeRes = await fetch(`${SUPABASE_URL}/functions/v1/submit-icon`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          apikey: SUPABASE_ANON_KEY,
+          apikey: SUPABASE_ANON_KEY
         },
         body: JSON.stringify({
           slug,
@@ -592,22 +592,22 @@ export function SubmitPage({
           license,
           url: iconUrl,
           guidelines: brandGuidelines,
-          variants: storageUrls,
-        }),
+          variants: storageUrls
+        })
       });
 
       if (!edgeRes.ok) {
         const errJson = await edgeRes.json().catch(() => ({}));
         throw new Error(
-          errJson.error || `Submission service error (${edgeRes.status})`,
+          errJson.error || `Submission service error (${edgeRes.status})`
         );
       }
 
-      // ── Step 3: Show success + start 60-second countdown ─────────────────
+
       onShowToast?.({
         type: "success",
         title: "Processing started",
-        message: `"${title}" with ${allHexes.length} brand color${allHexes.length > 1 ? "s" : ""} is being added.`,
+        message: `"${title}" with ${allHexes.length} brand color${allHexes.length > 1 ? "s" : ""} is being added.`
       });
 
       setSubmissionResult({
@@ -616,11 +616,11 @@ export function SubmitPage({
         title,
         variantCount: variants.length,
         colors: allHexes,
-        storageUrls,
+        storageUrls
       });
       setCountdown(60);
 
-      // Reset form
+
       setIconName("");
       setIconSlug("");
       setWebsiteUrl("");
@@ -636,14 +636,14 @@ export function SubmitPage({
       onShowToast?.({
         type: "error",
         title: "Submission Failed",
-        message: err.message || "Something went wrong. Check your env vars.",
+        message: err.message || "Something went wrong. Check your env vars."
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // ── Countdown timer (ticks every second while success screen is shown) ────
+
   useEffect(() => {
     if (!submissionResult?.success) return;
     if (countdown <= 0) return;
@@ -651,21 +651,21 @@ export function SubmitPage({
     return () => clearTimeout(t);
   }, [submissionResult, countdown]);
 
-  // ── Submission Success Screen with Live Countdown ────────────────────────────
+
   if (submissionResult?.success) {
     const isDone = countdown <= 0;
-    const progress = ((60 - countdown) / 60) * 100;
-    const circumference = 2 * Math.PI * 44; // radius 44
+    const progress = (60 - countdown) / 60 * 100;
+    const circumference = 2 * Math.PI * 44;
 
     return (
       <div className="sv-submit-page-container">
         <div className="sv-submit-success-card glass-panel">
-          {/* Circular countdown ring */}
+          {}
           <div className="sv-countdown-ring-wrap">
             <svg className="sv-countdown-svg" viewBox="0 0 100 100">
-              {/* background track */}
+              {}
               <circle cx="50" cy="50" r="44" className="sv-ring-track" />
-              {/* animated fill */}
+              {}
               <circle
                 cx="50"
                 cy="50"
@@ -674,16 +674,16 @@ export function SubmitPage({
                 style={{
                   strokeDasharray: circumference,
                   strokeDashoffset:
-                    circumference - (circumference * progress) / 100,
-                }}
-              />
+                  circumference - circumference * progress / 100
+                }} />
+              
             </svg>
             <div className="sv-countdown-center">
-              {isDone ? (
-                <CheckCircle2 size={32} className="sv-success-icon" />
-              ) : (
-                <span className="sv-countdown-number">{countdown}</span>
-              )}
+              {isDone ?
+              <CheckCircle2 size={32} className="sv-success-icon" /> :
+
+              <span className="sv-countdown-number">{countdown}</span>
+              }
             </div>
           </div>
 
@@ -699,22 +699,22 @@ export function SubmitPage({
           </h2>
 
           <p className="sv-success-desc">
-            {isDone ? (
-              <>
+            {isDone ?
+            <>
                 <strong>{submissionResult.title}</strong> has been committed to
                 the repo. Refresh the icon library to see it!
-              </>
-            ) : (
-              <>
+              </> :
+
+            <>
                 GitHub Action is downloading{" "}
                 <strong>{submissionResult.title}</strong> from Supabase and
                 committing it to the repo. Should be live in{" "}
                 <strong>{countdown}s</strong>.
               </>
-            )}
+            }
           </p>
 
-          {/* Meta chips */}
+          {}
           <div className="sv-success-meta-grid">
             <div className="sv-success-meta-item">
               <span className="sv-success-meta-label">SLUG</span>
@@ -728,27 +728,27 @@ export function SubmitPage({
                 {submissionResult.variantCount} uploaded
               </code>
             </div>
-            {submissionResult.colors && submissionResult.colors.length > 0 && (
-              <div className="sv-success-meta-item sv-success-colors-item">
+            {submissionResult.colors && submissionResult.colors.length > 0 &&
+            <div className="sv-success-meta-item sv-success-colors-item">
                 <span className="sv-success-meta-label">BRAND COLORS</span>
                 <div className="sv-success-color-dots-row">
-                  {submissionResult.colors.map((c, cIdx) => (
-                    <span
-                      key={cIdx}
-                      className="sv-success-color-pill"
-                      style={{ borderLeftColor: `#${c}` }}
-                      title={`#${c}`}
-                    >
+                  {submissionResult.colors.map((c, cIdx) =>
+                <span
+                  key={cIdx}
+                  className="sv-success-color-pill"
+                  style={{ borderLeftColor: `#${c}` }}
+                  title={`#${c}`}>
+                  
                       <span
-                        className="sv-dot"
-                        style={{ backgroundColor: `#${c}` }}
-                      />
+                    className="sv-dot"
+                    style={{ backgroundColor: `#${c}` }} />
+                  
                       #{c}
                     </span>
-                  ))}
+                )}
                 </div>
               </div>
-            )}
+            }
           </div>
 
           <div className="sv-success-actions-row">
@@ -756,8 +756,8 @@ export function SubmitPage({
               href="https://github.com/syed-sameer-ul-hassan/SVG.IO/actions"
               target="_blank"
               rel="noopener noreferrer"
-              className="sv-repo-action-btn"
-            >
+              className="sv-repo-action-btn">
+              
               <Eye size={14} />
               <span>Watch Action</span>
               <ExternalLink size={12} />
@@ -768,24 +768,24 @@ export function SubmitPage({
               onClick={() => {
                 setSubmissionResult(null);
                 setCountdown(60);
-              }}
-            >
+              }}>
+              
               <Plus size={16} />
               <span>Submit Another Icon</span>
             </button>
           </div>
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
   return (
     <div className="sv-submit-page-container">
-      {/* 2-Column Main Submission Grid */}
+      {}
       <div className="sv-submit-main-grid">
-        {/* ================= LEFT COLUMN ================= */}
+        {}
         <div className="sv-submit-left-col">
-          {/* Header Hero Card */}
+          {}
           <div className="sv-submit-hero-card glass-panel">
             <h1 className="sv-submit-main-title">Submit SVG Icons</h1>
             <p className="sv-submit-main-sub">
@@ -794,7 +794,7 @@ export function SubmitPage({
             </p>
           </div>
 
-          {/* Icon Pack & Full Variant Sets Card */}
+          {}
           <div className="sv-pack-requirement-card glass-panel">
             <div className="sv-pack-header">
               <div className="sv-pack-badge">
@@ -834,13 +834,13 @@ export function SubmitPage({
             </div>
           </div>
 
-          {/* How It Works Section */}
+          {}
           <div className="sv-how-it-works-section">
             <h2 className="sv-section-header-title">
               How to Contribute via Fork & PR
             </h2>
             <div className="sv-how-cards-grid">
-              {/* Step 1 */}
+              {}
               <div className="sv-how-card step-blue glass-panel">
                 <div className="sv-how-card-header">
                   <div className="sv-how-icon-wrap">
@@ -854,7 +854,7 @@ export function SubmitPage({
                 </p>
               </div>
 
-              {/* Step 2 */}
+              {}
               <div className="sv-how-card step-emerald glass-panel">
                 <div className="sv-how-card-header">
                   <div className="sv-how-icon-wrap">
@@ -868,7 +868,7 @@ export function SubmitPage({
                 </p>
               </div>
 
-              {/* Step 3 */}
+              {}
               <div className="sv-how-card step-purple glass-panel">
                 <div className="sv-how-card-header">
                   <div className="sv-how-icon-wrap">
@@ -882,7 +882,7 @@ export function SubmitPage({
                 </p>
               </div>
 
-              {/* Step 4 */}
+              {}
               <div className="sv-how-card step-amber glass-panel">
                 <div className="sv-how-card-header">
                   <div className="sv-how-icon-wrap">
@@ -897,7 +897,7 @@ export function SubmitPage({
             </div>
           </div>
 
-          {/* SVG Requirements Card */}
+          {}
           <div className="sv-req-card glass-panel">
             <h3 className="sv-req-title">SVG Limits & Quality Standards</h3>
             <ul className="sv-req-list">
@@ -944,14 +944,14 @@ export function SubmitPage({
             </ul>
           </div>
 
-          {/* Action Links */}
+          {}
           <div className="sv-repo-links-row">
             <a
               href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
               target="_blank"
               rel="noopener noreferrer"
-              className="sv-repo-action-btn"
-            >
+              className="sv-repo-action-btn">
+              
               <Github size={14} />
               <span>GitHub Repository</span>
               <ExternalLink size={12} />
@@ -960,15 +960,15 @@ export function SubmitPage({
               href="https://github.com/syed-sameer-ul-hassan/SVG.IO/issues"
               target="_blank"
               rel="noopener noreferrer"
-              className="sv-repo-action-btn"
-            >
+              className="sv-repo-action-btn">
+              
               <AlertCircle size={14} />
               <span>Issues &amp; Requests</span>
               <ExternalLink size={12} />
             </a>
           </div>
 
-          {/* Live Icon Entry Schema Preview */}
+          {}
           <div className="sv-schema-preview-box glass-panel">
             <div className="sv-schema-header">
               <span className="sv-schema-title">Icon Entry Schema</span>
@@ -983,12 +983,12 @@ export function SubmitPage({
           </div>
         </div>
 
-        {/* ================= RIGHT COLUMN: QUICK SUBMIT ================= */}
+        {}
         <div className="sv-submit-right-col">
           <form
             className="sv-submit-form-card glass-panel"
-            onSubmit={handleSubmit}
-          >
+            onSubmit={handleSubmit}>
+            
             <div className="sv-form-header">
               <h2 className="sv-form-title">Quick Submit</h2>
               <p className="sv-form-sub">
@@ -997,7 +997,7 @@ export function SubmitPage({
               </p>
             </div>
 
-            {/* Quality Checklist Badges */}
+            {}
             <div className="sv-quality-badges-row">
               <span className="sv-q-badge">
                 <Check size={11} /> Max 20 KB / SVG
@@ -1013,52 +1013,52 @@ export function SubmitPage({
               </span>
             </div>
 
-            {/* SVG Multi-File Drag & Drop Area */}
+            {}
             <div className="sv-form-group">
               <div className="sv-label-with-help">
                 <label className="sv-form-label">
                   SVG Variants ({variants.length}){" "}
                   <span className="req">*</span>
                 </label>
-                {variants.length > 0 && (
-                  <button
-                    type="button"
-                    className="sv-add-more-pill-btn"
-                    onClick={() => addMoreInputRef.current?.click()}
-                  >
+                {variants.length > 0 &&
+                <button
+                  type="button"
+                  className="sv-add-more-pill-btn"
+                  onClick={() => addMoreInputRef.current?.click()}>
+                  
                     <Plus size={12} />
                     <span>Add Another Variant</span>
                   </button>
-                )}
+                }
               </div>
 
-              {/* Hidden file input for adding more */}
+              {}
               <input
                 ref={addMoreInputRef}
                 type="file"
                 accept=".svg"
                 multiple
                 style={{ display: "none" }}
-                onChange={(e) => processFiles(e.target.files)}
-              />
+                onChange={(e) => processFiles(e.target.files)} />
+              
 
-              {/* Dropzone (when 0 variants or user wants to drop) */}
-              {variants.length === 0 ? (
-                <div
-                  className={`sv-dropzone ${isDragging ? "is-dragging" : ""} ${errors.svg ? "has-error" : ""}`}
-                  onDragOver={handleDragOver}
-                  onDragLeave={handleDragLeave}
-                  onDrop={handleDrop}
-                  onClick={() => fileInputRef.current?.click()}
-                >
+              {}
+              {variants.length === 0 ?
+              <div
+                className={`sv-dropzone ${isDragging ? "is-dragging" : ""} ${errors.svg ? "has-error" : ""}`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                onClick={() => fileInputRef.current?.click()}>
+                
                   <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept=".svg"
-                    multiple
-                    style={{ display: "none" }}
-                    onChange={(e) => processFiles(e.target.files)}
-                  />
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".svg"
+                  multiple
+                  style={{ display: "none" }}
+                  onChange={(e) => processFiles(e.target.files)} />
+                
                   <div className="sv-dropzone-icon-wrap">
                     <UploadCloud size={28} className="sv-dropzone-icon" />
                   </div>
@@ -1068,28 +1068,28 @@ export function SubmitPage({
                   <span className="sv-dropzone-sub-text">
                     or click to browse • .svg files only, max 20KB per SVG
                   </span>
-                </div>
-              ) : null}
+                </div> :
+              null}
 
-              {/* Uploaded Variants List */}
-              {variants.length > 0 && (
-                <div
-                  className={`sv-multi-variants-container ${isDragging ? "is-dragging" : ""}`}
-                  onDragOver={handleDragOver}
-                  onDragLeave={handleDragLeave}
-                  onDrop={handleDrop}
-                >
+              {}
+              {variants.length > 0 &&
+              <div
+                className={`sv-multi-variants-container ${isDragging ? "is-dragging" : ""}`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}>
+                
                   <div className="sv-variants-list">
-                    {variants.map((v, idx) => (
-                      <div
-                        key={v.id}
-                        className="sv-variant-item-card glass-panel"
-                      >
+                    {variants.map((v, idx) =>
+                  <div
+                    key={v.id}
+                    className="sv-variant-item-card glass-panel">
+                    
                         <div className="sv-variant-preview-circle">
                           <div
-                            className="sv-variant-svg-wrapper"
-                            dangerouslySetInnerHTML={{ __html: v.svgContent }}
-                          />
+                        className="sv-variant-svg-wrapper"
+                        dangerouslySetInnerHTML={{ __html: v.svgContent }} />
+                      
                         </div>
 
                         <div className="sv-variant-fields">
@@ -1098,33 +1098,33 @@ export function SubmitPage({
                               Variant Name / Key:
                             </label>
                             <input
-                              type="text"
-                              className="sv-variant-name-input"
-                              placeholder="e.g. default, dark, mono"
-                              value={v.variantName}
-                              onChange={(e) =>
-                                handleUpdateVariantName(v.id, e.target.value)
-                              }
-                            />
-                            {idx === 0 && (
-                              <span className="sv-primary-badge">PRIMARY</span>
-                            )}
+                          type="text"
+                          className="sv-variant-name-input"
+                          placeholder="e.g. default, dark, mono"
+                          value={v.variantName}
+                          onChange={(e) =>
+                          handleUpdateVariantName(v.id, e.target.value)
+                          } />
+                        
+                            {idx === 0 &&
+                        <span className="sv-primary-badge">PRIMARY</span>
+                        }
                           </div>
 
-                          {/* Quick Preset Buttons */}
+                          {}
                           <div className="sv-variant-presets-row">
-                            {PRESET_VARIANT_NAMES.map((pName) => (
-                              <button
-                                key={pName}
-                                type="button"
-                                className={`sv-preset-btn ${v.variantName === pName ? "active" : ""}`}
-                                onClick={() =>
-                                  handleUpdateVariantName(v.id, pName)
-                                }
-                              >
+                            {PRESET_VARIANT_NAMES.map((pName) =>
+                        <button
+                          key={pName}
+                          type="button"
+                          className={`sv-preset-btn ${v.variantName === pName ? "active" : ""}`}
+                          onClick={() =>
+                          handleUpdateVariantName(v.id, pName)
+                          }>
+                          
                                 {pName}
                               </button>
-                            ))}
+                        )}
                           </div>
 
                           <div className="sv-variant-meta-row">
@@ -1142,42 +1142,42 @@ export function SubmitPage({
                         </div>
 
                         <button
-                          type="button"
-                          className="sv-variant-remove-btn"
-                          onClick={() => handleRemoveVariant(v.id)}
-                          title="Remove variant"
-                        >
+                      type="button"
+                      className="sv-variant-remove-btn"
+                      onClick={() => handleRemoveVariant(v.id)}
+                      title="Remove variant">
+                      
                           <Trash2 size={14} />
                         </button>
                       </div>
-                    ))}
+                  )}
                   </div>
 
-                  {/* Drop zone footer for adding more */}
+                  {}
                   <div
-                    className="sv-add-drop-footer"
-                    onClick={() => addMoreInputRef.current?.click()}
-                  >
+                  className="sv-add-drop-footer"
+                  onClick={() => addMoreInputRef.current?.click()}>
+                  
                     <Plus size={14} />
                     <span>
                       Drop more SVGs or click here to add another variant
                     </span>
                   </div>
                 </div>
-              )}
+              }
 
-              {errors.svg && (
-                <span className="sv-field-error">{errors.svg}</span>
-              )}
-              {errors.variants && (
-                <span className="sv-field-error">{errors.variants}</span>
-              )}
+              {errors.svg &&
+              <span className="sv-field-error">{errors.svg}</span>
+              }
+              {errors.variants &&
+              <span className="sv-field-error">{errors.variants}</span>
+              }
             </div>
 
-            {/* Icon Details Section */}
+            {}
             <div className="sv-form-section-title">Icon Details</div>
 
-            {/* Name and Slug Row */}
+            {}
             <div className="sv-form-row-2col">
               <div className="sv-form-group">
                 <label className="sv-form-label">
@@ -1188,11 +1188,11 @@ export function SubmitPage({
                   className={`sv-form-input ${errors.name ? "has-error" : ""}`}
                   placeholder="e.g. Vercel"
                   value={iconName}
-                  onChange={handleNameChange}
-                />
-                {errors.name && (
-                  <span className="sv-field-error">{errors.name}</span>
-                )}
+                  onChange={handleNameChange} />
+                
+                {errors.name &&
+                <span className="sv-field-error">{errors.name}</span>
+                }
               </div>
 
               <div className="sv-form-group">
@@ -1205,18 +1205,18 @@ export function SubmitPage({
                   placeholder="e.g. vercel"
                   value={iconSlug}
                   onChange={(e) =>
-                    setIconSlug(
-                      e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""),
-                    )
-                  }
-                />
-                {errors.slug && (
-                  <span className="sv-field-error">{errors.slug}</span>
-                )}
+                  setIconSlug(
+                    e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "")
+                  )
+                  } />
+                
+                {errors.slug &&
+                <span className="sv-field-error">{errors.slug}</span>
+                }
               </div>
             </div>
 
-            {/* Website URL */}
+            {}
             <div className="sv-form-group">
               <label className="sv-form-label">Website URL</label>
               <input
@@ -1224,11 +1224,11 @@ export function SubmitPage({
                 className="sv-form-input"
                 placeholder="https://vercel.com"
                 value={websiteUrl}
-                onChange={(e) => setWebsiteUrl(e.target.value)}
-              />
+                onChange={(e) => setWebsiteUrl(e.target.value)} />
+              
             </div>
 
-            {/* Brand Guidelines URL */}
+            {}
             <div className="sv-form-group">
               <label className="sv-form-label">Brand guidelines URL</label>
               <input
@@ -1236,13 +1236,13 @@ export function SubmitPage({
                 className="sv-form-input"
                 placeholder="https://vercel.com/brand"
                 value={brandGuidelinesUrl}
-                onChange={(e) => setBrandGuidelinesUrl(e.target.value)}
-              />
+                onChange={(e) => setBrandGuidelinesUrl(e.target.value)} />
+              
             </div>
 
-            {/* Auto-Detected Colors from Uploaded SVGs */}
-            {detectedHexes.length > 0 && (
-              <div className="sv-form-group sv-detected-colors-group">
+            {}
+            {detectedHexes.length > 0 &&
+            <div className="sv-form-group sv-detected-colors-group">
                 <div className="sv-label-with-help">
                   <label className="sv-form-label">
                     Auto-Detected Colors from SVGs ({detectedHexes.length})
@@ -1253,35 +1253,35 @@ export function SubmitPage({
                 </div>
                 <div className="sv-detected-chips-grid">
                   {detectedHexes.map((hex) => {
-                    const isSelected = hexColors.includes(hex);
-                    const isPrimary = hexColors[0] === hex;
-                    return (
-                      <button
-                        key={hex}
-                        type="button"
-                        className={`sv-detected-color-chip ${isSelected ? "is-selected" : ""} ${isPrimary ? "is-primary" : ""}`}
-                        onClick={() => handleSelectDetectedColor(hex)}
-                        title={`Click to ${isPrimary ? "use" : isSelected ? "set as primary" : "add"} #${hex}`}
-                      >
+                  const isSelected = hexColors.includes(hex);
+                  const isPrimary = hexColors[0] === hex;
+                  return (
+                    <button
+                      key={hex}
+                      type="button"
+                      className={`sv-detected-color-chip ${isSelected ? "is-selected" : ""} ${isPrimary ? "is-primary" : ""}`}
+                      onClick={() => handleSelectDetectedColor(hex)}
+                      title={`Click to ${isPrimary ? "use" : isSelected ? "set as primary" : "add"} #${hex}`}>
+                      
                         <span
-                          className="sv-detected-color-dot"
-                          style={{ backgroundColor: `#${hex}` }}
-                        />
+                        className="sv-detected-color-dot"
+                        style={{ backgroundColor: `#${hex}` }} />
+                      
                         <span className="sv-detected-color-code">#{hex}</span>
-                        {isPrimary && (
-                          <span className="sv-color-primary-tag">PRIMARY</span>
-                        )}
-                        {isSelected && !isPrimary && (
-                          <Check size={11} className="sv-color-check-icon" />
-                        )}
-                      </button>
-                    );
-                  })}
+                        {isPrimary &&
+                      <span className="sv-color-primary-tag">PRIMARY</span>
+                      }
+                        {isSelected && !isPrimary &&
+                      <Check size={11} className="sv-color-check-icon" />
+                      }
+                      </button>);
+
+                })}
                 </div>
               </div>
-            )}
+            }
 
-            {/* Brand Hex Colors (Supports Multiple) */}
+            {}
             <div className="sv-form-group">
               <div className="sv-label-with-help">
                 <label className="sv-form-label">
@@ -1291,8 +1291,8 @@ export function SubmitPage({
                 <button
                   type="button"
                   className="sv-add-color-btn"
-                  onClick={handleAddCustomColor}
-                >
+                  onClick={handleAddCustomColor}>
+                  
                   <Plus size={12} />
                   <span>Add Another Color</span>
                 </button>
@@ -1309,21 +1309,21 @@ export function SubmitPage({
                         <input
                           type="color"
                           value={
-                            safeHex.length === 6 ? `#${safeHex}` : "#FF5F02"
+                          safeHex.length === 6 ? `#${safeHex}` : "#FF5F02"
                           }
                           onChange={(e) =>
-                            handleUpdateHex(
-                              idx,
-                              e.target.value.replace(/^#/, "").toUpperCase(),
-                            )
+                          handleUpdateHex(
+                            idx,
+                            e.target.value.replace(/^#/, "").toUpperCase()
+                          )
                           }
                           className="sv-native-color-picker"
-                          title="Click to open color picker"
-                        />
+                          title="Click to open color picker" />
+                        
                         <div
                           className="sv-color-swatch-preview"
-                          style={{ backgroundColor: `#${safeHex}` }}
-                        />
+                          style={{ backgroundColor: `#${safeHex}` }} />
+                        
                       </div>
 
                       <div className="sv-hex-input-group">
@@ -1335,46 +1335,46 @@ export function SubmitPage({
                           maxLength={6}
                           value={safeHex}
                           onChange={(e) =>
-                            handleUpdateHex(
-                              idx,
-                              e.target.value
-                                .replace(/[^0-9a-fA-F]/g, "")
-                                .toUpperCase(),
-                            )
-                          }
-                        />
+                          handleUpdateHex(
+                            idx,
+                            e.target.value.
+                            replace(/[^0-9a-fA-F]/g, "").
+                            toUpperCase()
+                          )
+                          } />
+                        
                       </div>
 
-                      {isPrimary ? (
-                        <span className="sv-primary-color-badge">PRIMARY</span>
-                      ) : (
-                        <button
-                          type="button"
-                          className="sv-make-primary-btn"
-                          onClick={() => handleSetPrimary(idx)}
-                          title="Set as primary brand color"
-                        >
+                      {isPrimary ?
+                      <span className="sv-primary-color-badge">PRIMARY</span> :
+
+                      <button
+                        type="button"
+                        className="sv-make-primary-btn"
+                        onClick={() => handleSetPrimary(idx)}
+                        title="Set as primary brand color">
+                        
                           Make Primary
                         </button>
-                      )}
+                      }
 
-                      {hexColors.length > 1 && (
-                        <button
-                          type="button"
-                          className="sv-remove-color-btn"
-                          onClick={() => handleRemoveHex(idx)}
-                          title="Remove color"
-                        >
+                      {hexColors.length > 1 &&
+                      <button
+                        type="button"
+                        className="sv-remove-color-btn"
+                        onClick={() => handleRemoveHex(idx)}
+                        title="Remove color">
+                        
                           <Trash2 size={13} />
                         </button>
-                      )}
-                    </div>
-                  );
+                      }
+                    </div>);
+
                 })}
               </div>
             </div>
 
-            {/* License Dropdown */}
+            {}
             <div className="sv-form-group">
               <div className="sv-label-with-help">
                 <label className="sv-form-label">
@@ -1384,16 +1384,16 @@ export function SubmitPage({
                   href="https://choosealicense.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="sv-help-link"
-                >
+                  className="sv-help-link">
+                  
                   Help me pick · Licensing guide
                 </a>
               </div>
               <select
                 className="sv-form-select"
                 value={license}
-                onChange={(e) => setLicense(e.target.value)}
-              >
+                onChange={(e) => setLicense(e.target.value)}>
+                
                 <option value="Apache-2.0">Apache 2.0 (Official)</option>
                 <option value="MIT">MIT</option>
                 <option value="CC0-1.0">CC0-1.0 (Public Domain)</option>
@@ -1402,7 +1402,7 @@ export function SubmitPage({
               </select>
             </div>
 
-            {/* Categories Tag Selector */}
+            {}
             <div className="sv-form-group">
               <label className="sv-form-label">Categories</label>
               <div className="sv-cat-tags-selector">
@@ -1413,43 +1413,43 @@ export function SubmitPage({
                       key={cat}
                       type="button"
                       className={`sv-cat-pill-toggle ${isSelected ? "active" : ""}`}
-                      onClick={() => handleToggleCategory(cat)}
-                    >
+                      onClick={() => handleToggleCategory(cat)}>
+                      
                       {cat}
-                    </button>
-                  );
+                    </button>);
+
                 })}
               </div>
             </div>
 
-            {/* Submit Action Button */}
+            {}
             <button
               type="submit"
               className="sv-submit-action-btn"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <>
+              disabled={isSubmitting}>
+              
+              {isSubmitting ?
+              <>
                   <div className="sv-button-spinner" />
                   <span>
                     Creating Folder & Saving {variants.length} SVG(s)...
                   </span>
-                </>
-              ) : (
-                <>
+                </> :
+
+              <>
                   <Check size={16} />
                   <span>
                     Submit Icon ({variants.length} Variant
                     {variants.length !== 1 ? "s" : ""}) & Auto-Create Folder
                   </span>
                 </>
-              )}
+              }
             </button>
           </form>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default SubmitPage;

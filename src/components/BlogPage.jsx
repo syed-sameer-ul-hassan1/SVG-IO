@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  Rss, 
-  ArrowRight, 
-  ArrowUpRight, 
-  Star, 
-  Sparkles, 
-  Calendar, 
-  User, 
-  Share2, 
-  Copy, 
-  Check, 
-  Twitter, 
-  Linkedin, 
+import {
+  Rss,
+  ArrowRight,
+  ArrowUpRight,
+  Star,
+  Sparkles,
+  Calendar,
+  User,
+  Share2,
+  Copy,
+  Check,
+  Twitter,
+  Linkedin,
   ExternalLink,
   ChevronLeft,
-  MessageSquare
-} from 'lucide-react';
+  MessageSquare } from
+'lucide-react';
 
 export function BlogPage({ onExploreAll, onNavigate }) {
   const [posts, setPosts] = useState([]);
@@ -40,12 +40,12 @@ export function BlogPage({ onExploreAll, onNavigate }) {
     loadPosts();
   }, []);
 
-  // Sort posts from latest to oldest
+
   const sortedPosts = useMemo(() => {
     return [...posts].reverse();
   }, [posts]);
 
-  // Selected post object
+
   const activePost = useMemo(() => {
     if (!selectedPostSlug) return null;
     return posts.find((p) => p.slug === selectedPostSlug) || null;
@@ -68,7 +68,7 @@ export function BlogPage({ onExploreAll, onNavigate }) {
     setTimeout(() => setCopiedLink(false), 2000);
   };
 
-  // Helper for tag color classes
+
   const getTagColorClass = (tag) => {
     switch (tag.toLowerCase()) {
       case 'release':
@@ -96,12 +96,12 @@ export function BlogPage({ onExploreAll, onNavigate }) {
     }
   };
 
-  // Format relative date or exact date
+
   const formatPostDate = (dateStr, index) => {
     if (index === 0) return '1 week ago';
     if (index === 1) return '2 weeks ago';
     if (index === 2) return '3 weeks ago';
-    
+
     try {
       const d = new Date(dateStr);
       return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -110,7 +110,7 @@ export function BlogPage({ onExploreAll, onNavigate }) {
     }
   };
 
-  // Parse markdown content including headers, tables, lists, and code blocks
+
   const renderMarkdownContent = (body) => {
     if (!body) return null;
     const blocks = body.split('\n\n');
@@ -118,25 +118,25 @@ export function BlogPage({ onExploreAll, onNavigate }) {
     return blocks.map((block, idx) => {
       const trimmed = block.trim();
 
-      // Heading 2
+
       if (trimmed.startsWith('## ')) {
         return (
           <h2 key={idx} className="sv-post-h2">
             {trimmed.replace(/^## /, '')}
-          </h2>
-        );
+          </h2>);
+
       }
 
-      // Heading 3
+
       if (trimmed.startsWith('### ')) {
         return (
           <h3 key={idx} className="sv-post-h3">
             {trimmed.replace(/^### /, '')}
-          </h3>
-        );
+          </h3>);
+
       }
 
-      // Table parsing: matches lines with | ... |
+
       if (trimmed.includes('|') && trimmed.includes('\n|') && trimmed.includes('---')) {
         const rows = trimmed.split('\n').filter((r) => r.trim().startsWith('|'));
         if (rows.length >= 2) {
@@ -148,67 +148,67 @@ export function BlogPage({ onExploreAll, onNavigate }) {
               <table className="sv-post-table">
                 <thead>
                   <tr>
-                    {headerRow.map((head, hIdx) => (
-                      <th key={hIdx}>{head}</th>
-                    ))}
+                    {headerRow.map((head, hIdx) =>
+                    <th key={hIdx}>{head}</th>
+                    )}
                   </tr>
                 </thead>
                 <tbody>
-                  {dataRows.map((row, rIdx) => (
-                    <tr key={rIdx} className={row[0]?.includes('Total') ? 'sv-table-total-row' : ''}>
-                      {row.map((cell, cIdx) => (
-                        <td key={cIdx}>
-                          {cell.startsWith('**') && cell.endsWith('**') ? (
-                            <strong>{cell.slice(2, -2)}</strong>
-                          ) : (
-                            cell
-                          )}
+                  {dataRows.map((row, rIdx) =>
+                  <tr key={rIdx} className={row[0]?.includes('Total') ? 'sv-table-total-row' : ''}>
+                      {row.map((cell, cIdx) =>
+                    <td key={cIdx}>
+                          {cell.startsWith('**') && cell.endsWith('**') ?
+                      <strong>{cell.slice(2, -2)}</strong> :
+
+                      cell
+                      }
                         </td>
-                      ))}
+                    )}
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
-            </div>
-          );
+            </div>);
+
         }
       }
 
-      // Code Block
+
       if (trimmed.startsWith('```')) {
         const codeLines = trimmed.split('\n');
         const code = codeLines.slice(1, -1).join('\n');
         return (
           <pre key={idx} className="sv-post-code-block">
             <code>{code}</code>
-          </pre>
-        );
+          </pre>);
+
       }
 
-      // Bullet List
+
       if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
         const items = trimmed.split('\n');
         return (
           <ul key={idx} className="sv-post-bullet-list">
             {items.map((item, iIdx) => {
               const text = item.replace(/^[-*]\s+/, '');
-              // Bold prefix formatting: **prefix**: text
+
               const boldMatch = text.match(/^\*\*(.*?)\*\*(.*)/);
               if (boldMatch) {
                 return (
                   <li key={iIdx}>
                     <strong>{boldMatch[1]}</strong>
                     <span>{boldMatch[2]}</span>
-                  </li>
-                );
+                  </li>);
+
               }
               return <li key={iIdx}>{text}</li>;
             })}
-          </ul>
-        );
+          </ul>);
+
       }
 
-      // Standard Paragraph with inline bold and link parsing
+
       return (
         <p key={idx} className="sv-post-paragraph">
           {trimmed.split(/(\*\*.*?\*\*|\[.*?\]\(.*?\))/g).map((part, pIdx) => {
@@ -220,13 +220,13 @@ export function BlogPage({ onExploreAll, onNavigate }) {
               return (
                 <a key={pIdx} href={linkMatch[2]} className="sv-post-inline-link">
                   {linkMatch[1]}
-                </a>
-              );
+                </a>);
+
             }
             return part;
           })}
-        </p>
-      );
+        </p>);
+
     });
   };
 
@@ -235,26 +235,26 @@ export function BlogPage({ onExploreAll, onNavigate }) {
       <div className="sv-blog-loading">
         <div className="sv-loading-spinner" />
         <span>Loading SvgIo Blog...</span>
-      </div>
-    );
+      </div>);
+
   }
 
-  // ==========================================
-  // ARTICLE READER VIEW
-  // ==========================================
+
+
+
   if (activePost) {
     return (
       <div className="sv-blog-page-container">
         <div className="sv-article-reader-layout">
-          {/* Main Article Column */}
+          {}
           <div className="sv-article-main-col">
-            {/* Top Back Navigation */}
+            {}
             <button className="sv-back-to-blog-btn" onClick={handleBackToBlog}>
               <ChevronLeft size={15} />
               <span>Back to blog</span>
             </button>
 
-            {/* Article Meta Bar */}
+            {}
             <div className="sv-article-meta-header">
               <span className="sv-article-date-author">
                 <Calendar size={13} className="sv-meta-icon" />
@@ -264,25 +264,25 @@ export function BlogPage({ onExploreAll, onNavigate }) {
               </span>
             </div>
 
-            {/* Article Title */}
+            {}
             <h1 className="sv-article-main-title">{activePost.title}</h1>
 
-            {/* Article Tags */}
+            {}
             <div className="sv-article-tags-row">
-              {activePost.tags?.map((tag, tIdx) => (
-                <span key={tIdx} className={`sv-tag-pill ${getTagColorClass(tag)}`}>
+              {activePost.tags?.map((tag, tIdx) =>
+              <span key={tIdx} className={`sv-tag-pill ${getTagColorClass(tag)}`}>
                   <span className="sv-tag-dot" />
                   {tag}
                 </span>
-              ))}
+              )}
             </div>
 
-            {/* Rendered Body Content */}
+            {}
             <div className="sv-article-body-content">
               {renderMarkdownContent(activePost.body)}
             </div>
 
-            {/* Bottom Actions */}
+            {}
             <div className="sv-article-bottom-actions">
               <button className="sv-back-to-blog-btn" onClick={handleBackToBlog}>
                 <ChevronLeft size={15} />
@@ -291,7 +291,7 @@ export function BlogPage({ onExploreAll, onNavigate }) {
             </div>
           </div>
 
-          {/* Right Floating Social Share Rail */}
+          {}
           <aside className="sv-share-sidebar" aria-label="Share article">
             <div className="sv-share-rail-sticky">
               <span className="sv-share-label">SHARE</span>
@@ -301,8 +301,8 @@ export function BlogPage({ onExploreAll, onNavigate }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sv-share-icon-btn"
-                  title="Share on X (Twitter)"
-                >
+                  title="Share on X (Twitter)">
+                  
                   <span style={{ fontSize: '13px', fontWeight: 800 }}>X</span>
                 </a>
 
@@ -311,8 +311,8 @@ export function BlogPage({ onExploreAll, onNavigate }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sv-share-icon-btn"
-                  title="Share on LinkedIn"
-                >
+                  title="Share on LinkedIn">
+                  
                   <Linkedin size={14} />
                 </a>
 
@@ -321,8 +321,8 @@ export function BlogPage({ onExploreAll, onNavigate }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sv-share-icon-btn"
-                  title="Share on Reddit"
-                >
+                  title="Share on Reddit">
+                  
                   <MessageSquare size={14} />
                 </a>
 
@@ -331,16 +331,16 @@ export function BlogPage({ onExploreAll, onNavigate }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sv-share-icon-btn"
-                  title="Share on Hacker News"
-                >
+                  title="Share on Hacker News">
+                  
                   <span style={{ fontSize: '13px', fontWeight: 800, color: '#FF6600' }}>Y</span>
                 </a>
 
                 <button
                   className={`sv-share-icon-btn ${copiedLink ? 'copied' : ''}`}
                   onClick={handleCopyShareLink}
-                  title="Copy link"
-                >
+                  title="Copy link">
+                  
                   {copiedLink ? <Check size={14} color="#10B981" /> : <Copy size={14} />}
                 </button>
               </div>
@@ -348,7 +348,7 @@ export function BlogPage({ onExploreAll, onNavigate }) {
           </aside>
         </div>
 
-        {/* Bottom Stay in the loop Section */}
+        {}
         <div className="sv-blog-loop-card glass-panel">
           <h3 className="sv-loop-title">Stay in the loop</h3>
           <p className="sv-loop-sub">Follow our RSS feed or star us on GitHub for updates</p>
@@ -357,8 +357,8 @@ export function BlogPage({ onExploreAll, onNavigate }) {
               href="/feed.xml"
               target="_blank"
               rel="noopener noreferrer"
-              className="sv-loop-btn"
-            >
+              className="sv-loop-btn">
+              
               <Rss size={13} />
               <span>RSS Feed</span>
             </a>
@@ -366,26 +366,26 @@ export function BlogPage({ onExploreAll, onNavigate }) {
               href="https://github.com/syed-sameer-ul-hassan1/SVG-IO"
               target="_blank"
               rel="noopener noreferrer"
-              className="sv-loop-btn-primary"
-            >
+              className="sv-loop-btn-primary">
+              
               <Star size={13} />
               <span>Star on GitHub</span>
             </a>
           </div>
         </div>
-      </div>
-    );
+      </div>);
+
   }
 
-  // ==========================================
-  // BLOG LIST / INDEX VIEW (EXACT SCREENSHOT MATCH)
-  // ==========================================
+
+
+
   const featuredPost = sortedPosts[0];
   const timelinePosts = sortedPosts.slice(1);
 
   return (
     <div className="sv-blog-page-container">
-      {/* Blog Page Hero Header */}
+      {}
       <div className="sv-blog-index-header">
         <div className="sv-blog-pill-row">
           <span className="sv-blog-hero-pill">
@@ -406,20 +406,20 @@ export function BlogPage({ onExploreAll, onNavigate }) {
             href="/feed.xml"
             target="_blank"
             rel="noopener noreferrer"
-            className="sv-blog-rss-header-btn"
-          >
+            className="sv-blog-rss-header-btn">
+            
             <Rss size={13} />
             <span>RSS</span>
           </a>
         </div>
       </div>
 
-      {/* Featured Latest Post Hero Card */}
-      {featuredPost && (
-        <div
-          className="sv-blog-featured-card glass-panel"
-          onClick={() => handleOpenPost(featuredPost.slug)}
-        >
+      {}
+      {featuredPost &&
+      <div
+        className="sv-blog-featured-card glass-panel"
+        onClick={() => handleOpenPost(featuredPost.slug)}>
+        
           <div className="sv-featured-card-top">
             <span className="sv-featured-pill-badge">
               <span className="sv-featured-badge-dot" />
@@ -436,12 +436,12 @@ export function BlogPage({ onExploreAll, onNavigate }) {
                 {formatPostDate(featuredPost.date, 0)}
               </span>
               <div className="sv-featured-tags-group">
-                {featuredPost.tags?.map((tag, tIdx) => (
-                  <span key={tIdx} className={`sv-tag-pill ${getTagColorClass(tag)}`}>
+                {featuredPost.tags?.map((tag, tIdx) =>
+              <span key={tIdx} className={`sv-tag-pill ${getTagColorClass(tag)}`}>
                     <span className="sv-tag-dot" />
                     {tag}
                   </span>
-                ))}
+              )}
               </div>
             </div>
 
@@ -451,12 +451,12 @@ export function BlogPage({ onExploreAll, onNavigate }) {
             </span>
           </div>
         </div>
-      )}
+      }
 
-      {/* Numbered Timeline Posts List */}
+      {}
       <div className="sv-blog-timeline-list">
         {timelinePosts.map((post, idx) => {
-          // Number sequence formatting: 12, 11, 10, ... 03, 02, 01
+
           const numberVal = timelinePosts.length - idx;
           const displayNum = numberVal < 10 ? `0${numberVal}` : `${numberVal}`;
           const isFirstItem = numberVal === 1;
@@ -465,26 +465,26 @@ export function BlogPage({ onExploreAll, onNavigate }) {
             <article
               key={post.slug}
               className={`sv-timeline-item ${isFirstItem ? 'is-highlighted-post' : ''}`}
-              onClick={() => handleOpenPost(post.slug)}
-            >
-              {/* Left Number Badge */}
+              onClick={() => handleOpenPost(post.slug)}>
+              
+              {}
               <div className={`sv-timeline-num-badge ${isFirstItem ? 'highlight-num' : ''}`}>
                 <span>{displayNum}</span>
               </div>
 
-              {/* Right Content */}
+              {}
               <div className="sv-timeline-content-col">
                 <div className="sv-timeline-meta-row">
                   <span className="sv-timeline-date">
                     {formatPostDate(post.date, idx + 1)}
                   </span>
                   <div className="sv-timeline-tags-group">
-                    {post.tags?.map((tag, tIdx) => (
-                      <span key={tIdx} className={`sv-tag-pill ${getTagColorClass(tag)}`}>
+                    {post.tags?.map((tag, tIdx) =>
+                    <span key={tIdx} className={`sv-tag-pill ${getTagColorClass(tag)}`}>
                         <span className="sv-tag-dot" />
                         {tag}
                       </span>
-                    ))}
+                    )}
                   </div>
                 </div>
 
@@ -494,21 +494,21 @@ export function BlogPage({ onExploreAll, onNavigate }) {
 
                 <p className="sv-timeline-excerpt">{post.excerpt}</p>
 
-                {isFirstItem && (
-                  <div className="sv-timeline-first-action">
+                {isFirstItem &&
+                <div className="sv-timeline-first-action">
                     <span className="sv-read-post-link">
                       <span>Read post</span>
                       <ArrowUpRight size={13} />
                     </span>
                   </div>
-                )}
+                }
               </div>
-            </article>
-          );
+            </article>);
+
         })}
       </div>
 
-      {/* Bottom Stay in the loop Section */}
+      {}
       <div className="sv-blog-loop-card glass-panel">
         <h3 className="sv-loop-title">Stay in the loop</h3>
         <p className="sv-loop-sub">Follow our RSS feed or star us on GitHub for updates</p>
@@ -517,8 +517,8 @@ export function BlogPage({ onExploreAll, onNavigate }) {
             href="/feed.xml"
             target="_blank"
             rel="noopener noreferrer"
-            className="sv-loop-btn"
-          >
+            className="sv-loop-btn">
+            
             <Rss size={13} />
             <span>RSS Feed</span>
           </a>
@@ -526,15 +526,15 @@ export function BlogPage({ onExploreAll, onNavigate }) {
             href="https://github.com/syed-sameer-ul-hassan1/SVG-IO"
             target="_blank"
             rel="noopener noreferrer"
-            className="sv-loop-btn-primary"
-          >
+            className="sv-loop-btn-primary">
+            
             <Star size={13} />
             <span>Star on GitHub</span>
           </a>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default BlogPage;

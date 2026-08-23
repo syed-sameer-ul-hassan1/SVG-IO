@@ -40,7 +40,7 @@ export function NotFoundPage({ onNavigate, onSearch }) {
           We couldn't find the page or icon collection you were looking for. It might have been moved, renamed, or never existed.
         </p>
 
-        {/* In-page Search Box */}
+        {}
         <form onSubmit={handleSearchSubmit} className="md-error-search-form">
           <Search size={15} className="md-error-search-icon" />
           <input
@@ -48,50 +48,50 @@ export function NotFoundPage({ onNavigate, onSearch }) {
             placeholder="Search for an icon or brand (e.g. 'React', 'GitHub')..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="md-error-search-input"
-          />
+            className="md-error-search-input" />
+          
           <button type="submit" className="md-error-search-btn">
             Search
           </button>
         </form>
 
-        {/* Quick Suggestions */}
+        {}
         <div className="md-error-quick-tags">
           <span className="md-error-quick-lbl">Popular searches:</span>
-          {['React', 'GitHub', 'Next.js', 'Docker', 'Tailwind', 'Python', 'Supabase'].map((tag) => (
-            <button
-              key={tag}
-              type="button"
-              className="md-error-quick-pill"
-              onClick={() => handleQuickTerm(tag)}
-            >
+          {['React', 'GitHub', 'Next.js', 'Docker', 'Tailwind', 'Python', 'Supabase'].map((tag) =>
+          <button
+            key={tag}
+            type="button"
+            className="md-error-quick-pill"
+            onClick={() => handleQuickTerm(tag)}>
+            
               {tag}
             </button>
-          ))}
+          )}
         </div>
 
-        {/* Action Buttons */}
+        {}
         <div className="md-error-actions-row">
           <button
             type="button"
             className="md-btn md-btn-primary"
-            onClick={() => onNavigate?.('icons')}
-          >
+            onClick={() => onNavigate?.('icons')}>
+            
             <Home size={14} />
             <span>Return to Catalog</span>
           </button>
           <button
             type="button"
             className="md-btn md-btn-secondary"
-            onClick={() => onNavigate?.('categories')}
-          >
+            onClick={() => onNavigate?.('categories')}>
+            
             <Layers size={14} />
             <span>Browse Categories</span>
           </button>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default NotFoundPage;

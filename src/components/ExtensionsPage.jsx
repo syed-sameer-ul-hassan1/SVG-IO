@@ -16,15 +16,15 @@ export function ExtensionsPage({ onExploreAll }) {
         <p className="md-placeholder-desc">
           Official browser, Figma, and VS Code extensions are currently being upgraded for the next release. Check back soon for updates.
         </p>
-        {onExploreAll && (
-          <button className="md-fav-explore-btn" onClick={onExploreAll}>
+        {onExploreAll &&
+        <button className="md-fav-explore-btn" onClick={onExploreAll}>
             <span>Explore All Icons</span>
             <ArrowRight size={14} />
           </button>
-        )}
+        }
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default ExtensionsPage;

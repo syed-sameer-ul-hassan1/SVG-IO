@@ -1,8 +1,8 @@
-/**
- * Precision, Typo-Tolerant & Space-Agnostic Fuzzy Search Engine for SVG.IO
- */
 
-// Common developer aliases and shorthand dictionary
+
+
+
+
 const EXTRA_ALIASES = {
   fb: ['facebook', 'meta'],
   facebook: ['facebook', 'meta'],
@@ -80,17 +80,17 @@ const EXTRA_ALIASES = {
   supabase: ['supabase']
 };
 
-/**
- * Clean and normalize a string (lower case, trim, remove non-alphanumerics)
- */
+
+
+
 export function normalizeStr(str = '') {
   if (typeof str !== 'string') return '';
   return str.toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
-/**
- * Fast Levenshtein distance calculation for typo tolerance
- */
+
+
+
 export function levenshteinDistance(a, b) {
   if (a === b) return 0;
   if (!a.length) return b.length;
@@ -125,10 +125,10 @@ export function levenshteinDistance(a, b) {
   return row[a.length];
 }
 
-/**
- * Score an icon against a search query
- * Higher score = more relevant
- */
+
+
+
+
 export function scoreIcon(icon, rawQuery) {
   if (!icon || !rawQuery) return 0;
 
@@ -147,18 +147,18 @@ export function scoreIcon(icon, rawQuery) {
   const words = [...name.split(/[\s\-_,./+]+/), ...id.split(/[\s\-_,./+]+/)].filter((w) => w.length > 0);
   const cleanWords = words.map(normalizeStr);
 
-  // 1. Exact Match on ID, Name, or normalized space/punctuation (Highest Score)
+
   if (id === query || name === query || cleanId === cleanQuery || cleanName === cleanQuery) {
     return 10000;
   }
 
-  // 2. Exact or Prefix Alias Match
+
   for (const a of cleanAliases) {
     if (a === cleanQuery) return 9000;
     if (a.startsWith(cleanQuery)) return 8500;
   }
 
-  // 3. Built-in Dictionary Alias Match
+
   const extra = EXTRA_ALIASES[cleanQuery];
   if (extra) {
     for (const em of extra) {
@@ -168,17 +168,17 @@ export function scoreIcon(icon, rawQuery) {
     }
   }
 
-  // 4. Starts With Query
+
   if (id.startsWith(query) || name.startsWith(query) || cleanId.startsWith(cleanQuery) || cleanName.startsWith(cleanQuery)) {
     return 8000 + (100 - Math.min(100, Math.abs(cleanName.length - cleanQuery.length)));
   }
 
-  // 5. Space & Punctuation Agnostic Match (e.g. "vs code" -> "vscode" in "visualstudiocode")
+
   if (cleanName.includes(cleanQuery) || cleanId.includes(cleanQuery)) {
     return 7500 + (100 - Math.min(100, Math.abs(cleanName.length - cleanQuery.length)));
   }
 
-  // 6. Direct Whole Word / Whole Slug Levenshtein Typo Match (HIGHER THAN PARTIAL SUBSTRINGS!)
+
   const idDist = levenshteinDistance(cleanQuery, cleanId);
   if (idDist === 1) return 7200;
   if (idDist === 2 && cleanQuery.length >= 4) return 6800;
@@ -187,7 +187,7 @@ export function scoreIcon(icon, rawQuery) {
   if (nameDist === 1) return 7100;
   if (nameDist === 2 && cleanQuery.length >= 4) return 6700;
 
-  // Check individual words in name/slug for exact word or typo match
+
   for (const cw of cleanWords) {
     if (cw === cleanQuery) return 6500;
     if (cw.startsWith(cleanQuery)) return 6200;
@@ -196,26 +196,26 @@ export function scoreIcon(icon, rawQuery) {
     if (wDist === 2 && cleanQuery.length >= 4) return 5500;
   }
 
-  // 7. Multi-word Token Matching (e.g. "google cloud platform" -> matches all tokens)
+
   const queryTokens = query.split(/[\s\-_,./+]+/).filter((t) => t.length > 0);
   if (queryTokens.length > 1) {
     const combined = `${id} ${name} ${aliases.join(' ')}`;
     if (queryTokens.every((t) => combined.includes(t))) return 4800;
   }
 
-  // 8. Substring matches
+
   if (name.includes(query) || id.includes(query)) return 4000;
 
-  // 9. Category match
-  const cat = (icon.category || (Array.isArray(icon.categories) && icon.categories[0]) || '').toLowerCase();
+
+  const cat = (icon.category || Array.isArray(icon.categories) && icon.categories[0] || '').toLowerCase();
   if (cat.includes(query) || normalizeStr(cat).includes(cleanQuery)) return 2000;
 
   return 0;
 }
 
-/**
- * Filter and sort an icons array using precision fuzzy scoring
- */
+
+
+
 export function fuzzyFilterIcons(icons = [], searchQuery = '') {
   if (!Array.isArray(icons) || icons.length === 0) return [];
   if (!searchQuery || !searchQuery.trim()) return icons;
@@ -230,7 +230,7 @@ export function fuzzyFilterIcons(icons = [], searchQuery = '') {
     }
   }
 
-  // Sort by highest relevance score descending
+
   scored.sort((a, b) => b.score - a.score);
 
   return scored.map((item) => item.icon);

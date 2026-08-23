@@ -1,13 +1,10 @@
-/* ============================================================
-   ORILDO // VECTOR STUDIO DESIGN SYSTEM
-   Obsidian Glass & Electric Orange (#FF5F02) Aesthetic
-   ============================================================ */
+
 
 :root {
   --md-font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --md-font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
 
-  /* OBSIDIAN GLASS DARK THEME (#FF5F02 & Stitch Obsidian & Flame) */
+  
   --md-sys-color-primary: #FF5F02;
   --md-sys-color-on-primary: #FFFFFF;
   --md-sys-color-primary-container: rgba(255, 95, 2, 0.18);
@@ -42,7 +39,7 @@
   --md-sys-color-error-container: rgba(251, 113, 133, 0.18);
   --md-sys-color-on-error-container: #FFE4E6;
 
-  /* Elevations & Glows */
+  
   --md-elevation-0: none;
   --md-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.3);
   --md-elevation-2: 0 4px 14px rgba(0, 0, 0, 0.4);
@@ -66,7 +63,7 @@
 }
 
 [data-theme='light'] {
-  /* CRISP STUDIO LIGHT THEME (#FF5F02 Accent & Deep Slate Palette) */
+  
   --md-sys-color-primary: #FF5F02;
   --md-sys-color-on-primary: #FFFFFF;
   --md-sys-color-primary-container: #FFEAE0;
@@ -113,9 +110,7 @@
   --md-state-pressed: rgba(255, 95, 2, 0.16);
 }
 
-/* ============================================================
-   RESET & BASE
-   ============================================================ */
+
 html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
@@ -170,9 +165,7 @@ a {
   background: var(--md-sys-color-outline);
 }
 
-/* ============================================================
-   GLOBAL BUTTONS & BORDER-RADIUS (15px)
-   ============================================================ */
+
 button,
 .btn,
 .md-btn,
@@ -234,7 +227,7 @@ button,
   user-select: none;
 }
 
-/* M3 Filled Button */
+
 .md-btn-filled {
   background-color: var(--md-sys-color-primary);
   color: var(--md-sys-color-on-primary);
@@ -245,7 +238,7 @@ button,
   filter: brightness(1.05);
 }
 
-/* M3 Tonal Button */
+
 .md-btn-tonal {
   background-color: var(--md-sys-color-secondary-container);
   color: var(--md-sys-color-on-secondary-container);
@@ -255,7 +248,7 @@ button,
   filter: brightness(1.05);
 }
 
-/* M3 Outlined Button */
+
 .md-btn-outlined {
   background-color: transparent;
   color: var(--md-sys-color-primary);
@@ -266,7 +259,7 @@ button,
   border-color: var(--md-sys-color-primary);
 }
 
-/* M3 Text Button */
+
 .md-btn-text {
   background-color: transparent;
   color: var(--md-sys-color-primary);
@@ -276,7 +269,7 @@ button,
   background-color: var(--md-state-hover);
 }
 
-/* M3 Standard Icon Button */
+
 .md-icon-btn {
   width: 40px;
   height: 40px;
@@ -299,12 +292,12 @@ button,
   color: var(--md-sys-color-on-primary-container);
 }
 
-/* M3 Tonal Icon Button */
+
 .md-icon-btn-tonal {
   background-color: var(--md-sys-color-surface-container-high);
 }
 
-/* M3 Badges & Chips */
+
 .md-badge {
   display: inline-flex;
   align-items: center;
@@ -322,7 +315,7 @@ button,
   color: var(--md-sys-color-on-primary-container);
 }
 
-/* M3 Filter Chip */
+
 .md-chip {
   display: inline-flex;
   align-items: center;
@@ -351,12 +344,8 @@ button,
   box-shadow: var(--md-elevation-1);
 }
 
-/* ============================================================
-   TOP APP BAR (NON-FLOATING, PINNED TOP)
-   ============================================================ */
-/* ============================================================
-   UNIVERSAL ULTRA-PREMIUM FROSTED GLASS UTILITIES
-   ============================================================ */
+
+
 .glass-panel {
   background: rgba(12, 14, 19, 0.68) !important;
   backdrop-filter: blur(26px) saturate(190%) !important;
@@ -396,9 +385,7 @@ button,
   box-shadow: 0 0 16px rgba(255, 95, 2, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-/* ============================================================
-   TOP APP BAR (Frosted Glass Header)
-   ============================================================ */
+
 .md-header-wrapper {
   position: sticky;
   top: 0;
@@ -440,7 +427,7 @@ button,
   border-color: rgba(255, 95, 2, 0.4);
 }
 
-/* Brand Logo */
+
 .md-logo {
   display: flex;
   align-items: center;
@@ -485,7 +472,7 @@ button,
   opacity: 0.9;
 }
 
-/* Center Frosted Search Bar */
+
 .md-search-bar {
   position: relative;
   flex: 1;
@@ -584,9 +571,7 @@ button,
   font-family: var(--md-font-mono);
 }
 
-/* ============================================================
-   SEARCH SUGGESTIONS & RECENT SEARCHES POPOVER CARD
-   ============================================================ */
+
 .md-search-popover {
   position: absolute;
   top: calc(100% + 10px);
@@ -906,12 +891,8 @@ button,
   background: var(--md-sys-color-surface-container-high);
 }
 
-/* ============================================================
-   APP SHELL: 100% FIXED NON-MOVING NAVIGATION DRAWER + SEAMLESS MAIN
-   ============================================================ */
-/* ============================================================
-   APP SHELL: FIXED SLEEK SIDEBAR + MAIN CONTENT WORKSPACE
-   ============================================================ */
+
+
 .md-page-wrapper {
   min-height: 100vh;
   display: flex;
@@ -927,9 +908,7 @@ button,
   box-sizing: border-box;
 }
 
-/* ============================================================
-   LEFT SIDEBAR MENU (Replicating Reference Screenshot)
-   ============================================================ */
+
 .md-side-menu {
   width: 228px;
   flex-shrink: 0;
@@ -958,7 +937,7 @@ button,
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-/* Top Nav Group */
+
 .md-side-nav-group {
   display: flex;
   flex-direction: column;
@@ -1051,7 +1030,7 @@ button,
   color: #FFFFFF;
 }
 
-/* NEW Pill Badges */
+
 .md-side-new-pill {
   font-size: 9.5px;
   font-weight: 700;
@@ -1069,7 +1048,7 @@ button,
   color: #F472B6;
 }
 
-/* Primary Submit Icon Outline Button */
+
 .md-side-submit-btn {
   display: flex;
   align-items: center;
@@ -1095,7 +1074,7 @@ button,
   transform: translateY(-1px);
 }
 
-/* Sidebar Section & Headers */
+
 .md-side-section {
   display: flex;
   flex-direction: column;
@@ -1258,7 +1237,7 @@ button,
   opacity: 0.7;
 }
 
-/* Scrollable Categories List */
+
 .md-side-category-scroll {
   flex: 1;
   overflow-y: auto;
@@ -1332,9 +1311,7 @@ button,
   font-weight: 700;
 }
 
-/* ============================================================
-   COMMUNITY BANNER (Open Source. Community Driven.)
-   ============================================================ */
+
 .md-community-banner {
   background: rgba(12, 14, 19, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1481,9 +1458,7 @@ button,
   color: var(--md-sys-color-on-surface-variant);
 }
 
-/* ============================================================
-   RICH MAIN FOOTER CARD (Replicating Reference Screenshot)
-   ============================================================ */
+
 .md-main-footer-card {
   background: rgba(11, 12, 16, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1508,7 +1483,7 @@ button,
   margin-bottom: 36px;
 }
 
-/* Brand Column */
+
 .md-footer-brand-col {
   display: flex;
   flex-direction: column;
@@ -1599,7 +1574,7 @@ button,
   color: #475569;
 }
 
-/* Product Hunt Card */
+
 .md-footer-ph-card {
   display: inline-flex;
   align-items: center;
@@ -1660,7 +1635,7 @@ button,
   color: #F59E0B;
 }
 
-/* Footer Nav Columns */
+
 .md-footer-nav-col {
   display: flex;
   flex-direction: column;
@@ -1702,7 +1677,7 @@ button,
   color: #FF5F02;
 }
 
-/* Founder Button */
+
 .md-footer-founder-btn {
   display: inline-flex;
   align-items: center;
@@ -1725,7 +1700,7 @@ button,
   box-shadow: 0 0 14px rgba(255, 95, 2, 0.35);
 }
 
-/* Divider Line */
+
 .md-footer-divider-line {
   width: 100%;
   height: 1px;
@@ -1737,9 +1712,7 @@ button,
   background: rgba(15, 23, 42, 0.08);
 }
 
-/* ============================================================
-   2-SECTION SPLIT CREDITS (POWERED BY | DEVELOPED BY)
-   ============================================================ */
+
 .md-footer-split-credits {
   display: flex;
   align-items: center;
@@ -1839,7 +1812,7 @@ button,
   text-overflow: ellipsis;
 }
 
-/* Center Vertical Divider Line */
+
 .md-credits-center-divider {
   width: 1px;
   height: 52px;
@@ -1866,7 +1839,7 @@ button,
   }
 }
 
-/* Bottom Copyright Disclaimer */
+
 .md-footer-bottom-row {
   display: flex;
   align-items: center;
@@ -1890,7 +1863,7 @@ button,
   text-decoration: underline;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 1024px) {
   .md-app-layout {
     padding-left: 24px;
@@ -1907,7 +1880,7 @@ button,
   }
 }
 
-/* Main Content Area - Seamless, Open, Unboxed */
+
 .md-main-content {
   flex: 1;
   min-width: 0;
@@ -1917,9 +1890,7 @@ button,
   padding: 0;
 }
 
-/* ============================================================
-   HERO TEXT CARD (Ultra-Premium Frosted Glass Studio Banner)
-   ============================================================ */
+
 .md-hero-card {
   position: relative;
   overflow: hidden;
@@ -1971,7 +1942,7 @@ button,
   transform: scale(1.06) rotate(3deg);
 }
 
-/* Ambient Glow Meshes */
+
 .md-hero-glow {
   position: absolute;
   border-radius: 50%;
@@ -2093,7 +2064,7 @@ button,
   color: var(--md-sys-color-on-surface);
 }
 
-/* Hummingbird UI Hero Action Row & Command Box */
+
 .hb-hero-action-row {
   display: flex;
   align-items: center;
@@ -2171,7 +2142,7 @@ button,
   box-shadow: 0 4px 12px rgba(255, 95, 2, 0.15);
 }
 
-/* Hummingbird UI Subtle Badges */
+
 .badge-subtle-primary {
   background: rgba(255, 95, 2, 0.12);
   border: 1px solid rgba(255, 95, 2, 0.3);
@@ -2227,7 +2198,7 @@ button,
   color: #FF5F02;
 }
 
-/* Right Decorative Interactive Badges */
+
 .md-hero-visual {
   display: flex;
   flex-direction: column;
@@ -2310,9 +2281,7 @@ button,
   }
 }
 
-/* ============================================================
-   M3 TOOLBAR & CONTROLS
-   ============================================================ */
+
 .md-toolbar {
   display: flex;
   align-items: center;
@@ -2340,7 +2309,7 @@ button,
   flex-wrap: wrap;
 }
 
-/* Glassy Select Dropdowns (A to Z, Variants, Resolutions) */
+
 .md-select {
   height: 38px;
   padding: 0 32px 0 14px;
@@ -2377,7 +2346,7 @@ button,
   box-shadow: none;
 }
 
-/* Dropdown Open Options Popup */
+
 .md-select option {
   background-color: #16181E;
   color: #FFFFFF;
@@ -2400,7 +2369,7 @@ button,
   font-weight: 700;
 }
 
-/* Glassy Segmented Button / Layout Toggle */
+
 .md-segmented-btn-group {
   display: flex;
   background: rgba(22, 24, 30, 0.6);
@@ -2438,9 +2407,7 @@ button,
   box-shadow: none;
 }
 
-/* ============================================================
-   M3 ICON CARDS GRID
-   ============================================================ */
+
 .md-icons-grid {
   display: grid;
   gap: 16px;
@@ -2460,7 +2427,7 @@ button,
   gap: 8px;
 }
 
-/* Glassy Load More Bunch Button */
+
 .md-load-more-btn {
   display: inline-flex;
   align-items: center;
@@ -2502,9 +2469,7 @@ button,
   border-color: rgba(255, 95, 2, 0.4);
 }
 
-/* ============================================================
-   ICON CARD (Frosted Glass Interactive Tile - High Performance)
-   ============================================================ */
+
 .md-card {
   background: rgba(14, 16, 22, 0.48);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -2539,7 +2504,7 @@ button,
   outline-offset: 2px;
 }
 
-/* Top Bar: Variant Chips & Favorite */
+
 .md-card-top-bar {
   width: 100%;
   display: flex;
@@ -2564,7 +2529,7 @@ button,
   flex-wrap: wrap;
 }
 
-/* Glassy Variant Chips */
+
 .md-card-variant-chip {
   padding: 2px 7px;
   border-radius: var(--md-shape-xs);
@@ -2614,7 +2579,7 @@ button,
   background: rgba(236, 72, 153, 0.16);
 }
 
-/* Center Icon Nest / Squircle Frame (Crisp White SVG Viewport) */
+
 .md-card-icon-frame {
   width: 68px;
   height: 68px;
@@ -2642,7 +2607,7 @@ button,
   transition: transform 0.22s;
 }
 
-/* Card Metadata */
+
 .md-card-meta {
   width: 100%;
   text-align: center;
@@ -2669,7 +2634,7 @@ button,
   text-overflow: ellipsis;
 }
 
-/* Hover Action Toolbar (Frosted Glass Overlay) */
+
 .md-card-hover-toolbar {
   position: absolute;
   bottom: 0;
@@ -2760,7 +2725,7 @@ button,
   border-color: transparent;
 }
 
-/* Compact layout adjustments */
+
 .md-icons-grid.layout-compact .md-card {
   min-height: 140px;
   padding: 10px;
@@ -2777,7 +2742,7 @@ button,
   font-size: 12px;
 }
 
-/* List layout adjustments */
+
 .md-icons-grid.layout-list .md-card {
   flex-direction: row;
   min-height: auto;
@@ -2812,12 +2777,8 @@ button,
   order: 4;
 }
 
-/* ============================================================
-   ORILDO STUDIO / DETAIL VIEW PAGE (STITCH MCP DESIGN SYSTEM)
-   ============================================================ */
-/* ============================================================
-   THESVG / VIEW SVG PAGE DESIGN SYSTEM (EXACT MATCH)
-   ============================================================ */
+
+
 .thesvg-view-page {
   display: flex;
   flex-direction: column;
@@ -2826,7 +2787,7 @@ button,
   animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Breadcrumb */
+
 .thesvg-breadcrumb {
   display: flex;
   align-items: center;
@@ -2865,7 +2826,7 @@ button,
   font-weight: 600;
 }
 
-/* Main Grid Layout */
+
 .thesvg-main-grid {
   display: grid;
   grid-template-columns: 340px 1fr;
@@ -2879,14 +2840,14 @@ button,
   }
 }
 
-/* LEFT COLUMN */
+
 .thesvg-left-col {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Large Preview Card */
+
 .thesvg-preview-card {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -2994,7 +2955,7 @@ button,
   object-fit: contain;
 }
 
-/* Metadata Card */
+
 .thesvg-meta-card {
   padding: 20px;
   border-radius: 20px;
@@ -3103,7 +3064,7 @@ button,
   opacity: 0.6;
 }
 
-/* Missing Section */
+
 .thesvg-missing-section {
   display: flex;
   flex-direction: column;
@@ -3149,14 +3110,14 @@ button,
   background: rgba(15, 23, 42, 0.06);
 }
 
-/* RIGHT COLUMN */
+
 .thesvg-right-col {
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
 
-/* Header Row */
+
 .thesvg-header-row {
   display: flex;
   align-items: flex-start;
@@ -3259,7 +3220,7 @@ button,
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
-/* Primary Download Split Button */
+
 .thesvg-primary-download-btn {
   display: inline-flex;
   align-items: center;
@@ -3304,7 +3265,7 @@ button,
   border-left-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Dropdown Menu Popover */
+
 .thesvg-menu-popover {
   position: absolute;
   top: calc(100% + 6px);
@@ -3334,9 +3295,7 @@ button,
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* ============================================================
-   RICH COPY ASSET & RESOLUTION POPOVER DIALOG
-   ============================================================ */
+
 .thesvg-copy-dialog-popover {
   position: absolute;
   top: calc(100% + 8px);
@@ -3637,7 +3596,7 @@ button,
   background: rgba(15, 23, 42, 0.05);
 }
 
-/* VARIANTS SECTION */
+
 .thesvg-variants-section {
   display: flex;
   flex-direction: column;
@@ -3696,7 +3655,7 @@ button,
   box-shadow: 0 0 0 1px #0F172A;
 }
 
-/* Light / Dark special card preview surfaces */
+
 .thesvg-variant-card.is-light-bg {
   background: #FFFFFF;
 }
@@ -3733,7 +3692,7 @@ button,
   max-width: 58px;
 }
 
-/* Command Rows (CLI & CDN) */
+
 .thesvg-command-rows {
   display: flex;
   flex-direction: column;
@@ -3800,7 +3759,7 @@ button,
   padding: 4px;
 }
 
-/* Multi-Framework Code Box */
+
 .thesvg-code-box-container {
   border-radius: 16px;
   background: rgba(12, 13, 16, 0.85);
@@ -3952,7 +3911,7 @@ button,
   word-break: break-all;
 }
 
-/* EXPORT PNG SECTION */
+
 .thesvg-export-png-section {
   display: flex;
   flex-direction: column;
@@ -4022,7 +3981,7 @@ button,
   opacity: 0.6;
 }
 
-/* Related Icons Section */
+
 .thesvg-related-section {
   display: flex;
   flex-direction: column;
@@ -4048,7 +4007,7 @@ button,
   color: var(--md-sys-color-on-surface-variant);
 }
 
-/* Glass Panel Base Utility (Stitch MCP) */
+
 .glass-panel {
   background: rgba(18, 19, 22, 0.65);
   backdrop-filter: blur(16px);
@@ -4159,7 +4118,7 @@ button,
   color: #FF3D71;
 }
 
-/* Main Studio Layout Grid */
+
 .md-detail-main-layout {
   display: grid;
   grid-template-columns: 420px 1fr;
@@ -4178,7 +4137,7 @@ button,
   }
 }
 
-/* Left Stage Column */
+
 .md-detail-stage-column {
   display: flex;
   flex-direction: column;
@@ -4297,7 +4256,7 @@ button,
   background: rgba(255, 95, 2, 0.2);
 }
 
-/* Background Variations */
+
 .md-detail-preview-box.bg-dark {
   background: #08090A;
 }
@@ -4320,7 +4279,7 @@ button,
   background-position: 0 0, 10px 10px;
 }
 
-/* Icon Render & Stage Glow */
+
 .md-preview-icon-wrapper {
   display: flex;
   align-items: center;
@@ -4329,7 +4288,7 @@ button,
   transition: filter 0.3s ease;
 }
 
-/* Controls Card */
+
 .md-detail-controls-card {
   display: flex;
   flex-direction: column;
@@ -4427,7 +4386,7 @@ button,
   background: rgba(255, 95, 2, 0.14);
 }
 
-/* Slider Bar */
+
 .md-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -4458,7 +4417,7 @@ button,
   transform: scale(1.2);
 }
 
-/* Row Split */
+
 .md-detail-studio-row-split {
   display: flex;
   flex-direction: column;
@@ -4471,7 +4430,7 @@ button,
   gap: 8px;
 }
 
-/* Color Swatches */
+
 .md-color-swatches {
   display: flex;
   gap: 8px;
@@ -4498,7 +4457,7 @@ button,
   box-shadow: 0 0 12px rgba(255, 95, 2, 0.4);
 }
 
-/* Variants Chip Group */
+
 .md-detail-chip-group {
   display: flex;
   flex-wrap: wrap;
@@ -4529,7 +4488,7 @@ button,
   color: #FFFFFF;
 }
 
-/* Download Actions */
+
 .md-detail-download-actions {
   display: flex;
   flex-direction: column;
@@ -4673,7 +4632,7 @@ button,
   color: #FF5F02;
 }
 
-/* Glassmorphic Resolution Custom Select */
+
 .md-custom-select-container {
   position: relative;
   display: inline-flex;
@@ -4782,7 +4741,7 @@ button,
   font-weight: 700;
 }
 
-/* Light Mode Custom Select */
+
 [data-theme='light'] .md-custom-select-trigger {
   background: #FFFFFF;
   border: 1px solid rgba(15, 23, 42, 0.12);
@@ -4865,7 +4824,7 @@ button,
   background: rgba(255, 95, 2, 0.04);
 }
 
-/* Right Code Column */
+
 .md-detail-code-column {
   display: flex;
   flex-direction: column;
@@ -4948,7 +4907,7 @@ button,
   line-height: 1.6;
 }
 
-/* Controls Card Light Theme */
+
 [data-theme='light'] .md-detail-controls-card {
   background: #FFFFFF;
   border-color: rgba(15, 23, 42, 0.08);
@@ -5037,7 +4996,7 @@ button,
   color: #FF5F02;
 }
 
-/* Code Studio */
+
 .md-detail-code-studio {
   width: 100%;
   height: 480px;
@@ -5191,7 +5150,7 @@ button,
   color: #0F172A;
 }
 
-/* Syntax Highlighting Tokens (Dark Mode) */
+
 .tok-keyword {
   color: #4EDEA3;
   font-weight: 600;
@@ -5223,7 +5182,7 @@ button,
   color: #94A3B8;
 }
 
-/* Syntax Highlighting Tokens (Light Mode - Crisp & Readable) */
+
 [data-theme='light'] .tok-keyword {
   color: #0D9488;
   font-weight: 600;
@@ -5255,7 +5214,7 @@ button,
   color: #475569;
 }
 
-/* Related Icons Section */
+
 .md-detail-related-section {
   display: flex;
   flex-direction: column;
@@ -5281,9 +5240,7 @@ button,
   color: #FF5F02;
 }
 
-/* ============================================================
-   M3 INSPECTOR DIALOG / MODAL (Legacy fallback)
-   ============================================================ */
+
 .md-dialog-overlay {
   position: fixed;
   inset: 0;
@@ -5347,7 +5304,7 @@ button,
   overflow: hidden;
 }
 
-/* Canvas Stage */
+
 .md-preview-stage {
   height: 180px;
   border-radius: var(--md-shape-lg);
@@ -5372,14 +5329,14 @@ button,
   background-size: 16px 16px;
 }
 
-/* M3 Sliders */
+
 .md-slider {
   width: 100%;
   accent-color: var(--md-sys-color-primary);
   cursor: pointer;
 }
 
-/* M3 Code Panel */
+
 .md-code-tabs {
   display: flex;
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
@@ -5424,9 +5381,7 @@ button,
   color: var(--md-sys-color-on-surface);
 }
 
-/* ============================================================
-   M3 FAVORITES DRAWER / SHEET
-   ============================================================ */
+
 .md-sheet-overlay {
   position: fixed;
   inset: 0;
@@ -5490,9 +5445,7 @@ button,
   gap: 10px;
 }
 
-/* ============================================================
-   M3 SNACKBAR / TOAST
-   ============================================================ */
+
 .md-snackbar-container {
   position: fixed;
   bottom: 24px;
@@ -5513,9 +5466,7 @@ button,
   font-weight: 500;
 }
 
-/* ============================================================
-   M3 FOOTER
-   ============================================================ */
+
 .md-footer {
   max-width: 1440px;
   margin: 0 auto;
@@ -5528,9 +5479,7 @@ button,
   border-top: 1px solid var(--md-sys-color-outline-variant);
 }
 
-/* ============================================================
-   SEARCH PAGE & BENTO SHOWCASE (M3 REDESIGN)
-   ============================================================ */
+
 .md-search-page-container {
   display: flex;
   flex-direction: column;
@@ -5540,7 +5489,7 @@ button,
   padding: 32px 16px 64px;
 }
 
-/* Hero Section */
+
 .md-search-hero-section {
   display: flex;
   flex-direction: column;
@@ -5600,7 +5549,7 @@ button,
   max-width: 620px;
 }
 
-/* Master Floating Search Bar */
+
 .md-search-bar-wrapper {
   position: relative;
   width: 100%;
@@ -5699,7 +5648,7 @@ button,
   border: 1px solid var(--md-sys-color-outline-variant);
 }
 
-/* Trending Chips */
+
 .md-trending-wrapper {
   display: flex;
   align-items: center;
@@ -5747,7 +5696,7 @@ button,
   transform: translateY(-2px);
 }
 
-/* Bento Grid */
+
 .md-bento-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -5883,7 +5832,7 @@ button,
   flex-shrink: 0;
 }
 
-/* Code & Framework Card */
+
 .md-bento-code {
   grid-column: span 6;
 }
@@ -5936,7 +5885,7 @@ button,
   white-space: nowrap;
 }
 
-/* Variants Card */
+
 .md-bento-variants {
   grid-column: span 6;
 }
@@ -5964,7 +5913,7 @@ button,
 .md-var-pill.sharp { background: rgba(242, 184, 181, 0.12); color: var(--md-sys-color-error); }
 .md-var-pill.twotone { background: rgba(128, 203, 196, 0.12); color: #80cbc4; }
 
-/* Stats Metrics Bento */
+
 .md-bento-stats {
   grid-column: span 12;
   background: var(--md-sys-color-surface-container);
@@ -6006,7 +5955,7 @@ button,
   letter-spacing: 0.6px;
 }
 
-/* Category Showcase Section */
+
 .md-categories-showcase-section {
   display: flex;
   flex-direction: column;
@@ -6129,7 +6078,7 @@ button,
   transform: translateX(3px);
 }
 
-/* Keyframes */
+
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 0.8; }
   50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 6px rgba(255, 95, 2, 0.6)); }
@@ -6149,9 +6098,7 @@ button,
   to { transform: rotate(360deg); }
 }
 
-/* ============================================================
-   LIGHT THEME COMPLETE SYSTEM OVERRIDES
-   ============================================================ */
+
 [data-theme='light'] body {
   background-color: #F8FAFC;
   background-image: 
@@ -6161,7 +6108,7 @@ button,
     radial-gradient(circle at 80% 90%, rgba(255, 95, 2, 0.06) 0%, transparent 45%);
 }
 
-/* Header in Light Mode */
+
 [data-theme='light'] .md-header {
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(15, 23, 42, 0.08);
@@ -6196,7 +6143,7 @@ button,
   border-color: rgba(15, 23, 42, 0.08);
 }
 
-/* Search Popover in Light Mode */
+
 [data-theme='light'] .md-search-suggestions-popover {
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(15, 23, 42, 0.12);
@@ -6226,7 +6173,7 @@ button,
   color: #FFFFFF;
 }
 
-/* Floating Sidebar Navigation Drawer in Light Mode */
+
 [data-theme='light'] .md-nav-drawer {
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(15, 23, 42, 0.08);
@@ -6250,7 +6197,7 @@ button,
   font-weight: 600;
 }
 
-/* Icon Cards in Light Mode */
+
 [data-theme='light'] .md-card {
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(15, 23, 42, 0.08);
@@ -6315,7 +6262,7 @@ button,
   color: #FF5F02;
 }
 
-/* Custom Selects & Toolbars in Light Mode */
+
 [data-theme='light'] .md-custom-select-trigger,
 [data-theme='light'] .md-select {
   background-color: #FFFFFF;
@@ -6383,7 +6330,7 @@ button,
   color: #475569;
 }
 
-/* Detail Page & Modals in Light Mode */
+
 [data-theme='light'] .md-detail-page-container {
   color: #0F172A;
 }
@@ -6502,9 +6449,7 @@ button,
   background: #F8FAFC;
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
+
 @media (max-width: 900px) {
   .md-nav-drawer {
     display: none;
@@ -6568,9 +6513,7 @@ button,
   }
 }
 
-/* ============================================================
-   PAGE HEADER BANNER (Common for Categories, Extensions, Blog)
-   ============================================================ */
+
 .md-page-header-banner {
   background: rgba(14, 16, 21, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -6606,9 +6549,7 @@ button,
   line-height: 1.6;
 }
 
-/* ============================================================
-   CATEGORIES PAGE
-   ============================================================ */
+
 .md-cat-controls-row {
   display: flex;
   align-items: center;
@@ -6616,9 +6557,7 @@ button,
   flex-wrap: wrap;
 }
 
-/* ============================================================
-   REDESIGNED CATEGORIES PAGE
-   ============================================================ */
+
 .md-categories-page {
   display: flex;
   flex-direction: column;
@@ -6889,9 +6828,7 @@ button,
   border-color: #E2E8F0;
 }
 
-/* ============================================================
-   PREMIUM CATEGORIES GRID & CARDS
-   ============================================================ */
+
 .md-cat-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
@@ -7005,7 +6942,7 @@ button,
   transform: translateX(2px);
 }
 
-/* Cluster of Preview Icons */
+
 .md-cat-preview-cluster {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -7142,9 +7079,7 @@ button,
   margin: 0;
 }
 
-/* ============================================================
-   EXTENSIONS PAGE
-   ============================================================ */
+
 .md-extensions-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -7311,9 +7246,7 @@ button,
   color: #FFFFFF;
 }
 
-/* ============================================================
-   BLOG PAGE
-   ============================================================ */
+
 .md-blog-featured-card {
   background: rgba(14, 16, 21, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.09);
@@ -7399,9 +7332,7 @@ button,
   font-size: 12px;
 }
 
-/* ============================================================
-   BLOG PAGE (Exact thesvg.org Style)
-   ============================================================ */
+
 .md-blog-header-section {
   background: rgba(14, 16, 21, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -7500,7 +7431,7 @@ button,
   color: #FF5F02;
 }
 
-/* Latest Featured Hero Card */
+
 .md-blog-latest-card {
   background: linear-gradient(135deg, rgba(20, 22, 28, 0.95) 0%, rgba(12, 13, 16, 0.95) 100%);
   border: 1px solid rgba(255, 95, 2, 0.25);
@@ -7621,7 +7552,7 @@ button,
   transform: translateY(-1px);
 }
 
-/* Chronological Post Rows List */
+
 .md-blog-posts-list {
   display: flex;
   flex-direction: column;
@@ -7742,7 +7673,7 @@ button,
   color: #475569;
 }
 
-/* Loop CTA Card */
+
 .md-blog-loop-card {
   background: rgba(14, 16, 21, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -7791,9 +7722,7 @@ button,
   }
 }
 
-/* ============================================================
-   FAVORITES PAGE
-   ============================================================ */
+
 .md-fav-actions-row {
   display: flex;
   align-items: center;
@@ -7851,7 +7780,7 @@ button,
   color: #FFFFFF;
 }
 
-/* Empty State Card */
+
 .md-fav-empty-card {
   background: rgba(14, 16, 21, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -7922,9 +7851,7 @@ button,
   transform: translateY(-1px);
 }
 
-/* ============================================================
-   PLACEHOLDER PAGE (Extensions & Blog "Not Available" State)
-   ============================================================ */
+
 .md-placeholder-page {
   width: 100%;
   display: flex;
@@ -7987,9 +7914,7 @@ button,
   margin: 0 0 28px;
 }
 
-/* ============================================================
-   SVGIO / BLOG & ARTICLE DESIGN SYSTEM (PIXEL MATCH)
-   ============================================================ */
+
 .sv-blog-page-container {
   display: flex;
   flex-direction: column;
@@ -8024,7 +7949,7 @@ button,
   to { transform: rotate(360deg); }
 }
 
-/* Hero Header */
+
 .sv-blog-index-header {
   display: flex;
   flex-direction: column;
@@ -8104,7 +8029,7 @@ button,
   border-color: rgba(15, 23, 42, 0.08);
 }
 
-/* Featured Hero Card */
+
 .sv-blog-featured-card {
   padding: 28px;
   border-radius: 20px;
@@ -8209,7 +8134,7 @@ button,
   flex-wrap: wrap;
 }
 
-/* Tag Pills */
+
 .sv-tag-pill {
   display: inline-flex;
   align-items: center;
@@ -8292,7 +8217,7 @@ button,
   color: #FF5F02;
 }
 
-/* Numbered Timeline List */
+
 .sv-blog-timeline-list {
   display: flex;
   flex-direction: column;
@@ -8408,7 +8333,7 @@ button,
   color: #FF5F02;
 }
 
-/* Bottom Stay In Loop Card */
+
 .sv-blog-loop-card {
   padding: 36px 30px;
   border-radius: 20px;
@@ -8491,9 +8416,7 @@ button,
   color: #FFFFFF;
 }
 
-/* ============================================================
-   ARTICLE READER VIEW STYLES
-   ============================================================ */
+
 .sv-article-reader-layout {
   display: grid;
   grid-template-columns: 1fr 60px;
@@ -8635,7 +8558,7 @@ button,
   margin: 8px 0;
 }
 
-/* Markdown Tables (Screen 3 match) */
+
 .sv-post-table-wrap {
   width: 100%;
   overflow-x: auto;
@@ -8690,7 +8613,7 @@ button,
   background: rgba(255, 95, 2, 0.04);
 }
 
-/* Floating Share Rail */
+
 .sv-share-sidebar {
   position: relative;
   height: 100%;
@@ -8761,9 +8684,7 @@ button,
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* ============================================================
-   SVGIO / SUBMIT AN ICON PAGE DESIGN SYSTEM (EXACT MATCH)
-   ============================================================ */
+
 .sv-submit-page-container {
   display: flex;
   flex-direction: column;
@@ -8785,7 +8706,7 @@ button,
   }
 }
 
-/* LEFT COLUMN */
+
 .sv-submit-left-col {
   display: flex;
   flex-direction: column;
@@ -8839,7 +8760,7 @@ button,
   margin: 0;
 }
 
-/* How It Works Grid */
+
 .sv-how-it-works-section {
   display: flex;
   flex-direction: column;
@@ -8940,7 +8861,7 @@ button,
   color: var(--md-sys-color-on-surface);
 }
 
-/* SVG Requirements Card */
+
 .sv-req-card {
   padding: 22px;
   border-radius: 18px;
@@ -8985,7 +8906,7 @@ button,
   flex-shrink: 0;
 }
 
-/* Repo Action Buttons */
+
 .sv-repo-links-row {
   display: flex;
   align-items: center;
@@ -9018,7 +8939,7 @@ button,
   border-color: rgba(15, 23, 42, 0.08);
 }
 
-/* JSON Schema Preview Card */
+
 .sv-schema-preview-box {
   border-radius: 18px;
   background: rgba(10, 11, 14, 0.85);
@@ -9064,7 +8985,7 @@ button,
   overflow-x: auto;
 }
 
-/* RIGHT COLUMN: QUICK SUBMIT FORM */
+
 .sv-submit-right-col {
   display: flex;
   flex-direction: column;
@@ -9189,7 +9110,7 @@ button,
   }
 }
 
-/* Drag and Drop Zone */
+
 .sv-dropzone {
   display: flex;
   flex-direction: column;
@@ -9244,7 +9165,7 @@ button,
   color: var(--md-sys-color-on-surface-variant);
 }
 
-/* Uploaded Preview Box */
+
 .sv-uploaded-preview-box {
   display: flex;
   align-items: center;
@@ -9316,7 +9237,7 @@ button,
   background: rgba(239, 68, 68, 0.1);
 }
 
-/* Color Picker Row */
+
 .sv-color-input-wrap {
   display: flex;
   align-items: center;
@@ -9335,7 +9256,7 @@ button,
   font-family: var(--md-font-mono);
 }
 
-/* Categories Pills Selector */
+
 .sv-cat-tags-selector {
   display: flex;
   flex-wrap: wrap;
@@ -9373,7 +9294,7 @@ button,
   border-color: rgba(15, 23, 42, 0.1);
 }
 
-/* Submit Action Button */
+
 .sv-submit-action-btn {
   display: flex;
   align-items: center;
@@ -9414,9 +9335,7 @@ button,
   animation: spin 0.8s linear infinite;
 }
 
-/* ============================================================
-   MULTI-VARIANT SVG UPLOAD STYLES
-   ============================================================ */
+
 .sv-add-more-pill-btn {
   display: inline-flex;
   align-items: center;
@@ -9660,9 +9579,7 @@ button,
 }
 
 
-/* ══════════════════════════════════════════════════════════════════
-   SUBMIT PAGE — SUCCESS SCREEN
-   ══════════════════════════════════════════════════════════════════ */
+
 
 .sv-submit-success-card {
   max-width: 600px;
@@ -9759,9 +9676,7 @@ button,
   border-color: rgba(0,0,0,0.08);
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   SUBMIT PAGE — COUNTDOWN RING
-   ══════════════════════════════════════════════════════════════════ */
+
 
 .sv-countdown-ring-wrap {
   position: relative;
@@ -9773,7 +9688,7 @@ button,
 .sv-countdown-svg {
   width: 110px;
   height: 110px;
-  transform: rotate(-90deg); /* start progress from top */
+  transform: rotate(-90deg); 
 }
 
 .sv-ring-track {
@@ -9815,9 +9730,7 @@ button,
   stroke: rgba(0, 0, 0, 0.08);
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   SUBMIT PAGE — AUTO-DETECTED COLORS & MULTI-HEX COLOR SELECTOR
-   ══════════════════════════════════════════════════════════════════ */
+
 
 .sv-detected-colors-group {
   background: var(--md-card-bg, rgba(255, 255, 255, 0.03));
@@ -10048,7 +9961,7 @@ button,
   background: rgba(239, 68, 68, 0.1);
 }
 
-/* Success screen color pills */
+
 .sv-success-colors-item {
   width: 100%;
 }
@@ -10096,9 +10009,7 @@ button,
   border-color: rgba(0, 0, 0, 0.08);
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   SUBMIT PAGE — 400+ ICONS PACK & QUALITY CHECKS STYLES
-   ══════════════════════════════════════════════════════════════════ */
+
 
 .sv-pill-amber {
   background: rgba(245, 158, 11, 0.12) !important;
@@ -10190,7 +10101,7 @@ button,
   color: var(--md-sys-color-on-surface-variant);
 }
 
-/* Quality Checklist Bar */
+
 .sv-quality-badges-row {
   display: flex;
   flex-wrap: wrap;
@@ -10221,9 +10132,7 @@ button,
   border-color: rgba(0, 0, 0, 0.08);
 }
 
-/* ============================================================
-   ERROR PAGES (404 & 500)
-   ============================================================ */
+
 .md-error-page-wrapper {
   display: flex;
   align-items: center;
@@ -10476,9 +10385,7 @@ button,
   font-family: var(--md-font-mono);
 }
 
-/* ============================================================
-   LEGAL PAGES (PRIVACY & TERMS)
-   ============================================================ */
+
 .md-legal-page-wrapper {
   display: flex;
   flex-direction: column;
@@ -10629,9 +10536,7 @@ button,
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* ============================================================
-   STATUS & UPTIME PAGE
-   ============================================================ */
+
 .md-status-page-wrapper {
   display: flex;
   flex-direction: column;
@@ -10863,9 +10768,7 @@ button,
   align-items: center;
 }
 
-/* ============================================================
-   COOKIE CONSENT FLOATING BANNER / POPUP
-   ============================================================ */
+
 .md-cookie-banner-wrap {
   position: fixed;
   bottom: 24px;

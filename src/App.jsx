@@ -26,13 +26,13 @@ export function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [currentView, setCurrentView] = useState('icons'); // 'icons' | 'categories' | 'extensions' | 'blog' | 'favorites' | 'submit'
+  const [currentView, setCurrentView] = useState('icons');
 
-  // Selected Icon View Page State
+
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [selectedVariant, setSelectedVariant] = useState('default');
 
-  // Favorites State
+
   const [favorites, setFavorites] = useState(() => {
     try {
       const saved = localStorage.getItem('orildo_svg_favorites');
@@ -42,24 +42,24 @@ export function App() {
     }
   });
 
-  // Toast / Snackbar State
+
   const [toast, setToast] = useState(null);
   const toastTimeoutRef = useRef(null);
 
-  // Theme State
+
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('orildo_svg_theme') || 'dark';
   });
 
   const searchInputRef = useRef(null);
 
-  // Apply theme
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('orildo_svg_theme', theme);
   }, [theme]);
 
-  // Persist favorites
+
   useEffect(() => {
     try {
       localStorage.setItem('orildo_svg_favorites', JSON.stringify(favorites));
@@ -68,7 +68,7 @@ export function App() {
     }
   }, [favorites]);
 
-  // Fetch and normalize directly from single source-of-truth /icons.json
+
   useEffect(() => {
     async function loadIcons() {
       try {
@@ -79,11 +79,11 @@ export function App() {
         const normalized = rawIcons.map((icon) => {
           const id = icon.slug || icon.id;
           const name = icon.title || icon.name || id;
-          const category = (Array.isArray(icon.categories) && icon.categories[0]) || icon.category || 'Brands & Ecosystem';
-          const hex = icon.hex ? (icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}`) : '#FF5F02';
-          const hexes = Array.isArray(icon.hexes) && icon.hexes.length > 0
-            ? icon.hexes.map((h) => (h.startsWith('#') ? h : `#${h}`))
-            : [hex];
+          const category = Array.isArray(icon.categories) && icon.categories[0] || icon.category || 'Brands & Ecosystem';
+          const hex = icon.hex ? icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}` : '#FF5F02';
+          const hexes = Array.isArray(icon.hexes) && icon.hexes.length > 0 ?
+          icon.hexes.map((h) => h.startsWith('#') ? h : `#${h}`) :
+          [hex];
           const url = icon.url || `https://${id}.dev`;
           const license = icon.license || 'Apache-2.0';
 
@@ -128,14 +128,14 @@ export function App() {
           };
         });
 
-        // Pin 'orildo' or 'thesvg' at index 0
+
         normalized.sort((a, b) => {
           if (a.id === 'orildo' || a.id === 'thesvg') return -1;
           if (b.id === 'orildo' || b.id === 'thesvg') return 1;
           return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
         });
 
-        // Compute categories
+
         const categoryCounts = {};
         normalized.forEach((icon) => {
           if (Array.isArray(icon.categories)) {
@@ -147,12 +147,12 @@ export function App() {
           }
         });
 
-        const categories = Object.keys(categoryCounts)
-          .map((name) => ({
-            name,
-            count: categoryCounts[name]
-          }))
-          .sort((a, b) => a.name.localeCompare(b.name));
+        const categories = Object.keys(categoryCounts).
+        map((name) => ({
+          name,
+          count: categoryCounts[name]
+        })).
+        sort((a, b) => a.name.localeCompare(b.name));
 
         setMetadata({
           totalIcons: normalized.length,
@@ -170,7 +170,7 @@ export function App() {
     loadIcons();
   }, []);
 
-  // Global shortcut '/' and ⌘K / Ctrl+K
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -192,7 +192,7 @@ export function App() {
   }, [selectedIcon]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    setTheme((prev) => prev === 'dark' ? 'light' : 'dark');
   };
 
   const showToast = (toastData) => {
@@ -263,7 +263,7 @@ export function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Compute categories with real icon counts
+
   const categoriesWithCounts = useMemo(() => {
     if (!metadata || !metadata.icons) return [];
     const counts = {};
@@ -284,7 +284,7 @@ export function App() {
     return list;
   }, [metadata]);
 
-  // Filter icons
+
   const filteredIcons = useMemo(() => {
     if (!metadata || !metadata.icons) return [];
 
@@ -293,18 +293,18 @@ export function App() {
     if (selectedCategory === 'Orildo') {
       list = list.filter(
         (icon) =>
-          icon.id.toLowerCase() === 'orildo' ||
-          icon.name.toLowerCase().includes('orildo')
+        icon.id.toLowerCase() === 'orildo' ||
+        icon.name.toLowerCase().includes('orildo')
       );
     } else if (selectedCategory === 'Google 2026') {
       list = list.filter(
         (icon) =>
-          icon.id.toLowerCase().includes('google') ||
-          icon.name.toLowerCase().includes('google') ||
-          icon.id.toLowerCase().includes('gcp') ||
-          icon.name.toLowerCase().includes('gemini') ||
-          icon.name.toLowerCase().includes('deepmind') ||
-          icon.name.toLowerCase().includes('colab')
+        icon.id.toLowerCase().includes('google') ||
+        icon.name.toLowerCase().includes('google') ||
+        icon.id.toLowerCase().includes('gcp') ||
+        icon.name.toLowerCase().includes('gemini') ||
+        icon.name.toLowerCase().includes('deepmind') ||
+        icon.name.toLowerCase().includes('colab')
       );
     } else if (selectedCategory !== 'all') {
       list = list.filter((icon) => {
@@ -343,7 +343,7 @@ export function App() {
 
   return (
     <div className="md-page-wrapper">
-      {/* Top App Bar with Search */}
+      {}
       <Header
         theme={theme}
         toggleTheme={toggleTheme}
@@ -361,12 +361,12 @@ export function App() {
         allIcons={metadata?.icons || []}
         searchInputRef={searchInputRef}
         onNavigate={handleNavigate}
-        onSubmitIconClick={handleSubmitIconModal}
-      />
+        onSubmitIconClick={handleSubmitIconModal} />
+      
 
-      {/* App Shell with Sidebar & Main Content */}
+      {}
       <div className="md-app-layout">
-        {/* Left Side Menu */}
+        {}
         <Sidebar
           theme={theme}
           categories={categoriesWithCounts}
@@ -382,145 +382,145 @@ export function App() {
               handleSelectIcon(filteredIcons[0]);
             }
           }}
-          totalIcons={totalCount}
-        />
+          totalIcons={totalCount} />
+        
 
-        {/* Main Content Area */}
+        {}
         <main className="md-main-content">
-          {/* If an icon is selected, show the full IconDetailPage */}
-          {selectedIcon ? (
-            <IconDetailPage
-              icon={selectedIcon}
-              initialVariant={selectedVariant}
-              allIcons={metadata?.icons || []}
-              onBack={() => setSelectedIcon(null)}
-              onSelectIcon={handleSelectIcon}
-              isFavorite={favoritesSet.has(selectedIcon.id)}
-              onToggleFavorite={toggleFavorite}
-              onShowToast={showToast}
-            />
-          ) : currentView === 'categories' ? (
-            <CategoriesPage
-              categories={categoriesWithCounts}
-              allIcons={metadata?.icons || []}
-              onSelectCategory={handleCategorySelect}
-              onSelectIcon={handleSelectIcon}
-            />
-          ) : currentView === 'extensions' ? (
-            <ExtensionsPage
-              onExploreAll={() => handleNavigate('icons')}
-            />
-          ) : currentView === 'blog' ? (
-            <BlogPage
-              onExploreAll={() => handleNavigate('icons')}
-            />
-          ) : currentView === 'submit' ? (
-            <SubmitPage
+          {}
+          {selectedIcon ?
+          <IconDetailPage
+            icon={selectedIcon}
+            initialVariant={selectedVariant}
+            allIcons={metadata?.icons || []}
+            onBack={() => setSelectedIcon(null)}
+            onSelectIcon={handleSelectIcon}
+            isFavorite={favoritesSet.has(selectedIcon.id)}
+            onToggleFavorite={toggleFavorite}
+            onShowToast={showToast} /> :
+
+          currentView === 'categories' ?
+          <CategoriesPage
+            categories={categoriesWithCounts}
+            allIcons={metadata?.icons || []}
+            onSelectCategory={handleCategorySelect}
+            onSelectIcon={handleSelectIcon} /> :
+
+          currentView === 'extensions' ?
+          <ExtensionsPage
+            onExploreAll={() => handleNavigate('icons')} /> :
+
+          currentView === 'blog' ?
+          <BlogPage
+            onExploreAll={() => handleNavigate('icons')} /> :
+
+          currentView === 'submit' ?
+          <SubmitPage
+            totalIcons={totalCount}
+            onIconAdded={handleIconAdded}
+            onShowToast={showToast}
+            onNavigate={handleNavigate} /> :
+
+          currentView === 'favorites' ?
+          <FavoritesPage
+            favorites={favorites}
+            allIcons={metadata?.icons || []}
+            onSelectIcon={handleSelectIcon}
+            favoritesSet={favoritesSet}
+            onToggleFavorite={toggleFavorite}
+            onClearFavorites={clearFavorites}
+            onExploreAll={() => handleNavigate('icons')}
+            onShowToast={showToast} /> :
+
+          currentView === '404' ?
+          <NotFoundPage
+            onNavigate={handleNavigate}
+            onSearch={(q) => {
+              setSearchQuery(q);
+              handleNavigate('icons');
+            }} /> :
+
+          currentView === '500' ?
+          <ServerErrorPage
+            onNavigate={handleNavigate}
+            onRetry={() => window.location.reload()} /> :
+
+          currentView === 'privacy' ?
+          <PrivacyPage
+            onNavigate={handleNavigate} /> :
+
+          currentView === 'terms' || currentView === 'trademark' || currentView === 'legal' ?
+          <TermsPage
+            onNavigate={handleNavigate} /> :
+
+          currentView === 'status' ?
+          <StatusPage
+            totalIcons={totalCount}
+            onNavigate={handleNavigate} /> :
+
+
+          <>
+              {}
+              {!searchQuery && selectedCategory === 'all' &&
+            <Hero
+              theme={theme}
               totalIcons={totalCount}
-              onIconAdded={handleIconAdded}
-              onShowToast={showToast}
-              onNavigate={handleNavigate}
-            />
-          ) : currentView === 'favorites' ? (
-            <FavoritesPage
-              favorites={favorites}
-              allIcons={metadata?.icons || []}
+              selectedCategory={selectedCategory}
+              onResetFilters={resetFilters} />
+
+            }
+
+              {}
+              {isLoading ?
+            <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--md-sys-color-on-surface-variant)' }}>
+                  <p>Loading SVG icon catalog...</p>
+                </div> :
+
+            <IconGrid
+              icons={filteredIcons}
               onSelectIcon={handleSelectIcon}
               favoritesSet={favoritesSet}
               onToggleFavorite={toggleFavorite}
-              onClearFavorites={clearFavorites}
-              onExploreAll={() => handleNavigate('icons')}
               onShowToast={showToast}
-            />
-          ) : currentView === '404' ? (
-            <NotFoundPage
-              onNavigate={handleNavigate}
-              onSearch={(q) => {
-                setSearchQuery(q);
-                handleNavigate('icons');
-              }}
-            />
-          ) : currentView === '500' ? (
-            <ServerErrorPage
-              onNavigate={handleNavigate}
-              onRetry={() => window.location.reload()}
-            />
-          ) : currentView === 'privacy' ? (
-            <PrivacyPage
-              onNavigate={handleNavigate}
-            />
-          ) : currentView === 'terms' || currentView === 'trademark' || currentView === 'legal' ? (
-            <TermsPage
-              onNavigate={handleNavigate}
-            />
-          ) : currentView === 'status' ? (
-            <StatusPage
-              totalIcons={totalCount}
-              onNavigate={handleNavigate}
-            />
-          ) : (
-            <>
-              {/* Hero Banner */}
-              {!searchQuery && selectedCategory === 'all' && (
-                <Hero
-                  theme={theme}
-                  totalIcons={totalCount}
-                  selectedCategory={selectedCategory}
-                  onResetFilters={resetFilters}
-                />
-              )}
+              selectedCategory={selectedCategory}
+              onResetFilters={resetFilters} />
 
-              {/* Icon Grid */}
-              {isLoading ? (
-                <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--md-sys-color-on-surface-variant)' }}>
-                  <p>Loading SVG icon catalog...</p>
-                </div>
-              ) : (
-                <IconGrid
-                  icons={filteredIcons}
-                  onSelectIcon={handleSelectIcon}
-                  favoritesSet={favoritesSet}
-                  onToggleFavorite={toggleFavorite}
-                  onShowToast={showToast}
-                  selectedCategory={selectedCategory}
-                  onResetFilters={resetFilters}
-                />
-              )}
+            }
 
-              {/* Community Banner */}
+              {}
               <CommunityBanner
-                totalIcons={totalCount}
-                totalVariants={totalCount * 2}
-                totalCollections={6}
-                onSubmitIconClick={handleSubmitIconModal}
-              />
+              totalIcons={totalCount}
+              totalVariants={totalCount * 2}
+              totalCollections={6}
+              onSubmitIconClick={handleSubmitIconModal} />
+            
             </>
-          )}
+          }
 
-          {/* Full-width Rich Footer */}
+          {}
           <Footer
             theme={theme}
             totalIcons={totalCount}
             onSelectCategory={handleCategorySelect}
             onSubmitIconClick={handleSubmitIconModal}
-            onNavigate={handleNavigate}
-          />
+            onNavigate={handleNavigate} />
+          
         </main>
       </div>
 
-      {/* Toast Snackbar */}
-      {toast && (
-        <div className="md-snackbar-container">
+      {}
+      {toast &&
+      <div className="md-snackbar-container">
           <div className="md-snackbar">
             <span>{toast.title}: {toast.message}</span>
           </div>
         </div>
-      )}
+      }
 
-      {/* Cookie Consent Banner */}
+      {}
       <CookieBanner onNavigate={handleNavigate} />
-    </div>
-  );
+    </div>);
+
 }
 
 export default App;

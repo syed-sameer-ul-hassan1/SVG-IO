@@ -17,21 +17,21 @@ export function Footer({
 
   return (
     <footer className="md-main-footer-card glass-panel" role="contentinfo">
-      {/* Top Grid Columns */}
+      {}
       <div className="md-footer-top-grid">
-        {/* Brand Column */}
+        {}
         <div className="md-footer-brand-col">
           <a
             href="https://svg.io.orildo.tech"
             className="md-footer-logo-row"
-            title="Visit SvgIo"
-          >
-            <img 
-              src={wordmarkSrc} 
-              alt="SvgIo Logo" 
-              height="26" 
-              style={{ display: 'block', height: '26px', width: 'auto', objectFit: 'contain' }} 
-            />
+            title="Visit SvgIo">
+            
+            <img
+              src={wordmarkSrc}
+              alt="SvgIo Logo"
+              height="26"
+              style={{ display: 'block', height: '26px', width: 'auto', objectFit: 'contain' }} />
+            
           </a>
 
           <p className="md-footer-brand-desc">
@@ -42,7 +42,7 @@ export function Footer({
             Powered by <a href="https://orildo.dev" target="_blank" rel="noopener noreferrer" style={{ color: '#FF5F02', fontWeight: 700 }}>Orildo</a>
           </span>
 
-          {/* Social / Ecosystem Badges */}
+          {}
           <div className="md-footer-eco-badges">
             <a href="https://github.com/syed-sameer-ul-hassan/SVG.IO" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="GitHub">
               <Github size={14} />
@@ -58,13 +58,13 @@ export function Footer({
             </a>
           </div>
 
-          {/* Product Hunt Review Card */}
+          {}
           <a
             href="https://www.producthunt.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="md-footer-ph-card"
-          >
+            className="md-footer-ph-card">
+            
             <div className="md-ph-left">
               <div className="md-ph-logo">P</div>
               <div className="md-ph-text">
@@ -76,7 +76,7 @@ export function Footer({
           </a>
         </div>
 
-        {/* Column 1: PRODUCT */}
+        {}
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">PRODUCT</h4>
           <ul className="md-footer-links">
@@ -88,7 +88,7 @@ export function Footer({
           </ul>
         </div>
 
-        {/* Column 2: RESOURCES */}
+        {}
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">RESOURCES</h4>
           <ul className="md-footer-links">
@@ -100,7 +100,7 @@ export function Footer({
           </ul>
         </div>
 
-        {/* Column 3: COMMUNITY */}
+        {}
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">COMMUNITY</h4>
           <ul className="md-footer-links">
@@ -111,7 +111,7 @@ export function Footer({
           </ul>
         </div>
 
-        {/* Column 4: LEGAL */}
+        {}
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">LEGAL</h4>
           <ul className="md-footer-links">
@@ -123,12 +123,12 @@ export function Footer({
         </div>
       </div>
 
-      {/* Divider */}
+      {}
       <div className="md-footer-divider-line" />
 
-      {/* 2-Section Credits (POWERED BY | DEVELOPED BY) with Center Line */}
+      {}
       <div className="md-footer-split-credits">
-        {/* Section 1: POWERED BY */}
+        {}
         <div className="md-credits-section">
           <span className="md-credits-label">POWERED BY</span>
           <a
@@ -136,8 +136,8 @@ export function Footer({
             target="_blank"
             rel="noopener noreferrer"
             className="md-credits-chip"
-            title="Visit Orildo"
-          >
+            title="Visit Orildo">
+            
             <div className="md-credits-icon-wrap">
               <img src={logoSrc} alt="Orildo" width="16" height="16" style={{ objectFit: 'contain' }} />
             </div>
@@ -148,10 +148,10 @@ export function Footer({
           </a>
         </div>
 
-        {/* Center Vertical Divider Line */}
+        {}
         <div className="md-credits-center-divider" />
 
-        {/* Section 2: DEVELOPED BY */}
+        {}
         <div className="md-credits-section">
           <span className="md-credits-label">DEVELOPED BY</span>
           <a
@@ -159,8 +159,8 @@ export function Footer({
             target="_blank"
             rel="noopener noreferrer"
             className="md-credits-chip"
-            title="Visit Syed Sameer Ul Hassan's Portfolio"
-          >
+            title="Visit Syed Sameer Ul Hassan's Portfolio">
+            
             <div className="md-credits-icon-wrap">
               <img src={logoSrc} alt="Syed Sameer Ul Hassan" width="16" height="16" style={{ objectFit: 'contain' }} />
             </div>
@@ -172,7 +172,7 @@ export function Footer({
         </div>
       </div>
 
-      {/* Bottom Copyright Row */}
+      {}
       <div className="md-footer-bottom-row">
         <span className="md-footer-copy-text">
           © {new Date().getFullYear()} <a href="https://orildo.dev" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', fontWeight: 600 }}>Orildo</a>. All rights reserved. Developed by <a href="https://sameer.orildo.dev" target="_blank" rel="noopener noreferrer" style={{ color: '#FF5F02', fontWeight: 600 }}>Syed Sameer Ul Hassan</a>.
@@ -185,8 +185,8 @@ export function Footer({
           <span>Built with Orildo Design Studio</span>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 }
 
 export default Footer;

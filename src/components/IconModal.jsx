@@ -6,8 +6,8 @@ import {
   Check,
   Heart,
   Image as ImageIcon,
-  Archive
-} from 'lucide-react';
+  Archive } from
+'lucide-react';
 import {
   getSvgContent,
   convertSvgToReact,
@@ -16,8 +16,8 @@ import {
   convertSvgToDataUri,
   downloadSvgFile,
   downloadPngFile,
-  downloadBulkZip
-} from '../utils/exportUtils';
+  downloadBulkZip } from
+'../utils/exportUtils';
 import CustomSelect from './CustomSelect';
 
 export function IconModal({
@@ -43,11 +43,11 @@ export function IconModal({
 
   useEffect(() => {
     if (icon) {
-      const v = variantsList.includes(initialVariant)
-        ? initialVariant
-        : variantsList.includes('color')
-        ? 'color'
-        : variantsList[0] || 'default';
+      const v = variantsList.includes(initialVariant) ?
+      initialVariant :
+      variantsList.includes('color') ?
+      'color' :
+      variantsList[0] || 'default';
       setSelectedVariant(v);
     }
   }, [icon, initialVariant, variantsList]);
@@ -170,7 +170,7 @@ export function IconModal({
   return (
     <div className="md-dialog-overlay" onClick={onClose}>
       <div className="md-dialog" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
-        {/* M3 Dialog Header */}
+        {}
         <div className="md-dialog-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <div style={{ width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -186,8 +186,8 @@ export function IconModal({
             <button
               className={`md-icon-btn ${isFavorite ? 'active' : ''}`}
               onClick={() => onToggleFavorite(icon)}
-              title={isFavorite ? 'Remove from favorites' : 'Add to collection'}
-            >
+              title={isFavorite ? 'Remove from favorites' : 'Add to collection'}>
+              
               <Heart size={18} fill={isFavorite ? 'currentColor' : 'none'} />
             </button>
             <button className="md-icon-btn" onClick={onClose} aria-label="Close dialog">
@@ -196,20 +196,20 @@ export function IconModal({
           </div>
         </div>
 
-        {/* M3 Dialog Body */}
+        {}
         <div className="md-dialog-body">
-          {/* Left Controls */}
+          {}
           <div className="md-dialog-left">
-            {/* Live Canvas Preview */}
+            {}
             <div className={`md-preview-stage bg-${previewBg}`}>
               <img
                 src={`/icons/${icon.id}/${selectedVariant}.svg`}
                 alt={icon.name}
-                style={{ width: `${iconSize}px`, height: `${iconSize}px` }}
-              />
+                style={{ width: `${iconSize}px`, height: `${iconSize}px` }} />
+              
             </div>
 
-            {/* Background Selector Chips */}
+            {}
             <div>
               <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--md-sys-color-on-surface-variant)', marginBottom: 8 }}>
                 Canvas Background
@@ -217,50 +217,50 @@ export function IconModal({
               <div style={{ display: 'flex', gap: 6 }}>
                 <button
                   className={`md-chip ${previewBg === 'slate' ? 'active' : ''}`}
-                  onClick={() => setPreviewBg('slate')}
-                >
+                  onClick={() => setPreviewBg('slate')}>
+                  
                   Slate
                 </button>
                 <button
                   className={`md-chip ${previewBg === 'dark' ? 'active' : ''}`}
-                  onClick={() => setPreviewBg('dark')}
-                >
+                  onClick={() => setPreviewBg('dark')}>
+                  
                   Dark
                 </button>
                 <button
                   className={`md-chip ${previewBg === 'light' ? 'active' : ''}`}
-                  onClick={() => setPreviewBg('light')}
-                >
+                  onClick={() => setPreviewBg('light')}>
+                  
                   Light
                 </button>
                 <button
                   className={`md-chip ${previewBg === 'checker' ? 'active' : ''}`}
-                  onClick={() => setPreviewBg('checker')}
-                >
+                  onClick={() => setPreviewBg('checker')}>
+                  
                   Grid
                 </button>
               </div>
             </div>
 
-            {/* Variants Switcher */}
+            {}
             <div>
               <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--md-sys-color-on-surface-variant)', marginBottom: 8 }}>
                 Variant
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                {variantsList.map((v) => (
-                  <button
-                    key={v}
-                    className={`md-chip ${selectedVariant === v ? 'active' : ''}`}
-                    onClick={() => setSelectedVariant(v)}
-                  >
+                {variantsList.map((v) =>
+                <button
+                  key={v}
+                  className={`md-chip ${selectedVariant === v ? 'active' : ''}`}
+                  onClick={() => setSelectedVariant(v)}>
+                  
                     {v}
                   </button>
-                ))}
+                )}
               </div>
             </div>
 
-            {/* Size Slider */}
+            {}
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, fontWeight: 600, marginBottom: 6 }}>
                 <span style={{ color: 'var(--md-sys-color-on-surface-variant)' }}>Preview Size</span>
@@ -273,11 +273,11 @@ export function IconModal({
                 step="8"
                 value={iconSize}
                 onChange={(e) => setIconSize(Number(e.target.value))}
-                className="md-slider"
-              />
+                className="md-slider" />
+              
             </div>
 
-            {/* Download Buttons */}
+            {}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 'auto' }}>
               <button className="md-btn md-btn-filled" onClick={handleDownloadSvg}>
                 <Download size={15} />
@@ -293,71 +293,71 @@ export function IconModal({
                   value={pngResolution}
                   onChange={(val) => setPngResolution(Number(val))}
                   options={[
-                    { value: 256, label: '256px' },
-                    { value: 512, label: '512px' },
-                    { value: 1024, label: '1024px' },
-                    { value: 2048, label: '2048px' }
-                  ]}
+                  { value: 256, label: '256px' },
+                  { value: 512, label: '512px' },
+                  { value: 1024, label: '1024px' },
+                  { value: 2048, label: '2048px' }]
+                  }
                   title="Select Resolution"
                   minWidth={95}
-                  placement="top"
-                />
+                  placement="top" />
+                
               </div>
 
-              {variantsList.length > 1 && (
-                <button className="md-btn md-btn-outlined" onClick={handleDownloadAllZip}>
+              {variantsList.length > 1 &&
+              <button className="md-btn md-btn-outlined" onClick={handleDownloadAllZip}>
                   <Archive size={15} />
                   <span>Download All Variants (.ZIP)</span>
                 </button>
-              )}
+              }
             </div>
           </div>
 
-          {/* Right Code Exporter */}
+          {}
           <div className="md-dialog-right">
             <div className="md-code-tabs">
               <button
                 className={`md-code-tab ${activeTab === 'svg' ? 'active' : ''}`}
-                onClick={() => setActiveTab('svg')}
-              >
+                onClick={() => setActiveTab('svg')}>
+                
                 SVG XML
               </button>
               <button
                 className={`md-code-tab ${activeTab === 'react' ? 'active' : ''}`}
-                onClick={() => setActiveTab('react')}
-              >
+                onClick={() => setActiveTab('react')}>
+                
                 React JSX
               </button>
               <button
                 className={`md-code-tab ${activeTab === 'vue' ? 'active' : ''}`}
-                onClick={() => setActiveTab('vue')}
-              >
+                onClick={() => setActiveTab('vue')}>
+                
                 Vue 3
               </button>
               <button
                 className={`md-code-tab ${activeTab === 'svelte' ? 'active' : ''}`}
-                onClick={() => setActiveTab('svelte')}
-              >
+                onClick={() => setActiveTab('svelte')}>
+                
                 Svelte
               </button>
               <button
                 className={`md-code-tab ${activeTab === 'datauri' ? 'active' : ''}`}
-                onClick={() => setActiveTab('datauri')}
-              >
+                onClick={() => setActiveTab('datauri')}>
+                
                 Data URI
               </button>
               <button
                 className={`md-code-tab ${activeTab === 'cdn' ? 'active' : ''}`}
-                onClick={() => setActiveTab('cdn')}
-              >
+                onClick={() => setActiveTab('cdn')}>
+                
                 CDN
               </button>
 
               <button
                 className="md-btn md-btn-filled"
                 style={{ height: 32, padding: '0 14px', fontSize: 12, marginLeft: 'auto', marginRight: 12, alignSelf: 'center' }}
-                onClick={handleCopyCode}
-              >
+                onClick={handleCopyCode}>
+                
                 {copied ? <Check size={13} /> : <Copy size={13} />}
                 <span>{copied ? 'Copied' : 'Copy'}</span>
               </button>
@@ -371,8 +371,8 @@ export function IconModal({
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default IconModal;

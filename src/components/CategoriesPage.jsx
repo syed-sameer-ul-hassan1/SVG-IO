@@ -18,10 +18,10 @@ import {
   Briefcase,
   Terminal,
   Compass,
-  X
-} from 'lucide-react';
+  X } from
+'lucide-react';
 
-// Dynamic icon helper based on category name
+
 const getCategoryIcon = (name = '') => {
   const n = name.toLowerCase();
   if (n.includes('ai') || n.includes('machine') || n.includes('neural')) return Cpu;
@@ -36,7 +36,7 @@ const getCategoryIcon = (name = '') => {
   return Layers;
 };
 
-// Safe icon preview URL resolver
+
 const getIconSvgUrl = (icon) => {
   if (!icon) return '';
   if (icon.variantPaths && typeof icon.variantPaths === 'object') {
@@ -61,15 +61,15 @@ export function CategoriesPage({
   onSelectIcon
 }) {
   const [search, setSearch] = useState('');
-  const [sortBy, setSortBy] = useState('count-desc'); // 'count-desc' | 'count-asc' | 'name-asc' | 'name-desc'
-  const [activeFilter, setActiveFilter] = useState('all'); // 'all' | 'popular' | 'tech' | 'design'
+  const [sortBy, setSortBy] = useState('count-desc');
+  const [activeFilter, setActiveFilter] = useState('all');
 
-  // Total assets calculated
+
   const totalAssetsCount = useMemo(() => {
     return allIcons.length;
   }, [allIcons]);
 
-  // Pre-index icons by category for O(1) lightning lookup
+
   const categoryIconMap = useMemo(() => {
     const map = {};
     for (const cat of categories) {
@@ -94,7 +94,7 @@ export function CategoriesPage({
     return map;
   }, [categories, allIcons]);
 
-  // Filtered and sorted category list
+
   const filteredCategories = useMemo(() => {
     let list = categories.filter((c) => {
       if (!c.name) return false;
@@ -102,7 +102,7 @@ export function CategoriesPage({
       return c.name.toLowerCase().includes(search.toLowerCase().trim());
     });
 
-    // Quick tag filters
+
     if (activeFilter === 'popular') {
       list = list.filter((c) => (c.count || 0) >= 20);
     } else if (activeFilter === 'tech') {
@@ -132,7 +132,7 @@ export function CategoriesPage({
 
   return (
     <div className="md-categories-page">
-      {/* Top Hero Banner */}
+      {}
       <div className="md-cat-hero-banner">
         <div className="md-cat-hero-glow" aria-hidden="true" />
 
@@ -150,7 +150,7 @@ export function CategoriesPage({
             Discover over <strong>{totalAssetsCount.toLocaleString()}+</strong> high-quality brand logos, developer tools, cloud platforms, and vector icons organized by topic.
           </p>
 
-          {/* Quick Metrics Bar */}
+          {}
           <div className="md-cat-stats-row">
             <div className="md-cat-stat-chip">
               <span className="md-cat-stat-val">{categories.length}</span>
@@ -169,7 +169,7 @@ export function CategoriesPage({
           </div>
         </div>
 
-        {/* Search & Filter Toolstrip */}
+        {}
         <div className="md-cat-toolbar">
           <div className="md-cat-search-wrap">
             <Search size={15} className="md-cat-search-icon" />
@@ -178,45 +178,45 @@ export function CategoriesPage({
               placeholder={`Search ${categories.length} categories...`}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="md-cat-search-input"
-            />
-            {search && (
-              <button
-                className="md-cat-search-clear"
-                onClick={() => setSearch('')}
-                title="Clear search"
-                aria-label="Clear category search"
-              >
+              className="md-cat-search-input" />
+            
+            {search &&
+            <button
+              className="md-cat-search-clear"
+              onClick={() => setSearch('')}
+              title="Clear search"
+              aria-label="Clear category search">
+              
                 <X size={13} />
               </button>
-            )}
+            }
           </div>
 
           <div className="md-cat-filter-pills">
             <button
               className={`md-cat-pill ${activeFilter === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('all')}
-            >
+              onClick={() => setActiveFilter('all')}>
+              
               All ({categories.length})
             </button>
             <button
               className={`md-cat-pill ${activeFilter === 'popular' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('popular')}
-            >
+              onClick={() => setActiveFilter('popular')}>
+              
               <TrendingUp size={12} />
               Popular
             </button>
             <button
               className={`md-cat-pill ${activeFilter === 'tech' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('tech')}
-            >
+              onClick={() => setActiveFilter('tech')}>
+              
               <Code2 size={12} />
               Tech & Dev
             </button>
             <button
               className={`md-cat-pill ${activeFilter === 'creative' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('creative')}
-            >
+              onClick={() => setActiveFilter('creative')}>
+              
               <Palette size={12} />
               Design & Social
             </button>
@@ -227,8 +227,8 @@ export function CategoriesPage({
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="md-cat-sort-select"
-              aria-label="Sort categories"
-            >
+              aria-label="Sort categories">
+              
               <option value="count-desc">Sort: Most Icons</option>
               <option value="count-asc">Sort: Fewest Icons</option>
               <option value="name-asc">Sort: A to Z</option>
@@ -238,28 +238,28 @@ export function CategoriesPage({
         </div>
       </div>
 
-      {/* Categories Grid */}
-      {filteredCategories.length > 0 ? (
-        <div className="md-cat-card-grid">
+      {}
+      {filteredCategories.length > 0 ?
+      <div className="md-cat-card-grid">
           {filteredCategories.map((cat) => {
-            const previewIcons = categoryIconMap[cat.name] || [];
-            const CatIconComponent = getCategoryIcon(cat.name);
+          const previewIcons = categoryIconMap[cat.name] || [];
+          const CatIconComponent = getCategoryIcon(cat.name);
 
-            return (
-              <div
-                key={cat.name}
-                className="md-cat-premium-card"
-                onClick={() => onSelectCategory(cat.name)}
-                tabIndex={0}
-                role="button"
-                aria-label={`Explore ${cat.name} with ${cat.count || 0} icons`}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onSelectCategory(cat.name);
-                  }
-                }}
-              >
+          return (
+            <div
+              key={cat.name}
+              className="md-cat-premium-card"
+              onClick={() => onSelectCategory(cat.name)}
+              tabIndex={0}
+              role="button"
+              aria-label={`Explore ${cat.name} with ${cat.count || 0} icons`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSelectCategory(cat.name);
+                }
+              }}>
+              
                 <div className="md-cat-card-header">
                   <div className="md-cat-icon-badge">
                     <CatIconComponent size={16} />
@@ -279,57 +279,57 @@ export function CategoriesPage({
                   </div>
                 </div>
 
-                {/* 6-Tile Live Icon Previews with Robust Error Recovery */}
+                {}
                 <div className="md-cat-preview-cluster">
                   {previewIcons.slice(0, 6).map((icon) => {
-                    const svgUrl = getIconSvgUrl(icon);
-                    const brandColor = icon.hex ? (icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}`) : '#FF5F02';
+                  const svgUrl = getIconSvgUrl(icon);
+                  const brandColor = icon.hex ? icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}` : '#FF5F02';
 
-                    return (
-                      <div
-                        key={icon.id}
-                        className="md-cat-preview-item"
-                        title={`${icon.name} (${icon.id})`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onSelectIcon?.(icon);
-                        }}
-                      >
+                  return (
+                    <div
+                      key={icon.id}
+                      className="md-cat-preview-item"
+                      title={`${icon.name} (${icon.id})`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectIcon?.(icon);
+                      }}>
+                      
                         <img
-                          src={svgUrl}
-                          alt={icon.name}
-                          className="md-cat-preview-img"
-                          loading="lazy"
-                          width="24"
-                          height="24"
-                          onError={(e) => {
-                            // Fallback to stylized letter avatar if SVG path isn't local
-                            e.target.style.display = 'none';
-                            if (e.target.nextSibling) {
-                              e.target.nextSibling.style.display = 'flex';
-                            }
-                          }}
-                        />
+                        src={svgUrl}
+                        alt={icon.name}
+                        className="md-cat-preview-img"
+                        loading="lazy"
+                        width="24"
+                        height="24"
+                        onError={(e) => {
+
+                          e.target.style.display = 'none';
+                          if (e.target.nextSibling) {
+                            e.target.nextSibling.style.display = 'flex';
+                          }
+                        }} />
+                      
                         <div
-                          className="md-cat-fallback-avatar"
-                          style={{
-                            display: 'none',
-                            backgroundColor: `${brandColor}20`,
-                            color: brandColor
-                          }}
-                        >
+                        className="md-cat-fallback-avatar"
+                        style={{
+                          display: 'none',
+                          backgroundColor: `${brandColor}20`,
+                          color: brandColor
+                        }}>
+                        
                           {icon.name?.charAt(0) || '•'}
                         </div>
-                      </div>
-                    );
-                  })}
+                      </div>);
 
-                  {previewIcons.length === 0 && (
-                    <div className="md-cat-empty-preview">
+                })}
+
+                  {previewIcons.length === 0 &&
+                <div className="md-cat-empty-preview">
                       <Layers size={16} opacity={0.4} />
                       <span>Collection preview ready</span>
                     </div>
-                  )}
+                }
                 </div>
 
                 <div className="md-cat-card-footer">
@@ -338,12 +338,12 @@ export function CategoriesPage({
                     <ArrowRight size={12} className="md-cat-link-icon" />
                   </span>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <div className="md-cat-no-results">
+              </div>);
+
+        })}
+        </div> :
+
+      <div className="md-cat-no-results">
           <div className="md-cat-no-results-icon">
             <Compass size={32} />
           </div>
@@ -352,19 +352,18 @@ export function CategoriesPage({
             No category matching "{search}". Try searching for another topic or reset your filters.
           </p>
           <button
-            className="md-btn md-btn-primary"
-            onClick={() => {
-              setSearch('');
-              setActiveFilter('all');
-            }}
-          >
+          className="md-btn md-btn-primary"
+          onClick={() => {
+            setSearch('');
+            setActiveFilter('all');
+          }}>
+          
             Reset Filters
           </button>
         </div>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 }
 
 export default CategoriesPage;
-

@@ -14,7 +14,7 @@ export function IconGrid({
   selectedCategory,
   onResetFilters
 }) {
-  const [layoutMode, setLayoutMode] = useState('comfortable'); // 'comfortable' | 'compact' | 'list'
+  const [layoutMode, setLayoutMode] = useState('comfortable');
   const [variantFilter, setVariantFilter] = useState('all');
   const [sortBy, setSortBy] = useState('az');
   const [visibleCount, setVisibleCount] = useState(BUNCH_SIZE);
@@ -57,7 +57,7 @@ export function IconGrid({
 
   return (
     <div>
-      {/* Toolbar */}
+      {}
       <div className="md-toolbar">
         <div className="md-toolbar-stats">
           Showing <strong>{Math.min(visibleCount, processedIcons.length).toLocaleString()}</strong> of{' '}
@@ -65,67 +65,67 @@ export function IconGrid({
         </div>
 
         <div className="md-toolbar-actions">
-          {/* Variant Selector */}
+          {}
           <CustomSelect
             value={variantFilter}
             onChange={(val) => setVariantFilter(val)}
             options={[
-              { value: 'all', label: 'All Variants' },
-              { value: 'color', label: 'Color' },
-              { value: 'mono', label: 'Monochrome' },
-              { value: 'dark', label: 'Dark' },
-              { value: 'light', label: 'Light' },
-              { value: 'default', label: 'Default' }
-            ]}
+            { value: 'all', label: 'All Variants' },
+            { value: 'color', label: 'Color' },
+            { value: 'mono', label: 'Monochrome' },
+            { value: 'dark', label: 'Dark' },
+            { value: 'light', label: 'Light' },
+            { value: 'default', label: 'Default' }]
+            }
             title="Filter by variant"
             minWidth={130}
-            placement="bottom"
-          />
+            placement="bottom" />
+          
 
-          {/* Sort Selector */}
+          {}
           <CustomSelect
             value={sortBy}
             onChange={(val) => setSortBy(val)}
             options={[
-              { value: 'az', label: 'Sort: A to Z' },
-              { value: 'za', label: 'Sort: Z to A' },
-              { value: 'variants', label: 'Sort: Most Variants' }
-            ]}
+            { value: 'az', label: 'Sort: A to Z' },
+            { value: 'za', label: 'Sort: Z to A' },
+            { value: 'variants', label: 'Sort: Most Variants' }]
+            }
             title="Sort icons"
             minWidth={160}
-            placement="bottom"
-          />
+            placement="bottom" />
+          
 
-          {/* Segmented Button for Layout */}
+          {}
           <div className="md-segmented-btn-group">
             <button
               className={`md-segment-btn ${layoutMode === 'comfortable' ? 'active' : ''}`}
               onClick={() => setLayoutMode('comfortable')}
-              title="Comfortable Grid"
-            >
+              title="Comfortable Grid">
+              
               <LayoutGrid size={15} />
             </button>
             <button
               className={`md-segment-btn ${layoutMode === 'compact' ? 'active' : ''}`}
               onClick={() => setLayoutMode('compact')}
-              title="Compact Grid"
-            >
+              title="Compact Grid">
+              
               <Grid3X3 size={15} />
             </button>
             <button
               className={`md-segment-btn ${layoutMode === 'list' ? 'active' : ''}`}
               onClick={() => setLayoutMode('list')}
-              title="List View"
-            >
+              title="List View">
+              
               <List size={15} />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Empty State */}
-      {processedIcons.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+      {}
+      {processedIcons.length === 0 ?
+      <div style={{ textAlign: 'center', padding: '60px 20px' }}>
           <h3 style={{ fontSize: 18, marginBottom: 8 }}>No matching icons</h3>
           <p style={{ color: 'var(--md-sys-color-on-surface-variant)', marginBottom: 16 }}>
             Try searching for a different keyword or reset filters.
@@ -134,31 +134,31 @@ export function IconGrid({
             <RotateCcw size={14} />
             <span>Reset All Filters</span>
           </button>
-        </div>
-      ) : (
-        <>
-          {/* Icons Grid */}
+        </div> :
+
+      <>
+          {}
           <div className={`md-icons-grid layout-${layoutMode}`}>
-            {visibleIcons.map((icon, index) => (
-              <IconCard
-                key={icon.id}
-                icon={icon}
-                priority={index < 24}
-                onSelect={onSelectIcon}
-                isFavorite={favoritesSet.has(icon.id)}
-                onToggleFavorite={onToggleFavorite}
-                onShowToast={onShowToast}
-              />
-            ))}
+            {visibleIcons.map((icon, index) =>
+          <IconCard
+            key={icon.id}
+            icon={icon}
+            priority={index < 24}
+            onSelect={onSelectIcon}
+            isFavorite={favoritesSet.has(icon.id)}
+            onToggleFavorite={onToggleFavorite}
+            onShowToast={onShowToast} />
+
+          )}
           </div>
 
-          {/* Load More Bunch Button */}
-          {hasMore && (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginTop: 40, marginBottom: 24 }}>
+          {}
+          {hasMore &&
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginTop: 40, marginBottom: 24 }}>
               <button
-                className="md-load-more-btn"
-                onClick={handleLoadMore}
-              >
+            className="md-load-more-btn"
+            onClick={handleLoadMore}>
+            
                 <span>Load More (+{Math.min(BUNCH_SIZE, processedIcons.length - visibleCount)} Icons)</span>
                 <ChevronDown size={16} />
                 <span className="md-load-more-count">
@@ -169,11 +169,11 @@ export function IconGrid({
                 Showing {Math.min(visibleCount, processedIcons.length).toLocaleString()} of {processedIcons.length.toLocaleString()} icons
               </span>
             </div>
-          )}
+        }
         </>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 }
 
 export default IconGrid;

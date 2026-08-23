@@ -89,15 +89,15 @@ export function TermsPage({ onNavigate }) {
           <button
             type="button"
             className="md-btn md-btn-primary"
-            onClick={() => onNavigate?.('icons')}
-          >
+            onClick={() => onNavigate?.('icons')}>
+            
             <ArrowLeft size={14} />
             <span>Back to Icon Catalog</span>
           </button>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default TermsPage;

@@ -11,8 +11,8 @@ import {
   Grid3X3,
   List,
   Archive,
-  Code2
-} from 'lucide-react';
+  Code2 } from
+'lucide-react';
 import IconCard from './IconCard';
 import { downloadBulkZip, getSvgContent, convertSvgToReact } from '../utils/exportUtils';
 
@@ -26,25 +26,25 @@ export function FavoritesPage({
   onShowToast
 }) {
   const [search, setSearch] = useState('');
-  const [layoutMode, setLayoutMode] = useState('comfortable'); // 'comfortable' | 'compact' | 'list'
+  const [layoutMode, setLayoutMode] = useState('comfortable');
   const [isZipping, setIsZipping] = useState(false);
   const [isCopyingAllJsx, setIsCopyingAllJsx] = useState(false);
 
-  const getVariants = (fav) => (Array.isArray(fav?.variants) ? fav.variants : Object.keys(fav?.variants || {}));
+  const getVariants = (fav) => Array.isArray(fav?.variants) ? fav.variants : Object.keys(fav?.variants || {});
 
-  // Filter favorites by search
+
   const filteredFavorites = useMemo(() => {
     if (!search.trim()) return favorites;
     const q = search.toLowerCase().trim();
     return favorites.filter(
       (icon) =>
-        icon.name.toLowerCase().includes(q) ||
-        icon.id.toLowerCase().includes(q) ||
-        icon.category?.toLowerCase().includes(q)
+      icon.name.toLowerCase().includes(q) ||
+      icon.id.toLowerCase().includes(q) ||
+      icon.category?.toLowerCase().includes(q)
     );
   }, [favorites, search]);
 
-  // Bulk ZIP Download
+
   const handleDownloadAllZip = async () => {
     if (favorites.length === 0) return;
     setIsZipping(true);
@@ -75,7 +75,7 @@ export function FavoritesPage({
     }
   };
 
-  // Bulk Copy JSX Bundle
+
   const handleCopyAllJsx = async () => {
     if (favorites.length === 0) return;
     setIsCopyingAllJsx(true);
@@ -111,7 +111,7 @@ export function FavoritesPage({
 
   return (
     <div className="md-favorites-page">
-      {/* Header Banner */}
+      {}
       <div className="md-page-header-banner glass-panel">
         <div className="md-page-header-text">
           <div className="md-hero-pill-badge badge-subtle-primary" style={{ width: 'fit-content', marginBottom: 12 }}>
@@ -128,45 +128,45 @@ export function FavoritesPage({
           </p>
         </div>
 
-        {/* Batch Action Toolbar when favorites exist */}
-        {favorites.length > 0 && (
-          <div className="md-fav-actions-row">
+        {}
+        {favorites.length > 0 &&
+        <div className="md-fav-actions-row">
             <button
-              className="md-fav-btn primary"
-              onClick={handleDownloadAllZip}
-              disabled={isZipping}
-            >
+            className="md-fav-btn primary"
+            onClick={handleDownloadAllZip}
+            disabled={isZipping}>
+            
               <Archive size={14} />
               <span>{isZipping ? 'Creating Archive...' : `Download ${favorites.length} Icons (.ZIP)`}</span>
             </button>
 
             <button
-              className="md-fav-btn secondary"
-              onClick={handleCopyAllJsx}
-              disabled={isCopyingAllJsx}
-            >
+            className="md-fav-btn secondary"
+            onClick={handleCopyAllJsx}
+            disabled={isCopyingAllJsx}>
+            
               {isCopyingAllJsx ? <Check size={14} color="#10B981" /> : <Code2 size={14} />}
               <span>{isCopyingAllJsx ? 'Copied Bundle!' : 'Copy All JSX'}</span>
             </button>
 
             <button
-              className="md-fav-btn danger"
-              onClick={() => {
-                if (window.confirm(`Are you sure you want to remove all ${favorites.length} saved icons?`)) {
-                  onClearFavorites?.();
-                }
-              }}
-            >
+            className="md-fav-btn danger"
+            onClick={() => {
+              if (window.confirm(`Are you sure you want to remove all ${favorites.length} saved icons?`)) {
+                onClearFavorites?.();
+              }
+            }}>
+            
               <Trash2 size={14} />
               <span>Clear All</span>
             </button>
           </div>
-        )}
+        }
       </div>
 
-      {/* Empty State Card when no favorites are saved */}
-      {favorites.length === 0 ? (
-        <div className="md-fav-empty-card glass-panel">
+      {}
+      {favorites.length === 0 ?
+      <div className="md-fav-empty-card glass-panel">
           <div className="md-fav-empty-icon-wrap">
             <Heart size={44} className="md-fav-empty-heart" />
           </div>
@@ -175,81 +175,81 @@ export function FavoritesPage({
             Browse through over 7,700+ verified brand vectors and developer icons. Click the heart icon on any vector card to save it here for quick 1-click batch exports.
           </p>
           <button
-            className="md-fav-explore-btn"
-            onClick={() => onExploreAll?.()}
-          >
+          className="md-fav-explore-btn"
+          onClick={() => onExploreAll?.()}>
+          
             <span>Explore All Icons</span>
             <ArrowRight size={14} />
           </button>
-        </div>
-      ) : (
-        <>
-          {/* Controls Bar */}
+        </div> :
+
+      <>
+          {}
           <div className="md-toolbar">
             <div className="md-toolbar-stats">
               Showing <strong>{filteredFavorites.length}</strong> of {favorites.length} saved vectors
             </div>
 
             <div className="md-toolbar-actions">
-              {/* Local Search */}
+              {}
               <div className="md-cat-search-box" style={{ minWidth: 200, height: 34 }}>
                 <Search size={13} className="md-cat-search-icon" />
                 <input
-                  type="text"
-                  placeholder="Filter saved icons..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="md-cat-search-input"
-                />
+                type="text"
+                placeholder="Filter saved icons..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="md-cat-search-input" />
+              
               </div>
 
-              {/* View Switcher */}
+              {}
               <div className="md-segmented-btn-group">
                 <button
-                  className={`md-segment-btn ${layoutMode === 'comfortable' ? 'active' : ''}`}
-                  onClick={() => setLayoutMode('comfortable')}
-                  title="Comfortable Grid"
-                  aria-label="Comfortable Grid"
-                >
+                className={`md-segment-btn ${layoutMode === 'comfortable' ? 'active' : ''}`}
+                onClick={() => setLayoutMode('comfortable')}
+                title="Comfortable Grid"
+                aria-label="Comfortable Grid">
+                
                   <LayoutGrid size={15} />
                 </button>
                 <button
-                  className={`md-segment-btn ${layoutMode === 'compact' ? 'active' : ''}`}
-                  onClick={() => setLayoutMode('compact')}
-                  title="Compact Grid"
-                  aria-label="Compact Grid"
-                >
+                className={`md-segment-btn ${layoutMode === 'compact' ? 'active' : ''}`}
+                onClick={() => setLayoutMode('compact')}
+                title="Compact Grid"
+                aria-label="Compact Grid">
+                
                   <Grid3X3 size={15} />
                 </button>
                 <button
-                  className={`md-segment-btn ${layoutMode === 'list' ? 'active' : ''}`}
-                  onClick={() => setLayoutMode('list')}
-                  title="List View"
-                  aria-label="List View"
-                >
+                className={`md-segment-btn ${layoutMode === 'list' ? 'active' : ''}`}
+                onClick={() => setLayoutMode('list')}
+                title="List View"
+                aria-label="List View">
+                
                   <List size={15} />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Grid of Saved Icons */}
+          {}
           <div className={`md-icons-grid layout-${layoutMode}`}>
-            {filteredFavorites.map((icon) => (
-              <IconCard
-                key={icon.id}
-                icon={icon}
-                onSelect={(ic, variant) => onSelectIcon?.(ic, variant)}
-                isFavorite={favoritesSet?.has(icon.id)}
-                onToggleFavorite={onToggleFavorite}
-                onShowToast={onShowToast}
-              />
-            ))}
+            {filteredFavorites.map((icon) =>
+          <IconCard
+            key={icon.id}
+            icon={icon}
+            onSelect={(ic, variant) => onSelectIcon?.(ic, variant)}
+            isFavorite={favoritesSet?.has(icon.id)}
+            onToggleFavorite={onToggleFavorite}
+            onShowToast={onShowToast} />
+
+          )}
           </div>
         </>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 }
 
 export default FavoritesPage;

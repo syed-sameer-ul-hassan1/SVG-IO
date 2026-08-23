@@ -24,8 +24,8 @@ export function Toast({ toast, onClose }) {
           <X size={14} />
         </button>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default Toast;

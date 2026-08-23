@@ -47,7 +47,7 @@ export function ServerErrorPage({ onNavigate, onRetry }) {
           Something went wrong while processing your request or communicating with the backend storage. Our automated edge health checkers have been alerted.
         </p>
 
-        {/* Live Service Status Checklist */}
+        {}
         <div className="md-status-checklist">
           <div className="md-status-item">
             <div className="md-status-dot-active" />
@@ -66,14 +66,14 @@ export function ServerErrorPage({ onNavigate, onRetry }) {
           </div>
         </div>
 
-        {/* Action Buttons */}
+        {}
         <div className="md-error-actions-row">
           <button
             type="button"
             className="md-btn md-btn-primary"
             onClick={handleRetryClick}
-            disabled={isRetrying}
-          >
+            disabled={isRetrying}>
+            
             <RefreshCw size={14} className={isRetrying ? 'spin-animation' : ''} />
             <span>{isRetrying ? 'Retrying Connection...' : 'Try Again'}</span>
           </button>
@@ -81,23 +81,23 @@ export function ServerErrorPage({ onNavigate, onRetry }) {
           <button
             type="button"
             className="md-btn md-btn-secondary"
-            onClick={handleClearAndReload}
-          >
+            onClick={handleClearAndReload}>
+            
             <span>Clear Cache & Reload</span>
           </button>
 
           <button
             type="button"
             className="md-btn md-btn-secondary"
-            onClick={() => onNavigate?.('icons')}
-          >
+            onClick={() => onNavigate?.('icons')}>
+            
             <Home size={14} />
             <span>Go to Home</span>
           </button>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default ServerErrorPage;

@@ -52,12 +52,12 @@ class ErrorBoundary extends Component {
               border: 'none',
               fontWeight: '600',
               cursor: 'pointer'
-            }}
-          >
+            }}>
+            
             Reload Application
           </button>
-        </div>
-      );
+        </div>);
+
     }
     return this.props.children;
   }

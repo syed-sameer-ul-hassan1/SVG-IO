@@ -10,11 +10,11 @@ export const IconCard = memo(function IconCard({
   onToggleFavorite,
   onShowToast
 }) {
-  const variantsList = Array.isArray(icon?.variants)
-    ? icon.variants
-    : Object.keys(icon?.variants || {});
+  const variantsList = Array.isArray(icon?.variants) ?
+  icon.variants :
+  Object.keys(icon?.variants || {});
 
-  const categoryName = icon?.category || (Array.isArray(icon?.categories) && icon.categories[0]) || 'Software';
+  const categoryName = icon?.category || Array.isArray(icon?.categories) && icon.categories[0] || 'Software';
 
   const [selectedVariant, setSelectedVariant] = useState(() => {
     if (variantsList.includes('color')) return 'color';
@@ -25,11 +25,11 @@ export const IconCard = memo(function IconCard({
   const [copiedType, setCopiedType] = useState(null);
 
   const iconUrl =
-    icon?.variantPaths?.[selectedVariant] ||
-    (icon?.variants && typeof icon.variants === 'object' && !Array.isArray(icon.variants) && icon.variants[selectedVariant]) ||
-    `/icons/${icon.id || icon.slug}/${selectedVariant}.svg`;
+  icon?.variantPaths?.[selectedVariant] ||
+  icon?.variants && typeof icon.variants === 'object' && !Array.isArray(icon.variants) && icon.variants[selectedVariant] ||
+  `/icons/${icon.id || icon.slug}/${selectedVariant}.svg`;
 
-  const brandColor = icon?.hex ? (icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}`) : '#FF5F02';
+  const brandColor = icon?.hex ? icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}` : '#FF5F02';
 
   const handleQuickCopySvg = async (e) => {
     e.stopPropagation();
@@ -92,9 +92,9 @@ export const IconCard = memo(function IconCard({
           e.preventDefault();
           onSelect(icon, selectedVariant);
         }
-      }}
-    >
-      {/* Top Header Row of Card: Category Tag & Favorite Button */}
+      }}>
+      
+      {}
       <div className="md-card-top-bar" onClick={(e) => e.stopPropagation()}>
         <span className="md-card-single-tag">{categoryName}</span>
 
@@ -102,13 +102,13 @@ export const IconCard = memo(function IconCard({
           className={`md-card-fav-btn ${isFavorite ? 'active' : ''}`}
           onClick={handleFavoriteClick}
           title={isFavorite ? 'Remove from favorites' : 'Add to collection'}
-          aria-label="Favorite toggle"
-        >
+          aria-label="Favorite toggle">
+          
           <Heart size={14} fill={isFavorite ? 'currentColor' : 'none'} />
         </button>
       </div>
 
-      {/* Center Icon Display with Nested Squircle Frame */}
+      {}
       <div className="md-card-icon-frame">
         <img
           src={iconUrl}
@@ -123,11 +123,11 @@ export const IconCard = memo(function IconCard({
             if (selectedVariant !== 'default' && variantsList.includes('default')) {
               setSelectedVariant('default');
             }
-          }}
-        />
+          }} />
+        
       </div>
 
-      {/* Bottom Metadata */}
+      {}
       <div className="md-card-meta">
         <div className="md-card-title" title={icon.name}>
           {icon.name}
@@ -137,13 +137,13 @@ export const IconCard = memo(function IconCard({
         </div>
       </div>
 
-      {/* Hover Action Bar */}
+      {}
       <div className="md-card-hover-toolbar" onClick={(e) => e.stopPropagation()}>
         <button
           className={`md-card-action-pill ${copiedType === 'svg' ? 'copied' : ''}`}
           onClick={handleQuickCopySvg}
-          title="Copy SVG XML"
-        >
+          title="Copy SVG XML">
+          
           {copiedType === 'svg' ? <Check size={13} /> : <Copy size={13} />}
           <span>{copiedType === 'svg' ? 'Copied' : 'SVG'}</span>
         </button>
@@ -151,8 +151,8 @@ export const IconCard = memo(function IconCard({
         <button
           className={`md-card-action-pill ${copiedType === 'react' ? 'copied' : ''}`}
           onClick={handleQuickCopyReact}
-          title="Copy React JSX"
-        >
+          title="Copy React JSX">
+          
           {copiedType === 'react' ? <Check size={13} /> : <Code2 size={13} />}
           <span>{copiedType === 'react' ? 'Copied' : 'JSX'}</span>
         </button>
@@ -160,13 +160,13 @@ export const IconCard = memo(function IconCard({
         <button
           className="md-card-action-icon"
           onClick={handleQuickDownload}
-          title="Download .SVG"
-        >
+          title="Download .SVG">
+          
           <Download size={14} />
         </button>
       </div>
-    </div>
-  );
+    </div>);
+
 });
 
 export default IconCard;

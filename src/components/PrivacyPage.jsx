@@ -16,7 +16,7 @@ export function PrivacyPage({ onNavigate }) {
       </div>
 
       <div className="md-legal-content-card">
-        {/* Core Principles Grid */}
+        {}
         <div className="md-privacy-highlights-grid">
           <div className="md-privacy-highlight-item">
             <div className="md-privacy-icon-box">
@@ -96,15 +96,15 @@ export function PrivacyPage({ onNavigate }) {
           <button
             type="button"
             className="md-btn md-btn-primary"
-            onClick={() => onNavigate?.('icons')}
-          >
+            onClick={() => onNavigate?.('icons')}>
+            
             <ArrowLeft size={14} />
             <span>Back to Icon Catalog</span>
           </button>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default PrivacyPage;

@@ -1,12 +1,12 @@
-/**
- * GitHub Actions Script: process-submission.js
- *
- * Reads the icon payload from environment variables (set by the workflow),
- * downloads SVG files from Supabase Storage, saves them to public/icons/{slug}/,
- * and updates public/icons.json.
- *
- * Run by: node scripts/process-submission.js
- */
+
+
+
+
+
+
+
+
+
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -17,17 +17,17 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 
-// ── Read env vars set by GitHub Actions ──────────────────────────────────────
-const slug        = process.env.ICON_SLUG;
-const title       = process.env.ICON_TITLE;
-const hex         = (process.env.ICON_HEX || 'FF5F02').replace(/^#/, '');
-const hexes       = JSON.parse(process.env.ICON_HEXES || '[]');
-const license     = process.env.ICON_LICENSE || 'Apache-2.0';
-const url         = process.env.ICON_URL || `https://${slug}.com`;
-const categories  = JSON.parse(process.env.ICON_CATEGORIES || '["Software"]');
-const aliases     = JSON.parse(process.env.ICON_ALIASES    || '[]');
 
-// variants: { variantKey: "https://supabase.../svg-icons/slug/variant.svg" }
+const slug = process.env.ICON_SLUG;
+const title = process.env.ICON_TITLE;
+const hex = (process.env.ICON_HEX || 'FF5F02').replace(/^#/, '');
+const hexes = JSON.parse(process.env.ICON_HEXES || '[]');
+const license = process.env.ICON_LICENSE || 'Apache-2.0';
+const url = process.env.ICON_URL || `https://${slug}.com`;
+const categories = JSON.parse(process.env.ICON_CATEGORIES || '["Software"]');
+const aliases = JSON.parse(process.env.ICON_ALIASES || '[]');
+
+
 const variantsUrls = JSON.parse(process.env.ICON_VARIANTS || '{}');
 
 if (!slug || !title) {
@@ -43,7 +43,7 @@ if (Object.keys(variantsUrls).length === 0) {
 console.log(`\n[INFO] Processing icon: ${title} (${slug})`);
 console.log(`   Variants: ${Object.keys(variantsUrls).join(', ')}`);
 
-// ── Helper: download a URL to a file ─────────────────────────────────────────
+
 function downloadFile(urlStr, destPath) {
   return new Promise((resolve, reject) => {
     const file = fs.createWriteStream(destPath);
@@ -99,12 +99,12 @@ function downloadFile(urlStr, destPath) {
   });
 }
 
-// ── 1. Create icon directory ──────────────────────────────────────────────────
+
 const iconDir = path.join(rootDir, 'public', 'icons', slug);
 fs.mkdirSync(iconDir, { recursive: true });
 console.log(`[DIR] Created directory: public/icons/${slug}/`);
 
-// ── 2. Download each SVG variant ──────────────────────────────────────────────
+
 const savedVariantPaths = {};
 
 for (const [variantKey, variantUrl] of Object.entries(variantsUrls)) {
@@ -120,7 +120,7 @@ for (const [variantKey, variantUrl] of Object.entries(variantsUrls)) {
   }
 }
 
-// ── 3. Update public/icons.json ───────────────────────────────────────────────
+
 const iconsJsonPath = path.join(rootDir, 'public', 'icons.json');
 let iconsList = [];
 
@@ -135,7 +135,7 @@ if (fs.existsSync(iconsJsonPath)) {
 }
 
 const primaryHex = Array.isArray(hexes) && hexes.length > 0 ? hexes[0].replace(/^#/, '') : hex;
-const cleanHexes = Array.isArray(hexes) && hexes.length > 0 ? hexes.map((h) => h.replace(/^#/, '')) : (primaryHex ? [primaryHex] : ['FF5F02']);
+const cleanHexes = Array.isArray(hexes) && hexes.length > 0 ? hexes.map((h) => h.replace(/^#/, '')) : primaryHex ? [primaryHex] : ['FF5F02'];
 
 const newEntry = {
   slug,
@@ -148,10 +148,10 @@ const newEntry = {
   license,
   url,
   dateAdded: new Date().toISOString().split('T')[0],
-  collection: 'community',
+  collection: 'community'
 };
 
-// Replace existing entry or prepend new one
+
 const existingIdx = iconsList.findIndex(
   (i) => (i.slug || i.id) === slug
 );

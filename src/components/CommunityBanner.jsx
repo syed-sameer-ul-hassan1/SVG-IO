@@ -20,23 +20,23 @@ export function CommunityBanner({
         <div className="md-community-btn-row">
           <button
             className="md-community-btn-white"
-            onClick={() => onSubmitIconClick?.()}
-          >
+            onClick={() => onSubmitIconClick?.()}>
+            
             Submit an Icon
           </button>
           <a
             href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
             target="_blank"
             rel="noopener noreferrer"
-            className="md-community-btn-dark"
-          >
+            className="md-community-btn-dark">
+            
             <Star size={14} />
             <span>Star on GitHub</span>
           </a>
         </div>
       </div>
 
-      {/* Right Stats Pills */}
+      {}
       <div className="md-community-stats-grid">
         <div className="md-community-stat-card">
           <div className="md-stat-icon-box">
@@ -68,8 +68,8 @@ export function CommunityBanner({
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
 
 export default CommunityBanner;

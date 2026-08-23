@@ -9,18 +9,18 @@ export function StatusPage({ onNavigate, totalIcons = 6520 }) {
   const handleRefreshStatus = () => {
     setIsRefreshing(true);
     const start = performance.now();
-    fetch('/icons.json?cache_bust=' + Date.now())
-      .then(() => {
-        const diff = Math.round(performance.now() - start);
-        setLatency(diff || 18);
-        setLastChecked(new Date().toLocaleTimeString());
-      })
-      .catch(() => {
-        setLatency(32);
-      })
-      .finally(() => {
-        setTimeout(() => setIsRefreshing(false), 400);
-      });
+    fetch('/icons.json?cache_bust=' + Date.now()).
+    then(() => {
+      const diff = Math.round(performance.now() - start);
+      setLatency(diff || 18);
+      setLastChecked(new Date().toLocaleTimeString());
+    }).
+    catch(() => {
+      setLatency(32);
+    }).
+    finally(() => {
+      setTimeout(() => setIsRefreshing(false), 400);
+    });
   };
 
   useEffect(() => {
@@ -28,39 +28,39 @@ export function StatusPage({ onNavigate, totalIcons = 6520 }) {
   }, []);
 
   const services = [
-    {
-      name: 'Global Edge CDN Delivery',
-      desc: 'Cloudflare / Fastly static vector delivery across 310+ cities',
-      status: 'Operational',
-      uptime: '99.99%',
-      icon: Globe
-    },
-    {
-      name: 'Single Metadata Registry (/icons.json)',
-      desc: `High-speed index delivering ${totalIcons.toLocaleString()} icon records`,
-      status: 'Operational',
-      uptime: '100.00%',
-      icon: Database
-    },
-    {
-      name: 'Automated GitHub Submission Pipeline',
-      desc: 'Continuous integration for incoming community vector submissions',
-      status: 'Operational',
-      uptime: '99.98%',
-      icon: Zap
-    },
-    {
-      name: 'Supabase Ingestion API',
-      desc: 'Temporary staging buffer and submission tracking database',
-      status: 'Operational',
-      uptime: '99.95%',
-      icon: Server
-    }
-  ];
+  {
+    name: 'Global Edge CDN Delivery',
+    desc: 'Cloudflare / Fastly static vector delivery across 310+ cities',
+    status: 'Operational',
+    uptime: '99.99%',
+    icon: Globe
+  },
+  {
+    name: 'Single Metadata Registry (/icons.json)',
+    desc: `High-speed index delivering ${totalIcons.toLocaleString()} icon records`,
+    status: 'Operational',
+    uptime: '100.00%',
+    icon: Database
+  },
+  {
+    name: 'Automated GitHub Submission Pipeline',
+    desc: 'Continuous integration for incoming community vector submissions',
+    status: 'Operational',
+    uptime: '99.98%',
+    icon: Zap
+  },
+  {
+    name: 'Supabase Ingestion API',
+    desc: 'Temporary staging buffer and submission tracking database',
+    status: 'Operational',
+    uptime: '99.95%',
+    icon: Server
+  }];
+
 
   return (
     <div className="md-status-page-wrapper">
-      {/* Top Banner */}
+      {}
       <div className="md-status-hero-card">
         <div className="md-status-badge-row">
           <div className="md-hero-pill-badge" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', borderColor: 'rgba(16, 185, 129, 0.25)' }}>
@@ -72,8 +72,8 @@ export function StatusPage({ onNavigate, totalIcons = 6520 }) {
             type="button"
             className="md-status-refresh-btn"
             onClick={handleRefreshStatus}
-            title="Refresh status"
-          >
+            title="Refresh status">
+            
             <RefreshCw size={13} className={isRefreshing ? 'spin-animation' : ''} />
             <span>Check Now</span>
           </button>
@@ -84,7 +84,7 @@ export function StatusPage({ onNavigate, totalIcons = 6520 }) {
           Real-time service health, edge network latency, and uptime monitoring across the global vector delivery infrastructure.
         </p>
 
-        {/* Global Metrics Bar */}
+        {}
         <div className="md-status-metrics-row">
           <div className="md-status-metric-chip">
             <span className="md-metric-val" style={{ color: '#10B981' }}>99.99%</span>
@@ -108,7 +108,7 @@ export function StatusPage({ onNavigate, totalIcons = 6520 }) {
         </div>
       </div>
 
-      {/* Services List */}
+      {}
       <div className="md-status-services-card">
         <h2 className="md-status-sec-title">Core Infrastructure Components</h2>
 
@@ -131,8 +131,8 @@ export function StatusPage({ onNavigate, totalIcons = 6520 }) {
                   <span className="md-service-status-lbl">{s.status}</span>
                   <span className="md-service-uptime">{s.uptime}</span>
                 </div>
-              </div>
-            );
+              </div>);
+
           })}
         </div>
       </div>
@@ -141,14 +141,14 @@ export function StatusPage({ onNavigate, totalIcons = 6520 }) {
         <button
           type="button"
           className="md-btn md-btn-primary"
-          onClick={() => onNavigate?.('icons')}
-        >
+          onClick={() => onNavigate?.('icons')}>
+          
           <ArrowLeft size={14} />
           <span>Back to Icon Catalog</span>
         </button>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default StatusPage;

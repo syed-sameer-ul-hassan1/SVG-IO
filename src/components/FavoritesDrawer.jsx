@@ -62,25 +62,25 @@ export function FavoritesDrawer({
         </div>
 
         <div className="md-sheet-body">
-          {favorites.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--md-sys-color-on-surface-variant)' }}>
+          {favorites.length === 0 ?
+          <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--md-sys-color-on-surface-variant)' }}>
               <Heart size={36} style={{ opacity: 0.3, marginBottom: 12 }} />
               <h4 style={{ fontSize: 15, marginBottom: 4 }}>Collection is empty</h4>
               <p style={{ fontSize: 13 }}>Click the heart icon on any SVG card to build your bundle.</p>
-            </div>
-          ) : (
-            favorites.map((icon) => {
-              const vList = getVariants(icon);
-              const variant = vList.includes('color') ? 'color' : vList[0] || 'default';
-              return (
-                <div
-                  key={icon.id}
-                  className="md-sheet-item"
-                  onClick={() => {
-                    onSelectIcon(icon, variant);
-                    onClose();
-                  }}
-                >
+            </div> :
+
+          favorites.map((icon) => {
+            const vList = getVariants(icon);
+            const variant = vList.includes('color') ? 'color' : vList[0] || 'default';
+            return (
+              <div
+                key={icon.id}
+                className="md-sheet-item"
+                onClick={() => {
+                  onSelectIcon(icon, variant);
+                  onClose();
+                }}>
+                
                   <div style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <img src={`/icons/${icon.id}/${variant}.svg`} alt={icon.name} loading="lazy" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                   </div>
@@ -93,29 +93,29 @@ export function FavoritesDrawer({
                     </div>
                   </div>
                   <button
-                    className="md-icon-btn"
-                    style={{ width: 30, height: 30 }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onRemoveFavorite(icon.id);
-                    }}
-                    title="Remove"
-                  >
+                  className="md-icon-btn"
+                  style={{ width: 30, height: 30 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onRemoveFavorite(icon.id);
+                  }}
+                  title="Remove">
+                  
                     <Trash2 size={14} />
                   </button>
-                </div>
-              );
-            })
-          )}
+                </div>);
+
+          })
+          }
         </div>
 
-        {favorites.length > 0 && (
-          <div className="md-sheet-footer">
+        {favorites.length > 0 &&
+        <div className="md-sheet-footer">
             <button
-              className="md-btn md-btn-filled"
-              onClick={handleDownloadAllZip}
-              disabled={isZipping}
-            >
+            className="md-btn md-btn-filled"
+            onClick={handleDownloadAllZip}
+            disabled={isZipping}>
+            
               <Archive size={16} />
               <span>{isZipping ? 'Generating ZIP...' : `Download ${favorites.length} Icons (.ZIP)`}</span>
             </button>
@@ -124,10 +124,10 @@ export function FavoritesDrawer({
               <span>Clear Collection</span>
             </button>
           </div>
-        )}
+        }
       </div>
-    </>
-  );
+    </>);
+
 }
 
 export default FavoritesDrawer;

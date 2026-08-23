@@ -7,12 +7,12 @@ export function CustomSelect({
   options = [],
   title = '',
   minWidth = 130,
-  placement = 'bottom' // 'bottom' | 'top'
+  placement = 'bottom'
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
 
-  // Normalize options array
+
   const formattedOptions = options.map((opt) => {
     if (typeof opt === 'object' && opt !== null) {
       return { value: opt.value, label: opt.label || String(opt.value) };
@@ -37,41 +37,41 @@ export function CustomSelect({
       className="md-custom-select-container"
       ref={containerRef}
       style={{ minWidth }}
-      title={title}
-    >
+      title={title}>
+      
       <button
         type="button"
         className={`md-custom-select-trigger ${isOpen ? 'active' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
-        aria-expanded={isOpen}
-      >
+        aria-expanded={isOpen}>
+        
         <span className="md-select-label-text">{selectedOption ? selectedOption.label : value}</span>
         <ChevronDown size={13} className={`md-select-chevron ${isOpen ? 'open' : ''}`} />
       </button>
 
-      {isOpen && (
-        <div className={`md-custom-select-menu placement-${placement}`}>
+      {isOpen &&
+      <div className={`md-custom-select-menu placement-${placement}`}>
           {formattedOptions.map((opt) => {
-            const isSelected = opt.value === value;
-            return (
-              <button
-                key={opt.value}
-                type="button"
-                className={`md-custom-select-option ${isSelected ? 'selected' : ''}`}
-                onClick={() => {
-                  onChange?.(opt.value);
-                  setIsOpen(false);
-                }}
-              >
+          const isSelected = opt.value === value;
+          return (
+            <button
+              key={opt.value}
+              type="button"
+              className={`md-custom-select-option ${isSelected ? 'selected' : ''}`}
+              onClick={() => {
+                onChange?.(opt.value);
+                setIsOpen(false);
+              }}>
+              
                 <span>{opt.label}</span>
                 {isSelected && <Check size={13} color="#FF5F02" />}
-              </button>
-            );
-          })}
+              </button>);
+
+        })}
         </div>
-      )}
-    </div>
-  );
+      }
+    </div>);
+
 }
 
 export default CustomSelect;
