@@ -1,5 +1,29 @@
 [
   {
+    "slug": "quantum-nexus",
+    "title": "Quantum Nexus",
+    "aliases": [],
+    "hex": "8B5CF6",
+    "hexes": [
+      "8B5CF6",
+      "EC4899"
+    ],
+    "categories": [
+      "Software",
+      "AI & ML"
+    ],
+    "variants": {
+      "dark": "/icons/quantum-nexus/dark.svg",
+      "default": "/icons/quantum-nexus/default.svg",
+      "light": "/icons/quantum-nexus/light.svg",
+      "mono": "/icons/quantum-nexus/mono.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://quantumnexus.dev",
+    "dateAdded": "2026-08-23",
+    "collection": "community"
+  },
+  {
     "slug": "aurora-cloud",
     "title": "Aurora Cloud",
     "aliases": [],
