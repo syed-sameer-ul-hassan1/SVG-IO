@@ -1,5 +1,31 @@
 [
   {
+    "slug": "instagram-glass",
+    "title": "Instagram-Glass",
+    "aliases": [],
+    "hex": "FFFFFF",
+    "hexes": [
+      "FFFFFF"
+    ],
+    "categories": [
+      "Software",
+      "Social",
+      "Mobile",
+      "Marketing",
+      "Media",
+      "Design"
+    ],
+    "variants": {
+      "instagram": "/icons/instagram-glass/instagram.svg",
+      "love-circled": "/icons/instagram-glass/love-circled.svg",
+      "verified-bage": "/icons/instagram-glass/verified-bage.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://instagram-glass.com",
+    "dateAdded": "2026-08-23",
+    "collection": "community"
+  },
+  {
     "slug": "microsoft-glassmorphism",
     "title": "Microsoft-Glassmorphism",
     "aliases": [],
