@@ -47,6 +47,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
   const [isDragging, setIsDragging] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submissionResult, setSubmissionResult] = useState(null); // { success, slug, title, submissionId }
 
   const fileInputRef = useRef(null);
   const addMoreInputRef = useRef(null);
@@ -287,61 +288,118 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
         body: JSON.stringify(payload)
       });
 
-      if (res.ok) {
-        const data = await res.json();
-        onShowToast?.({
-          type: 'success',
-          title: 'Icon Added Successfully!',
-          message: `Created folder icons/${payload.slug} with ${variants.length} variant file(s).`
-        });
+      const data = await res.json().catch(() => ({}));
 
-        if (onIconAdded) {
-          onIconAdded(data.icon);
-        }
-      } else {
-        // Fallback for static builds
+      if (res.ok || res.status === 207) {
+        // Success — icon uploaded to Supabase, GitHub Action triggered
+        const isPartial = res.status === 207;
         onShowToast?.({
           type: 'success',
-          title: 'Submission Received!',
-          message: `${payload.title} has been staged with ${variants.length} variant(s).`
+          title: isPartial ? 'Icon Uploaded (Action Pending)' : '🚀 Icon Submitted!',
+          message: isPartial
+            ? 'SVGs saved to Supabase. Check GitHub Actions to confirm the workflow triggered.'
+            : `"${payload.title}" is being processed. It will appear in the library in ~1-2 minutes.`
+        });
+        // Show success screen
+        setSubmissionResult({
+          success: true,
+          slug: payload.slug,
+          title: payload.title,
+          submissionId: data.submission_id,
+          variantCount: variants.length,
+          storageUrls: data.storage_urls || {}
+        });
+        // Reset form
+        setIconName('');
+        setIconSlug('');
+        setWebsiteUrl('');
+        setBrandGuidelinesUrl('');
+        setHexColor('FF5F02');
+        setLicense('Apache-2.0');
+        setSelectedCategories(['Software']);
+        setVariants([]);
+        setErrors({});
+      } else {
+        const errMsg = data.error || `Server error ${res.status}`;
+        onShowToast?.({
+          type: 'error',
+          title: 'Submission Failed',
+          message: errMsg
         });
       }
     } catch (err) {
-      console.warn('API error (falling back to client stage):', err);
-      const variantPaths = {};
-      Object.keys(variantsPayload).forEach((vKey) => {
-        variantPaths[vKey] = `/icons/${payload.slug}/${vKey}.svg`;
-      });
-
-      const clientIcon = {
-        id: payload.slug,
-        slug: payload.slug,
-        name: payload.title,
-        title: payload.title,
-        category: payload.categories[0] || 'Software',
-        categories: payload.categories,
-        hex: `#${payload.hex}`,
-        url: payload.url,
-        license: payload.license,
-        path: variantPaths.default || Object.values(variantPaths)[0] || `/icons/${payload.slug}/default.svg`,
-        variants: Object.keys(variantsPayload),
-        variantPaths,
-        variantCount: Object.keys(variantsPayload).length
-      };
-
+      console.error('Submit error:', err);
       onShowToast?.({
-        type: 'success',
-        title: 'Icon Staged Successfully!',
-        message: `${payload.title} is now active with ${variants.length} variant(s).`
+        type: 'error',
+        title: 'Network Error',
+        message: 'Could not reach the submission API. Check your connection.'
       });
-
-      if (onIconAdded) {
-        onIconAdded(clientIcon);
-      }
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  // ── Submission Success Screen ────────────────────────────────────────────────
+  if (submissionResult?.success) {
+    return (
+      <div className="sv-submit-page-container">
+        <div className="sv-submit-success-card glass-panel">
+          <div className="sv-success-icon-wrap">
+            <CheckCircle2 size={52} className="sv-success-icon" />
+          </div>
+          <div className="sv-submit-badge-row" style={{ marginBottom: 8 }}>
+            <span className="sv-submit-hero-pill">
+              <Sparkles size={11} />
+              <span>Supabase → GitHub → Cloudflare Pages</span>
+            </span>
+          </div>
+          <h2 className="sv-success-title">Icon Submitted!</h2>
+          <p className="sv-success-desc">
+            <strong>{submissionResult.title}</strong> has been uploaded to Supabase Storage and a GitHub
+            Action has been triggered to commit it to the repository. It will appear in the icon library
+            in about <strong>1–2 minutes</strong> after the action completes.
+          </p>
+
+          <div className="sv-success-meta-grid">
+            <div className="sv-success-meta-item">
+              <span className="sv-success-meta-label">SLUG</span>
+              <code className="sv-success-meta-val">{submissionResult.slug}</code>
+            </div>
+            <div className="sv-success-meta-item">
+              <span className="sv-success-meta-label">VARIANTS</span>
+              <code className="sv-success-meta-val">{submissionResult.variantCount} uploaded</code>
+            </div>
+            {submissionResult.submissionId && (
+              <div className="sv-success-meta-item">
+                <span className="sv-success-meta-label">SUBMISSION ID</span>
+                <code className="sv-success-meta-val" style={{ fontSize: 10 }}>{submissionResult.submissionId}</code>
+              </div>
+            )}
+          </div>
+
+          <div className="sv-success-actions-row">
+            <a
+              href="https://github.com/syed-sameer-ul-hassan1/SVG-IO/actions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sv-repo-action-btn"
+            >
+              <Eye size={14} />
+              <span>Watch GitHub Action ↗</span>
+            </a>
+            <button
+              className="sv-submit-action-btn"
+              style={{ flex: 1 }}
+              onClick={() => setSubmissionResult(null)}
+            >
+              <Plus size={16} />
+              <span>Submit Another Icon</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="sv-submit-page-container">
