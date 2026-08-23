@@ -525,6 +525,8 @@ export function SubmitPage({
       .replace(/^#/, "")
       .toUpperCase();
     const allHexes = hexColors.map((h) => h.replace(/^#/, "").toUpperCase());
+    const iconUrl = websiteUrl.trim() || `https://${slug}.com`;
+    const brandGuidelines = brandGuidelinesUrl.trim() || undefined;
     const SUPABASE_URL = (
       import.meta.env.VITE_DATABASE_URL ||
       "https://wexavetbwvlazhusuouu.supabase.co"
@@ -588,7 +590,8 @@ export function SubmitPage({
           categories: selectedCategories,
           aliases: [],
           license,
-          url,
+          url: iconUrl,
+          guidelines: brandGuidelines,
           variants: storageUrls,
         }),
       });

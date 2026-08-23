@@ -10,6 +10,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import http from 'node:http';
 import https from 'node:https';
 import { fileURLToPath } from 'node:url';
 
@@ -46,17 +47,38 @@ console.log(`   Variants: ${Object.keys(variantsUrls).join(', ')}`);
 function downloadFile(urlStr, destPath) {
   return new Promise((resolve, reject) => {
     const file = fs.createWriteStream(destPath);
-    https.get(urlStr, (res) => {
+    let parsedUrl;
+    try {
+      parsedUrl = new URL(urlStr);
+    } catch (e) {
+      file.close();
+      if (fs.existsSync(destPath)) fs.unlinkSync(destPath);
+      return reject(new Error(`Invalid URL: ${urlStr}`));
+    }
+
+    const options = {
+      hostname: parsedUrl.hostname,
+      port: parsedUrl.port || (parsedUrl.protocol === 'https:' ? 443 : 80),
+      path: parsedUrl.pathname + parsedUrl.search,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Node/SVG-IO)',
+        ...(process.env.SUPABASE_ANON_KEY ? {
+          'apikey': process.env.SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${process.env.SUPABASE_ANON_KEY}`
+        } : {})
+      }
+    };
+
+    const req = (parsedUrl.protocol === 'http:' ? http : https).get(options, (res) => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        // Follow redirect
         file.close();
-        fs.unlinkSync(destPath);
+        if (fs.existsSync(destPath)) fs.unlinkSync(destPath);
         downloadFile(res.headers.location, destPath).then(resolve).catch(reject);
         return;
       }
       if (res.statusCode !== 200) {
         file.close();
-        fs.unlinkSync(destPath);
+        if (fs.existsSync(destPath)) fs.unlinkSync(destPath);
         reject(new Error(`HTTP ${res.statusCode} for ${urlStr}`));
         return;
       }
@@ -65,11 +87,13 @@ function downloadFile(urlStr, destPath) {
         file.close(resolve);
       });
       file.on('error', (err) => {
-        fs.unlinkSync(destPath);
+        if (fs.existsSync(destPath)) fs.unlinkSync(destPath);
         reject(err);
       });
-    }).on('error', (err) => {
-      fs.unlinkSync(destPath);
+    });
+
+    req.on('error', (err) => {
+      if (fs.existsSync(destPath)) fs.unlinkSync(destPath);
       reject(err);
     });
   });
