@@ -37,6 +37,9 @@ const normalizedIcons = updatedIconsJson.map((icon) => {
   const name = icon.title || icon.name || id;
   const category = (Array.isArray(icon.categories) && icon.categories[0]) || icon.category || 'Brands & Ecosystem';
   const hex = icon.hex ? (icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}`) : '#FF5F02';
+  const hexes = Array.isArray(icon.hexes) && icon.hexes.length > 0
+    ? icon.hexes.map((h) => (h.startsWith('#') ? h : `#${h}`))
+    : [hex];
   const url = icon.url || `https://${id}.dev`;
   const license = 'Apache-2.0';
 
@@ -66,6 +69,7 @@ const normalizedIcons = updatedIconsJson.map((icon) => {
     category,
     categories: Array.isArray(icon.categories) ? icon.categories : [category],
     hex,
+    hexes,
     url,
     license,
     path: defaultPath,

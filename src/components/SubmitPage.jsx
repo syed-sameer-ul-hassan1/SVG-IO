@@ -38,7 +38,8 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
   const [iconSlug, setIconSlug] = useState('');
   const [websiteUrl, setWebsiteUrl] = useState('');
   const [brandGuidelinesUrl, setBrandGuidelinesUrl] = useState('');
-  const [hexColor, setHexColor] = useState('FF5F02');
+  const [hexColors, setHexColors] = useState(['FF5F02']); // Multiple brand hex colors (primary is index 0)
+  const [detectedHexes, setDetectedHexes] = useState([]); // All auto-detected hexes from uploaded SVGs
   const [license, setLicense] = useState('Apache-2.0');
   const [selectedCategories, setSelectedCategories] = useState(['Software']);
   
@@ -72,16 +73,81 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
     }
   };
 
-  // Extract color from SVG content
-  const extractSvgHex = (content) => {
-    const matches = content.matchAll(/(?:fill|stroke)="(#[0-9a-fA-F]{3,8})"/g);
-    for (const match of matches) {
-      const hex = match[1].toLowerCase();
-      if (!['#fff', '#ffffff', '#000', '#000000', '#none'].includes(hex)) {
-        return match[1].replace(/^#/, '').toUpperCase();
-      }
+  // Normalize any hex code to 6-char uppercase hex without '#'
+  const normalizeHex = (hexStr) => {
+    if (!hexStr) return null;
+    let h = hexStr.replace(/^#/, '').trim();
+    if (h.length === 3) {
+      h = h.split('').map((c) => c + c).join('');
+    } else if (h.length === 8) {
+      h = h.substring(0, 6);
+    } else if (h.length === 4) {
+      h = h.substring(0, 3).split('').map((c) => c + c).join('');
+    }
+    if (/^[0-9a-fA-F]{6}$/.test(h)) {
+      return h.toUpperCase();
     }
     return null;
+  };
+
+  // Convert rgb/rgba to hex
+  const rgbToHex = (r, g, b) => {
+    const toHex = (n) => {
+      const hex = Math.max(0, Math.min(255, Math.round(Number(n)))).toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    };
+    return `${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
+  };
+
+  // Extract all unique colors from SVG content
+  const extractAllSvgColors = (svgContent) => {
+    if (!svgContent || typeof svgContent !== 'string') return [];
+    const colorCounts = new Map();
+
+    const addColor = (rawColor) => {
+      if (!rawColor) return;
+      const clean = rawColor.trim();
+      if (['none', 'transparent', 'currentcolor', 'inherit', 'initial'].includes(clean.toLowerCase())) {
+        return;
+      }
+
+      if (clean.startsWith('#')) {
+        const norm = normalizeHex(clean);
+        if (norm) {
+          colorCounts.set(norm, (colorCounts.get(norm) || 0) + 1);
+          return;
+        }
+      }
+
+      const rgbMatch = clean.match(/rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+      if (rgbMatch) {
+        const hex = rgbToHex(rgbMatch[1], rgbMatch[2], rgbMatch[3]);
+        colorCounts.set(hex, (colorCounts.get(hex) || 0) + 1);
+        return;
+      }
+    };
+
+    // 1. Attributes: fill, stroke, stop-color, color
+    const attrMatches = svgContent.matchAll(/(?:fill|stroke|stop-color|color)\s*=\s*["']([^"']+)["']/gi);
+    for (const m of attrMatches) {
+      addColor(m[1]);
+    }
+
+    // 2. CSS styles
+    const styleMatches = svgContent.matchAll(/(?:fill|stroke|stop-color|color)\s*:\s*([^;}"'\s]+)/gi);
+    for (const m of styleMatches) {
+      addColor(m[1]);
+    }
+
+    // 3. Fallback general hex pattern search
+    const generalHexMatches = svgContent.matchAll(/#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b/g);
+    for (const m of generalHexMatches) {
+      addColor(m[0]);
+    }
+
+    return Array.from(colorCounts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .map(([hex]) => hex);
   };
 
   // Determine smart variant name from filename
@@ -116,6 +182,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
     }
 
     let currentVariants = [...variants];
+    const extractedColorsSet = new Set(detectedHexes);
 
     validFiles.forEach((file, idx) => {
       const reader = new FileReader();
@@ -123,10 +190,22 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
         const content = event.target.result;
         const initialVariantName = getSmartVariantName(file.name, currentVariants.length);
         
-        // Auto-extract color if not set
-        const extracted = extractSvgHex(content);
-        if (extracted && hexColor === 'FF5F02') {
-          setHexColor(extracted);
+        // Auto-extract all colors from this SVG
+        const colorsInSvg = extractAllSvgColors(content);
+        colorsInSvg.forEach((c) => extractedColorsSet.add(c));
+        
+        const allColorsArray = Array.from(extractedColorsSet);
+        setDetectedHexes(allColorsArray);
+
+        // Auto-select vibrant / brand colors (excluding pure white/black if other colors exist)
+        const nonNeutralColors = allColorsArray.filter(
+          (c) => !['FFFFFF', '000000', 'FFF', '000'].includes(c)
+        );
+
+        if (nonNeutralColors.length > 0) {
+          setHexColors(nonNeutralColors);
+        } else if (allColorsArray.length > 0 && (hexColors.length === 1 && hexColors[0] === 'FF5F02')) {
+          setHexColors(allColorsArray);
         }
 
         // Auto-fill icon name from first file if blank
@@ -151,7 +230,6 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
         };
 
         setVariants((prev) => {
-          // Avoid duplicate variant names
           let uniqueName = initialVariantName;
           let counter = 1;
           while (prev.some((v) => v.variantName === uniqueName)) {
@@ -168,8 +246,44 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
     onShowToast?.({
       type: 'success',
       title: 'SVG Loaded',
-      message: `Added ${validFiles.length} SVG variant${validFiles.length > 1 ? 's' : ''}.`
+      message: `Added ${validFiles.length} SVG variant${validFiles.length > 1 ? 's' : ''}. Auto-detecting colors...`
     });
+  };
+
+  // Handle selecting a detected color chip
+  const handleSelectDetectedColor = (color) => {
+    const clean = color.replace(/^#/, '').toUpperCase();
+    if (!hexColors.includes(clean)) {
+      setHexColors((prev) => [clean, ...prev]);
+    } else {
+      // Move to primary (index 0)
+      setHexColors((prev) => [clean, ...prev.filter((c) => c !== clean)]);
+    }
+  };
+
+  // Update a specific hex color by index
+  const handleUpdateHex = (index, newHex) => {
+    const clean = newHex.replace(/[^0-9a-fA-F]/g, '').toUpperCase();
+    setHexColors((prev) => prev.map((c, i) => (i === index ? clean : c)));
+  };
+
+  // Add another custom color input
+  const handleAddCustomColor = () => {
+    const defaultNewColor = detectedHexes.find((d) => !hexColors.includes(d)) || '3B82F6';
+    setHexColors((prev) => [...prev, defaultNewColor]);
+  };
+
+  // Remove a color from list
+  const handleRemoveHex = (index) => {
+    if (hexColors.length > 1) {
+      setHexColors((prev) => prev.filter((_, i) => i !== index));
+    }
+  };
+
+  // Set color as primary (index 0)
+  const handleSetPrimary = (index) => {
+    if (index === 0) return;
+    setHexColors((prev) => [prev[index], ...prev.filter((_, i) => i !== index)]);
   };
 
   const handleDragOver = (e) => {
@@ -218,21 +332,26 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
       });
     }
 
-    return JSON.stringify(
-      {
-        slug: s,
-        title: iconName || 'Your Brand',
-        aliases: [],
-        hex: hexColor.replace(/^#/, ''),
-        categories: selectedCategories,
-        variants: variantMap,
-        license,
-        url: websiteUrl || `https://${s}.com`
-      },
-      null,
-      2
-    );
-  }, [iconSlug, iconName, hexColor, selectedCategories, variants, license, websiteUrl]);
+    const primaryHex = (hexColors[0] || 'FF5F02').replace(/^#/, '');
+    const cleanHexes = hexColors.map((h) => h.replace(/^#/, ''));
+
+    const schemaObj = {
+      slug: s,
+      title: iconName || 'Your Brand',
+      aliases: [],
+      hex: primaryHex,
+      categories: selectedCategories,
+      variants: variantMap,
+      license,
+      url: websiteUrl || `https://${s}.com`
+    };
+
+    if (cleanHexes.length > 1) {
+      schemaObj.hexes = cleanHexes;
+    }
+
+    return JSON.stringify(schemaObj, null, 2);
+  }, [iconSlug, iconName, hexColors, selectedCategories, variants, license, websiteUrl]);
 
   // ── Form Submit Handler (fully client-side — no Cloudflare Function needed) ──
   const handleSubmit = async (e) => {
@@ -262,10 +381,11 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
     setErrors({});
     setIsSubmitting(true);
 
-    const slug      = iconSlug.trim().toLowerCase();
-    const title     = iconName.trim();
-    const hex       = hexColor.replace(/^#/, '').toUpperCase();
-    const url       = websiteUrl.trim() || `https://${slug}.dev`;
+    const slug        = iconSlug.trim().toLowerCase();
+    const title       = iconName.trim();
+    const primaryHex  = (hexColors[0] || 'FF5F02').replace(/^#/, '').toUpperCase();
+    const allHexes    = hexColors.map((h) => h.replace(/^#/, '').toUpperCase());
+    const url         = websiteUrl.trim() || `https://${slug}.dev`;
 
     const SUPABASE_URL      = import.meta.env.VITE_DATABASE_URL;
     const SUPABASE_ANON_KEY = import.meta.env.VITE_DATABASE_KEY;
@@ -318,7 +438,9 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
           Prefer: 'return=minimal',
         },
         body: JSON.stringify({
-          slug, title, hex,
+          slug, title,
+          hex: primaryHex,
+          hexes: allHexes,
           categories: selectedCategories,
           license, url,
           variants: variantPathMap,
@@ -343,11 +465,13 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
           body: JSON.stringify({
             event_type: 'process-icon-submission',
             client_payload: {
-              slug, title, hex,
+              slug, title,
+              hex: primaryHex,
+              hexes: allHexes,
               categories: selectedCategories,
               aliases: [],
               license, url,
-              variants: storageUrls,   // public Supabase URLs for GitHub Action to download
+              variants: storageUrls,
             },
           }),
         }
@@ -362,20 +486,21 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
       onShowToast?.({
         type: 'success',
         title: '🚀 Processing started!',
-        message: `"${title}" is being added to the repo. Watch the countdown!`
+        message: `"${title}" with ${allHexes.length} brand color${allHexes.length > 1 ? 's' : ''} is being added.`
       });
 
       setSubmissionResult({
         success: true,
         slug, title,
         variantCount: variants.length,
+        colors: allHexes,
         storageUrls,
       });
       setCountdown(60);
 
       // Reset form
       setIconName(''); setIconSlug(''); setWebsiteUrl('');
-      setBrandGuidelinesUrl(''); setHexColor('FF5F02');
+      setBrandGuidelinesUrl(''); setHexColors(['FF5F02']); setDetectedHexes([]);
       setLicense('Apache-2.0'); setSelectedCategories(['Software']);
       setVariants([]); setErrors({});
 
@@ -459,6 +584,24 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
               <span className="sv-success-meta-label">VARIANTS</span>
               <code className="sv-success-meta-val">{submissionResult.variantCount} uploaded</code>
             </div>
+            {submissionResult.colors && submissionResult.colors.length > 0 && (
+              <div className="sv-success-meta-item sv-success-colors-item">
+                <span className="sv-success-meta-label">BRAND COLORS</span>
+                <div className="sv-success-color-dots-row">
+                  {submissionResult.colors.map((c, cIdx) => (
+                    <span
+                      key={cIdx}
+                      className="sv-success-color-pill"
+                      style={{ borderLeftColor: `#${c}` }}
+                      title={`#${c}`}
+                    >
+                      <span className="sv-dot" style={{ backgroundColor: `#${c}` }} />
+                      #{c}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="sv-success-actions-row">
@@ -828,21 +971,116 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
               />
             </div>
 
-            {/* Hex Color Picker */}
+            {/* Auto-Detected Colors from Uploaded SVGs */}
+            {detectedHexes.length > 0 && (
+              <div className="sv-form-group sv-detected-colors-group">
+                <div className="sv-label-with-help">
+                  <label className="sv-form-label">
+                    Auto-Detected Colors from SVGs ({detectedHexes.length})
+                  </label>
+                  <span className="sv-detected-hint">Click a color to add or set as primary</span>
+                </div>
+                <div className="sv-detected-chips-grid">
+                  {detectedHexes.map((hex) => {
+                    const isSelected = hexColors.includes(hex);
+                    const isPrimary = hexColors[0] === hex;
+                    return (
+                      <button
+                        key={hex}
+                        type="button"
+                        className={`sv-detected-color-chip ${isSelected ? 'is-selected' : ''} ${isPrimary ? 'is-primary' : ''}`}
+                        onClick={() => handleSelectDetectedColor(hex)}
+                        title={`Click to ${isPrimary ? 'use' : isSelected ? 'set as primary' : 'add'} #${hex}`}
+                      >
+                        <span
+                          className="sv-detected-color-dot"
+                          style={{ backgroundColor: `#${hex}` }}
+                        />
+                        <span className="sv-detected-color-code">#{hex}</span>
+                        {isPrimary && <span className="sv-color-primary-tag">PRIMARY</span>}
+                        {isSelected && !isPrimary && <Check size={11} className="sv-color-check-icon" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Brand Hex Colors (Supports Multiple) */}
             <div className="sv-form-group">
-              <label className="sv-form-label">Brand hex color</label>
-              <div className="sv-color-input-wrap">
-                <div
-                  className="sv-color-swatch-preview"
-                  style={{ backgroundColor: hexColor.startsWith('#') ? hexColor : `#${hexColor}` }}
-                />
-                <input
-                  type="text"
-                  className="sv-form-input sv-hex-input"
-                  placeholder="FF5F02"
-                  value={hexColor}
-                  onChange={(e) => setHexColor(e.target.value.replace(/[^0-9a-fA-F#]/g, ''))}
-                />
+              <div className="sv-label-with-help">
+                <label className="sv-form-label">
+                  Brand Hex Color{hexColors.length > 1 ? 's' : ''} ({hexColors.length}) <span className="req">*</span>
+                </label>
+                <button
+                  type="button"
+                  className="sv-add-color-btn"
+                  onClick={handleAddCustomColor}
+                >
+                  <Plus size={12} />
+                  <span>Add Another Color</span>
+                </button>
+              </div>
+
+              <div className="sv-multi-colors-list">
+                {hexColors.map((color, idx) => {
+                  const safeHex = color.replace(/^#/, '').toUpperCase();
+                  const isPrimary = idx === 0;
+
+                  return (
+                    <div key={idx} className="sv-color-row-item">
+                      <div className="sv-color-picker-box">
+                        <input
+                          type="color"
+                          value={safeHex.length === 6 ? `#${safeHex}` : '#FF5F02'}
+                          onChange={(e) => handleUpdateHex(idx, e.target.value.replace(/^#/, '').toUpperCase())}
+                          className="sv-native-color-picker"
+                          title="Click to open color picker"
+                        />
+                        <div
+                          className="sv-color-swatch-preview"
+                          style={{ backgroundColor: `#${safeHex}` }}
+                        />
+                      </div>
+
+                      <div className="sv-hex-input-group">
+                        <span className="sv-hex-prefix">#</span>
+                        <input
+                          type="text"
+                          className="sv-form-input sv-hex-input"
+                          placeholder="FF5F02"
+                          maxLength={6}
+                          value={safeHex}
+                          onChange={(e) => handleUpdateHex(idx, e.target.value.replace(/[^0-9a-fA-F]/g, '').toUpperCase())}
+                        />
+                      </div>
+
+                      {isPrimary ? (
+                        <span className="sv-primary-color-badge">PRIMARY</span>
+                      ) : (
+                        <button
+                          type="button"
+                          className="sv-make-primary-btn"
+                          onClick={() => handleSetPrimary(idx)}
+                          title="Set as primary brand color"
+                        >
+                          Make Primary
+                        </button>
+                      )}
+
+                      {hexColors.length > 1 && (
+                        <button
+                          type="button"
+                          className="sv-remove-color-btn"
+                          onClick={() => handleRemoveHex(idx)}
+                          title="Remove color"
+                        >
+                          <Trash2 size={13} />
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
 

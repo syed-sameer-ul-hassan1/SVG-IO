@@ -9299,3 +9299,284 @@ button,
 [data-theme='light'] .sv-ring-track {
   stroke: rgba(0, 0, 0, 0.08);
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   SUBMIT PAGE — AUTO-DETECTED COLORS & MULTI-HEX COLOR SELECTOR
+   ══════════════════════════════════════════════════════════════════ */
+
+.sv-detected-colors-group {
+  background: var(--md-card-bg, rgba(255, 255, 255, 0.03));
+  border: 1px dashed var(--md-border, rgba(255, 255, 255, 0.12));
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.sv-detected-hint {
+  font-size: 11px;
+  color: var(--md-sys-color-on-surface-variant);
+  font-weight: 500;
+}
+
+.sv-detected-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.sv-detected-color-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--md-sys-color-on-surface);
+  font-size: 12px;
+  font-family: var(--md-font-mono, monospace);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.sv-detected-color-chip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.sv-detected-color-chip.is-selected {
+  background: rgba(255, 95, 2, 0.1);
+  border-color: rgba(255, 95, 2, 0.4);
+  color: #FF5F02;
+}
+
+.sv-detected-color-chip.is-primary {
+  background: rgba(255, 95, 2, 0.18);
+  border-color: #FF5F02;
+  box-shadow: 0 0 12px rgba(255, 95, 2, 0.25);
+}
+
+.sv-detected-color-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.sv-color-primary-tag {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: #FF5F02;
+  color: #FFFFFF;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.sv-color-check-icon {
+  color: #10B981;
+}
+
+.sv-add-color-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 95, 2, 0.1);
+  border: 1px solid rgba(255, 95, 2, 0.25);
+  color: #FF5F02;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sv-add-color-btn:hover {
+  background: #FF5F02;
+  color: #FFFFFF;
+}
+
+.sv-multi-colors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.sv-color-row-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--md-card-bg, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--md-border, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  padding: 8px 12px;
+  transition: all 0.15s ease;
+}
+
+.sv-color-row-item:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.sv-color-picker-box {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+}
+
+.sv-native-color-picker {
+  position: absolute;
+  inset: -10px;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.sv-color-picker-box .sv-color-swatch-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  border: none;
+  pointer-events: none;
+}
+
+.sv-hex-input-group {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 160px;
+  position: relative;
+}
+
+.sv-hex-prefix {
+  position: absolute;
+  left: 12px;
+  font-family: var(--md-font-mono, monospace);
+  font-weight: 700;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 13px;
+  pointer-events: none;
+}
+
+.sv-hex-input-group .sv-hex-input {
+  padding-left: 26px;
+  font-family: var(--md-font-mono, monospace);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  height: 36px;
+}
+
+.sv-primary-color-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  background: rgba(255, 95, 2, 0.15);
+  color: #FF5F02;
+  border: 1px solid rgba(255, 95, 2, 0.3);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.sv-make-primary-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sv-make-primary-btn:hover {
+  background: rgba(255, 95, 2, 0.1);
+  border-color: rgba(255, 95, 2, 0.3);
+  color: #FF5F02;
+}
+
+.sv-remove-color-btn {
+  background: transparent;
+  border: none;
+  color: var(--md-sys-color-on-surface-variant);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: auto;
+  transition: all 0.15s ease;
+}
+
+.sv-remove-color-btn:hover {
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Success screen color pills */
+.sv-success-colors-item {
+  width: 100%;
+}
+
+.sv-success-color-dots-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.sv-success-color-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left-width: 3px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-family: var(--md-font-mono, monospace);
+  font-weight: 700;
+}
+
+.sv-success-color-pill .sv-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+[data-theme='light'] .sv-detected-colors-group {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='light'] .sv-detected-color-chip {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='light'] .sv-color-row-item {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+}

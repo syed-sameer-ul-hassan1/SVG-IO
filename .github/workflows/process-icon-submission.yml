@@ -34,6 +34,7 @@ jobs:
           ICON_SLUG: ${{ github.event.client_payload.slug }}
           ICON_TITLE: ${{ github.event.client_payload.title }}
           ICON_HEX: ${{ github.event.client_payload.hex }}
+          ICON_HEXES: ${{ toJson(github.event.client_payload.hexes) }}
           ICON_LICENSE: ${{ github.event.client_payload.license }}
           ICON_URL: ${{ github.event.client_payload.url }}
           ICON_CATEGORIES: ${{ toJson(github.event.client_payload.categories) }}

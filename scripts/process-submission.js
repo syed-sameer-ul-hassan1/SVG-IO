@@ -20,6 +20,7 @@ const rootDir = path.resolve(__dirname, '..');
 const slug        = process.env.ICON_SLUG;
 const title       = process.env.ICON_TITLE;
 const hex         = (process.env.ICON_HEX || 'FF5F02').replace(/^#/, '');
+const hexes       = JSON.parse(process.env.ICON_HEXES || '[]');
 const license     = process.env.ICON_LICENSE || 'Apache-2.0';
 const url         = process.env.ICON_URL || `https://${slug}.com`;
 const categories  = JSON.parse(process.env.ICON_CATEGORIES || '["Software"]');
@@ -109,11 +110,15 @@ if (fs.existsSync(iconsJsonPath)) {
   }
 }
 
+const primaryHex = Array.isArray(hexes) && hexes.length > 0 ? hexes[0].replace(/^#/, '') : hex;
+const cleanHexes = Array.isArray(hexes) && hexes.length > 0 ? hexes.map((h) => h.replace(/^#/, '')) : (primaryHex ? [primaryHex] : ['FF5F02']);
+
 const newEntry = {
   slug,
   title,
   aliases: Array.isArray(aliases) ? aliases : [],
-  hex,
+  hex: primaryHex,
+  hexes: cleanHexes,
   categories: Array.isArray(categories) && categories.length > 0 ? categories : ['Software'],
   variants: savedVariantPaths,
   license,
