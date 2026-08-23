@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-23T19:15:50.314Z",
-  "totalIcons": 6518,
+  "generatedAt": "2026-08-23T19:19:48.958Z",
+  "totalIcons": 6519,
   "categoryCount": 146,
   "categories": [
     {
@@ -97,7 +97,7 @@
     },
     {
       "name": "Cloud",
-      "count": 73
+      "count": 74
     },
     {
       "name": "CMS",
@@ -169,7 +169,7 @@
     },
     {
       "name": "Developer Tools",
-      "count": 25
+      "count": 26
     },
     {
       "name": "DevOps",
@@ -26707,6 +26707,45 @@
       ],
       "dateAdded": "2026-03-07",
       "collection": "brands"
+    },
+    {
+      "id": "aurora-cloud",
+      "slug": "aurora-cloud",
+      "name": "Aurora Cloud",
+      "title": "Aurora Cloud",
+      "aliases": [],
+      "guidelines": "",
+      "category": "Cloud",
+      "categories": [
+        "Cloud",
+        "Developer Tools"
+      ],
+      "hex": "#3B82F6",
+      "hexes": [
+        "#3B82F6",
+        "#1E3A8A"
+      ],
+      "url": "https://auroracloud.io",
+      "license": "Apache-2.0",
+      "path": "/icons/aurora-cloud/default.svg",
+      "variants": [
+        "dark",
+        "default",
+        "mono"
+      ],
+      "variantPaths": {
+        "dark": "/icons/aurora-cloud/dark.svg",
+        "default": "/icons/aurora-cloud/default.svg",
+        "mono": "/icons/aurora-cloud/mono.svg"
+      },
+      "variantCount": 3,
+      "availableVariants": [
+        "dark",
+        "default",
+        "mono"
+      ],
+      "dateAdded": "2026-08-23",
+      "collection": "community"
     },
     {
       "id": "austrian-airlines",

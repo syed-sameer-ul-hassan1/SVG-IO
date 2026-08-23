@@ -1,5 +1,28 @@
 [
   {
+    "slug": "aurora-cloud",
+    "title": "Aurora Cloud",
+    "aliases": [],
+    "hex": "3B82F6",
+    "hexes": [
+      "3B82F6",
+      "1E3A8A"
+    ],
+    "categories": [
+      "Cloud",
+      "Developer Tools"
+    ],
+    "variants": {
+      "dark": "/icons/aurora-cloud/dark.svg",
+      "default": "/icons/aurora-cloud/default.svg",
+      "mono": "/icons/aurora-cloud/mono.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://auroracloud.io",
+    "dateAdded": "2026-08-23",
+    "collection": "community"
+  },
+  {
     "slug": "demo-brand",
     "title": "Demo Brand",
     "aliases": [],
