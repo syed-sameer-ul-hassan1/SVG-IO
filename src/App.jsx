@@ -267,7 +267,11 @@ export function App() {
     if (!metadata || !metadata.icons) return [];
     const counts = {};
     for (const icon of metadata.icons) {
-      if (icon.category) {
+      if (Array.isArray(icon.categories) && icon.categories.length > 0) {
+        for (const cat of icon.categories) {
+          if (cat) counts[cat] = (counts[cat] || 0) + 1;
+        }
+      } else if (icon.category) {
         counts[icon.category] = (counts[icon.category] || 0) + 1;
       }
     }
@@ -275,7 +279,7 @@ export function App() {
       name,
       count: counts[name]
     }));
-    list.sort((a, b) => a.name.localeCompare(b.name));
+    list.sort((a, b) => (b.count || 0) - (a.count || 0));
     return list;
   }, [metadata]);
 
@@ -302,7 +306,11 @@ export function App() {
           icon.name.toLowerCase().includes('colab')
       );
     } else if (selectedCategory !== 'all') {
-      list = list.filter((icon) => icon.category === selectedCategory);
+      list = list.filter((icon) => {
+        if (Array.isArray(icon.categories) && icon.categories.includes(selectedCategory)) return true;
+        if (icon.category === selectedCategory) return true;
+        return false;
+      });
     }
 
     if (searchQuery.trim()) {

@@ -143,18 +143,65 @@ export function Sidebar({
       <div className="md-side-section md-side-categories-section">
         <div className="md-side-section-header no-toggle">
           <span>CATEGORIES</span>
-          <span className="md-side-total-cat-count">{categories.length}</span>
+          <button
+            type="button"
+            className="md-side-view-all-link"
+            onClick={() => onNavigate?.('categories')}
+            title="Open Full Categories Directory"
+          >
+            <span>View All ({categories.length})</span>
+            <ChevronRight size={11} />
+          </button>
+        </div>
+
+        {/* Sidebar Mini Category Search */}
+        <div className="md-side-cat-search-box">
+          <Search size={12} className="md-side-cat-search-icon" />
+          <input
+            type="text"
+            placeholder="Filter categories..."
+            value={categorySearch}
+            onChange={(e) => setCategorySearch(e.target.value)}
+            className="md-side-cat-search-input"
+            aria-label="Filter sidebar categories"
+          />
+          {categorySearch && (
+            <button
+              type="button"
+              className="md-side-cat-search-clear"
+              onClick={() => setCategorySearch('')}
+              title="Clear filter"
+            >
+              ×
+            </button>
+          )}
         </div>
 
         {/* Scrollable Categories List */}
         <div className="md-side-category-scroll">
+          <button
+            className={`md-side-cat-item ${currentView === 'icons' && selectedCategory === 'all' ? 'active' : ''}`}
+            onClick={() => {
+              onNavigate?.('icons');
+              onSelectCategory('all');
+            }}
+          >
+            <span className="md-side-cat-name">All Icons</span>
+            <span className="md-side-cat-count">
+              {totalIcons || categories.reduce((sum, c) => sum + (c.count || 0), 0)}
+            </span>
+          </button>
+
           {filteredCategories.map((cat) => {
-            const isSelected = selectedCategory === cat.name;
+            const isSelected = currentView === 'icons' && selectedCategory === cat.name;
             return (
               <button
                 key={cat.name}
                 className={`md-side-cat-item ${isSelected ? 'active' : ''}`}
-                onClick={() => onSelectCategory(cat.name)}
+                onClick={() => {
+                  onNavigate?.('icons');
+                  onSelectCategory(cat.name);
+                }}
                 title={`${cat.name} (${cat.count || 0} icons)`}
               >
                 <span className="md-side-cat-name">{cat.name}</span>
@@ -164,6 +211,12 @@ export function Sidebar({
               </button>
             );
           })}
+
+          {filteredCategories.length === 0 && (
+            <div className="md-side-empty-cat">
+              <span>No categories matching "{categorySearch}"</span>
+            </div>
+          )}
         </div>
       </div>
     </aside>
