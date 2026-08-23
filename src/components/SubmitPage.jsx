@@ -639,64 +639,10 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
         <div className="sv-submit-left-col">
           {/* Header Hero Card */}
           <div className="sv-submit-hero-card glass-panel">
-            <div className="sv-submit-badge-row">
-              <span className="sv-submit-hero-pill">
-                <Sparkles size={11} />
-                <span>{totalIcons.toLocaleString()}+ icons and growing</span>
-              </span>
-              <span className="sv-submit-hero-pill sv-pill-amber">
-                <Package size={11} />
-                <span>400+ Icons Pack Requirement for PRs</span>
-              </span>
-            </div>
-
             <h1 className="sv-submit-main-title">Submit SVG Icons</h1>
             <p className="sv-submit-main-sub">
-              Contribute new brands or submit entire icon packs. Quick submit directly on the site, or fork the repository to contribute large sets.
+              Contribute new brands or submit icon variants. Quick submit directly on the site, or fork the repository to contribute.
             </p>
-          </div>
-
-          {/* PR / Repo Contribution Pack Requirement Box */}
-          <div className="sv-pack-requirement-card glass-panel">
-            <div className="sv-pack-header">
-              <div className="sv-pack-badge">REPO PR REQUIREMENT</div>
-              <h3 className="sv-pack-title">400+ Icons Pack & Full Variant Sets</h3>
-            </div>
-            <p className="sv-pack-desc">
-              To maintain the highest quality standards, Pull Requests to the repository must contain at least <strong>400+ distinct icons</strong> (or a complete brand family).
-            </p>
-            <div className="sv-pack-variants-grid">
-              <div className="sv-pack-variant-pill">
-                <span className="sv-pv-dot" style={{ backgroundColor: '#FF5F02' }} />
-                <code>default</code>
-                <span className="sv-pv-sub">Standard Color</span>
-              </div>
-              <div className="sv-pack-variant-pill">
-                <span className="sv-pv-dot" style={{ backgroundColor: '#FFFFFF' }} />
-                <code>light</code>
-                <span className="sv-pv-sub">For Dark Mode</span>
-              </div>
-              <div className="sv-pack-variant-pill">
-                <span className="sv-pv-dot" style={{ backgroundColor: '#111827' }} />
-                <code>dark</code>
-                <span className="sv-pv-sub">For Light Mode</span>
-              </div>
-              <div className="sv-pack-variant-pill">
-                <span className="sv-pv-dot" style={{ backgroundColor: '#3B82F6' }} />
-                <code>wordmark-dark</code>
-                <span className="sv-pv-sub">Logo + Typography</span>
-              </div>
-              <div className="sv-pack-variant-pill">
-                <span className="sv-pv-dot" style={{ backgroundColor: '#93C5FD' }} />
-                <code>wordmark-light</code>
-                <span className="sv-pv-sub">Logo + Dark Mode</span>
-              </div>
-              <div className="sv-pack-variant-pill">
-                <span className="sv-pv-dot" style={{ backgroundColor: '#6B7280' }} />
-                <code>mono</code>
-                <span className="sv-pv-sub">Single Color Glyph</span>
-              </div>
-            </div>
           </div>
 
           {/* How It Works Section */}
@@ -722,10 +668,10 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
                   <div className="sv-how-icon-wrap">
                     <FolderPlus size={14} />
                   </div>
-                  <span className="sv-step-tag">#2 Add 400+ SVGs</span>
+                  <span className="sv-step-tag">#2 Add your SVGs</span>
                 </div>
                 <p className="sv-step-desc">
-                  Place files in <code>public/icons/[slug]/</code> with all required variants.
+                  Place files in <code>public/icons/[slug]/</code> with proper naming.
                 </p>
               </div>
 
