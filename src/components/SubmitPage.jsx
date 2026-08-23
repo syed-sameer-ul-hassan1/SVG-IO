@@ -385,13 +385,8 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
     const title       = iconName.trim();
     const primaryHex  = (hexColors[0] || 'FF5F02').replace(/^#/, '').toUpperCase();
     const allHexes    = hexColors.map((h) => h.replace(/^#/, '').toUpperCase());
-    const url         = websiteUrl.trim() || `https://${slug}.dev`;
-
     const SUPABASE_URL      = import.meta.env.VITE_DATABASE_URL;
     const SUPABASE_ANON_KEY = import.meta.env.VITE_DATABASE_KEY;
-    const GH_PAT            = import.meta.env.VITE_GH_PAT;
-    const GH_OWNER          = import.meta.env.VITE_GH_OWNER || 'syed-sameer-ul-hassan1';
-    const GH_REPO           = import.meta.env.VITE_GH_REPO  || 'SVG-IO';
 
     try {
       // ── Step 1: Upload each SVG variant to Supabase Storage ──────────────
@@ -423,66 +418,37 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
           `${SUPABASE_URL}/storage/v1/object/public/svg-icons/${filePath}`;
       }
 
-      // ── Step 2: Insert submission record into Supabase DB ─────────────────
-      const variantPathMap = {};
-      Object.keys(storageUrls).forEach((k) => {
-        variantPathMap[k] = `/icons/${slug}/${k}.svg`;
-      });
-
-      await fetch(`${SUPABASE_URL}/rest/v1/icon_submissions`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          apikey: SUPABASE_ANON_KEY,
-          'Content-Type': 'application/json',
-          Prefer: 'return=minimal',
-        },
-        body: JSON.stringify({
-          slug, title,
-          hex: primaryHex,
-          hexes: allHexes,
-          categories: selectedCategories,
-          license, url,
-          variants: variantPathMap,
-          status: 'pending',
-          storage_paths: Object.fromEntries(
-            Object.keys(storageUrls).map((k) => [k, `${slug}/${k}.svg`])
-          ),
-        }),
-      });
-
-      // ── Step 3: Trigger GitHub Action via repository_dispatch ─────────────
-      const ghRes = await fetch(
-        `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/dispatches`,
+      // ── Step 2: Trigger submission via Supabase Edge Function ─────────────
+      // (The Edge function securely reads GitHub PAT from Supabase app_config and fires GitHub Action)
+      const edgeRes = await fetch(
+        `${SUPABASE_URL}/functions/v1/submit-icon`,
         {
           method: 'POST',
           headers: {
-            Authorization: `Bearer ${GH_PAT}`,
-            Accept: 'application/vnd.github.v3+json',
             'Content-Type': 'application/json',
-            'User-Agent': 'SVG-IO/1.0',
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
           },
           body: JSON.stringify({
-            event_type: 'process-icon-submission',
-            client_payload: {
-              slug, title,
-              hex: primaryHex,
-              hexes: allHexes,
-              categories: selectedCategories,
-              aliases: [],
-              license, url,
-              variants: storageUrls,
-            },
+            slug,
+            title,
+            hex: primaryHex,
+            hexes: allHexes,
+            categories: selectedCategories,
+            aliases: [],
+            license,
+            url,
+            variants: storageUrls,
           }),
         }
       );
 
-      if (!ghRes.ok) {
-        const err = await ghRes.text();
-        throw new Error(`GitHub dispatch failed: ${err}`);
+      if (!edgeRes.ok) {
+        const errJson = await edgeRes.json().catch(() => ({}));
+        throw new Error(errJson.error || `Submission service error (${edgeRes.status})`);
       }
 
-      // ── Step 4: Show success + start 60-second countdown ─────────────────
+      // ── Step 3: Show success + start 60-second countdown ─────────────────
       onShowToast?.({
         type: 'success',
         title: '🚀 Processing started!',
