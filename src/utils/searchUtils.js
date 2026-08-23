@@ -1,45 +1,83 @@
 /**
- * Fast, typo-tolerant, space-agnostic fuzzy search engine for SVG.IO
+ * Precision, Typo-Tolerant & Space-Agnostic Fuzzy Search Engine for SVG.IO
  */
 
-// Common developer aliases dictionary
+// Common developer aliases and shorthand dictionary
 const EXTRA_ALIASES = {
-  'fb': ['facebook', 'meta'],
-  'ig': ['instagram'],
-  'yt': ['youtube'],
-  'gh': ['github'],
-  'gl': ['gitlab'],
-  'ms': ['microsoft'],
-  'gcp': ['google cloud', 'google'],
-  'aws': ['amazon web services', 'amazon'],
-  'vsc': ['visual studio code', 'vscode'],
-  'vscode': ['visual studio code'],
-  'vs': ['visual studio', 'vscode'],
-  'js': ['javascript'],
-  'ts': ['typescript'],
-  'py': ['python'],
-  'rb': ['ruby'],
-  'go': ['golang'],
-  'cpp': ['c++', 'cplusplus'],
-  'cs': ['c#', 'csharp'],
-  'next': ['nextjs', 'next.js'],
-  'vue': ['vuejs', 'vue.js'],
-  'nuxt': ['nuxtjs', 'nuxt.js'],
-  'react': ['reactjs', 'react native'],
-  'tw': ['tailwind', 'tailwindcss', 'twitter', 'x'],
-  'tailwind': ['tailwindcss'],
-  'k8s': ['kubernetes'],
-  'pg': ['postgres', 'postgresql'],
-  'mongo': ['mongodb'],
-  'gql': ['graphql'],
-  'ai': ['openai', 'claude', 'chatgpt', 'gemini', 'anthropic', 'midjourney', 'deepmind'],
-  'chatgpt': ['openai', 'gpt'],
-  'ps': ['photoshop', 'adobe'],
-  'ai-adobe': ['illustrator', 'adobe'],
-  'pr': ['premiere', 'premiere pro', 'adobe'],
-  'ae': ['after effects', 'adobe'],
-  'xd': ['adobe xd', 'adobe'],
-  'lr': ['lightroom', 'adobe']
+  fb: ['facebook', 'meta'],
+  facebook: ['facebook', 'meta'],
+  ig: ['instagram'],
+  instagram: ['instagram'],
+  yt: ['youtube'],
+  youtube: ['youtube'],
+  gh: ['github'],
+  github: ['github'],
+  gl: ['gitlab'],
+  gitlab: ['gitlab'],
+  ms: ['microsoft'],
+  microsoft: ['microsoft'],
+  gcp: ['google-cloud', 'google', 'googlecloud'],
+  google: ['google', 'google-chrome'],
+  chrom: ['google-chrome', 'chrome', 'chromium'],
+  chrome: ['google-chrome', 'chrome', 'chromium'],
+  aws: ['amazon-web-services', 'amazon', 'aws'],
+  vsc: ['visual-studio-code', 'visualstudiocode', 'vscode'],
+  vscode: ['visual-studio-code', 'visualstudiocode', 'vscode'],
+  vs: ['visual-studio-code', 'visualstudiocode', 'vscode'],
+  visualstudio: ['visual-studio-code', 'visualstudiocode', 'vscode'],
+  visualstudiocode: ['visual-studio-code', 'visualstudiocode', 'vscode'],
+  js: ['javascript'],
+  ts: ['typescript'],
+  py: ['python'],
+  python: ['python'],
+  pytn: ['python'],
+  pythn: ['python'],
+  rb: ['ruby'],
+  go: ['golang'],
+  golang: ['golang', 'go'],
+  cpp: ['c++', 'cplusplus'],
+  cs: ['c#', 'csharp'],
+  next: ['nextjs', 'next.js', 'nextdotjs'],
+  nextjs: ['next.js', 'nextdotjs', 'nextjs'],
+  vue: ['vuejs', 'vue.js', 'vuedotjs'],
+  nuxt: ['nuxtjs', 'nuxt.js', 'nuxtdotjs'],
+  react: ['reactjs', 'react native', 'react'],
+  tw: ['tailwind', 'tailwindcss', 'twitter', 'x'],
+  tailwind: ['tailwindcss', 'tailwind'],
+  tailwindcss: ['tailwindcss', 'tailwind'],
+  k8s: ['kubernetes'],
+  kubernetes: ['kubernetes'],
+  pg: ['postgres', 'postgresql'],
+  postgres: ['postgresql', 'postgres'],
+  postgresql: ['postgresql', 'postgres'],
+  mongo: ['mongodb'],
+  mongodb: ['mongodb'],
+  gql: ['graphql'],
+  graphql: ['graphql'],
+  ai: ['openai', 'claude', 'chatgpt', 'gemini', 'anthropic', 'midjourney', 'deepmind'],
+  chatgpt: ['openai', 'gpt', 'chatgpt'],
+  gpt: ['openai', 'chatgpt'],
+  ps: ['photoshop', 'adobe-photoshop', 'adobe'],
+  photoshop: ['photoshop', 'adobe-photoshop'],
+  illustrator: ['illustrator', 'adobe-illustrator'],
+  pr: ['premiere', 'premiere pro', 'adobe'],
+  ae: ['after effects', 'adobe'],
+  xd: ['adobe xd', 'adobe'],
+  lr: ['lightroom', 'adobe'],
+  dc: ['docker'],
+  docker: ['docker'],
+  slk: ['slack'],
+  slack: ['slack'],
+  dsc: ['discord'],
+  discord: ['discord'],
+  notion: ['notion'],
+  figma: ['figma'],
+  fig: ['figma'],
+  vercel: ['vercel'],
+  vcl: ['vercel'],
+  sb: ['supabase'],
+  supa: ['supabase'],
+  supabase: ['supabase']
 };
 
 /**
@@ -58,7 +96,6 @@ export function levenshteinDistance(a, b) {
   if (!a.length) return b.length;
   if (!b.length) return a.length;
 
-  // Swap to reduce space usage
   if (a.length > b.length) {
     const tmp = a;
     a = b;
@@ -89,29 +126,6 @@ export function levenshteinDistance(a, b) {
 }
 
 /**
- * Check if word B is a fuzzy match of word A (allowing 1-2 typos based on length)
- */
-export function isFuzzyWordMatch(queryWord, targetWord) {
-  if (!queryWord || !targetWord) return false;
-  if (targetWord.includes(queryWord)) return true;
-
-  const len = queryWord.length;
-  const maxDistance = len <= 3 ? 1 : len <= 6 ? 2 : 3;
-
-  // Direct distance check
-  const dist = levenshteinDistance(queryWord, targetWord);
-  if (dist <= maxDistance) return true;
-
-  // Prefix substring typo check (e.g. target="visualstudiocode", query="visul")
-  if (targetWord.length >= queryWord.length) {
-    const targetSub = targetWord.substring(0, queryWord.length);
-    if (levenshteinDistance(queryWord, targetSub) <= 1) return true;
-  }
-
-  return false;
-}
-
-/**
  * Score an icon against a search query
  * Higher score = more relevant
  */
@@ -122,107 +136,85 @@ export function scoreIcon(icon, rawQuery) {
   if (!query) return 0;
 
   const cleanQuery = normalizeStr(query);
-  const queryTokens = query.split(/[\s\-_,./+]+/).filter((t) => t.length > 0);
+  if (!cleanQuery) return 0;
 
   const id = (icon.slug || icon.id || '').toLowerCase();
   const name = (icon.title || icon.name || '').toLowerCase();
-  const category = (icon.category || (Array.isArray(icon.categories) && icon.categories[0]) || '').toLowerCase();
-  const categoriesList = (Array.isArray(icon.categories) ? icon.categories : [category]).map((c) => c.toLowerCase());
-  const aliases = (Array.isArray(icon.aliases) ? icon.aliases : []).map((a) => a.toLowerCase());
-
   const cleanId = normalizeStr(id);
   const cleanName = normalizeStr(name);
+  const aliases = (Array.isArray(icon.aliases) ? icon.aliases : []).map((a) => a.toLowerCase());
   const cleanAliases = aliases.map(normalizeStr);
+  const words = [...name.split(/[\s\-_,./+]+/), ...id.split(/[\s\-_,./+]+/)].filter((w) => w.length > 0);
+  const cleanWords = words.map(normalizeStr);
 
-  // 1. Exact Matches (Highest Priority)
-  if (id === query || cleanId === cleanQuery) return 1000;
-  if (name === query || cleanName === cleanQuery) return 950;
-
-  // 2. Starts With Query
-  if (id.startsWith(query) || cleanId.startsWith(cleanQuery)) return 850;
-  if (name.startsWith(query) || cleanName.startsWith(cleanQuery)) return 800;
-
-  // 3. Alias Exact or Start Match
-  for (const alias of aliases) {
-    if (alias === query || normalizeStr(alias) === cleanQuery) return 750;
-    if (alias.startsWith(query)) return 700;
+  // 1. Exact Match on ID, Name, or normalized space/punctuation (Highest Score)
+  if (id === query || name === query || cleanId === cleanQuery || cleanName === cleanQuery) {
+    return 10000;
   }
 
-  // 4. Extra Built-in Alias Dictionary Match
-  const extraMatches = EXTRA_ALIASES[cleanQuery];
-  if (extraMatches) {
-    for (const em of extraMatches) {
-      if (id.includes(em) || cleanId.includes(em) || name.includes(em)) {
-        return 720;
-      }
+  // 2. Exact or Prefix Alias Match
+  for (const a of cleanAliases) {
+    if (a === cleanQuery) return 9000;
+    if (a.startsWith(cleanQuery)) return 8500;
+  }
+
+  // 3. Built-in Dictionary Alias Match
+  const extra = EXTRA_ALIASES[cleanQuery];
+  if (extra) {
+    for (const em of extra) {
+      const cleanEm = normalizeStr(em);
+      if (cleanId === cleanEm || cleanName === cleanEm || id === em || name === em) return 8800;
+      if (cleanId.includes(cleanEm) || cleanName.includes(cleanEm)) return 8200;
     }
   }
 
-  // 5. Space & Punctuation Agnostic Match (e.g. "vs code" -> "vscode" or "c++" -> "cpp")
-  if (cleanName.includes(cleanQuery) || cleanId.includes(cleanQuery)) {
-    return 650;
-  }
-  for (const ca of cleanAliases) {
-    if (ca.includes(cleanQuery)) return 600;
+  // 4. Starts With Query
+  if (id.startsWith(query) || name.startsWith(query) || cleanId.startsWith(cleanQuery) || cleanName.startsWith(cleanQuery)) {
+    return 8000 + (100 - Math.min(100, Math.abs(cleanName.length - cleanQuery.length)));
   }
 
-  // 6. Substring Match in Name or ID
-  if (name.includes(query)) return 550;
-  if (id.includes(query)) return 500;
+  // 5. Space & Punctuation Agnostic Match (e.g. "vs code" -> "vscode" in "visualstudiocode")
+  if (cleanName.includes(cleanQuery) || cleanId.includes(cleanQuery)) {
+    return 7500 + (100 - Math.min(100, Math.abs(cleanName.length - cleanQuery.length)));
+  }
+
+  // 6. Direct Whole Word / Whole Slug Levenshtein Typo Match (HIGHER THAN PARTIAL SUBSTRINGS!)
+  const idDist = levenshteinDistance(cleanQuery, cleanId);
+  if (idDist === 1) return 7200;
+  if (idDist === 2 && cleanQuery.length >= 4) return 6800;
+
+  const nameDist = levenshteinDistance(cleanQuery, cleanName);
+  if (nameDist === 1) return 7100;
+  if (nameDist === 2 && cleanQuery.length >= 4) return 6700;
+
+  // Check individual words in name/slug for exact word or typo match
+  for (const cw of cleanWords) {
+    if (cw === cleanQuery) return 6500;
+    if (cw.startsWith(cleanQuery)) return 6200;
+    const wDist = levenshteinDistance(cleanQuery, cw);
+    if (wDist === 1) return 6000;
+    if (wDist === 2 && cleanQuery.length >= 4) return 5500;
+  }
 
   // 7. Multi-word Token Matching (e.g. "google cloud platform" -> matches all tokens)
+  const queryTokens = query.split(/[\s\-_,./+]+/).filter((t) => t.length > 0);
   if (queryTokens.length > 1) {
-    const combinedTarget = `${id} ${name} ${aliases.join(' ')} ${categoriesList.join(' ')}`;
-    const allTokensMatch = queryTokens.every((token) => combinedTarget.includes(token));
-    if (allTokensMatch) return 480;
-
-    const someTokensMatch = queryTokens.some((token) => name.includes(token) || id.includes(token));
-    if (someTokensMatch) return 320;
+    const combined = `${id} ${name} ${aliases.join(' ')}`;
+    if (queryTokens.every((t) => combined.includes(t))) return 4800;
   }
 
-  // 8. Category Match
-  for (const cat of categoriesList) {
-    if (cat === query || normalizeStr(cat) === cleanQuery) return 350;
-    if (cat.includes(query)) return 300;
-  }
+  // 8. Substring matches
+  if (name.includes(query) || id.includes(query)) return 4000;
 
-  // 9. Fuzzy / Typo Tolerance Match (Levenshtein Distance)
-  // Check against name, id, and aliases
-  let minDistance = 999;
-
-  // Check ID
-  const idDist = levenshteinDistance(cleanQuery, cleanId);
-  if (idDist < minDistance) minDistance = idDist;
-
-  // Check Name
-  const nameDist = levenshteinDistance(cleanQuery, cleanName);
-  if (nameDist < minDistance) minDistance = nameDist;
-
-  // Check individual target words
-  const targetWords = [...name.split(/[\s\-_,./+]+/), ...id.split(/[\s\-_,./+]+/)].filter((w) => w.length >= 2);
-  for (const tw of targetWords) {
-    const cleanTw = normalizeStr(tw);
-    for (const qw of queryTokens) {
-      if (isFuzzyWordMatch(qw, cleanTw)) {
-        return 280;
-      }
-      const d = levenshteinDistance(qw, cleanTw);
-      if (d < minDistance) minDistance = d;
-    }
-  }
-
-  const queryLen = cleanQuery.length;
-  const maxAllowedTypo = queryLen <= 4 ? 1 : queryLen <= 8 ? 2 : 3;
-
-  if (minDistance <= maxAllowedTypo) {
-    return Math.max(100, 260 - minDistance * 40);
-  }
+  // 9. Category match
+  const cat = (icon.category || (Array.isArray(icon.categories) && icon.categories[0]) || '').toLowerCase();
+  if (cat.includes(query) || normalizeStr(cat).includes(cleanQuery)) return 2000;
 
   return 0;
 }
 
 /**
- * Filter and sort an icons array using fuzzy scoring
+ * Filter and sort an icons array using precision fuzzy scoring
  */
 export function fuzzyFilterIcons(icons = [], searchQuery = '') {
   if (!Array.isArray(icons) || icons.length === 0) return [];

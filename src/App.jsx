@@ -16,6 +16,7 @@ import ServerErrorPage from './components/ServerErrorPage';
 import PrivacyPage from './components/PrivacyPage';
 import TermsPage from './components/TermsPage';
 import StatusPage from './components/StatusPage';
+import CookieBanner from './components/CookieBanner';
 
 import { saveSearchHistoryItem } from './utils/historyUtils';
 import { fuzzyFilterIcons } from './utils/searchUtils';
@@ -515,6 +516,9 @@ export function App() {
           </div>
         </div>
       )}
+
+      {/* Cookie Consent Banner */}
+      <CookieBanner onNavigate={handleNavigate} />
     </div>
   );
 }
