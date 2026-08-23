@@ -23,16 +23,8 @@ if (fs.existsSync(iconsJsonPath)) {
   }
 }
 
-// Update all icons in icons.json to Apache-2.0 license
-const updatedIconsJson = rawIcons.map((icon) => ({
-  ...icon,
-  license: 'Apache-2.0'
-}));
-
-fs.writeFileSync(iconsJsonPath, JSON.stringify(updatedIconsJson, null, 2));
-
 // Normalize icons from icons.json
-const normalizedIcons = updatedIconsJson.map((icon) => {
+const normalizedIcons = rawIcons.map((icon) => {
   const id = icon.slug || icon.id;
   const name = icon.title || icon.name || id;
   const category = (Array.isArray(icon.categories) && icon.categories[0]) || icon.category || 'Brands & Ecosystem';
@@ -41,7 +33,7 @@ const normalizedIcons = updatedIconsJson.map((icon) => {
     ? icon.hexes.map((h) => (h.startsWith('#') ? h : `#${h}`))
     : [hex];
   const url = icon.url || `https://${id}.dev`;
-  const license = 'Apache-2.0';
+  const license = icon.license || 'Apache-2.0';
 
   let variants = [];
   let variantPaths = {};
@@ -66,8 +58,10 @@ const normalizedIcons = updatedIconsJson.map((icon) => {
     slug: id,
     name,
     title: name,
+    aliases: Array.isArray(icon.aliases) ? icon.aliases : [],
+    guidelines: icon.guidelines || '',
     category,
-    categories: Array.isArray(icon.categories) ? icon.categories : [category],
+    categories: Array.isArray(icon.categories) && icon.categories.length > 0 ? icon.categories : [category],
     hex,
     hexes,
     url,
@@ -77,7 +71,7 @@ const normalizedIcons = updatedIconsJson.map((icon) => {
     variantPaths,
     variantCount: variants.length,
     availableVariants: variants,
-    dateAdded: icon.dateAdded || '2026-03-07',
+    dateAdded: icon.dateAdded || new Date().toISOString().split('T')[0],
     collection: icon.collection || 'brands'
   };
 });
