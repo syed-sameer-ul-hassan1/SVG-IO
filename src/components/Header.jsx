@@ -206,7 +206,7 @@ export function Header({
 
           {/* GitHub Repository Link */}
           <a
-            href="https://github.com/hummingbirdui/hummingbird"
+            href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
             target="_blank"
             rel="noopener noreferrer"
             className="md-icon-btn github-btn"

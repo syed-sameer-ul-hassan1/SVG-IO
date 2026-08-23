@@ -125,4 +125,4 @@ normalizedIcons.forEach((icon) => {
 fs.writeFileSync(metadataPath, JSON.stringify(newMetadata, null, 2));
 fs.writeFileSync(pathsJsonPath, JSON.stringify(iconPaths, null, 2));
 
-console.log(`✓ Synchronized all ${normalizedIcons.length} assets with Apache-2.0 license across ${categories.length} categories.`);
+console.log(`[SUCCESS] Synchronized all ${normalizedIcons.length} assets with Apache-2.0 license across ${categories.length} categories.`);

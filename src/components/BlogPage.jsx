@@ -363,13 +363,13 @@ export function BlogPage({ onExploreAll, onNavigate }) {
               <span>RSS Feed</span>
             </a>
             <a
-              href="https://github.com/hummingbirdui/hummingbird"
+              href="https://github.com/syed-sameer-ul-hassan1/SVG-IO"
               target="_blank"
               rel="noopener noreferrer"
               className="sv-loop-btn-primary"
             >
               <Star size={13} />
-              <span>Star on GitHub ↗</span>
+              <span>Star on GitHub</span>
             </a>
           </div>
         </div>
@@ -523,13 +523,13 @@ export function BlogPage({ onExploreAll, onNavigate }) {
             <span>RSS Feed</span>
           </a>
           <a
-            href="https://github.com/hummingbirdui/hummingbird"
+            href="https://github.com/syed-sameer-ul-hassan1/SVG-IO"
             target="_blank"
             rel="noopener noreferrer"
             className="sv-loop-btn-primary"
           >
             <Star size={13} />
-            <span>Star on GitHub ↗</span>
+            <span>Star on GitHub</span>
           </a>
         </div>
       </div>

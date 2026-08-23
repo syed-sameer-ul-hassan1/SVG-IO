@@ -609,13 +609,14 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
 
           <div className="sv-success-actions-row">
             <a
-              href="https://github.com/syed-sameer-ul-hassan1/SVG-IO/actions"
+              href="https://github.com/syed-sameer-ul-hassan/SVG.IO/actions"
               target="_blank"
               rel="noopener noreferrer"
               className="sv-repo-action-btn"
             >
               <Eye size={14} />
-              <span>Watch Action ↗</span>
+              <span>Watch Action</span>
+              <ExternalLink size={12} />
             </a>
             <button
               className="sv-submit-action-btn"
@@ -645,6 +646,43 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
             </p>
           </div>
 
+          {/* Icon Pack & Full Variant Sets Card */}
+          <div className="sv-pack-requirement-card glass-panel">
+            <div className="sv-pack-header">
+              <div className="sv-pack-badge">ICON PACK &amp; VARIANT STANDARD</div>
+              <h3 className="sv-pack-title">Full Variant Sets Coverage</h3>
+            </div>
+            <p className="sv-pack-desc">
+              To maintain complete library coverage, submissions should provide all standard brand variants:
+            </p>
+            <div className="sv-pack-variants-grid">
+              <div className="sv-pack-variant-pill">
+                <code>default</code>
+                <span className="sv-pv-sub">Standard Color</span>
+              </div>
+              <div className="sv-pack-variant-pill">
+                <code>light</code>
+                <span className="sv-pv-sub">For Dark Mode</span>
+              </div>
+              <div className="sv-pack-variant-pill">
+                <code>dark</code>
+                <span className="sv-pv-sub">For Light Mode</span>
+              </div>
+              <div className="sv-pack-variant-pill">
+                <code>wordmark-dark</code>
+                <span className="sv-pv-sub">Logo + Typography</span>
+              </div>
+              <div className="sv-pack-variant-pill">
+                <code>wordmark-light</code>
+                <span className="sv-pv-sub">Logo + Dark Mode</span>
+              </div>
+              <div className="sv-pack-variant-pill">
+                <code>mono</code>
+                <span className="sv-pv-sub">Single Color Glyph</span>
+              </div>
+            </div>
+          </div>
+
           {/* How It Works Section */}
           <div className="sv-how-it-works-section">
             <h2 className="sv-section-header-title">How to Contribute via Fork & PR</h2>
@@ -658,7 +696,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
                   <span className="sv-step-tag">#1 Fork the repo</span>
                 </div>
                 <p className="sv-step-desc">
-                  Fork <code>github.com/syed-sameer-ul-hassan1/SVG-IO</code> and clone locally.
+                  Fork <code>github.com/syed-sameer-ul-hassan/SVG.IO</code> and clone locally.
                 </p>
               </div>
 
@@ -737,22 +775,24 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
           {/* Action Links */}
           <div className="sv-repo-links-row">
             <a
-              href="https://github.com/syed-sameer-ul-hassan1/SVG-IO"
+              href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
               target="_blank"
               rel="noopener noreferrer"
               className="sv-repo-action-btn"
             >
               <Github size={14} />
-              <span>GitHub Repository ↗</span>
+              <span>GitHub Repository</span>
+              <ExternalLink size={12} />
             </a>
             <a
-              href="https://github.com/syed-sameer-ul-hassan1/SVG-IO/issues"
+              href="https://github.com/syed-sameer-ul-hassan/SVG.IO/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="sv-repo-action-btn"
             >
               <AlertCircle size={14} />
-              <span>Issues &amp; Requests ↗</span>
+              <span>Issues &amp; Requests</span>
+              <ExternalLink size={12} />
             </a>
           </div>
 
@@ -1100,7 +1140,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
                   rel="noopener noreferrer"
                   className="sv-help-link"
                 >
-                  Help me pick · Licensing guide ↗
+                  Help me pick · Licensing guide
                 </a>
               </div>
               <select

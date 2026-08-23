@@ -43,14 +43,14 @@ export function Footer({
 
           {/* Social / Ecosystem Badges */}
           <div className="md-footer-eco-badges">
-            <a href="https://github.com/hummingbirdui/hummingbird" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="GitHub">
+            <a href="https://github.com/syed-sameer-ul-hassan/SVG.IO" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="GitHub">
               <Github size={14} />
             </a>
             <a href="https://www.npmjs.com/package/@hummingbirdui/hummingbird" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="NPM Package">
               <span style={{ fontSize: 10, fontWeight: 800 }}>NPM</span>
             </a>
             <a href="https://figma.com" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="Figma">
-              <span style={{ fontSize: 11, fontWeight: 700 }}>❖</span>
+              <span style={{ fontSize: 10, fontWeight: 800 }}>FIG</span>
             </a>
             <a href="https://orildo.dev" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="Orildo Official">
               <img src={logoSrc} alt="Orildo" width="14" height="14" style={{ objectFit: 'contain' }} />
@@ -104,10 +104,10 @@ export function Footer({
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">COMMUNITY</h4>
           <ul className="md-footer-links">
-            <li><a href="https://github.com/syed-sameer-ul-hassan1/SVG-IO" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://github.com/syed-sameer-ul-hassan1/SVG-IO/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
-            <li><a href="https://github.com/syed-sameer-ul-hassan1/SVG-IO/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
-            <li><a href="https://github.com/syed-sameer-ul-hassan1/SVG-IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a></li>
+            <li><a href="https://github.com/syed-sameer-ul-hassan/SVG.IO" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://github.com/syed-sameer-ul-hassan/SVG.IO/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
+            <li><a href="https://github.com/syed-sameer-ul-hassan/SVG.IO/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+            <li><a href="https://github.com/syed-sameer-ul-hassan/SVG.IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a></li>
           </ul>
         </div>
 

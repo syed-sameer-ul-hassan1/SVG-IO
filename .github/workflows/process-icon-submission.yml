@@ -59,7 +59,7 @@ jobs:
             TITLE="${{ github.event.client_payload.title }}"
             git commit -m "feat(icons): add ${TITLE} (${SLUG})"
             git push
-            echo "✅ Icon committed and pushed!"
+            echo "[SUCCESS] Icon committed and pushed!"
           fi
 
       - name: Update submission status in Supabase
@@ -75,7 +75,7 @@ jobs:
             -H "apikey: $SUPABASE_ANON_KEY" \
             -H "Content-Type: application/json" \
             -d '{"status": "merged", "processed_at": "'"$(date -u +%Y-%m-%dT%H:%M:%SZ)"'"}'
-          echo "✅ Submission status updated to merged"
+          echo "[SUCCESS] Submission status updated to merged"
 
   on-failure:
     runs-on: ubuntu-latest

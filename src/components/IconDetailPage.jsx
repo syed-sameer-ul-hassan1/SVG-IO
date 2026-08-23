@@ -565,7 +565,7 @@ export function IconDetailPage({
               <span className="thesvg-missing-title">Missing a variant?</span>
               <div className="thesvg-missing-buttons">
                 <a
-                  href="https://github.com/hummingbirdui/hummingbird/issues/new"
+                  href="https://github.com/syed-sameer-ul-hassan/SVG.IO/issues/new"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="thesvg-action-outline-btn"
@@ -575,7 +575,7 @@ export function IconDetailPage({
                 </a>
 
                 <a
-                  href="https://github.com/hummingbirdui/hummingbird"
+                  href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="thesvg-action-outline-btn"
