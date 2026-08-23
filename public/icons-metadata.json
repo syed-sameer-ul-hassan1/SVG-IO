@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-23T19:10:39.916Z",
-  "totalIcons": 6517,
+  "generatedAt": "2026-08-23T19:13:31.181Z",
+  "totalIcons": 6518,
   "categoryCount": 145,
   "categories": [
     {
@@ -165,7 +165,7 @@
     },
     {
       "name": "Developer Tools",
-      "count": 24
+      "count": 25
     },
     {
       "name": "DevOps",
@@ -517,7 +517,7 @@
     },
     {
       "name": "Software",
-      "count": 3457
+      "count": 3458
     },
     {
       "name": "Split",
@@ -69937,6 +69937,40 @@
       ],
       "dateAdded": "2026-03-07",
       "collection": "brands"
+    },
+    {
+      "id": "demo-brand",
+      "slug": "demo-brand",
+      "name": "Demo Brand",
+      "title": "Demo Brand",
+      "category": "Software",
+      "categories": [
+        "Software",
+        "Developer Tools"
+      ],
+      "hex": "#FF5F02",
+      "hexes": [
+        "#FF5F02",
+        "#111827"
+      ],
+      "url": "https://demobrand.example.com",
+      "license": "Apache-2.0",
+      "path": "/icons/demo-brand/default.svg",
+      "variants": [
+        "dark",
+        "default"
+      ],
+      "variantPaths": {
+        "dark": "/icons/demo-brand/dark.svg",
+        "default": "/icons/demo-brand/default.svg"
+      },
+      "variantCount": 2,
+      "availableVariants": [
+        "dark",
+        "default"
+      ],
+      "dateAdded": "2026-08-23",
+      "collection": "community"
     },
     {
       "id": "deno",
