@@ -26,6 +26,8 @@ const license     = process.env.ICON_LICENSE || 'Apache-2.0';
 const url         = process.env.ICON_URL || `https://${slug}.com`;
 const categories  = JSON.parse(process.env.ICON_CATEGORIES || '["Software"]');
 const aliases     = JSON.parse(process.env.ICON_ALIASES    || '[]');
+const supabaseUrl = (process.env.SUPABASE_URL || 'https://wexavetbwvlazhusuouu.supabase.co').replace(/\/+$/, '');
+const supabaseKey = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndleGF2ZXRid3ZsYXpodXN1b3V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MDA2NzgsImV4cCI6MjEwMzA3NjY3OH0.dWhB2MYM-yNdmvGIkHRf53tTSsgVD6sFcfY_xIAnEms';
 
 // variants: { variantKey: "https://supabase.../svg-icons/slug/variant.svg" }
 const variantsUrls = JSON.parse(process.env.ICON_VARIANTS || '{}');
@@ -166,4 +168,29 @@ if (existingIdx >= 0) {
 
 fs.writeFileSync(iconsJsonPath, JSON.stringify(iconsList, null, 2), 'utf8');
 console.log(`\n[SUCCESS] icons.json updated (${iconsList.length} total icons)`);
-console.log(`[SUCCESS] Icon "${title}" (${slug}) processed successfully!\n`);
+console.log(`[SUCCESS] Icon "${title}" (${slug}) processed successfully in public/icons.json!`);
+
+// ── 4. Delete uploaded temporary SVGs from Supabase Storage ───────────────────
+if (supabaseUrl && supabaseKey) {
+  console.log(`\n[CLEANUP] Deleting temporary SVG files for "${slug}" from Supabase Storage...`);
+  try {
+    const filePathsToDelete = Object.keys(variantsUrls).map((variantKey) => `${slug}/${variantKey}.svg`);
+    const deleteRes = await fetch(`${supabaseUrl}/storage/v1/object/svg-icons`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${supabaseKey}`,
+        'apikey': supabaseKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ prefixes: filePathsToDelete })
+    });
+    if (deleteRes.ok) {
+      console.log(`[SUCCESS] Deleted temporary files from Supabase: ${filePathsToDelete.join(', ')}\n`);
+    } else {
+      const errText = await deleteRes.text();
+      console.warn(`[WARN] Supabase storage deletion response (${deleteRes.status}): ${errText}\n`);
+    }
+  } catch (err) {
+    console.warn(`[WARN] Could not clean up Supabase storage: ${err.message}\n`);
+  }
+}
