@@ -18,7 +18,8 @@ import {
   Info,
   Plus,
   Trash2,
-  Eye
+  Eye,
+  Package
 } from 'lucide-react';
 
 const MAX_SVG_SIZE_BYTES = 20 * 1024; // Strict 20 KB maximum limit per SVG
@@ -487,7 +488,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
       // ── Step 3: Show success + start 60-second countdown ─────────────────
       onShowToast?.({
         type: 'success',
-        title: '🚀 Processing started!',
+        title: 'Processing started',
         message: `"${title}" with ${allHexes.length} brand color${allHexes.length > 1 ? 's' : ''} is being added.`
       });
 
@@ -567,7 +568,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
           </div>
 
           <h2 className="sv-success-title">
-            {isDone ? '✅ Icon Live!' : '🚀 Processing…'}
+            {isDone ? 'Icon Live' : 'Processing...'}
           </h2>
 
           <p className="sv-success-desc">
@@ -644,7 +645,8 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
                 <span>{totalIcons.toLocaleString()}+ icons and growing</span>
               </span>
               <span className="sv-submit-hero-pill sv-pill-amber">
-                <span>📦 400+ Icons Pack Requirement for PRs</span>
+                <Package size={11} />
+                <span>400+ Icons Pack Requirement for PRs</span>
               </span>
             </div>
 

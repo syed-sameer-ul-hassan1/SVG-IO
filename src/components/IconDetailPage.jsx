@@ -972,35 +972,30 @@ export function IconDetailPage({
                   className={`thesvg-tab-btn ${activeTab === 'react' ? 'active' : ''}`}
                   onClick={() => setActiveTab('react')}
                 >
-                  <span className="thesvg-tab-icon">⚛️</span>
                   <span>React</span>
                 </button>
                 <button
                   className={`thesvg-tab-btn ${activeTab === 'vue' ? 'active' : ''}`}
                   onClick={() => setActiveTab('vue')}
                 >
-                  <span className="thesvg-tab-icon">💚</span>
                   <span>Vue</span>
                 </button>
                 <button
                   className={`thesvg-tab-btn ${activeTab === 'html' ? 'active' : ''}`}
                   onClick={() => setActiveTab('html')}
                 >
-                  <span className="thesvg-tab-icon">🌐</span>
                   <span>HTML</span>
                 </button>
                 <button
                   className={`thesvg-tab-btn ${activeTab === 'nextjs' ? 'active' : ''}`}
                   onClick={() => setActiveTab('nextjs')}
                 >
-                  <span className="thesvg-tab-icon">⬛</span>
                   <span>Next.js</span>
                 </button>
                 <button
                   className={`thesvg-tab-btn ${activeTab === 'css' ? 'active' : ''}`}
                   onClick={() => setActiveTab('css')}
                 >
-                  <span className="thesvg-tab-icon">🎨</span>
                   <span>CSS</span>
                 </button>
               </div>

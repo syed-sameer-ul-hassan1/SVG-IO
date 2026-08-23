@@ -104,10 +104,10 @@ export function Footer({
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">COMMUNITY</h4>
           <ul className="md-footer-links">
-            <li><a href="https://github.com/hummingbirdui/hummingbird" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://github.com/hummingbirdui/hummingbird/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
-            <li><a href="https://github.com/hummingbirdui/hummingbird/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
-            <li><a href="https://github.com/hummingbirdui/hummingbird/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a></li>
+            <li><a href="https://github.com/syed-sameer-ul-hassan1/SVG-IO" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://github.com/syed-sameer-ul-hassan1/SVG-IO/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
+            <li><a href="https://github.com/syed-sameer-ul-hassan1/SVG-IO/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+            <li><a href="https://github.com/syed-sameer-ul-hassan1/SVG-IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a></li>
           </ul>
         </div>
 

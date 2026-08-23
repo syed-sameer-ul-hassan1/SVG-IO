@@ -30,16 +30,16 @@ const aliases     = JSON.parse(process.env.ICON_ALIASES    || '[]');
 const variantsUrls = JSON.parse(process.env.ICON_VARIANTS || '{}');
 
 if (!slug || !title) {
-  console.error('❌ ICON_SLUG and ICON_TITLE are required');
+  console.error('[ERROR] ICON_SLUG and ICON_TITLE are required');
   process.exit(1);
 }
 
 if (Object.keys(variantsUrls).length === 0) {
-  console.error('❌ ICON_VARIANTS is empty — nothing to download');
+  console.error('[ERROR] ICON_VARIANTS is empty — nothing to download');
   process.exit(1);
 }
 
-console.log(`\n🔄 Processing icon: ${title} (${slug})`);
+console.log(`\n[INFO] Processing icon: ${title} (${slug})`);
 console.log(`   Variants: ${Object.keys(variantsUrls).join(', ')}`);
 
 // ── Helper: download a URL to a file ─────────────────────────────────────────
@@ -78,20 +78,20 @@ function downloadFile(urlStr, destPath) {
 // ── 1. Create icon directory ──────────────────────────────────────────────────
 const iconDir = path.join(rootDir, 'public', 'icons', slug);
 fs.mkdirSync(iconDir, { recursive: true });
-console.log(`📁 Created directory: public/icons/${slug}/`);
+console.log(`[DIR] Created directory: public/icons/${slug}/`);
 
 // ── 2. Download each SVG variant ──────────────────────────────────────────────
 const savedVariantPaths = {};
 
 for (const [variantKey, variantUrl] of Object.entries(variantsUrls)) {
   const destFile = path.join(iconDir, `${variantKey}.svg`);
-  console.log(`⬇️  Downloading ${variantKey}.svg from Supabase...`);
+  console.log(`[DOWNLOAD] Fetching ${variantKey}.svg from Supabase...`);
   try {
     await downloadFile(variantUrl, destFile);
     savedVariantPaths[variantKey] = `/icons/${slug}/${variantKey}.svg`;
-    console.log(`   ✅ Saved: public/icons/${slug}/${variantKey}.svg`);
+    console.log(`   [SUCCESS] Saved: public/icons/${slug}/${variantKey}.svg`);
   } catch (err) {
-    console.error(`   ❌ Failed to download ${variantKey}: ${err.message}`);
+    console.error(`   [ERROR] Failed to download ${variantKey}: ${err.message}`);
     process.exit(1);
   }
 }
@@ -103,9 +103,9 @@ let iconsList = [];
 if (fs.existsSync(iconsJsonPath)) {
   try {
     iconsList = JSON.parse(fs.readFileSync(iconsJsonPath, 'utf8'));
-    console.log(`📋 Loaded existing icons.json (${iconsList.length} icons)`);
+    console.log(`[INFO] Loaded existing icons.json (${iconsList.length} icons)`);
   } catch (e) {
-    console.warn('⚠️  Could not parse icons.json, starting fresh:', e.message);
+    console.warn('[WARN] Could not parse icons.json, starting fresh:', e.message);
     iconsList = [];
   }
 }
@@ -134,12 +134,12 @@ const existingIdx = iconsList.findIndex(
 
 if (existingIdx >= 0) {
   iconsList[existingIdx] = newEntry;
-  console.log(`♻️  Updated existing entry for: ${slug}`);
+  console.log(`[UPDATE] Updated existing entry for: ${slug}`);
 } else {
   iconsList.unshift(newEntry);
-  console.log(`➕ Added new entry for: ${slug}`);
+  console.log(`[ADD] Added new entry for: ${slug}`);
 }
 
 fs.writeFileSync(iconsJsonPath, JSON.stringify(iconsList, null, 2), 'utf8');
-console.log(`\n✅ icons.json updated (${iconsList.length} total icons)`);
-console.log(`✅ Icon "${title}" (${slug}) processed successfully!\n`);
+console.log(`\n[SUCCESS] icons.json updated (${iconsList.length} total icons)`);
+console.log(`[SUCCESS] Icon "${title}" (${slug}) processed successfully!\n`);
