@@ -21,7 +21,7 @@ export function Footer({
         {/* Brand Column */}
         <div className="md-footer-brand-col">
           <a
-            href="https://svgio.orildo.tech"
+            href="https://svg.io.orildo.tech"
             className="md-footer-logo-row"
             title="Visit SvgIo"
           >

@@ -297,17 +297,17 @@ export function BlogPage({ onExploreAll, onNavigate }) {
               <span className="sv-share-label">SHARE</span>
               <div className="sv-share-buttons-stack">
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(activePost.title)}&url=${encodeURIComponent('https://svgio.orildo.tech')}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(activePost.title)}&url=${encodeURIComponent('https://svg.io.orildo.tech')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sv-share-icon-btn"
                   title="Share on X (Twitter)"
                 >
-                  <span style={{ fontSize: '13px', fontWeight: 800 }}>𝕏</span>
+                  <span style={{ fontSize: '13px', fontWeight: 800 }}>X</span>
                 </a>
 
                 <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://svgio.orildo.tech')}`}
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://svg.io.orildo.tech')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sv-share-icon-btn"
@@ -317,7 +317,7 @@ export function BlogPage({ onExploreAll, onNavigate }) {
                 </a>
 
                 <a
-                  href={`https://reddit.com/submit?title=${encodeURIComponent(activePost.title)}&url=${encodeURIComponent('https://svgio.orildo.tech')}`}
+                  href={`https://reddit.com/submit?title=${encodeURIComponent(activePost.title)}&url=${encodeURIComponent('https://svg.io.orildo.tech')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sv-share-icon-btn"
@@ -327,7 +327,7 @@ export function BlogPage({ onExploreAll, onNavigate }) {
                 </a>
 
                 <a
-                  href={`https://news.ycombinator.com/submitlink?t=${encodeURIComponent(activePost.title)}&u=${encodeURIComponent('https://svgio.orildo.tech')}`}
+                  href={`https://news.ycombinator.com/submitlink?t=${encodeURIComponent(activePost.title)}&u=${encodeURIComponent('https://svg.io.orildo.tech')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sv-share-icon-btn"

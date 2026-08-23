@@ -422,8 +422,13 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
     const title       = iconName.trim();
     const primaryHex  = (hexColors[0] || 'FF5F02').replace(/^#/, '').toUpperCase();
     const allHexes    = hexColors.map((h) => h.replace(/^#/, '').toUpperCase());
-    const SUPABASE_URL      = import.meta.env.VITE_DATABASE_URL;
-    const SUPABASE_ANON_KEY = import.meta.env.VITE_DATABASE_KEY;
+    const SUPABASE_URL = (
+      import.meta.env.VITE_DATABASE_URL ||
+      'https://wexavetbwvlazhusuouu.supabase.co'
+    ).replace(/\/+$/, '');
+    const SUPABASE_ANON_KEY =
+      import.meta.env.VITE_DATABASE_KEY ||
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndleGF2ZXRid3ZsYXpodXN1b3V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MDA2NzgsImV4cCI6MjEwMzA3NjY3OH0.dWhB2MYM-yNdmvGIkHRf53tTSsgVD6sFcfY_xIAnEms';
 
     try {
       // ── Step 1: Upload each SVG variant to Supabase Storage ──────────────
@@ -439,6 +444,7 @@ export function SubmitPage({ onIconAdded, onShowToast, onNavigate, totalIcons = 
             method: 'POST',
             headers: {
               Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              apikey: SUPABASE_ANON_KEY,
               'Content-Type': 'image/svg+xml',
               'x-upsert': 'true',
             },
