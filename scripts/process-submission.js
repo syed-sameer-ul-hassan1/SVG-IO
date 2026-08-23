@@ -174,21 +174,48 @@ console.log(`[SUCCESS] Icon "${title}" (${slug}) processed successfully in publi
 if (supabaseUrl && supabaseKey) {
   console.log(`\n[CLEANUP] Deleting temporary SVG files for "${slug}" from Supabase Storage...`);
   try {
-    const filePathsToDelete = Object.keys(variantsUrls).map((variantKey) => `${slug}/${variantKey}.svg`);
-    const deleteRes = await fetch(`${supabaseUrl}/storage/v1/object/svg-icons`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${supabaseKey}`,
-        'apikey': supabaseKey,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ prefixes: filePathsToDelete })
-    });
-    if (deleteRes.ok) {
-      console.log(`[SUCCESS] Deleted temporary files from Supabase: ${filePathsToDelete.join(', ')}\n`);
-    } else {
-      const errText = await deleteRes.text();
-      console.warn(`[WARN] Supabase storage deletion response (${deleteRes.status}): ${errText}\n`);
+    const pathsFromUrls = Object.values(variantsUrls).map((vUrl) => {
+      const match = vUrl.match(/\/svg-icons\/(.+)$/);
+      return match ? decodeURIComponent(match[1]) : null;
+    }).filter(Boolean);
+
+    let listedPaths = [];
+    try {
+      const listRes = await fetch(`${supabaseUrl}/storage/v1/object/list/svg-icons`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${supabaseKey}`,
+          'apikey': supabaseKey,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prefix: slug, limit: 100 })
+      });
+      if (listRes.ok) {
+        const listJson = await listRes.json();
+        if (Array.isArray(listJson)) {
+          listedPaths = listJson.map((item) => `${slug}/${item.name}`);
+        }
+      }
+    } catch (e) {}
+
+    const allPathsToDelete = Array.from(new Set([...pathsFromUrls, ...listedPaths]));
+
+    if (allPathsToDelete.length > 0) {
+      const deleteRes = await fetch(`${supabaseUrl}/storage/v1/object/svg-icons`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${supabaseKey}`,
+          'apikey': supabaseKey,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prefixes: allPathsToDelete })
+      });
+      if (deleteRes.ok) {
+        console.log(`[SUCCESS] Deleted temporary files from Supabase Storage: ${allPathsToDelete.join(', ')}\n`);
+      } else {
+        const errText = await deleteRes.text();
+        console.warn(`[WARN] Supabase storage deletion response (${deleteRes.status}): ${errText}\n`);
+      }
     }
   } catch (err) {
     console.warn(`[WARN] Could not clean up Supabase storage: ${err.message}\n`);
