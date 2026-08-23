@@ -24,7 +24,12 @@ export const IconCard = memo(function IconCard({
 
   const [copiedType, setCopiedType] = useState(null);
 
-  const iconUrl = `/icons/${icon.id}/${selectedVariant}.svg`;
+  const iconUrl =
+    icon?.variantPaths?.[selectedVariant] ||
+    (icon?.variants && typeof icon.variants === 'object' && !Array.isArray(icon.variants) && icon.variants[selectedVariant]) ||
+    `/icons/${icon.id || icon.slug}/${selectedVariant}.svg`;
+
+  const brandColor = icon?.hex ? (icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}`) : '#FF5F02';
 
   const handleQuickCopySvg = async (e) => {
     e.stopPropagation();

@@ -7,11 +7,12 @@ import {
   removeSearchHistoryItem,
   clearSearchHistory
 } from '../utils/historyUtils';
+import { fuzzyFilterIcons } from '../utils/searchUtils';
 
 const POPULAR_SUGGESTIONS = [
-  'user', 'arrow', 'settings', 'home', 'heart', 'search',
-  'mail', 'download', 'bell', 'folder', 'calendar', 'camera',
-  'lock', 'check', 'edit', 'cloud', 'chart', 'music'
+  'React', 'GitHub', 'Next.js', 'Tailwind', 'Python', 'TypeScript',
+  'Docker', 'AWS', 'Google', 'Figma', 'JavaScript', 'Node.js',
+  'OpenAI', 'PostgreSQL', 'Supabase', 'VS Code', 'Apple', 'Linux'
 ];
 
 export function Header({
@@ -22,6 +23,7 @@ export function Header({
   searchQuery,
   setSearchQuery,
   totalIcons = 6518,
+  allIcons = [],
   searchInputRef,
   onNavigate,
   onSubmitIconClick
@@ -66,14 +68,19 @@ export function Header({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Filter dynamic suggestions based on current query
+  // Filter dynamic suggestions based on current query using fuzzy matching
   const liveSuggestions = useMemo(() => {
     if (!searchQuery || searchQuery.trim().length === 0) {
       return POPULAR_SUGGESTIONS;
     }
+    if (allIcons && allIcons.length > 0) {
+      const fuzzyMatches = fuzzyFilterIcons(allIcons, searchQuery);
+      const suggestions = fuzzyMatches.slice(0, 12).map((i) => i.title || i.name || i.slug);
+      return Array.from(new Set(suggestions));
+    }
     const q = searchQuery.toLowerCase().trim();
     return POPULAR_SUGGESTIONS.filter((s) => s.toLowerCase().includes(q));
-  }, [searchQuery]);
+  }, [searchQuery, allIcons]);
 
   return (
     <div className="md-header-wrapper">
@@ -122,13 +129,13 @@ export function Header({
 
           {/* Quick Suggestions & History Dropdown */}
           {isFocused && (
-            <div className="md-search-popover glass-panel">
+            <div className="md-search-popover" role="dialog" aria-label="Search suggestions">
               {/* Recent Searches (if available) */}
               {searchHistory.length > 0 && !searchQuery && (
                 <div className="md-popover-section">
                   <div className="md-popover-header">
                     <div className="md-popover-title">
-                      <History size={13} />
+                      <History size={13} className="text-orange" />
                       <span>Recent Searches</span>
                     </div>
                     <button
@@ -137,7 +144,7 @@ export function Header({
                       onClick={handleClearHistory}
                     >
                       <Trash2 size={11} />
-                      <span>Clear</span>
+                      <span>Clear all</span>
                     </button>
                   </div>
                   <div className="md-history-chips">
@@ -153,8 +160,9 @@ export function Header({
                           className="md-history-remove"
                           onClick={(e) => handleRemoveHistoryItem(e, item)}
                           title="Remove search"
+                          aria-label={`Remove search ${item}`}
                         >
-                          <X size={10} />
+                          <X size={11} />
                         </button>
                       </div>
                     ))}
@@ -167,12 +175,12 @@ export function Header({
                 <div className="md-popover-section">
                   <div className="md-popover-header">
                     <div className="md-popover-title">
-                      {searchQuery ? <Sparkles size={13} /> : <TrendingUp size={13} />}
-                      <span>{searchQuery ? 'Suggestions' : 'Trending Terms'}</span>
+                      {searchQuery ? <Sparkles size={13} className="text-orange" /> : <TrendingUp size={13} className="text-orange" />}
+                      <span>{searchQuery ? 'Top Suggestions' : 'Trending Terms'}</span>
                     </div>
                   </div>
                   <div className="md-suggestion-pills">
-                    {liveSuggestions.slice(0, 10).map((s) => (
+                    {liveSuggestions.slice(0, 12).map((s) => (
                       <button
                         key={s}
                         type="button"
@@ -180,12 +188,24 @@ export function Header({
                         onClick={() => handleSelectQuery(s)}
                       >
                         <span>{s}</span>
-                        <ArrowUpRight size={11} />
+                        <ArrowUpRight size={11} className="md-suggestion-arrow" />
                       </button>
                     ))}
                   </div>
                 </div>
               )}
+
+              {/* Popover Footer Shortcuts */}
+              <div className="md-popover-footer">
+                <div className="md-popover-hint">
+                  <span className="md-kbd">Enter</span>
+                  <span>to search</span>
+                </div>
+                <div className="md-popover-hint">
+                  <span className="md-kbd">ESC</span>
+                  <span>to dismiss</span>
+                </div>
+              </div>
             </div>
           )}
         </div>

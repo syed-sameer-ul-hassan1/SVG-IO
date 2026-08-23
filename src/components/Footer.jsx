@@ -5,7 +5,8 @@ export function Footer({
   theme = 'dark',
   totalIcons = 6514,
   onSelectCategory,
-  onSubmitIconClick
+  onSubmitIconClick,
+  onNavigate
 }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -79,11 +80,11 @@ export function Footer({
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">PRODUCT</h4>
           <ul className="md-footer-links">
-            <li><button onClick={() => onSelectCategory?.('all')}>Browse Icons</button></li>
-            <li><button onClick={() => onSelectCategory?.('all')}>Categories</button></li>
-            <li><a href="#extensions">Extensions</a></li>
-            <li><button onClick={() => onSubmitIconClick?.()}>Submit Icon</button></li>
-            <li><a href="https://hbui.dev" target="_blank" rel="noopener noreferrer">Blog</a></li>
+            <li><button onClick={() => onNavigate?.('icons')}>Browse Icons</button></li>
+            <li><button onClick={() => onNavigate?.('categories')}>Categories</button></li>
+            <li><button onClick={() => onNavigate?.('extensions')}>Extensions</button></li>
+            <li><button onClick={() => onSubmitIconClick ? onSubmitIconClick() : onNavigate?.('submit')}>Submit Icon</button></li>
+            <li><button onClick={() => onNavigate?.('blog')}>Blog & Guides</button></li>
           </ul>
         </div>
 
@@ -91,12 +92,11 @@ export function Footer({
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">RESOURCES</h4>
           <ul className="md-footer-links">
-            <li><a href="#figma">Figma Plugin</a></li>
-            <li><a href="#vscode">VS Code Extension</a></li>
-            <li><a href="#raycast">Raycast Extension</a></li>
+            <li><button onClick={() => onNavigate?.('extensions')}>Figma Plugin</button></li>
+            <li><button onClick={() => onNavigate?.('extensions')}>VS Code Extension</button></li>
+            <li><button onClick={() => onNavigate?.('status')}>System Status</button></li>
             <li><a href="https://www.npmjs.com/package/@hummingbirdui/hummingbird" target="_blank" rel="noopener noreferrer">npm Package</a></li>
-            <li><a href="#cdn">CDN Usage</a></li>
-            <li><a href="#compare">Compare</a></li>
+            <li><button onClick={() => onNavigate?.('404')}>404 Preview</button></li>
           </ul>
         </div>
 
@@ -115,9 +115,10 @@ export function Footer({
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">LEGAL</h4>
           <ul className="md-footer-links">
-            <li><a href="#legal">Legal</a></li>
-            <li><a href="#trademark">Trademark Policy</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><button onClick={() => onNavigate?.('privacy')}>Privacy Policy</button></li>
+            <li><button onClick={() => onNavigate?.('terms')}>Terms of Service</button></li>
+            <li><button onClick={() => onNavigate?.('trademark')}>Trademark Policy</button></li>
+            <li><button onClick={() => onNavigate?.('status')}>Uptime & Health</button></li>
           </ul>
         </div>
       </div>

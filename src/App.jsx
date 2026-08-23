@@ -11,8 +11,14 @@ import FavoritesPage from './components/FavoritesPage';
 import SubmitPage from './components/SubmitPage';
 import CommunityBanner from './components/CommunityBanner';
 import Footer from './components/Footer';
+import NotFoundPage from './components/NotFoundPage';
+import ServerErrorPage from './components/ServerErrorPage';
+import PrivacyPage from './components/PrivacyPage';
+import TermsPage from './components/TermsPage';
+import StatusPage from './components/StatusPage';
 
 import { saveSearchHistoryItem } from './utils/historyUtils';
+import { fuzzyFilterIcons } from './utils/searchUtils';
 
 export function App() {
   const [metadata, setMetadata] = useState(null);
@@ -300,13 +306,7 @@ export function App() {
     }
 
     if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
-      list = list.filter(
-        (icon) =>
-          icon.name.toLowerCase().includes(q) ||
-          icon.id.toLowerCase().includes(q) ||
-          icon.category.toLowerCase().includes(q)
-      );
+      list = fuzzyFilterIcons(list, searchQuery);
     }
 
     return list;
@@ -349,6 +349,7 @@ export function App() {
           }
         }}
         totalIcons={totalCount}
+        allIcons={metadata?.icons || []}
         searchInputRef={searchInputRef}
         onNavigate={handleNavigate}
         onSubmitIconClick={handleSubmitIconModal}
@@ -422,6 +423,32 @@ export function App() {
               onExploreAll={() => handleNavigate('icons')}
               onShowToast={showToast}
             />
+          ) : currentView === '404' ? (
+            <NotFoundPage
+              onNavigate={handleNavigate}
+              onSearch={(q) => {
+                setSearchQuery(q);
+                handleNavigate('icons');
+              }}
+            />
+          ) : currentView === '500' ? (
+            <ServerErrorPage
+              onNavigate={handleNavigate}
+              onRetry={() => window.location.reload()}
+            />
+          ) : currentView === 'privacy' ? (
+            <PrivacyPage
+              onNavigate={handleNavigate}
+            />
+          ) : currentView === 'terms' || currentView === 'trademark' || currentView === 'legal' ? (
+            <TermsPage
+              onNavigate={handleNavigate}
+            />
+          ) : currentView === 'status' ? (
+            <StatusPage
+              totalIcons={totalCount}
+              onNavigate={handleNavigate}
+            />
           ) : (
             <>
               {/* Hero Banner */}
@@ -467,6 +494,7 @@ export function App() {
             totalIcons={totalCount}
             onSelectCategory={handleCategorySelect}
             onSubmitIconClick={handleSubmitIconModal}
+            onNavigate={handleNavigate}
           />
         </main>
       </div>

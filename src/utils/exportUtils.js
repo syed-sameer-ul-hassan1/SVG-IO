@@ -5,7 +5,7 @@ import { saveAs } from 'file-saver';
 const svgCache = new Map();
 
 /**
- * Fetch raw SVG text from public static endpoint
+ * Fetch raw SVG text from public static endpoint with fallback cascading
  */
 export async function getSvgContent(iconId, variant = 'default') {
   const key = `${iconId}/${variant}`;
@@ -13,18 +13,31 @@ export async function getSvgContent(iconId, variant = 'default') {
     return svgCache.get(key);
   }
 
-  try {
-    const res = await fetch(`/icons/${iconId}/${variant}.svg`);
-    if (!res.ok) {
-      throw new Error(`Failed to load SVG: ${res.statusText}`);
-    }
-    const text = await res.text();
-    svgCache.set(key, text);
-    return text;
-  } catch (err) {
-    console.error(`Error loading SVG for ${iconId} (${variant}):`, err);
-    return null;
+  const candidateUrls = [
+    `/icons/${iconId}/${variant}.svg`,
+    `/icons/${iconId}/default.svg`,
+    `/icons/${iconId}/dark.svg`,
+    `/icons/${iconId}/light.svg`,
+    `/icons/${iconId}/mono.svg`,
+    `/icons/${iconId}/wordmark.svg`,
+  ];
+
+  // Try requested variant first, then fallbacks
+  for (const url of candidateUrls) {
+    try {
+      const res = await fetch(url);
+      if (res.ok) {
+        const text = await res.text();
+        if (text && text.includes('<svg')) {
+          svgCache.set(key, text);
+          return text;
+        }
+      }
+    } catch (e) {}
   }
+
+  console.warn(`No SVG found for ${iconId} (${variant})`);
+  return null;
 }
 
 /**
