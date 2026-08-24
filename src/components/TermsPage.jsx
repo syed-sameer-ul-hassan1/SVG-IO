@@ -81,7 +81,7 @@ export function TermsPage({ onNavigate }) {
         <section className="md-legal-section">
           <h2>4. Takedown Requests (DMCA / Trademark)</h2>
           <p>
-            If you are a trademark or copyright holder and wish to update, modify, or remove an icon associated with your organization, please submit a request via GitHub issues or email us directly at <strong>legal@orildo.dev</strong>. We respond promptly within 24–48 hours.
+            If you are a trademark or copyright holder and wish to update, modify, or remove an icon associated with your organization, please submit a request via GitHub issues or email us directly at <strong>legal@orildo.tech</strong>. We respond promptly within 24–48 hours.
           </p>
         </section>
 

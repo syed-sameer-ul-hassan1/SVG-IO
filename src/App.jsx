@@ -16,9 +16,10 @@ import PrivacyPage from './components/PrivacyPage';
 import TermsPage from './components/TermsPage';
 import StatusPage from './components/StatusPage';
 import CookieBanner from './components/CookieBanner';
+import Fuse from 'fuse.js';
 
 import { saveSearchHistoryItem } from './utils/historyUtils';
-import { fuzzyFilterIcons } from './utils/searchUtils';
+import { getCachedCatalog, setCachedCatalog, preloadIconBatch } from './utils/dbUtils';
 
 export function App() {
   const [metadata, setMetadata] = useState(null);
@@ -69,7 +70,22 @@ export function App() {
 
 
   useEffect(() => {
+    let isMounted = true;
+
     async function loadIcons() {
+      // 1. Instant Cache Layer (<10ms)
+      try {
+        const cached = await getCachedCatalog();
+        if (cached && isMounted && cached.icons?.length > 0) {
+          setMetadata(cached);
+          setIsLoading(false);
+          preloadIconBatch(cached.icons, 48);
+        }
+      } catch (e) {
+        console.warn('Cache read error:', e);
+      }
+
+      // 2. Network Fetch & Revalidation
       try {
         const res = await fetch('/icons.json');
         if (!res.ok) throw new Error('Failed to load icons.json');
@@ -127,13 +143,11 @@ export function App() {
           };
         });
 
-
         normalized.sort((a, b) => {
           if (a.id === 'orildo' || a.id === 'thesvg') return -1;
           if (b.id === 'orildo' || b.id === 'thesvg') return 1;
           return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
         });
-
 
         const categoryCounts = {};
         normalized.forEach((icon) => {
@@ -153,20 +167,28 @@ export function App() {
         })).
         sort((a, b) => a.name.localeCompare(b.name));
 
-        setMetadata({
+        const freshCatalog = {
           totalIcons: normalized.length,
           categoryCount: categories.length,
           categories,
           icons: normalized
-        });
+        };
+
+        if (isMounted) {
+          setMetadata(freshCatalog);
+          setIsLoading(false);
+          setCachedCatalog(freshCatalog);
+          preloadIconBatch(normalized, 48);
+        }
       } catch (err) {
         console.error('Error loading icons.json:', err);
       } finally {
-        setIsLoading(false);
+        if (isMounted) setIsLoading(false);
       }
     }
 
     loadIcons();
+    return () => { isMounted = false; };
   }, []);
 
 
@@ -283,6 +305,25 @@ export function App() {
     return list;
   }, [metadata]);
 
+  const fuseIndex = useMemo(() => {
+    const list = metadata?.icons || [];
+    if (list.length === 0) return null;
+    return new Fuse(list, {
+      keys: [
+        { name: 'slug', weight: 0.4 },
+        { name: 'title', weight: 0.35 },
+        { name: 'name', weight: 0.35 },
+        { name: 'id', weight: 0.35 },
+        { name: 'aliases', weight: 0.2 },
+        { name: 'categories', weight: 0.05 }
+      ],
+      threshold: 0.35,
+      distance: 100,
+      minMatchCharLength: 1,
+      ignoreLocation: true,
+      shouldSort: true
+    });
+  }, [metadata?.icons]);
 
   const filteredIcons = useMemo(() => {
     if (!metadata || !metadata.icons) return [];
@@ -313,12 +354,17 @@ export function App() {
       });
     }
 
-    if (searchQuery.trim()) {
-      list = fuzzyFilterIcons(list, searchQuery);
+    if (searchQuery && searchQuery.trim()) {
+      if (fuseIndex) {
+        const results = fuseIndex.search(searchQuery.trim());
+        return results.map((r) => r.item);
+      }
+      const q = searchQuery.toLowerCase().trim();
+      return list.filter((i) => (i.slug || i.id || '').toLowerCase().includes(q) || (i.title || i.name || '').toLowerCase().includes(q));
     }
 
     return list;
-  }, [metadata, selectedCategory, searchQuery]);
+  }, [metadata, selectedCategory, searchQuery, fuseIndex]);
 
   const totalCount = metadata?.totalIcons || metadata?.icons?.length || 0;
 
@@ -473,6 +519,7 @@ export function App() {
 
             <IconGrid
               icons={filteredIcons}
+              searchQuery={searchQuery}
               onSelectIcon={handleSelectIcon}
               favoritesSet={favoritesSet}
               onToggleFavorite={toggleFavorite}

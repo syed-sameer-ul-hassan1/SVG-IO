@@ -8,10 +8,6 @@ import React, {
 import {
   UploadCloud,
   CheckCircle2,
-  GitFork,
-  FolderPlus,
-  FileCode,
-  GitPullRequest,
   Github,
   ExternalLink,
   Sparkles,
@@ -786,15 +782,6 @@ export function SubmitPage({
         {}
         <div className="sv-submit-left-col">
           {}
-          <div className="sv-submit-hero-card glass-panel">
-            <h1 className="sv-submit-main-title">Submit SVG Icons</h1>
-            <p className="sv-submit-main-sub">
-              Contribute new brands or submit icon variants. Quick submit
-              directly on the site, or fork the repository to contribute.
-            </p>
-          </div>
-
-          {}
           <div className="sv-pack-requirement-card glass-panel">
             <div className="sv-pack-header">
               <div className="sv-pack-badge">
@@ -830,69 +817,6 @@ export function SubmitPage({
               <div className="sv-pack-variant-pill">
                 <code>mono</code>
                 <span className="sv-pv-sub">Single Color Glyph</span>
-              </div>
-            </div>
-          </div>
-
-          {}
-          <div className="sv-how-it-works-section">
-            <h2 className="sv-section-header-title">
-              How to Contribute via Fork & PR
-            </h2>
-            <div className="sv-how-cards-grid">
-              {}
-              <div className="sv-how-card step-blue glass-panel">
-                <div className="sv-how-card-header">
-                  <div className="sv-how-icon-wrap">
-                    <GitFork size={14} />
-                  </div>
-                  <span className="sv-step-tag">#1 Fork the repo</span>
-                </div>
-                <p className="sv-step-desc">
-                  Fork <code>github.com/syed-sameer-ul-hassan/SVG.IO</code> and
-                  clone locally.
-                </p>
-              </div>
-
-              {}
-              <div className="sv-how-card step-emerald glass-panel">
-                <div className="sv-how-card-header">
-                  <div className="sv-how-icon-wrap">
-                    <FolderPlus size={14} />
-                  </div>
-                  <span className="sv-step-tag">#2 Add your SVGs</span>
-                </div>
-                <p className="sv-step-desc">
-                  Place files in <code>public/icons/[slug]/</code> with proper
-                  naming.
-                </p>
-              </div>
-
-              {}
-              <div className="sv-how-card step-purple glass-panel">
-                <div className="sv-how-card-header">
-                  <div className="sv-how-icon-wrap">
-                    <FileCode size={14} />
-                  </div>
-                  <span className="sv-step-tag">#3 Update icons.json</span>
-                </div>
-                <p className="sv-step-desc">
-                  Add entries to <code>public/icons.json</code> and run{" "}
-                  <code>npm run build:icons</code>.
-                </p>
-              </div>
-
-              {}
-              <div className="sv-how-card step-amber glass-panel">
-                <div className="sv-how-card-header">
-                  <div className="sv-how-icon-wrap">
-                    <GitPullRequest size={14} />
-                  </div>
-                  <span className="sv-step-tag">#4 Open a PR</span>
-                </div>
-                <p className="sv-step-desc">
-                  Verify metadata and open your PR for automated CI merge.
-                </p>
               </div>
             </div>
           </div>

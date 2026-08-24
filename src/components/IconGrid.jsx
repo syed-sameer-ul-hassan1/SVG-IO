@@ -7,6 +7,7 @@ const BUNCH_SIZE = 48;
 
 export function IconGrid({
   icons = [],
+  searchQuery = '',
   onSelectIcon,
   favoritesSet = new Set(),
   onToggleFavorite,
@@ -14,14 +15,23 @@ export function IconGrid({
   selectedCategory,
   onResetFilters
 }) {
+  const isSearching = Boolean(searchQuery && searchQuery.trim());
   const [layoutMode, setLayoutMode] = useState('comfortable');
   const [variantFilter, setVariantFilter] = useState('all');
-  const [sortBy, setSortBy] = useState('az');
+  const [sortBy, setSortBy] = useState(() => (isSearching ? 'relevance' : 'az'));
   const [visibleCount, setVisibleCount] = useState(BUNCH_SIZE);
 
   useEffect(() => {
+    if (isSearching) {
+      setSortBy('relevance');
+    } else if (sortBy === 'relevance') {
+      setSortBy('az');
+    }
+  }, [isSearching]);
+
+  useEffect(() => {
     setVisibleCount(BUNCH_SIZE);
-  }, [icons, variantFilter, sortBy]);
+  }, [icons, variantFilter, sortBy, searchQuery]);
 
   const processedIcons = useMemo(() => {
     let list = [...icons];
@@ -34,16 +44,17 @@ export function IconGrid({
     }
 
     if (sortBy === 'az') {
-      list.sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id, undefined, { numeric: true, sensitivity: 'base' }));
+      list.sort((a, b) => (a.title || a.name || a.slug || a.id).localeCompare(b.title || b.name || b.slug || b.id, undefined, { numeric: true, sensitivity: 'base' }));
     } else if (sortBy === 'za') {
-      list.sort((a, b) => (b.name || b.id).localeCompare(a.name || a.id, undefined, { numeric: true, sensitivity: 'base' }));
+      list.sort((a, b) => (b.title || b.name || b.slug || b.id).localeCompare(a.title || a.name || a.slug || a.id, undefined, { numeric: true, sensitivity: 'base' }));
     } else if (sortBy === 'variants') {
       list.sort((a, b) => {
         const lenB = Array.isArray(b.variants) ? b.variants.length : Object.keys(b.variants || {}).length;
         const lenA = Array.isArray(a.variants) ? a.variants.length : Object.keys(a.variants || {}).length;
-        return lenB - lenA || (a.name || a.id).localeCompare(b.name || b.id);
+        return lenB - lenA || (a.title || a.name || a.slug || a.id).localeCompare(b.title || b.name || b.slug || b.id);
       });
     }
+    // If sortBy === 'relevance' or default during search, list order from fuzzyFilterIcons is preserved!
 
     return list;
   }, [icons, variantFilter, sortBy]);
@@ -55,9 +66,24 @@ export function IconGrid({
     setVisibleCount((prev) => Math.min(prev + BUNCH_SIZE, processedIcons.length));
   };
 
+  const sortOptions = useMemo(() => {
+    if (isSearching) {
+      return [
+        { value: 'relevance', label: 'Sort: Relevance' },
+        { value: 'az', label: 'Sort: A to Z' },
+        { value: 'za', label: 'Sort: Z to A' },
+        { value: 'variants', label: 'Sort: Most Variants' }
+      ];
+    }
+    return [
+      { value: 'az', label: 'Sort: A to Z' },
+      { value: 'za', label: 'Sort: Z to A' },
+      { value: 'variants', label: 'Sort: Most Variants' }
+    ];
+  }, [isSearching]);
+
   return (
     <div>
-      {}
       <div className="md-toolbar">
         <div className="md-toolbar-stats">
           Showing <strong>{Math.min(visibleCount, processedIcons.length).toLocaleString()}</strong> of{' '}
@@ -65,32 +91,25 @@ export function IconGrid({
         </div>
 
         <div className="md-toolbar-actions">
-          {}
           <CustomSelect
             value={variantFilter}
             onChange={(val) => setVariantFilter(val)}
             options={[
-            { value: 'all', label: 'All Variants' },
-            { value: 'color', label: 'Color' },
-            { value: 'mono', label: 'Monochrome' },
-            { value: 'dark', label: 'Dark' },
-            { value: 'light', label: 'Light' },
-            { value: 'default', label: 'Default' }]
-            }
+              { value: 'all', label: 'All Variants' },
+              { value: 'color', label: 'Color' },
+              { value: 'mono', label: 'Monochrome' },
+              { value: 'dark', label: 'Dark' },
+              { value: 'light', label: 'Light' },
+              { value: 'default', label: 'Default' }
+            ]}
             title="Filter by variant"
             minWidth={130}
             placement="bottom" />
-          
 
-          {}
           <CustomSelect
             value={sortBy}
             onChange={(val) => setSortBy(val)}
-            options={[
-            { value: 'az', label: 'Sort: A to Z' },
-            { value: 'za', label: 'Sort: Z to A' },
-            { value: 'variants', label: 'Sort: Most Variants' }]
-            }
+            options={sortOptions}
             title="Sort icons"
             minWidth={160}
             placement="bottom" />

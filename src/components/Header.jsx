@@ -5,9 +5,9 @@ import {
   getSearchHistory,
   saveSearchHistoryItem,
   removeSearchHistoryItem,
-  clearSearchHistory } from
-'../utils/historyUtils';
-import { fuzzyFilterIcons } from '../utils/searchUtils';
+  clearSearchHistory
+} from '../utils/historyUtils';
+import Fuse from 'fuse.js';
 
 const POPULAR_SUGGESTIONS = [
 'React', 'GitHub', 'Next.js', 'Tailwind', 'Python', 'TypeScript',
@@ -69,18 +69,38 @@ export function Header({
   }, []);
 
 
+  const headerFuse = useMemo(() => {
+    if (!allIcons || allIcons.length === 0) return null;
+    return new Fuse(allIcons, {
+      keys: [
+        { name: 'title', weight: 0.4 },
+        { name: 'name', weight: 0.4 },
+        { name: 'slug', weight: 0.3 },
+        { name: 'id', weight: 0.3 },
+        { name: 'aliases', weight: 0.2 }
+      ],
+      threshold: 0.35,
+      distance: 100,
+      minMatchCharLength: 1,
+      ignoreLocation: true,
+      shouldSort: true
+    });
+  }, [allIcons]);
+
   const liveSuggestions = useMemo(() => {
     if (!searchQuery || searchQuery.trim().length === 0) {
       return POPULAR_SUGGESTIONS;
     }
-    if (allIcons && allIcons.length > 0) {
-      const fuzzyMatches = fuzzyFilterIcons(allIcons, searchQuery);
-      const suggestions = fuzzyMatches.slice(0, 12).map((i) => i.title || i.name || i.slug);
-      return Array.from(new Set(suggestions));
+    if (headerFuse) {
+      const results = headerFuse.search(searchQuery.trim(), { limit: 12 });
+      const suggestions = results.map((r) => r.item.title || r.item.name || r.item.slug);
+      if (suggestions.length > 0) {
+        return Array.from(new Set(suggestions));
+      }
     }
     const q = searchQuery.toLowerCase().trim();
     return POPULAR_SUGGESTIONS.filter((s) => s.toLowerCase().includes(q));
-  }, [searchQuery, allIcons]);
+  }, [searchQuery, headerFuse]);
 
   return (
     <div className="md-header-wrapper">
@@ -128,7 +148,7 @@ export function Header({
           </div>
 
           {}
-          {isFocused &&
+          {isFocused && !searchQuery &&
           <div className="md-search-popover" role="dialog" aria-label="Search suggestions">
               {}
               {searchHistory.length > 0 && !searchQuery &&
