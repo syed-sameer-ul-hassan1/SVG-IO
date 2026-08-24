@@ -145,7 +145,7 @@ export function IconDetailPage({
 
 
   const cliCommand = `npx @orildo/icons add ${icon?.id || ''}`;
-  const cdnUrl = `cdn.jsdelivr.net/gh/orildo/orildo-svg@main/public/icons/${icon?.id || ''}/${selectedVariant}.svg`;
+  const cdnUrl = `svg.io.orildo.tech/icons/${icon?.id || ''}/${selectedVariant}.svg`;
 
 
   const getActiveCode = () => {
@@ -163,9 +163,9 @@ export function IconDetailPage({
       case 'svg':
         return svgContent.trim();
       case 'nextjs':
-        return `import Image from 'next/image';\n\nexport function ${icon.name.replace(/[^a-zA-Z0-9]/g, '')}Logo() {\n  return (\n    <Image\n      src="/icons/${icon.id}/${selectedVariant}.svg"\n      alt="${icon.name} Icon"\n      width={24}\n      height={24}\n      priority\n    />\n  );\n}`;
+        return `import Image from 'next/image';\n\nexport function ${icon.name.replace(/[^a-zA-Z0-9]/g, '')}Logo() {\n  return (\n    <Image\n      src="https://${cdnUrl}"\n      alt="${icon.name} Icon"\n      width={24}\n      height={24}\n      priority\n    />\n  );\n}`;
       case 'css':
-        return `.icon-${icon.id} {\n  width: 24px;\n  height: 24px;\n  display: inline-block;\n  background: url('/icons/${icon.id}/${selectedVariant}.svg') no-repeat center / contain;\n}`;
+        return `.icon-${icon.id} {\n  width: 24px;\n  height: 24px;\n  display: inline-block;\n  background: url('https://${cdnUrl}') no-repeat center / contain;\n}`;
       case 'cdn':
         return `<img src="https://${cdnUrl}" alt="${icon.name}" width="24" height="24" />`;
       case 'uri':

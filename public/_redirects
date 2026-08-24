@@ -1,3 +1,0 @@
-# Cloudflare Pages / Netlify SPA redirect
-# All routes fall back to index.html so React handles routing
-/*    /index.html    200
