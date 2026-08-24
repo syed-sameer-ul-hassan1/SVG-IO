@@ -9,7 +9,8 @@
       "126634"
     ],
     "categories": [
-      "Pakistan Brand"
+      "Pakistani Brands",
+      "Telecommunications"
     ],
     "variants": {
       "dark": "/icons/ptcl/dark.svg",
@@ -4015,6 +4016,7 @@
     "aliases": [],
     "hex": "FFF",
     "categories": [
+      "Pakistani Brands",
       "Software",
       "Security",
       "Developer Tools"
@@ -4036,6 +4038,7 @@
     "aliases": [],
     "hex": "FF5F02",
     "categories": [
+      "Pakistani Brands",
       "Software",
       "Media",
       "Design"
@@ -128114,11 +128117,10 @@
     "aliases": [],
     "hex": "000",
     "categories": [
-      "Software",
-      "Design",
-      "Marketing",
-      "Gaming",
-      "E-commerce"
+      "Pakistani Brands",
+      "E-commerce",
+      "Tech",
+      "Design"
     ],
     "variants": {
       "light": "/icons/zero/light.svg",

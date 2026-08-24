@@ -21,12 +21,14 @@ import {
   Plus,
   Trash2,
   Eye,
-  Package } from
+  Package,
+  ShieldCheck } from
 "lucide-react";
 
 const MAX_SVG_SIZE_BYTES = 20 * 1024;
 
 const POPULAR_CATEGORIES = [
+"Pakistani Brands",
 "Software",
 "Developer Tools",
 "Framework",
@@ -108,7 +110,7 @@ export function SubmitPage({
   const [hexColors, setHexColors] = useState(["FF5F02"]);
   const [detectedHexes, setDetectedHexes] = useState([]);
   const [license, setLicense] = useState("Apache-2.0");
-  const [selectedCategories, setSelectedCategories] = useState(["Software"]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [customCategories, setCustomCategories] = useState(() => getSavedCustomCategories());
   const [categoriesList, setCategoriesList] = useState(() => {
     const saved = getSavedCustomCategories();
@@ -147,15 +149,7 @@ export function SubmitPage({
 
   const handleToggleCategory = (cat) => {
     if (selectedCategories.includes(cat)) {
-      if (selectedCategories.length > 1) {
-        setSelectedCategories(selectedCategories.filter((c) => c !== cat));
-      } else {
-        onShowToast?.({
-          type: "info",
-          title: "Minimum 1 Category",
-          message: "An icon must belong to at least one category."
-        });
-      }
+      setSelectedCategories(selectedCategories.filter((c) => c !== cat));
     } else {
       setSelectedCategories([...selectedCategories, cat]);
     }
@@ -598,6 +592,8 @@ export function SubmitPage({
     if (!iconSlug.trim()) newErrors.slug = "Slug is required";
     if (variants.length === 0)
     newErrors.svg = "Please upload at least one SVG file";
+    if (selectedCategories.length === 0)
+    newErrors.categories = "Please select or create at least one category";
 
     const variantNames = variants.map((v) => v.variantName.trim());
     if (variantNames.some((v) => !v))
@@ -729,7 +725,7 @@ export function SubmitPage({
       setHexColors(["FF5F02"]);
       setDetectedHexes([]);
       setLicense("Apache-2.0");
-      setSelectedCategories(["Software"]);
+      setSelectedCategories([]);
       setVariants([]);
       setErrors({});
     } catch (err) {
@@ -1108,16 +1104,6 @@ export function SubmitPage({
                   SVG Variants ({variants.length}){" "}
                   <span className="req">*</span>
                 </label>
-                {variants.length > 0 &&
-                <button
-                  type="button"
-                  className="sv-add-more-pill-btn"
-                  onClick={() => addMoreInputRef.current?.click()}>
-                  
-                    <Plus size={12} />
-                    <span>Add Another Variant</span>
-                  </button>
-                }
               </div>
 
               {}
@@ -1160,99 +1146,119 @@ export function SubmitPage({
               null}
 
               {}
-              {variants.length > 0 &&
-              <div
-                className={`sv-multi-variants-container ${isDragging ? "is-dragging" : ""}`}
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}>
-                
+              {variants.length > 0 && (
+                <div
+                  className={`sv-multi-variants-container ${isDragging ? "is-dragging" : ""}`}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                >
+                  <div className="sv-variants-header-bar">
+                    <div className="sv-vh-left">
+                      <span className="sv-vh-title">Uploaded Vector Variants</span>
+                      <span className="sv-vh-count-badge">
+                        {variants.length} Variant{variants.length !== 1 ? 's' : ''} Ready
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      className="sv-vh-add-btn"
+                      onClick={() => addMoreInputRef.current?.click()}
+                    >
+                      <Plus size={14} />
+                      <span>Add SVG Variant</span>
+                    </button>
+                  </div>
+
                   <div className="sv-variants-list">
-                    {variants.map((v, idx) =>
-                  <div
-                    key={v.id}
-                    className="sv-variant-item-card glass-panel">
-                    
-                        <div className="sv-variant-preview-circle">
+                    {variants.map((v, idx) => (
+                      <div key={v.id} className="sv-variant-item-card glass-panel">
+                        {}
+                        <div className="sv-variant-preview-box">
                           <div
-                        className="sv-variant-svg-wrapper"
-                        dangerouslySetInnerHTML={{ __html: v.svgContent }} />
-                      
+                            className="sv-variant-svg-wrapper"
+                            dangerouslySetInnerHTML={{ __html: v.svgContent }}
+                          />
                         </div>
 
+                        {}
                         <div className="sv-variant-fields">
-                          <div className="sv-variant-name-row">
-                            <label className="sv-variant-field-label">
-                              Variant Name / Key:
-                            </label>
-                            <input
-                          type="text"
-                          className="sv-variant-name-input"
-                          placeholder="e.g. default, dark, mono"
-                          value={v.variantName}
-                          onChange={(e) =>
-                          handleUpdateVariantName(v.id, e.target.value)
-                          } />
-                        
-                            {idx === 0 &&
-                        <span className="sv-primary-badge">PRIMARY</span>
-                        }
+                          <div className="sv-variant-top-row">
+                            <div className="sv-variant-key-wrap">
+                              <span className="sv-variant-field-label">KEY:</span>
+                              <input
+                                type="text"
+                                className="sv-variant-name-input"
+                                placeholder="e.g. default, dark, mono"
+                                value={v.variantName}
+                                onChange={(e) => handleUpdateVariantName(v.id, e.target.value)}
+                              />
+                            </div>
+
+                            {idx === 0 ? (
+                              <span className="sv-primary-badge">PRIMARY</span>
+                            ) : (
+                              <span className="sv-variant-index-badge">VARIANT #{idx + 1}</span>
+                            )}
+
+                            <span className="sv-variant-file-name" title={v.fileName}>
+                              {v.fileName}
+                            </span>
+                            <span className="sv-variant-file-size">
+                              {(v.fileSize / 1024).toFixed(1)} KB
+                            </span>
                           </div>
 
                           {}
                           <div className="sv-variant-presets-row">
-                            {PRESET_VARIANT_NAMES.map((pName) =>
-                        <button
-                          key={pName}
-                          type="button"
-                          className={`sv-preset-btn ${v.variantName === pName ? "active" : ""}`}
-                          onClick={() =>
-                          handleUpdateVariantName(v.id, pName)
-                          }>
-                          
-                                {pName}
-                              </button>
-                        )}
+                            <span className="sv-preset-label">Presets:</span>
+                            <div className="sv-preset-buttons-wrap">
+                              {PRESET_VARIANT_NAMES.map((pName) => (
+                                <button
+                                  key={pName}
+                                  type="button"
+                                  className={`sv-preset-btn ${v.variantName === pName ? "active" : ""}`}
+                                  onClick={() => handleUpdateVariantName(v.id, pName)}
+                                >
+                                  {pName}
+                                </button>
+                              ))}
+                            </div>
                           </div>
 
+                          {}
                           <div className="sv-variant-meta-row">
-                            <span className="sv-variant-file-name">
-                              {v.fileName}
-                            </span>
-                            <span className="sv-variant-file-size">
-                              {(v.fileSize / 1024).toFixed(1)} KB • Target:{" "}
-                              <code>
-                                icons/{iconSlug || "slug"}/
-                                {v.variantName || "default"}.svg
-                              </code>
-                            </span>
+                            <span className="sv-variant-target-label">Target File:</span>
+                            <code className="sv-variant-target-path">
+                              public/icons/{iconSlug || "slug"}/{v.variantName || "default"}.svg
+                            </code>
                           </div>
                         </div>
 
+                        {}
                         <button
-                      type="button"
-                      className="sv-variant-remove-btn"
-                      onClick={() => handleRemoveVariant(v.id)}
-                      title="Remove variant">
-                      
-                          <Trash2 size={14} />
+                          type="button"
+                          className="sv-variant-remove-btn"
+                          onClick={() => handleRemoveVariant(v.id)}
+                          title="Remove variant"
+                          aria-label="Remove variant"
+                        >
+                          <Trash2 size={15} />
                         </button>
                       </div>
-                  )}
+                    ))}
                   </div>
 
                   {}
                   <div
-                  className="sv-add-drop-footer"
-                  onClick={() => addMoreInputRef.current?.click()}>
-                  
-                    <Plus size={14} />
-                    <span>
-                      Drop more SVGs or click here to add another variant
-                    </span>
+                    className="sv-add-drop-footer"
+                    onClick={() => addMoreInputRef.current?.click()}
+                  >
+                    <Plus size={16} />
+                    <span>Drop more SVGs or click here to add another variant</span>
                   </div>
                 </div>
-              }
+              )}
 
               {errors.svg &&
               <span className="sv-field-error">{errors.svg}</span>
@@ -1463,18 +1469,16 @@ export function SubmitPage({
             </div>
 
             {}
-            {/* License */}
+            {/* License: Apache 2.0 Official Open-Source License */}
             <div className="sv-form-group">
               <label className="sv-form-label">
                 License <span className="req">*</span>
               </label>
-              <select
-                className="sv-form-select"
-                value="Apache-2.0"
-                disabled
-                style={{ opacity: 0.9, cursor: 'default' }}>
-                <option value="Apache-2.0">Apache 2.0 (Official Open-Source License)</option>
-              </select>
+              <div className="sv-license-display-box">
+                <ShieldCheck size={16} style={{ color: '#10B981', flexShrink: 0 }} />
+                <span className="sv-license-text">Apache 2.0 (Official Open-Source License)</span>
+                <span className="sv-license-badge">APACHE 2.0</span>
+              </div>
             </div>
 
             {/* Categories & Multiple Category Creation */}
@@ -1483,8 +1487,10 @@ export function SubmitPage({
                 <label className="sv-form-label" style={{ marginBottom: 0 }}>
                   Categories <span className="req">*</span>
                 </label>
-                <span className="sv-cat-count-badge">
-                  {selectedCategories.length} category{selectedCategories.length !== 1 ? 'ies' : ''} selected
+                <span className={`sv-cat-count-badge ${selectedCategories.length === 0 ? "empty" : ""}`}>
+                  {selectedCategories.length === 0
+                    ? "None selected"
+                    : `${selectedCategories.length} categor${selectedCategories.length !== 1 ? 'ies' : 'y'} selected`}
                 </span>
               </div>
               <p className="sv-cat-help-text">
@@ -1556,6 +1562,12 @@ export function SubmitPage({
                   );
                 })}
               </div>
+
+              {errors.categories && (
+                <span className="sv-field-error" style={{ marginTop: 6, display: 'block' }}>
+                  {errors.categories}
+                </span>
+              )}
             </div>
 
             {}
