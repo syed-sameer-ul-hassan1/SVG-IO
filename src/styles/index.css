@@ -11971,4 +11971,265 @@ a:focus {
   color: #FF5F02;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE DEVICE NOTICE OVERLAY (< 768px)
+   Site is strictly available for Desktop & Tablet only
+   ═══════════════════════════════════════════════════════════════ */
+
+.sv-mobile-block-overlay {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .sv-mobile-block-overlay {
+    display: flex !important;
+    position: fixed;
+    inset: 0;
+    z-index: 9999999;
+    background: radial-gradient(circle at 50% 20%, rgba(255, 95, 2, 0.12) 0%, rgba(0, 0, 0, 0.96) 65%, #000000 100%);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    overflow-y: auto;
+    animation: svFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-theme='light'] .sv-mobile-block-overlay {
+    background: radial-gradient(circle at 50% 20%, rgba(255, 95, 2, 0.1) 0%, rgba(248, 250, 252, 0.98) 70%, #F1F5F9 100%);
+  }
+
+  .sv-mobile-block-card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    padding: 28px 22px;
+    border-radius: 20px;
+    background: rgba(18, 20, 26, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 95, 2, 0.15);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  [data-theme='light'] .sv-mobile-block-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15), 0 0 30px rgba(255, 95, 2, 0.1);
+  }
+
+  .sv-mobile-glow {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 95, 2, 0.35) 0%, transparent 70%);
+    filter: blur(25px);
+    pointer-events: none;
+  }
+
+  .sv-mobile-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .sv-mobile-logo-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    box-shadow: 0 4px 12px rgba(255, 95, 2, 0.2);
+  }
+
+  .sv-mobile-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .sv-mobile-brand-name {
+    font-family: var(--md-font-sans);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  .sv-mobile-devices-display {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .sv-device-status-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 6px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    transition: all 0.2s ease;
+  }
+
+  [data-theme='light'] .sv-device-status-box {
+    background: rgba(15, 23, 42, 0.03);
+    border-color: rgba(15, 23, 42, 0.08);
+  }
+
+  .sv-device-status-box.supported {
+    border-color: rgba(16, 185, 129, 0.25);
+    background: rgba(16, 185, 129, 0.05);
+  }
+
+  .sv-device-status-box.not-supported {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.06);
+  }
+
+  .sv-device-icon-wrap {
+    position: relative;
+    margin-bottom: 6px;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  .sv-status-badge {
+    position: absolute;
+    bottom: -4px;
+    right: -6px;
+  }
+
+  .sv-status-badge.check {
+    color: #10B981;
+    fill: #10B981;
+    background: #000;
+    border-radius: 50%;
+  }
+
+  .sv-status-badge.cross {
+    color: #EF4444;
+    fill: #EF4444;
+    background: #000;
+    border-radius: 50%;
+  }
+
+  .sv-device-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
+  }
+
+  .sv-device-sub {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: 2px;
+  }
+
+  .sv-device-status-box.supported .sv-device-sub {
+    color: #10B981;
+  }
+
+  .sv-device-status-box.not-supported .sv-device-sub {
+    color: #EF4444;
+  }
+
+  .sv-mobile-title {
+    font-family: var(--md-font-sans);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--md-sys-color-on-surface);
+    margin: 0 0 10px 0;
+  }
+
+  .sv-mobile-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--md-sys-color-on-surface-variant);
+    margin: 0 0 12px 0;
+  }
+
+  .sv-mobile-highlight {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #FF5F02;
+    background: rgba(255, 95, 2, 0.08);
+    border: 1px solid rgba(255, 95, 2, 0.25);
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin: 0 0 20px 0;
+    font-weight: 500;
+  }
+
+  [data-theme='light'] .sv-mobile-highlight {
+    background: #FFF4EE;
+    border-color: rgba(255, 95, 2, 0.3);
+    color: #D64A00;
+  }
+
+  .sv-mobile-actions {
+    margin-bottom: 18px;
+  }
+
+  .sv-mobile-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: #FF5F02;
+    border: 1px solid #FF5F02;
+    color: #FFFFFF;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(255, 95, 2, 0.35);
+  }
+
+  .sv-mobile-copy-btn:hover {
+    background: #E05300;
+    border-color: #E05300;
+  }
+
+  .sv-mobile-features-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .sv-feature-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 11px;
+    color: var(--md-sys-color-on-surface-variant);
+    font-weight: 600;
+  }
+
+  [data-theme='light'] .sv-feature-pill {
+    background: rgba(15, 23, 42, 0.04);
+    border-color: rgba(15, 23, 42, 0.08);
+  }
+}
 

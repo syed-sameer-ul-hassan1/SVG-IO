@@ -17,6 +17,7 @@ import TermsPage from './components/TermsPage';
 import StatusPage from './components/StatusPage';
 import InfoPage from './components/InfoPage';
 import CookieBanner from './components/CookieBanner';
+import MobileDeviceNotice from './components/MobileDeviceNotice';
 import Fuse from 'fuse.js';
 
 import { saveSearchHistoryItem } from './utils/historyUtils';
@@ -640,8 +641,11 @@ export function App() {
         </div>
       }
 
-      {}
+      {/* Cookie Banner */}
       <CookieBanner onNavigate={handleNavigate} />
+
+      {/* Mobile Device Notice: strictly available on Desktop and Tablet only */}
+      <MobileDeviceNotice />
     </div>);
 
 }
