@@ -11325,7 +11325,6 @@ a:focus {
   background: rgba(255, 95, 2, 0.1);
   border-color: rgba(255, 95, 2, 0.35);
   color: #FF5F02;
-  box-shadow: 0 0 10px rgba(255, 95, 2, 0.15);
 }
 
 [data-theme='light'] .sv-pack-requirement-card {
