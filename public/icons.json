@@ -1,5 +1,32 @@
 [
   {
+    "slug": "facbook-glass",
+    "title": "Facbook-glass",
+    "aliases": [],
+    "hex": "FFFFFF",
+    "hexes": [
+      "FFFFFF"
+    ],
+    "categories": [
+      "Software",
+      "Developer Tools",
+      "Media",
+      "Education",
+      "Social",
+      "Design"
+    ],
+    "variants": {
+      "default": "/icons/facbook-glass/default.svg",
+      "facbook": "/icons/facbook-glass/facbook.svg",
+      "like": "/icons/facbook-glass/like.svg",
+      "messenger": "/icons/facbook-glass/messenger.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://facbook.com",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
     "slug": "useful-icons",
     "title": "Useful-Icons",
     "aliases": [],
