@@ -1777,11 +1777,11 @@ button,
 }
 
 .md-credits-icon-wrap {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: rgba(255, 95, 2, 0.15);
-  border: 1px solid rgba(255, 95, 2, 0.3);
+  width: 24px;
+  height: 24px;
+  border-radius: 0;
+  background: transparent;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;

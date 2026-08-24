@@ -140,7 +140,7 @@ export function Footer({
             title="Visit Orildo">
             
             <div className="md-credits-icon-wrap">
-              <img src={orildoIconSrc} alt="Orildo" width="18" height="18" style={{ objectFit: 'contain' }} />
+              <img src={orildoIconSrc} alt="Orildo" width="22" height="22" style={{ objectFit: 'contain' }} />
             </div>
             <div className="md-credits-info">
               <span className="md-credits-title">orildo.dev</span>
@@ -163,7 +163,7 @@ export function Footer({
             title="Visit Syed Sameer Ul Hassan's Portfolio">
             
             <div className="md-credits-icon-wrap">
-              <img src={orildoIconSrc} alt="Syed Sameer Ul Hassan" width="18" height="18" style={{ objectFit: 'contain' }} />
+              <img src={orildoIconSrc} alt="Syed Sameer Ul Hassan" width="22" height="22" style={{ objectFit: 'contain' }} />
             </div>
             <div className="md-credits-info">
               <span className="md-credits-title">Syed Sameer Ul Hassan</span>
