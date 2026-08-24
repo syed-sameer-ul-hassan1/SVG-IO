@@ -126,10 +126,10 @@ export function Sidebar({
             
               <div className="md-side-featured-left">
                 <img
-                src={theme === 'light' ? '/icons/orildo/mono.svg' : '/icons/orildo/default.svg'}
+                src={theme === 'light' ? '/assets/orildo-light.svg' : '/assets/orildo-dark.svg'}
                 alt="Orildo"
-                width="13"
-                height="13"
+                width="14"
+                height="14"
                 style={{ objectFit: 'contain' }} />
               
                 <span>Orildo </span>

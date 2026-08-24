@@ -14,6 +14,7 @@ export function Footer({
 
   const logoSrc = theme === 'light' ? '/assets/logo-light.svg' : '/assets/logo-dark.svg';
   const wordmarkSrc = theme === 'light' ? '/assets/wordmark-light.svg' : '/assets/wordmark-dark.svg';
+  const orildoIconSrc = theme === 'light' ? '/assets/orildo-light.svg' : '/assets/orildo-dark.svg';
 
   return (
     <footer className="md-main-footer-card glass-panel" role="contentinfo">
@@ -54,7 +55,7 @@ export function Footer({
               <span style={{ fontSize: 10, fontWeight: 800 }}>FIG</span>
             </a>
             <a href="https://orildo.dev" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="Orildo Official">
-              <img src={logoSrc} alt="Orildo" width="14" height="14" style={{ objectFit: 'contain' }} />
+              <img src={orildoIconSrc} alt="Orildo" width="14" height="14" style={{ objectFit: 'contain' }} />
             </a>
           </div>
 
@@ -139,7 +140,7 @@ export function Footer({
             title="Visit Orildo">
             
             <div className="md-credits-icon-wrap">
-              <img src={logoSrc} alt="Orildo" width="16" height="16" style={{ objectFit: 'contain' }} />
+              <img src={orildoIconSrc} alt="Orildo" width="18" height="18" style={{ objectFit: 'contain' }} />
             </div>
             <div className="md-credits-info">
               <span className="md-credits-title">orildo.dev</span>
@@ -162,7 +163,7 @@ export function Footer({
             title="Visit Syed Sameer Ul Hassan's Portfolio">
             
             <div className="md-credits-icon-wrap">
-              <img src={logoSrc} alt="Syed Sameer Ul Hassan" width="16" height="16" style={{ objectFit: 'contain' }} />
+              <img src={orildoIconSrc} alt="Syed Sameer Ul Hassan" width="18" height="18" style={{ objectFit: 'contain' }} />
             </div>
             <div className="md-credits-info">
               <span className="md-credits-title">Syed Sameer Ul Hassan</span>
