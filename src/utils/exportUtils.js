@@ -8,6 +8,38 @@ const svgCache = new Map();
 
 
 
+export async function getExactSvgVariant(iconId, variant = 'default') {
+  const key = `exact_${iconId}_${variant}`;
+  if (svgCache.has(key)) {
+    return svgCache.get(key);
+  }
+
+  try {
+    const persisted = await getCachedSvgVector(key);
+    if (persisted && persisted.includes('<svg')) {
+      svgCache.set(key, persisted);
+      return persisted;
+    }
+  } catch {}
+
+  try {
+    const res = await fetch(`/icons/${iconId}/${variant}.svg`);
+    if (res.ok) {
+      const text = await res.text();
+      if (text && text.includes('<svg')) {
+        svgCache.set(key, text);
+        setCachedSvgVector(key, text);
+        return text;
+      }
+    }
+  } catch {}
+
+  return null;
+}
+
+
+
+
 export async function getSvgContent(iconId, variant = 'default') {
   const key = `${iconId}/${variant}`;
   
@@ -456,45 +488,56 @@ export async function downloadBulkZip(iconList, zipName = 'svgio-vector-bundle.z
 
 
 /**
- * Exports all favorited icons including all their available asset variants
- * (mono, default, dark, light, wordmark, color, etc.) into an organized ZIP bundle.
+ * Exports all favorited icons and only their genuine existing asset variants
+ * without creating duplicate files or inventing synthetic variant names.
  */
-export async function downloadFavoritesFullZip(favorites = [], zipName = 'svgio-favorites-all-variants.zip') {
+export async function downloadFavoritesFullZip(favorites = [], zipName = 'svgio-favorites-all-assets.zip') {
   if (!Array.isArray(favorites) || favorites.length === 0) return;
 
   const zip = new JSZip();
   const folder = zip.folder('icons');
-  const variantCandidates = ['default', 'mono', 'dark', 'light', 'wordmark', 'color'];
 
   await Promise.all(
     favorites.map(async (icon) => {
       const iconId = icon.slug || icon.id;
       if (!iconId) return;
 
-      const targetVariants = new Set();
-
+      // 1. Get genuine declared variants for this icon
+      let declaredVariants = [];
       if (Array.isArray(icon.variants) && icon.variants.length > 0) {
-        icon.variants.forEach((v) => targetVariants.add(v));
+        declaredVariants = icon.variants;
+      } else if (icon.variantPaths && typeof icon.variantPaths === 'object') {
+        declaredVariants = Object.keys(icon.variantPaths);
+      } else {
+        declaredVariants = ['default'];
       }
-      if (icon.variantPaths && typeof icon.variantPaths === 'object') {
-        Object.keys(icon.variantPaths).forEach((v) => targetVariants.add(v));
+
+      // Track hashes of SVGs already added for this icon to prevent any duplicate files
+      const seenSvgContents = new Set();
+
+      for (const variant of declaredVariants) {
+        // Fetch strictly the exact variant without fallbacks
+        let content = await getExactSvgVariant(iconId, variant);
+        if (!content && variant === 'default') {
+          content = await getSvgContent(iconId, 'default');
+        }
+
+        if (content && content.includes('<svg')) {
+          const trimmed = content.trim();
+          if (seenSvgContents.has(trimmed)) {
+            // Already bundled identical vector for this icon, avoid duplication
+            continue;
+          }
+          seenSvgContents.add(trimmed);
+
+          // Name file cleanly: ${iconId}.svg if single variant, otherwise ${iconId}-${variant}.svg
+          const fileName = (declaredVariants.length === 1 && variant === 'default')
+            ? `${iconId}.svg`
+            : `${iconId}-${variant}.svg`;
+
+          folder.file(fileName, content);
+        }
       }
-
-      // Always include standard asset variants
-      variantCandidates.forEach((v) => targetVariants.add(v));
-
-      const variantList = Array.from(targetVariants);
-
-      await Promise.all(
-        variantList.map(async (variant) => {
-          try {
-            const content = await getSvgContent(iconId, variant);
-            if (content && content.includes('<svg')) {
-              folder.file(`${iconId}-${variant}.svg`, content);
-            }
-          } catch {}
-        })
-      );
     })
   );
 
