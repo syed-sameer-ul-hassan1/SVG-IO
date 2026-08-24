@@ -36,7 +36,7 @@ export function Footer({
           </a>
 
           <p className="md-footer-brand-desc">
-            The Premier SVG Brand & Developer Icon Library. Open-source, fast, and community-driven.
+            The Free, Open-Source SVG Hosting & Publishing Platform. Upload icons or packs, get dedicated preview pages, instant CDN delivery, and ready-to-use framework code.
           </p>
 
           <span className="md-footer-project-tag">
@@ -77,7 +77,7 @@ export function Footer({
           <ul className="md-footer-links">
             <li><button onClick={() => onNavigate?.('icons')}>Browse Icons</button></li>
             <li><button onClick={() => onNavigate?.('categories')}>Categories</button></li>
-            <li><button onClick={() => onSubmitIconClick ? onSubmitIconClick() : onNavigate?.('submit')}>Submit Icon</button></li>
+            <li><button onClick={() => onSubmitIconClick ? onSubmitIconClick() : onNavigate?.('submit')}>Publish & Host SVGs</button></li>
             <li><button onClick={() => onNavigate?.('blog')}>Blog & Guides</button></li>
           </ul>
         </div>

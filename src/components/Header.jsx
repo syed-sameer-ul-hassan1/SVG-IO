@@ -241,15 +241,16 @@ export function Header({
 
         {}
         <div className="md-header-actions">
-          {}
+          {/* Submit / Publish Icon Pack Action */}
           {onSubmitIconClick &&
           <button
             type="button"
             className="md-header-submit-btn"
-            onClick={onSubmitIconClick}>
+            onClick={onSubmitIconClick}
+            title="Publish & Host SVG Icons or Packs">
             
               <Plus size={13} />
-              <span>Submit Icon</span>
+              <span>Publish SVG</span>
             </button>
           }
 

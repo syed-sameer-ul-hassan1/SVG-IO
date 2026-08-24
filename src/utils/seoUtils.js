@@ -174,10 +174,10 @@ export function updatePageSeo({
   if (typeof document === 'undefined') return;
 
   // ── Default (Homepage) ─────────────────────────────────────────
-  let finalTitle = 'SVG.IO — 6,517+ Free Brand Icons, SVG Logos & Developer Vector Assets | Download Free';
+  let finalTitle = 'SVG.IO — Open-Source SVG Hosting & Publishing Platform | 6,500+ Vectors';
   let finalDesc =
-    'SVG.IO is the world\'s best free SVG icon library with 6,517+ brand logos, developer tech icons, and Liquid Glass vectors. Search, preview, and instantly copy React JSX, Vue 3, Angular, Svelte, HTML, and raw SVG XML code — zero tracking, offline-ready, Apache 2.0 licensed.';
-  let finalKeywords = `${BRAND_KEYWORDS_BASE}, ${TECH_ICON_KEYWORDS}, react jsx icons, vue component icons, svelte icons, angular icons, liquid glass icons, brand logos svg`;
+    'SVG.IO is the modern, free open-source SVG hosting, publishing, and distribution platform. Upload icons or complete packs, get automated optimization, dedicated live shareable pages, CDN delivery, and instant React, Vue, Svelte & HTML code.';
+  let finalKeywords = `${BRAND_KEYWORDS_BASE}, ${TECH_ICON_KEYWORDS}, svg hosting, svg publishing, vector distribution platform, react jsx icons, vue component icons, svelte icons, angular icons, liquid glass icons, brand logos svg`;
   let canonicalUrl = BASE_URL + '/';
   let schema = null;
 
@@ -190,8 +190,8 @@ export function updatePageSeo({
     const catsStr = cats.join(', ');
     const iconUrl = `${BASE_URL}/icons/${slug}/${slug}.svg`;
 
-    finalTitle = `${iconName} SVG Icon & Logo — Free Download React JSX, Vue 3, PNG | SVG.IO`;
-    finalDesc = `Download the free ${iconName} SVG vector icon and brand logo on SVG.IO. Instantly copy ready-to-use React JSX, Vue 3, Angular, Svelte, or raw SVG XML code. Category: ${catsStr}. License: ${icon.license || 'Apache-2.0'}. No signup required.`;
+    finalTitle = `${iconName} SVG Icon & Logo — Free Hosting, React JSX, Vue 3, PNG | SVG.IO`;
+    finalDesc = `Download and embed the free ${iconName} SVG vector icon and brand logo on SVG.IO. Dedicated live preview page, CDN endpoint, and instant React JSX, Vue 3, Svelte, or raw SVG code. Category: ${catsStr}. License: ${icon.license || 'Apache-2.0'}.`;
     finalKeywords = buildIconKeywords(icon);
     canonicalUrl = `${BASE_URL}/icon/${slug}`;    // clean shareable URL
     schema = buildIconSchema(icon, iconUrl, finalDesc, canonicalUrl);
@@ -199,8 +199,8 @@ export function updatePageSeo({
 
   // ── Category Page ──────────────────────────────────────────────
   else if (category && category !== 'all') {
-    finalTitle = `${category} SVG Icons & Logos — Free Download | SVG.IO`;
-    finalDesc = `Browse and download free ${category} SVG icons and brand logos on SVG.IO. Instant React JSX, Vue 3, Angular, Svelte, and PNG high-res export. Apache 2.0 licensed.`;
+    finalTitle = `${category} SVG Icons & Packs — Free Hosting & Download | SVG.IO`;
+    finalDesc = `Browse, host, and download free ${category} SVG icons and brand packs on SVG.IO. Instant React JSX, Vue 3, Angular, Svelte, and PNG high-res export. Apache 2.0 licensed.`;
     finalKeywords = [
       `${category} svg icons`,
       `${category} svg logo`,
@@ -217,25 +217,25 @@ export function updatePageSeo({
 
   // ── About / Info Page ──────────────────────────────────────────
   else if (view === 'about' || view === 'info') {
-    finalTitle = 'About SVG.IO — Open Vector Platform, Apache 2.0 & Platform Specifications';
-    finalDesc = 'Learn about SVG.IO — open-source vector platform, hosting 6,500+ Apache 2.0 licensed vectors with sub-10ms browser caching and zero telemetry.';
-    finalKeywords = 'about svg.io, svg.io platform, apache 2.0 svg, open source icon library, svg platform specs, vector library about';
+    finalTitle = 'About SVG.IO — Open-Source SVG Hosting, Publishing & Distribution Platform';
+    finalDesc = 'Learn about SVG.IO — the free open-source vector hosting platform. Upload icons or packs, automated 7-min ingestion, live shareable preview pages, and zero-telemetry browser caching.';
+    finalKeywords = 'about svg.io, svg hosting, svg publishing platform, open source icon library, vector platform specs, shareable icon pages';
     canonicalUrl = `${BASE_URL}/?view=about`;
   }
 
   // ── Categories Page ────────────────────────────────────────────
   else if (view === 'categories') {
-    finalTitle = 'All SVG Icon Categories & Collections — 6,517+ Vectors | SVG.IO';
-    finalDesc = 'Browse all 6,517+ vector brand icons organized across Software, AI, Cloud, Frameworks, Liquid Glass, DevOps, and 50+ developer tool categories on SVG.IO.';
+    finalTitle = 'All SVG Icon Categories & Collections — 6,500+ Vectors | SVG.IO';
+    finalDesc = 'Browse all 6,500+ hosted vector brand icons organized across Software, AI, Cloud, Frameworks, Liquid Glass, DevOps, and 50+ developer tool categories on SVG.IO.';
     finalKeywords = 'svg icon categories, brand logo categories, software icons, ai icons, cloud icons, framework icons, devops icons, liquid glass icons, developer tool icons, svg io categories, browse svg icons';
     canonicalUrl = `${BASE_URL}/?view=categories`;
   }
 
   // ── Submit / Contribute Page ───────────────────────────────────
   else if (view === 'submit') {
-    finalTitle = 'Submit a Free SVG Icon — Contribute to the Open Vector Library | SVG.IO';
-    finalDesc = 'Contribute your brand or tech SVG icon to SVG.IO\'s open-source vector library under the Apache 2.0 license. Help the developer community access more free, high-quality SVG assets.';
-    finalKeywords = 'submit svg icon, contribute svg, upload brand logo, open source icon contribution, add icon to library, svg ingestion, svg io contribute, developer icon submission';
+    finalTitle = 'Publish & Host SVG Icons — Open Vector Publishing Platform | SVG.IO';
+    finalDesc = 'Publish and host your SVG icons and packs on SVG.IO. Automated 7-minute ingestion validates viewBoxes, optimizes paths, creates dedicated shareable live web pages, and delivers fast CDN links under Apache 2.0.';
+    finalKeywords = 'publish svg, host svg icons, upload icon pack, open source vector hosting, svg distribution, svg ingestion, developer icon publishing';
     canonicalUrl = `${BASE_URL}/?view=submit`;
   }
 

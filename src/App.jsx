@@ -630,7 +630,8 @@ export function App() {
               theme={theme}
               totalIcons={totalCount}
               selectedCategory={selectedCategory}
-              onResetFilters={resetFilters} />
+              onResetFilters={resetFilters}
+              onNavigate={handleNavigate} />
 
             }
 

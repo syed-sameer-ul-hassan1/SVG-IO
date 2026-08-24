@@ -624,60 +624,19 @@ export function SubmitPage({
     const allHexes = hexColors.map((h) => h.replace(/^#/, "").toUpperCase());
     const iconUrl = websiteUrl.trim() || `https://${slug}.com`;
     const brandGuidelines = brandGuidelinesUrl.trim() || undefined;
-    const SUPABASE_URL = (
-    import.meta.env.VITE_DATABASE_URL ||
-    "https://wexavetbwvlazhusuouu.supabase.co").
-    replace(/\/+$/, "");
-    const SUPABASE_ANON_KEY =
-    import.meta.env.VITE_DATABASE_KEY ||
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndleGF2ZXRid3ZsYXpodXN1b3V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MDA2NzgsImV4cCI6MjEwMzA3NjY3OH0.dWhB2MYM-yNdmvGIkHRf53tTSsgVD6sFcfY_xIAnEms";
 
     try {
-
-      const uploadPromises = variants.map(async (v) => {
+      const rawVariants = {};
+      variants.forEach((v) => {
         const variantKey = v.variantName.trim().toLowerCase();
-        const filePath = `${slug}/${variantKey}.svg`;
-        const svgBytes = new TextEncoder().encode(v.svgContent);
-
-        const uploadRes = await fetch(
-          `${SUPABASE_URL}/storage/v1/object/svg-icons/${filePath}`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-              apikey: SUPABASE_ANON_KEY,
-              "Content-Type": "image/svg+xml",
-              "x-upsert": "true"
-            },
-            body: svgBytes
-          }
-        );
-
-        if (!uploadRes.ok) {
-          const err = await uploadRes.text();
-          throw new Error(`Upload failed for "${variantKey}": ${err}`);
-        }
-
-        return {
-          key: variantKey,
-          url: `${SUPABASE_URL}/storage/v1/object/public/svg-icons/${filePath}`
-        };
+        rawVariants[variantKey] = v.svgContent;
       });
 
-      const uploadResults = await Promise.all(uploadPromises);
-      const storageUrls = {};
-      uploadResults.forEach((r) => {
-        storageUrls[r.key] = r.url;
-      });
-
-
-
-      const edgeRes = await fetch(`${SUPABASE_URL}/functions/v1/submit-icon`, {
+      // Submit securely to serverless endpoint
+      const response = await fetch("/api/submit-icon", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          apikey: SUPABASE_ANON_KEY
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           slug,
@@ -689,22 +648,21 @@ export function SubmitPage({
           license,
           url: iconUrl,
           guidelines: brandGuidelines,
-          variants: storageUrls
+          variants: rawVariants
         })
       });
 
-      if (!edgeRes.ok) {
-        const errJson = await edgeRes.json().catch(() => ({}));
+      if (!response.ok) {
+        const errJson = await response.json().catch(() => ({}));
         throw new Error(
-          errJson.error || `Submission service error (${edgeRes.status})`
+          errJson.error || `Submission service temporarily unavailable (${response.status})`
         );
       }
 
-
       onShowToast?.({
         type: "success",
-        title: "Processing started",
-        message: `"${title}" with ${allHexes.length} brand color${allHexes.length > 1 ? "s" : ""} is being added.`
+        title: "Processing Started",
+        message: `"${title}" is being validated, optimized, and hosted.`
       });
 
       setSubmissionResult({
@@ -712,8 +670,7 @@ export function SubmitPage({
         slug,
         title,
         variantCount: variants.length,
-        colors: allHexes,
-        storageUrls
+        colors: allHexes
       });
       setCountdown(TOTAL_PIPELINE_SECONDS);
 
@@ -759,22 +716,22 @@ export function SubmitPage({
           <div className="sv-pipeline-hero-left">
             <div className="sv-pipeline-status-badge">
               <span className={`sv-pipeline-pulse-dot ${isDone ? 'done' : 'active'}`} />
-              <span>{isDone ? 'DEPLOYMENT COMPLETED' : 'AUTOMATED CI/CD PIPELINE ACTIVE'}</span>
+              <span>{isDone ? 'PUBLISHED & HOSTED' : 'AUTOMATED INGESTION PIPELINE ACTIVE'}</span>
             </div>
 
             <h1 className="sv-pipeline-hero-title">
-              {isDone ? 'Successfully Published' : 'Processing'}{' '}
+              {isDone ? 'Successfully Hosted' : 'Processing'}{' '}
               <span className="text-orange">{submissionResult.title}</span>
             </h1>
 
             <p className="sv-pipeline-hero-desc">
               {isDone ? (
                 <>
-                  <strong>{submissionResult.title}</strong> has been committed to the repository and compiled into the global index.
+                  <strong>{submissionResult.title}</strong> is now live with its dedicated preview page, instant CDN delivery, and framework code snippets.
                 </>
               ) : (
                 <>
-                  Vector assets uploaded and verified. Automated Edge Build Engine is compiling <code>icons.json</code> and propagating to global CDN.
+                  Vector assets uploaded and verified. Automated pipeline is optimizing paths, generating framework code, and deploying to global CDN.
                 </>
               )}
             </p>
@@ -786,7 +743,7 @@ export function SubmitPage({
                 {isDone ? <CheckCircle2 size={36} className="text-emerald" /> : formatPipelineTime(countdown)}
               </div>
               <div className="sv-pipeline-time-label">
-                {isDone ? 'Ready in Library' : 'Estimated Time (7m)'}
+                {isDone ? 'Live in Library' : 'Estimated Time (7m)'}
               </div>
             </div>
           </div>
@@ -794,7 +751,7 @@ export function SubmitPage({
 
         <div className="sv-pipeline-progress-bar-wrap glass-panel">
           <div className="sv-pipeline-progress-header">
-            <span>Overall Pipeline Progress</span>
+            <span>Overall Publishing Progress</span>
             <span className="sv-pipeline-percent">{isDone ? '100%' : `${Math.round(progress)}%`}</span>
           </div>
           <div className="sv-pipeline-track">
@@ -804,17 +761,17 @@ export function SubmitPage({
 
         <div className="sv-pipeline-grid">
           <div className="sv-pipeline-stages-col">
-            <h3 className="sv-pipeline-col-title">Pipeline Execution Stages</h3>
+            <h3 className="sv-pipeline-col-title">Publishing Pipeline Stages</h3>
 
             <div className="sv-pipeline-stage-card glass-panel completed">
               <div className="sv-stage-step-num"><Check size={14} /></div>
               <div className="sv-stage-info">
                 <div className="sv-stage-title-row">
-                  <span className="sv-stage-title">1. Vector Asset Validation & Ingestion</span>
+                  <span className="sv-stage-title">1. Vector Validation & Sanitization</span>
                   <span className="sv-stage-tag done">COMPLETED</span>
                 </div>
                 <p className="sv-stage-desc">
-                  Validated SVG markup, verified viewBox integrity, and uploaded {submissionResult.variantCount} variant(s).
+                  Validated SVG structure, verified viewBox coordinates, and ingested {submissionResult.variantCount} variant(s).
                 </p>
               </div>
             </div>
@@ -825,13 +782,13 @@ export function SubmitPage({
               </div>
               <div className="sv-stage-info">
                 <div className="sv-stage-title-row">
-                  <span className="sv-stage-title">2. Automated CI/CD Compilation Engine</span>
+                  <span className="sv-stage-title">2. Path Precision & Subpixel Optimization</span>
                   <span className={`sv-stage-tag ${countdown <= (TOTAL_PIPELINE_SECONDS - 45) ? 'done' : 'active'}`}>
-                    {countdown <= (TOTAL_PIPELINE_SECONDS - 45) ? 'PROCESSED' : 'DISPATCHING'}
+                    {countdown <= (TOTAL_PIPELINE_SECONDS - 45) ? 'OPTIMIZED' : 'PROCESSING'}
                   </span>
                 </div>
                 <p className="sv-stage-desc">
-                  Triggered automated packaging workflow and verified vector asset integrity.
+                  Normalized vector curves, precision coordinates, and stripped design tool artifacts.
                 </p>
               </div>
             </div>
@@ -842,13 +799,13 @@ export function SubmitPage({
               </div>
               <div className="sv-stage-info">
                 <div className="sv-stage-title-row">
-                  <span className="sv-stage-title">3. Catalog Compilation & Indexing</span>
+                  <span className="sv-stage-title">3. Catalog Indexing & Code Packaging</span>
                   <span className={`sv-stage-tag ${isDone ? 'done' : countdown <= (TOTAL_PIPELINE_SECONDS - 90) ? 'active' : 'pending'}`}>
-                    {isDone ? 'COMPILED' : countdown <= (TOTAL_PIPELINE_SECONDS - 90) ? 'IN PROGRESS' : 'QUEUED'}
+                    {isDone ? 'INDEXED' : countdown <= (TOTAL_PIPELINE_SECONDS - 90) ? 'IN PROGRESS' : 'QUEUED'}
                   </span>
                 </div>
                 <p className="sv-stage-desc">
-                  Parsing hex swatches, updating <code>public/icons.json</code>, and generating vector assets.
+                  Extracted official brand palette, generated React, Vue, Next.js snippets, and compiled metadata.
                 </p>
               </div>
             </div>
@@ -859,13 +816,13 @@ export function SubmitPage({
               </div>
               <div className="sv-stage-info">
                 <div className="sv-stage-title-row">
-                  <span className="sv-stage-title">4. Edge CDN Global Release</span>
+                  <span className="sv-stage-title">4. Global CDN Release & Live Page</span>
                   <span className={`sv-stage-tag ${isDone ? 'done' : countdown <= 90 ? 'active' : 'pending'}`}>
                     {isDone ? 'LIVE ON EDGE' : countdown <= 90 ? 'PROPAGATING' : 'PENDING'}
                   </span>
                 </div>
                 <p className="sv-stage-desc">
-                  Atomic deployment to global edge CDN at <code>svg.io.orildo.tech</code>.
+                  Deployed to global edge network with instant public preview page and direct CDN endpoints.
                 </p>
               </div>
             </div>
@@ -908,15 +865,13 @@ export function SubmitPage({
             </div>
 
             <div className="sv-pipeline-actions-row">
-              <a
-                href="https://github.com/Orildo-Tech/SVG-IO/actions"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="sv-pipeline-gh-btn">
-                <Github size={15} />
-                <span>View GitHub Action Run</span>
-                <ExternalLink size={13} />
-              </a>
+              <button
+                type="button"
+                className="sv-pipeline-gh-btn"
+                onClick={() => onNavigate?.('icons')}>
+                <Package size={15} />
+                <span>Explore Hosted Catalog</span>
+              </button>
 
               <button
                 type="button"
@@ -926,7 +881,7 @@ export function SubmitPage({
                   setCountdown(TOTAL_PIPELINE_SECONDS);
                 }}>
                 <Plus size={16} />
-                <span>Submit Another Vector</span>
+                <span>Upload Another Asset</span>
               </button>
             </div>
           </div>
@@ -1052,12 +1007,12 @@ export function SubmitPage({
             </a>
           </div>
 
-          {}
+          {/* Schema Preview */}
           <div className="sv-schema-preview-box glass-panel">
             <div className="sv-schema-header">
-              <span className="sv-schema-title">Icon Entry Schema</span>
+              <span className="sv-schema-title">Vector Package Schema</span>
               <span className="sv-schema-sub">
-                public/icons.json format ({variants.length} variant
+                Standard Metadata Format ({variants.length} variant
                 {variants.length !== 1 ? "s" : ""})
               </span>
             </div>
@@ -1067,17 +1022,16 @@ export function SubmitPage({
           </div>
         </div>
 
-        {}
+        {/* Right Column: Form */}
         <div className="sv-submit-right-col">
           <form
             className="sv-submit-form-card glass-panel"
             onSubmit={handleSubmit}>
             
             <div className="sv-form-header">
-              <h2 className="sv-form-title">Quick Submit</h2>
+              <h2 className="sv-form-title">Publish & Host SVG Assets</h2>
               <p className="sv-form-sub">
-                Drop one or multiple SVGs, name each variant, and publish directly
-                to the global vector library.
+                Upload individual icons or complete multi-variant icon packs. We automatically validate, optimize paths, package, and host them with live shareable preview pages and CDN links.
               </p>
             </div>
 
