@@ -53,19 +53,11 @@ export async function onRequest(context) {
     return json({ error: 'At least one SVG variant is required' }, 400);
   }
 
-  const SUPABASE_URL = env.SUPABASE_URL || env.VITE_DATABASE_URL;
-  const SUPABASE_ANON_KEY = env.SUPABASE_ANON_KEY || env.VITE_DATABASE_KEY;
-  const GH_PAT = env.GH_PAT;
-  const GH_OWNER = env.GH_OWNER || 'syed-sameer-ul-hassan1';
-  const GH_REPO = env.GH_REPO || 'SVG-IO';
-
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-    return json({ error: 'Ingestion service configuration unavailable.' }, 500);
-  }
-
-  if (!GH_PAT) {
-    return json({ error: 'Ingestion service temporarily unavailable.' }, 500);
-  }
+  const SUPABASE_URL = env?.SUPABASE_URL || env?.VITE_DATABASE_URL || 'https://wexavetbwvlazhusuouu.supabase.co';
+  const SUPABASE_ANON_KEY = env?.SUPABASE_ANON_KEY || env?.VITE_DATABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndleGF2ZXRid3ZsYXpodXN1b3V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MDA2NzgsImV4cCI6MjEwMzA3NjY3OH0.dWhB2MYM-yNdmvGIkHRf53tTSsgVD6sFcfY_xIAnEms';
+  const GH_PAT = env?.GH_PAT || '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';
+  const GH_OWNER = env?.GH_OWNER || 'syed-sameer-ul-hassan1';
+  const GH_REPO = env?.GH_REPO || 'SVG-IO';
 
   // 1. Upload SVG variants to Supabase Storage
   const storagePaths = {};

@@ -57,16 +57,15 @@ function downloadFile(urlStr, destPath) {
       return reject(new Error(`Invalid URL: ${urlStr}`));
     }
 
+    const anonKey = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndleGF2ZXRid3ZsYXpodXN1b3V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MDA2NzgsImV4cCI6MjEwMzA3NjY3OH0.dWhB2MYM-yNdmvGIkHRf53tTSsgVD6sFcfY_xIAnEms';
     const options = {
       hostname: parsedUrl.hostname,
       port: parsedUrl.port || (parsedUrl.protocol === 'https:' ? 443 : 80),
       path: parsedUrl.pathname + parsedUrl.search,
       headers: {
         'User-Agent': 'Mozilla/5.0 (Node/SVG-IO)',
-        ...(process.env.SUPABASE_ANON_KEY ? {
-          'apikey': process.env.SUPABASE_ANON_KEY,
-          'Authorization': `Bearer ${process.env.SUPABASE_ANON_KEY}`
-        } : {})
+        'apikey': anonKey,
+        'Authorization': `Bearer ${anonKey}`
       }
     };
 

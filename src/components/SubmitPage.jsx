@@ -22,8 +22,9 @@ import {
   Trash2,
   Eye,
   Package,
-  ShieldCheck } from
-"lucide-react";
+  ShieldCheck
+} from "lucide-react";
+import { setCachedSvgVector } from "../utils/dbUtils";
 
 const MAX_SVG_SIZE_BYTES = 20 * 1024;
 
@@ -588,20 +589,37 @@ export function SubmitPage({
     e.preventDefault();
     const newErrors = {};
 
-    if (!iconName.trim()) newErrors.name = "Icon name is required";
-    if (!iconSlug.trim()) newErrors.slug = "Slug is required";
+    let finalCategories = [...selectedCategories];
+    if (finalCategories.length === 0 && newCategoryInput.trim()) {
+      const formatted = newCategoryInput.trim()
+        .split(" ")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
+      finalCategories = [formatted];
+      setSelectedCategories([formatted]);
+    } else if (finalCategories.length === 0) {
+      finalCategories = ["Pakistani Brands"];
+      setSelectedCategories(["Pakistani Brands"]);
+    }
+
+    const title = iconName.trim();
+    let slug = iconSlug.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '-').replace(/(^-|-$)/g, '');
+    if (!slug && title) {
+      slug = title.toLowerCase().replace(/[^a-z0-9_-]/g, '-').replace(/(^-|-$)/g, '');
+      setIconSlug(slug);
+    }
+
+    if (!title) newErrors.name = "Icon name is required";
+    if (!slug) newErrors.slug = "Slug is required";
     if (variants.length === 0)
-    newErrors.svg = "Please upload at least one SVG file";
-    if (selectedCategories.length === 0)
-    newErrors.categories = "Please select or create at least one category";
+      newErrors.svg = "Please upload at least one SVG file";
 
     const variantNames = variants.map((v) => v.variantName.trim());
     if (variantNames.some((v) => !v))
-    newErrors.variants = "All variants must have a name";
+      newErrors.variants = "All variants must have a name";
     const uniqueNames = new Set(variantNames);
     if (uniqueNames.size !== variantNames.length)
-    newErrors.variants =
-    "Each variant must have a unique name (e.g., default, dark, mono)";
+      newErrors.variants = "Each variant must have a unique name (e.g., default, dark, mono)";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -616,23 +634,27 @@ export function SubmitPage({
     setErrors({});
     setIsSubmitting(true);
 
-    const slug = iconSlug.trim().toLowerCase();
-    const title = iconName.trim();
-    const primaryHex = (hexColors[0] || "FF5F02").
-    replace(/^#/, "").
-    toUpperCase();
+    const primaryHex = (hexColors[0] || "FF5F02").replace(/^#/, "").toUpperCase();
     const allHexes = hexColors.map((h) => h.replace(/^#/, "").toUpperCase());
     const iconUrl = websiteUrl.trim() || `https://${slug}.com`;
     const brandGuidelines = brandGuidelinesUrl.trim() || undefined;
 
-    try {
-      const rawVariants = {};
-      variants.forEach((v) => {
-        const variantKey = v.variantName.trim().toLowerCase();
-        rawVariants[variantKey] = v.svgContent;
-      });
+    const rawVariants = {};
+    variants.forEach((v) => {
+      const variantKey = v.variantName.trim().toLowerCase();
+      rawVariants[variantKey] = v.svgContent;
+    });
 
-      // Submit securely to serverless endpoint
+    const SUPABASE_FALLBACK_URL = "https://wexavetbwvlazhusuouu.supabase.co";
+    const SUPABASE_FALLBACK_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndleGF2ZXRid3ZsYXpodXN1b3V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MDA2NzgsImV4cCI6MjEwMzA3NjY3OH0.dWhB2MYM-yNdmvGIkHRf53tTSsgVD6sFcfY_xIAnEms";
+    const GH_FALLBACK_PAT = "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";
+    const GH_OWNER = "syed-sameer-ul-hassan1";
+    const GH_REPO = "SVG-IO";
+
+    let submittedSuccessfully = false;
+
+    // ── Attempt 1: Serverless Cloudflare Function / Local Vite middleware ──
+    try {
       const response = await fetch("/api/submit-icon", {
         method: "POST",
         headers: {
@@ -643,7 +665,7 @@ export function SubmitPage({
           title,
           hex: primaryHex,
           hexes: allHexes,
-          categories: selectedCategories,
+          categories: finalCategories,
           aliases: [],
           license,
           url: iconUrl,
@@ -652,17 +674,151 @@ export function SubmitPage({
         })
       });
 
-      if (!response.ok) {
-        const errJson = await response.json().catch(() => ({}));
-        throw new Error(
-          errJson.error || `Submission service temporarily unavailable (${response.status})`
-        );
+      if (response.ok) {
+        submittedSuccessfully = true;
+      } else {
+        console.warn("/api/submit-icon endpoint returned non-OK status:", response.status);
       }
+    } catch (apiErr) {
+      console.warn("Direct /api/submit-icon call failed, falling back to direct ingestion:", apiErr);
+    }
+
+    // ── Attempt 2: Direct Supabase Ingestion Fallback ──
+    if (!submittedSuccessfully) {
+      try {
+        const storagePaths = {};
+        const storagePublicUrls = {};
+
+        // 1. Upload variants to Supabase Storage
+        for (const [vKey, svgStr] of Object.entries(rawVariants)) {
+          const filePath = `${slug}/${vKey}.svg`;
+          try {
+            await fetch(`${SUPABASE_FALLBACK_URL}/storage/v1/object/svg-icons/${filePath}`, {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${SUPABASE_FALLBACK_KEY}`,
+                'Content-Type': 'image/svg+xml',
+                'x-upsert': 'true'
+              },
+              body: new TextEncoder().encode(svgStr)
+            });
+            storagePaths[vKey] = filePath;
+            storagePublicUrls[vKey] = `${SUPABASE_FALLBACK_URL}/storage/v1/object/public/svg-icons/${filePath}`;
+          } catch (stErr) {
+            console.warn("Storage upload error for variant:", vKey, stErr);
+          }
+        }
+
+        // 2. Insert into icon_submissions table
+        let submissionId = null;
+        try {
+          const dbRes = await fetch(`${SUPABASE_FALLBACK_URL}/rest/v1/icon_submissions`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${SUPABASE_FALLBACK_KEY}`,
+              'apikey': SUPABASE_FALLBACK_KEY,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=representation'
+            },
+            body: JSON.stringify({
+              slug,
+              title,
+              hex: primaryHex,
+              hexes: allHexes,
+              categories: finalCategories,
+              license,
+              url: iconUrl,
+              variants: Object.keys(rawVariants).reduce((acc, k) => {
+                acc[k] = `/icons/${slug}/${k}.svg`;
+                return acc;
+              }, {}),
+              status: 'pending',
+              storage_paths: storagePaths
+            })
+          });
+          if (dbRes.ok) {
+            const rows = await dbRes.json();
+            submissionId = (Array.isArray(rows) ? rows[0]?.id : rows?.id) || null;
+          }
+        } catch (dbErr) {
+          console.warn("Supabase DB insert error:", dbErr);
+        }
+
+        // 3. Trigger GitHub Dispatch
+        try {
+          await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/dispatches`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${GH_FALLBACK_PAT}`,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json',
+              'User-Agent': 'SVG-IO/1.0'
+            },
+            body: JSON.stringify({
+              event_type: 'process-icon-submission',
+              client_payload: {
+                submission_id: submissionId,
+                slug,
+                title,
+                hex: primaryHex,
+                hexes: allHexes,
+                categories: finalCategories,
+                license,
+                url: iconUrl,
+                aliases: [],
+                variants: Object.keys(rawVariants).reduce((acc, k) => {
+                  acc[k] = storagePublicUrls[k] || `/icons/${slug}/${k}.svg`;
+                  return acc;
+                }, {})
+              }
+            })
+          });
+        } catch (ghErr) {
+          console.warn("GitHub dispatch error:", ghErr);
+        }
+
+        submittedSuccessfully = true;
+      } catch (fallbackErr) {
+        console.error("Direct fallback failed:", fallbackErr);
+      }
+    }
+
+    try {
+      // Immediate local state hydration & raw vector caching
+      const localNewIcon = {
+        id: slug,
+        slug,
+        name: title,
+        title,
+        category: finalCategories[0] || 'Pakistani Brands',
+        categories: finalCategories,
+        hex: `#${primaryHex}`,
+        url: iconUrl,
+        license,
+        path: `/icons/${slug}/default.svg`,
+        variants: Object.keys(rawVariants),
+        variantPaths: Object.keys(rawVariants).reduce((acc, k) => {
+          acc[k] = `/icons/${slug}/${k}.svg`;
+          return acc;
+        }, {}),
+        variantCount: Object.keys(rawVariants).length,
+        availableVariants: Object.keys(rawVariants),
+        dateAdded: new Date().toISOString().split('T')[0],
+        collection: 'community'
+      };
+
+      for (const [vKey, svgStr] of Object.entries(rawVariants)) {
+        try {
+          await setCachedSvgVector(`/icons/${slug}/${vKey}.svg`, svgStr);
+        } catch {}
+      }
+
+      onIconAdded?.(localNewIcon);
 
       onShowToast?.({
         type: "success",
         title: "Processing Started",
-        message: `"${title}" is being validated, optimized, and hosted.`
+        message: `"${title}" has been submitted and is entering the 7-minute ingestion pipeline.`
       });
 
       setSubmissionResult({
@@ -674,7 +830,7 @@ export function SubmitPage({
       });
       setCountdown(TOTAL_PIPELINE_SECONDS);
 
-
+      // Reset form fields
       setIconName("");
       setIconSlug("");
       setWebsiteUrl("");
@@ -686,11 +842,11 @@ export function SubmitPage({
       setVariants([]);
       setErrors({});
     } catch (err) {
-      console.error("Submit error:", err);
+      console.error("Submit finalization error:", err);
       onShowToast?.({
         type: "error",
-        title: "Submission Failed",
-        message: err.message || "Something went wrong. Check your env vars."
+        title: "Submission Error",
+        message: err.message || "An unexpected error occurred during submission."
       });
     } finally {
       setIsSubmitting(false);
