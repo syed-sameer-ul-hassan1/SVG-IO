@@ -60,25 +60,35 @@ function buildIconSchema(icon, iconUrl, finalDesc) {
   const slug = icon.slug || icon.id;
   const cats = Array.isArray(icon.categories) && icon.categories.length > 0
     ? icon.categories : (icon.category ? [icon.category] : []);
+  const today = new Date().toISOString().split('T')[0];
 
   return {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'ImageObject',
+        '@type': ['ImageObject', 'DigitalDocument'],
         '@id': `${BASE_URL}/?icon=${slug}#imageobject`,
         name: `${name} SVG Vector Icon & Logo`,
-        alternateName: [`${name} icon`, `${name} logo`, `${name} svg`, `${name} vector`],
+        alternateName: [
+          `${name} icon`,
+          `${name} logo`,
+          `${name} svg`,
+          `${name} vector`,
+          `free ${name} svg`,
+          `${name} brand icon`
+        ],
         description: finalDesc,
         contentUrl: iconUrl,
         thumbnailUrl: iconUrl,
         url: `${BASE_URL}/?icon=${slug}`,
         encodingFormat: 'image/svg+xml',
         fileFormat: 'image/svg+xml',
+        dateModified: icon.dateAdded || today,
         license: 'https://www.apache.org/licenses/LICENSE-2.0',
         acquireLicensePage: `${BASE_URL}/?view=terms`,
-        creditText: `SVG.IO via Orildo-Tech`,
-        keywords: cats.join(', ') || 'developer, brand, tech',
+        creditText: 'SVG.IO via Orildo-Tech',
+        copyrightNotice: 'Apache 2.0 — Free to use commercially',
+        keywords: [...cats, name, 'svg', 'vector', 'icon'].join(', '),
         creator: {
           '@type': 'Organization',
           name: 'Orildo-Tech',
@@ -92,15 +102,32 @@ function buildIconSchema(icon, iconUrl, finalDesc) {
         name: `${name} SVG Icon & Logo Vector Free Download — SVG.IO`,
         description: finalDesc,
         inLanguage: 'en-US',
+        dateModified: icon.dateAdded || today,
         isPartOf: { '@id': `${BASE_URL}/#website` },
+        primaryImageOfPage: { '@id': `${BASE_URL}/?icon=${slug}#imageobject` },
         breadcrumb: {
           '@type': 'BreadcrumbList',
           itemListElement: [
             { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
             { '@type': 'ListItem', position: 2, name: 'Icons', item: `${BASE_URL}/` },
-            { '@type': 'ListItem', position: 3, name: `${name} Icon`, item: `${BASE_URL}/?icon=${slug}` }
+            ...cats.slice(0, 1).map((c, i) => ({
+              '@type': 'ListItem',
+              position: 3 + i,
+              name: c,
+              item: `${BASE_URL}/?category=${encodeURIComponent(c)}`
+            })),
+            { '@type': 'ListItem', position: cats.length > 0 ? 4 : 3, name: `${name} Icon`, item: `${BASE_URL}/?icon=${slug}` }
           ]
         }
+      },
+      {
+        '@type': 'SoftwareSourceCode',
+        '@id': `${BASE_URL}/?icon=${slug}#sourcecode`,
+        name: `${name} React JSX Component`,
+        description: `Ready-to-use React JSX, Vue 3, Svelte, and Angular component code for the ${name} SVG icon.`,
+        programmingLanguage: ['React JSX', 'Vue 3', 'Svelte', 'Angular', 'HTML SVG'],
+        codeRepository: 'https://github.com/Orildo-Tech/SVG-IO',
+        license: 'https://www.apache.org/licenses/LICENSE-2.0'
       }
     ]
   };
@@ -263,6 +290,12 @@ export function updatePageSeo({
     el.setAttribute('content', content);
   };
 
+  // ── Icon-specific image & article signals ──────────────────────
+  const ogImage = icon
+    ? `${BASE_URL}/icons/${icon.slug || icon.id}/${icon.slug || icon.id}.svg`
+    : `${BASE_URL}/assets/og-image.png`;
+  const todayISO = new Date().toISOString();
+
   // ── Standard Meta ──────────────────────────────────────────────
   setMeta('name', 'description', finalDesc);
   setMeta('name', 'keywords', finalKeywords);
@@ -276,12 +309,46 @@ export function updatePageSeo({
   setMeta('property', 'og:type', icon ? 'article' : 'website');
   setMeta('property', 'og:site_name', 'SVG.IO');
   setMeta('property', 'og:locale', 'en_US');
+  setMeta('property', 'og:image', ogImage);
+  setMeta('property', 'og:image:secure_url', ogImage);
+  setMeta('property', 'og:image:alt', icon
+    ? `${icon.name || icon.title} SVG icon and vector logo — free download on SVG.IO`
+    : 'SVG.IO — Free SVG Icon & Brand Logo Library with 6,517+ vectors'
+  );
+  setMeta('property', 'og:image:width', icon ? '512' : '1200');
+  setMeta('property', 'og:image:height', icon ? '512' : '630');
+  setMeta('property', 'og:image:type', icon ? 'image/svg+xml' : 'image/png');
+
+  // ── Article tags (for icon pages, helps Google News & Discover) ─
+  if (icon) {
+    setMeta('property', 'article:published_time', icon.dateAdded ? `${icon.dateAdded}T00:00:00Z` : todayISO);
+    setMeta('property', 'article:modified_time', todayISO);
+    setMeta('property', 'article:author', 'https://github.com/Orildo-Tech');
+    setMeta('property', 'article:section', (Array.isArray(icon.categories) && icon.categories[0]) || icon.category || 'Developer Icons');
+    setMeta('property', 'article:tag', icon.name || icon.title || '');
+  }
 
   // ── Twitter / X Card ──────────────────────────────────────────
   setMeta('name', 'twitter:title', finalTitle);
   setMeta('name', 'twitter:description', finalDesc);
   setMeta('name', 'twitter:url', canonicalUrl);
   setMeta('name', 'twitter:card', 'summary_large_image');
+  setMeta('name', 'twitter:image', ogImage);
+  setMeta('name', 'twitter:image:alt', icon
+    ? `${icon.name || icon.title} SVG Vector Icon — SVG.IO`
+    : 'SVG.IO Free SVG Icon Library'
+  );
+  if (icon) {
+    setMeta('name', 'twitter:label1', 'License');
+    setMeta('name', 'twitter:data1', icon.license || 'Apache-2.0 — Free');
+    setMeta('name', 'twitter:label2', 'Download');
+    setMeta('name', 'twitter:data2', 'React JSX • Vue 3 • SVG • PNG');
+  } else {
+    setMeta('name', 'twitter:label1', 'Icons Available');
+    setMeta('name', 'twitter:data1', '6,517+');
+    setMeta('name', 'twitter:label2', 'License');
+    setMeta('name', 'twitter:data2', 'Apache 2.0 — Free to Use');
+  }
 
   // ── Canonical ─────────────────────────────────────────────────
   let canonicalEl = document.querySelector('link[rel="canonical"]');

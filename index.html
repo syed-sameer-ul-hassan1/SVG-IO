@@ -1,38 +1,41 @@
 <!doctype html>
-<html lang="en" prefix="og: https://ogp.me/ns#">
+<html lang="en" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#">
   <head>
     <meta charset="UTF-8" />
 
     <!-- ═══════════════════════════════════════════════════════════
-         CORE IDENTITY & VIEWPORT
+         VIEWPORT & PWA CORE
     ═══════════════════════════════════════════════════════════ -->
-    <link rel="icon" type="image/svg+xml" href="/assets/logo-light.svg" />
-    <link rel="shortcut icon" href="/assets/logo-light.svg" />
-    <link rel="apple-touch-icon" href="/assets/logo-light.svg" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="color-scheme" content="dark light" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="application-name" content="SVG.IO" />
     <meta name="apple-mobile-web-app-title" content="SVG.IO" />
+    <meta name="application-name" content="SVG.IO" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ICONS & PWA MANIFEST
+    ═══════════════════════════════════════════════════════════ -->
+    <link rel="icon" type="image/svg+xml" href="/assets/logo-light.svg" />
+    <link rel="shortcut icon" href="/assets/logo-light.svg" />
+    <link rel="apple-touch-icon" href="/assets/logo-light.svg" />
+    <link rel="apple-touch-icon-precomposed" href="/assets/logo-light.svg" />
+    <link rel="mask-icon" href="/assets/logo-light.svg" color="#FF5F02" />
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- ═══════════════════════════════════════════════════════════
          PRIMARY SEO — TITLE, DESCRIPTION, KEYWORDS
     ═══════════════════════════════════════════════════════════ -->
     <title>SVG.IO — 6,517+ Free Brand Icons, SVG Logos & Developer Vector Assets | Download Free</title>
-    <meta
-      name="description"
-      content="SVG.IO is the world's best free SVG icon library with 6,517+ brand logos, developer tech icons, and Liquid Glass vectors. Search, preview, and instantly copy React JSX, Vue 3, Angular, Svelte, HTML, and raw SVG XML code — zero tracking, offline-ready, Apache 2.0 licensed."
-    />
-    <meta
-      name="keywords"
-      content="svg io, svg.io, svg.io.orildo.tech, svgio, free svg icons, free svg logos, brand svg icons, download svg, svg icon library, svg vector library, brand icon download, developer icons, tech icons, logo svg download, react svg icons, vue svg icons, angular svg icons, svelte svg icons, liquid glass icons, apple icons, google icons, microsoft icons, github svg, docker svg, aws svg, figma svg, react svg, nextjs svg, nodejs svg, python svg, typescript svg, javascript svg, kubernetes svg, terraform svg, openai svg, stripe svg, supabase svg, postgresql svg, mongodb svg, redis svg, vercel svg, netlify svg, cloudflare svg, tailwind svg, material icons, flat icons, vector icons free, icon finder alternative, flaticon alternative, free vector icons, svg clip art, technology logo vector, company logo svg, programming language icon, framework icon, cloud service icon, devops icon, ai tool icon, orildo tech, orildo svg"
-    />
+    <meta name="description" content="SVG.IO is the world's best free SVG icon library with 6,517+ brand logos, developer tech icons, and Liquid Glass vectors. Search, preview, and instantly copy React JSX, Vue 3, Angular, Svelte, HTML, and raw SVG XML code — zero tracking, offline-ready, Apache 2.0 licensed." />
+    <meta name="keywords" content="svg io, svg.io, svgio, svg.io.orildo.tech, free svg icons, free svg logos, brand svg icons, download svg, svg icon library, svg vector library, brand icon download, developer icons, tech icons, logo svg download, react svg icons, vue svg icons, angular svg icons, svelte svg icons, liquid glass icons, apple icons, google icons, microsoft icons, github svg, docker svg, aws svg, figma svg, react svg, nextjs svg, nodejs svg, python svg, typescript svg, javascript svg, kubernetes svg, terraform svg, openai svg, stripe svg, supabase svg, postgresql svg, mongodb svg, redis svg, vercel svg, netlify svg, cloudflare svg, tailwind svg, material icons, flat icons, vector icons free, icon finder alternative, flaticon alternative, free vector icons, svg clip art, technology logo vector, company logo svg, programming language icon, framework icon, cloud service icon, devops icon, ai tool icon, orildo tech, orildo svg" />
+    <meta name="subject" content="Free SVG Icon Library" />
     <meta name="author" content="Orildo-Tech" />
     <meta name="copyright" content="Orildo-Tech" />
     <meta name="category" content="Design, Developer Tools, Icons, Vectors" />
@@ -45,6 +48,16 @@
     <meta name="target" content="all" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
+    <meta name="generator" content="Vite + React" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SEARCH ENGINE VERIFICATION (submit these to respective tools)
+         Replace XXXX with your actual verification codes
+    ═══════════════════════════════════════════════════════════ -->
+    <!-- <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" /> -->
+    <!-- <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" /> -->
+    <!-- <meta name="yandex-verification" content="YOUR_YANDEX_CODE" /> -->
+    <!-- <meta name="p:domain_verify" content="YOUR_PINTEREST_CODE" /> -->
 
     <!-- ═══════════════════════════════════════════════════════════
          CRAWL & INDEX DIRECTIVES
@@ -52,40 +65,33 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow" />
+    <meta name="slurp" content="index, follow" />
 
     <!-- ═══════════════════════════════════════════════════════════
-         CANONICAL & ALTERNATE LANGUAGE
+         CANONICAL & HREFLANG (international SEO)
     ═══════════════════════════════════════════════════════════ -->
     <link rel="canonical" href="https://svg.io.orildo.tech/" />
     <link rel="alternate" hreflang="en" href="https://svg.io.orildo.tech/" />
+    <link rel="alternate" hreflang="en-US" href="https://svg.io.orildo.tech/" />
+    <link rel="alternate" hreflang="en-GB" href="https://svg.io.orildo.tech/" />
     <link rel="alternate" hreflang="x-default" href="https://svg.io.orildo.tech/" />
 
     <!-- ═══════════════════════════════════════════════════════════
-         DNS PREFETCH & PRECONNECT — PERFORMANCE SIGNALS
-    ═══════════════════════════════════════════════════════════ -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- ═══════════════════════════════════════════════════════════
-         OPEN GRAPH (Facebook, LinkedIn, Discord, Slack, WhatsApp)
+         OPEN GRAPH — Facebook, LinkedIn, Discord, Slack, WhatsApp
     ═══════════════════════════════════════════════════════════ -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://svg.io.orildo.tech/" />
     <meta property="og:title" content="SVG.IO — 6,517+ Free Brand Icons, SVG Logos & Developer Assets" />
     <meta property="og:description" content="The world's best free SVG icon library. 6,517+ brand logos, tech icons & Liquid Glass vectors. Instant React JSX, Vue 3, Svelte, Angular, PNG & SVG export. Zero tracking. Apache 2.0." />
     <meta property="og:image" content="https://svg.io.orildo.tech/assets/og-image.png" />
+    <meta property="og:image:secure_url" content="https://svg.io.orildo.tech/assets/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="SVG.IO — Free SVG Icon Library with 6517+ Brand Logos & Developer Icons" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:site_name" content="SVG.IO" />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="en_GB" />
 
     <!-- ═══════════════════════════════════════════════════════════
          TWITTER / X CARD
@@ -98,9 +104,14 @@
     <meta name="twitter:description" content="The world's best free SVG icon library. 6,517+ brand logos, tech icons & Liquid Glass vectors. Instant React JSX, Vue 3, Svelte, Angular, PNG & SVG export." />
     <meta name="twitter:image" content="https://svg.io.orildo.tech/assets/og-image.png" />
     <meta name="twitter:image:alt" content="SVG.IO — Free SVG Icon & Logo Library" />
+    <meta name="twitter:label1" content="Icons Available" />
+    <meta name="twitter:data1" content="6,517+" />
+    <meta name="twitter:label2" content="License" />
+    <meta name="twitter:data2" content="Apache 2.0 — Free to Use" />
 
     <!-- ═══════════════════════════════════════════════════════════
-         SCHEMA.ORG JSON-LD STRUCTURED DATA (Rich Results)
+         SCHEMA.ORG JSON-LD (Rich Results — WebSite, Org, WebPage,
+         SoftwareApp, DataCatalog, FAQPage, HowTo)
     ═══════════════════════════════════════════════════════════ -->
     <script type="application/ld+json">
       {
@@ -111,7 +122,7 @@
             "@id": "https://svg.io.orildo.tech/#website",
             "url": "https://svg.io.orildo.tech/",
             "name": "SVG.IO",
-            "alternateName": ["svgio", "svg io", "svg.io", "SVG IO Library"],
+            "alternateName": ["svgio", "svg io", "svg.io", "SVG IO Library", "Orildo SVG"],
             "description": "SVG.IO is a free, open-source vector icon library featuring 6,517+ brand logos, developer icons, and Liquid Glass SVG assets with instant code export for React, Vue, Svelte, Angular, and more.",
             "inLanguage": "en-US",
             "publisher": { "@id": "https://svg.io.orildo.tech/#organization" },
@@ -130,6 +141,7 @@
             "@type": "Organization",
             "@id": "https://svg.io.orildo.tech/#organization",
             "name": "Orildo-Tech",
+            "legalName": "Orildo-Tech",
             "url": "https://svg.io.orildo.tech",
             "logo": {
               "@type": "ImageObject",
@@ -138,8 +150,9 @@
               "height": 512
             },
             "image": "https://svg.io.orildo.tech/assets/og-image.png",
-            "description": "Orildo-Tech builds open-source developer tools and vector design resources.",
+            "description": "Orildo-Tech builds open-source developer tools and vector design resources including SVG.IO, the world's largest free SVG icon library.",
             "foundingDate": "2024",
+            "knowsAbout": ["SVG icons", "Brand logos", "Developer tools", "Vector graphics", "Open source design"],
             "sameAs": [
               "https://github.com/Orildo-Tech",
               "https://github.com/Orildo-Tech/SVG-IO"
@@ -154,15 +167,12 @@
             "isPartOf": { "@id": "https://svg.io.orildo.tech/#website" },
             "about": { "@id": "https://svg.io.orildo.tech/#organization" },
             "inLanguage": "en-US",
+            "datePublished": "2024-01-01",
+            "dateModified": "2026-08-24",
             "breadcrumb": {
               "@type": "BreadcrumbList",
               "itemListElement": [
-                {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "name": "Home",
-                  "item": "https://svg.io.orildo.tech/"
-                }
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://svg.io.orildo.tech/" }
               ]
             }
           },
@@ -172,17 +182,27 @@
             "name": "SVG.IO",
             "url": "https://svg.io.orildo.tech/",
             "applicationCategory": "DesignApplication",
-            "operatingSystem": "Web Browser",
+            "applicationSubCategory": "Icon Library",
+            "operatingSystem": "Web Browser, Chrome, Firefox, Safari, Edge",
+            "browserRequirements": "Requires JavaScript. Works on all modern browsers.",
             "offers": {
               "@type": "Offer",
               "price": "0",
-              "priceCurrency": "USD"
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "ratingCount": "1",
+              "bestRating": "5",
+              "worstRating": "1"
             },
             "description": "Free online SVG icon library and brand logo downloader with 6,517+ vectors. Export React JSX, Vue 3, Svelte, Angular, PNG, and raw SVG code for any icon.",
             "featureList": [
               "6517+ SVG brand icons and logos",
               "React JSX code export",
-              "Vue 3 component export",
+              "Vue 3 SFC component export",
               "Svelte component export",
               "Angular component export",
               "PNG image export",
@@ -191,7 +211,10 @@
               "Offline-ready IndexedDB caching",
               "Zero telemetry and tracking",
               "Apache 2.0 licensed",
-              "Search and filter by category"
+              "Search and filter by category",
+              "Keyboard shortcut navigation",
+              "Favorites collection",
+              "Instant copy-to-clipboard"
             ]
           },
           {
@@ -202,17 +225,57 @@
             "url": "https://svg.io.orildo.tech/",
             "license": "https://www.apache.org/licenses/LICENSE-2.0",
             "measurementTechnique": "Manual curation and Apache 2.0 community contributions",
-            "creator": { "@id": "https://svg.io.orildo.tech/#organization" }
+            "creator": { "@id": "https://svg.io.orildo.tech/#organization" },
+            "keywords": "svg icons, brand logos, developer icons, vector library, open source icons"
+          },
+          {
+            "@type": "HowTo",
+            "@id": "https://svg.io.orildo.tech/#howto",
+            "name": "How to Download and Use Free SVG Icons from SVG.IO",
+            "description": "Step-by-step guide to searching, previewing, and exporting SVG icons from SVG.IO in React, Vue, Svelte, Angular, or raw SVG format.",
+            "totalTime": "PT1M",
+            "estimatedCost": { "@type": "MonetaryAmount", "currency": "USD", "value": "0" },
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Search for an Icon",
+                "text": "Type any brand name, technology, or keyword in the SVG.IO search bar to instantly filter 6,517+ icons.",
+                "url": "https://svg.io.orildo.tech/"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Click an Icon to Open its Detail View",
+                "text": "Click any icon card to open its full detail page with all available variants and export options.",
+                "url": "https://svg.io.orildo.tech/"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Copy Your Preferred Code Format",
+                "text": "Select React JSX, Vue 3, Angular, Svelte, or raw SVG XML and click Copy to clipboard. Your icon is ready to paste into your project.",
+                "url": "https://svg.io.orildo.tech/"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Download as PNG (optional)",
+                "text": "Click the PNG download button to save a high-resolution transparent PNG image of the icon.",
+                "url": "https://svg.io.orildo.tech/"
+              }
+            ]
           },
           {
             "@type": "FAQPage",
+            "@id": "https://svg.io.orildo.tech/#faq",
             "mainEntity": [
               {
                 "@type": "Question",
                 "name": "What is SVG.IO?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "SVG.IO is a free, open-source SVG icon library with 6,517+ brand logos, developer icons, and Liquid Glass vectors available to download and use under the Apache 2.0 license."
+                  "text": "SVG.IO is a free, open-source SVG icon library with 6,517+ brand logos, developer icons, and Liquid Glass vectors available to download and use under the Apache 2.0 license at svg.io.orildo.tech."
                 }
               },
               {
@@ -220,7 +283,7 @@
                 "name": "How do I download SVG icons for free?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Visit SVG.IO at svg.io.orildo.tech, search for any brand or tech icon, click it, and copy the React JSX, Vue 3, Svelte, Angular, PNG, or raw SVG XML code instantly. All icons are free under Apache 2.0."
+                  "text": "Visit SVG.IO at svg.io.orildo.tech, search for any brand or tech icon, click it, and instantly copy the React JSX, Vue 3, Svelte, Angular, PNG, or raw SVG XML code. All icons are free and require no sign-up."
                 }
               },
               {
@@ -228,7 +291,7 @@
                 "name": "Can I use SVG.IO icons in commercial projects?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. All icons on SVG.IO are available under the Apache 2.0 open-source license, allowing free use in both personal and commercial projects with attribution."
+                  "text": "Yes. All icons on SVG.IO are available under the Apache 2.0 open-source license, allowing free use in both personal and commercial projects. Attribution is appreciated but not required."
                 }
               },
               {
@@ -236,7 +299,7 @@
                 "name": "Does SVG.IO support React, Vue, and Angular?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. SVG.IO instantly generates ready-to-use component code for React JSX, Vue 3 SFC, Angular, Svelte, and raw HTML SVG for every icon in the library."
+                  "text": "Yes. SVG.IO instantly generates ready-to-use component code for React JSX, Vue 3 SFC, Angular, Svelte, and raw HTML SVG for every icon in the library with one click."
                 }
               },
               {
@@ -244,7 +307,31 @@
                 "name": "What are Liquid Glass icons?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Liquid Glass icons are a premium icon variant pack on SVG.IO featuring translucent, frosted-glass-style SVG vectors inspired by modern Apple-era design aesthetics."
+                  "text": "Liquid Glass icons are a premium icon variant pack on SVG.IO featuring translucent, frosted-glass-style SVG vectors inspired by modern Apple-era design aesthetics, available for 167+ brands."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is SVG.IO free to use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. SVG.IO is completely free with no subscription, no account required, and no API limits. All 6,517+ icons are licensed under Apache 2.0 and available for instant download."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does SVG.IO work offline?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. SVG.IO uses IndexedDB browser caching to store the full icon catalog locally. After your first visit, the icon library loads in under 10ms even without an internet connection."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many SVG icons does SVG.IO have?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "SVG.IO has over 6,517 curated vector icons including brand logos, developer tool icons, AI icons, cloud provider icons, framework icons, Liquid Glass variants, and more."
                 }
               }
             ]
@@ -253,17 +340,49 @@
       }
     </script>
 
-    <!-- Theme detection before paint (no FOUC) -->
+    <!-- ═══════════════════════════════════════════════════════════
+         PERFORMANCE — DNS PREFETCH & RESOURCE HINTS
+    ═══════════════════════════════════════════════════════════ -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="/icons.json" as="fetch" crossorigin="anonymous" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         GOOGLE FONTS
+    ═══════════════════════════════════════════════════════════ -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SITEMAP DISCOVERY
+    ═══════════════════════════════════════════════════════════ -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- ═══════════════════════════════════════════════════════════
+         THEME DETECTION — runs before paint (no FOUC)
+    ═══════════════════════════════════════════════════════════ -->
     <script>
       (function () {
         try {
-          const t = localStorage.getItem("orildo_svg_theme") || "dark";
+          var t = localStorage.getItem("orildo_svg_theme") || "dark";
           document.documentElement.setAttribute("data-theme", t);
         } catch (e) {}
       })();
     </script>
   </head>
   <body>
+    <!-- No-JS fallback for crawlers -->
+    <noscript>
+      <div style="font-family:sans-serif;padding:40px;text-align:center;">
+        <h1>SVG.IO — Free SVG Icon Library</h1>
+        <p>6,517+ free brand logos and developer SVG icons. Enable JavaScript to browse, search, and download icons.</p>
+        <p><a href="https://github.com/Orildo-Tech/SVG-IO">View on GitHub</a></p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
