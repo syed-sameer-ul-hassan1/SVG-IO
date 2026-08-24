@@ -10,10 +10,6 @@ export function Hero({
 
   return (
     <section className="md-hero-card">
-      {/* Background ambient glow */}
-      <div className="md-hero-glow glow-1" />
-      <div className="md-hero-glow glow-2" />
-
       {/* Main Text Content */}
       <div className="md-hero-content">
         <h1 className="md-hero-headline">

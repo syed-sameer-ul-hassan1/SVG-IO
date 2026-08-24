@@ -23,6 +23,8 @@
   * In the Submission form (`SubmitPage.jsx`), start with **zero categories selected by default (`[]`)** so contributors explicitly categorize their icons.
 * **Submissions Pipeline Timer**:
   * Maintain the standardized **7-minute (420 seconds)** processing timer across frontend UI (`SubmitPage.jsx`) and backend functions (`submit-icon.js`).
+* **Theme Token Compliance for Hero & Primary Buttons**:
+  * The Hero primary CTA button and all interactive accent buttons must **always follow the site theme tokens** (`var(--md-sys-color-primary)`, `var(--md-sys-color-secondary)`, `var(--md-sys-color-on-primary)`) rather than hardcoded hex colors, dynamically adapting across dark and light themes.
 
 ### 2. Security & Backend Ingestion
 * **Input Sanitization & Path Traversal Protection**:
@@ -58,7 +60,15 @@
 * ❌ **DO NOT create duplicate search bars** inside individual sub-pages (e.g., Categories or Favorites pages). Rely solely on the unified Header search bar.
 * ❌ **DO NOT pre-select categories by default** in submission workflows.
 
-### 4. Security & Information Leaks
+### 4. Operational & Tooling Constraints (STRICT)
+* ❌ **NEVER USE SCRIPTS OR TERMINAL TO MODIFY CODE FILES**:
+  * **DO NOT** write or execute ad-hoc scripts (Node, Python, Bash, etc.) to perform regex, bulk replaces, or automated edits on codebase files.
+  * **ALWAYS** use built-in IDE editing tools (`replace_file_content`, `multi_replace_file_content`, `write_to_file`) with explicit verification of every change.
+* ❌ **NEVER COMMIT OR PUSH TO GITHUB**:
+  * **DO NOT** run `git commit`, `git push`, or alter remote repository git history under any circumstances.
+  * All git commits and repository pushes must be handled exclusively by the human user.
+
+### 5. Security & Information Leaks
 * ❌ **DO NOT leak backend secrets or environment variable names** (e.g. `GH_PAT`, `SUPABASE_ANON_KEY`, `DATABASE_URL`) in API responses, console logs, or client-side bundles.
 * ❌ **DO NOT leak raw database or third-party error traces** in API responses.
 * ❌ **DO NOT link directly to internal repository build runs** or action logs from client UI.
