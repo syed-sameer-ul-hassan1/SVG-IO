@@ -50,10 +50,11 @@ const getIconSvgUrl = (icon) => {
 export function CategoriesPage({
   categories = [],
   allIcons = [],
+  searchQuery = '',
+  setSearchQuery,
   onSelectCategory,
   onSelectIcon
 }) {
-  const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState('count-desc');
   const [activeFilter, setActiveFilter] = useState('all');
 
@@ -88,8 +89,8 @@ export function CategoriesPage({
   const filteredCategories = useMemo(() => {
     let list = categories.filter((c) => {
       if (!c.name) return false;
-      if (!search.trim()) return true;
-      return c.name.toLowerCase().includes(search.toLowerCase().trim());
+      if (!searchQuery.trim()) return true;
+      return c.name.toLowerCase().includes(searchQuery.toLowerCase().trim());
     });
 
     if (activeFilter === 'popular') {
@@ -102,7 +103,7 @@ export function CategoriesPage({
     } else if (activeFilter === 'creative') {
       list = list.filter((c) => {
         const n = c.name.toLowerCase();
-        return n.includes('design') || n.includes('art') || n.includes('media') || n.includes('social') || n.includes('brand');
+        return n.includes('design') || n.includes('art') || n.includes('media') || n.includes('social') || n.includes('brand') || n.includes('pakistan');
       });
     }
 
@@ -117,7 +118,7 @@ export function CategoriesPage({
     }
 
     return list;
-  }, [categories, search, sortBy, activeFilter]);
+  }, [categories, searchQuery, sortBy, activeFilter]);
 
   return (
     <div className="md-categories-page">
@@ -152,25 +153,21 @@ export function CategoriesPage({
         </div>
 
         <div className="md-cat-toolbar">
-          <div className="md-cat-search-wrap">
-            <Search size={15} className="md-cat-search-icon" />
-            <input
-              type="text"
-              placeholder={`Search ${categories.length} categories...`}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="md-cat-search-input" />
-            
-            {search &&
-            <button
-              className="md-cat-search-clear"
-              onClick={() => setSearch('')}
-              title="Clear search"
-              aria-label="Clear category search">
-                <X size={13} />
+          {searchQuery && (
+            <div className="md-cat-active-search-chip">
+              <Search size={13} className="text-orange" />
+              <span>Filtering categories: <strong>"{searchQuery}"</strong></span>
+              <button
+                type="button"
+                className="md-cat-active-clear"
+                onClick={() => setSearchQuery?.('')}
+                title="Clear filter"
+                aria-label="Clear filter"
+              >
+                <X size={12} />
               </button>
-            }
-          </div>
+            </div>
+          )}
 
           <div className="md-cat-filter-pills">
             <button
@@ -317,15 +314,16 @@ export function CategoriesPage({
           </div>
           <h3 className="md-cat-no-results-title">No categories found</h3>
           <p className="md-cat-no-results-desc">
-            No category matching "{search}". Try searching for another topic or reset your filters.
+            {searchQuery
+              ? `No categories matching "${searchQuery}". Try a different keyword or reset your filter.`
+              : 'No categories available matching the selected filter.'}
           </p>
           <button
-          className="md-btn md-btn-primary"
-          onClick={() => {
-            setSearch('');
-            setActiveFilter('all');
-          }}>
-          
+            className="md-btn md-btn-primary"
+            onClick={() => {
+              setSearchQuery?.('');
+              setActiveFilter('all');
+            }}>
             Reset Filters
           </button>
         </div>

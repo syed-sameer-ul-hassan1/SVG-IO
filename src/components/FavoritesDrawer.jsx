@@ -29,7 +29,7 @@ export function FavoritesDrawer({
           variant: vList.includes('color') ? 'color' : vList[0] || 'default'
         };
       });
-      await downloadBulkZip(items, `material-svg-collection-${favorites.length}-icons.zip`);
+      await downloadBulkZip(items, `svgio-saved-collection-${favorites.length}-icons.zip`);
       onShowToast?.({
         type: 'success',
         title: 'ZIP Archive Exported',

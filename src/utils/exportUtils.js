@@ -1,5 +1,6 @@
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import { getCachedSvgVector, setCachedSvgVector } from './dbUtils';
 
 
 const svgCache = new Map();
@@ -9,19 +10,29 @@ const svgCache = new Map();
 
 export async function getSvgContent(iconId, variant = 'default') {
   const key = `${iconId}/${variant}`;
+  
+  // 1. Fast in-memory cache
   if (svgCache.has(key)) {
     return svgCache.get(key);
   }
 
+  // 2. Persistent IndexedDB cache
+  try {
+    const persisted = await getCachedSvgVector(key);
+    if (persisted && persisted.includes('<svg')) {
+      svgCache.set(key, persisted);
+      return persisted;
+    }
+  } catch {}
+
   const candidateUrls = [
-  `/icons/${iconId}/${variant}.svg`,
-  `/icons/${iconId}/default.svg`,
-  `/icons/${iconId}/dark.svg`,
-  `/icons/${iconId}/light.svg`,
-  `/icons/${iconId}/mono.svg`,
-  `/icons/${iconId}/wordmark.svg`];
-
-
+    `/icons/${iconId}/${variant}.svg`,
+    `/icons/${iconId}/default.svg`,
+    `/icons/${iconId}/dark.svg`,
+    `/icons/${iconId}/light.svg`,
+    `/icons/${iconId}/mono.svg`,
+    `/icons/${iconId}/wordmark.svg`
+  ];
 
   for (const url of candidateUrls) {
     try {
@@ -30,6 +41,7 @@ export async function getSvgContent(iconId, variant = 'default') {
         const text = await res.text();
         if (text && text.includes('<svg')) {
           svgCache.set(key, text);
+          setCachedSvgVector(key, text);
           return text;
         }
       }
@@ -416,13 +428,13 @@ export async function downloadAllFormatsZip(svgContent, iconId, variant = 'defau
   }
 
   const content = await zip.generateAsync({ type: 'blob' });
-  saveAs(content, `${iconId}-all-formats.zip`);
+  saveAs(content, `svgio-${iconId}-all-formats.zip`);
 }
 
 
 
 
-export async function downloadBulkZip(iconList, zipName = 'orildo-svg-bundle.zip') {
+export async function downloadBulkZip(iconList, zipName = 'svgio-vector-bundle.zip') {
   const zip = new JSZip();
   const folder = zip.folder('icons');
 

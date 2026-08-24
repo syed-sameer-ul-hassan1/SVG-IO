@@ -217,9 +217,9 @@ export function updatePageSeo({
 
   // ── About / Info Page ──────────────────────────────────────────
   else if (view === 'about' || view === 'info') {
-    finalTitle = 'About SVG.IO — theSVG Foundation, Apache 2.0 & Platform Specifications';
-    finalDesc = 'Learn about SVG.IO — powered by theSVG open-source foundation, hosting 6,517+ Apache 2.0 licensed vectors with Liquid Glass packs, sub-10ms IndexedDB caching, and zero telemetry.';
-    finalKeywords = 'about svg.io, thesvg foundation, apache 2.0 svg, orildo tech, open source icon library, svg platform specs, vector library about, liquid glass icons info';
+    finalTitle = 'About SVG.IO — Open Vector Platform, Apache 2.0 & Platform Specifications';
+    finalDesc = 'Learn about SVG.IO — open-source vector platform, hosting 6,500+ Apache 2.0 licensed vectors with sub-10ms browser caching and zero telemetry.';
+    finalKeywords = 'about svg.io, svg.io platform, apache 2.0 svg, open source icon library, svg platform specs, vector library about';
     canonicalUrl = `${BASE_URL}/?view=about`;
   }
 

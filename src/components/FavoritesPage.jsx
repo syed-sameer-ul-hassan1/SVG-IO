@@ -11,7 +11,8 @@ import {
   Grid3X3,
   List,
   Archive,
-  Code2 } from
+  Code2,
+  X } from
 'lucide-react';
 import IconCard from './IconCard';
 import { downloadBulkZip, getSvgContent, convertSvgToReact } from '../utils/exportUtils';
@@ -23,9 +24,10 @@ export function FavoritesPage({
   onToggleFavorite,
   onClearFavorites,
   onExploreAll,
-  onShowToast
+  onShowToast,
+  searchQuery = '',
+  setSearchQuery
 }) {
-  const [search, setSearch] = useState('');
   const [layoutMode, setLayoutMode] = useState('comfortable');
   const [isZipping, setIsZipping] = useState(false);
   const [isCopyingAllJsx, setIsCopyingAllJsx] = useState(false);
@@ -34,30 +36,25 @@ export function FavoritesPage({
 
 
   const filteredFavorites = useMemo(() => {
-    if (!search.trim()) return favorites;
-    const q = search.toLowerCase().trim();
+    if (!searchQuery.trim()) return favorites;
+    const q = searchQuery.toLowerCase().trim();
     return favorites.filter(
       (icon) =>
-      icon.name.toLowerCase().includes(q) ||
-      icon.id.toLowerCase().includes(q) ||
-      icon.category?.toLowerCase().includes(q)
+      icon.name?.toLowerCase().includes(q) ||
+      icon.id?.toLowerCase().includes(q) ||
+      icon.slug?.toLowerCase().includes(q) ||
+      icon.category?.toLowerCase().includes(q) ||
+      (Array.isArray(icon.categories) && icon.categories.some((c) => c.toLowerCase().includes(q)))
     );
-  }, [favorites, search]);
+  }, [favorites, searchQuery]);
 
 
   const handleDownloadAllZip = async () => {
     if (favorites.length === 0) return;
     setIsZipping(true);
     try {
-      const items = favorites.map((fav) => {
-        const vList = getVariants(fav);
-        return {
-          id: fav.id,
-          name: fav.name,
-          variant: vList.includes('color') ? 'color' : vList[0] || 'default'
-        };
-      });
-      await downloadBulkZip(items, `thesvg-collection-${favorites.length}-icons.zip`);
+      const items = favorites.map((f) => ({ id: f.id, variant: 'default' }));
+      await downloadBulkZip(items, `svgio-collection-${favorites.length}-icons.zip`);
       onShowToast?.({
         type: 'success',
         title: 'ZIP Archive Exported',
@@ -179,26 +176,30 @@ export function FavoritesPage({
         </div> :
 
       <>
-          {}
+          {/* Toolbar */}
           <div className="md-toolbar">
             <div className="md-toolbar-stats">
               Showing <strong>{filteredFavorites.length}</strong> of {favorites.length} saved vectors
             </div>
 
             <div className="md-toolbar-actions">
-              {}
-              <div className="md-cat-search-box" style={{ minWidth: 200, height: 34 }}>
-                <Search size={13} className="md-cat-search-icon" />
-                <input
-                type="text"
-                placeholder="Filter saved icons..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="md-cat-search-input" />
-              
-              </div>
+              {searchQuery && (
+                <div className="md-cat-active-search-chip" style={{ marginRight: 6 }}>
+                  <Search size={12} className="text-orange" />
+                  <span>Filtering: <strong>"{searchQuery}"</strong></span>
+                  <button
+                    type="button"
+                    className="md-cat-active-clear"
+                    onClick={() => setSearchQuery?.('')}
+                    title="Clear filter"
+                    aria-label="Clear filter"
+                  >
+                    <X size={11} />
+                  </button>
+                </div>
+              )}
 
-              {}
+              {/* Layout switcher */}
               <div className="md-segmented-btn-group">
                 <button
                 className={`md-segment-btn ${layoutMode === 'comfortable' ? 'active' : ''}`}
@@ -228,19 +229,38 @@ export function FavoritesPage({
             </div>
           </div>
 
-          {}
-          <div className={`md-icons-grid layout-${layoutMode}`}>
-            {filteredFavorites.map((icon) =>
-          <IconCard
-            key={icon.id}
-            icon={icon}
-            onSelect={(ic, variant) => onSelectIcon?.(ic, variant)}
-            isFavorite={favoritesSet?.has(icon.id)}
-            onToggleFavorite={onToggleFavorite}
-            onShowToast={onShowToast} />
-
+          {/* Icon Grid or No Results */}
+          {filteredFavorites.length > 0 ? (
+            <div className={`md-icons-grid layout-${layoutMode}`}>
+              {filteredFavorites.map((icon) => (
+                <IconCard
+                  key={icon.id}
+                  icon={icon}
+                  onSelect={(ic, variant) => onSelectIcon?.(ic, variant)}
+                  isFavorite={favoritesSet?.has(icon.id)}
+                  onToggleFavorite={onToggleFavorite}
+                  onShowToast={onShowToast}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="md-cat-no-results glass-panel" style={{ marginTop: 24 }}>
+              <div className="md-cat-no-results-icon">
+                <Search size={32} />
+              </div>
+              <h3 className="md-cat-no-results-title">No matching saved icons</h3>
+              <p className="md-cat-no-results-desc">
+                No saved icons match "{searchQuery}". Try searching for another keyword or clear the search filter.
+              </p>
+              <button
+                type="button"
+                className="md-btn md-btn-primary"
+                onClick={() => setSearchQuery?.('')}
+              >
+                Clear Filter
+              </button>
+            </div>
           )}
-          </div>
         </>
       }
     </div>);

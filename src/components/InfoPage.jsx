@@ -71,13 +71,13 @@ export function InfoPage({
               <Layers size={18} />
             </div>
             <div>
-              <h2 className="sv-info-section-title">Catalog Origin & theSVG Core</h2>
+              <h2 className="sv-info-section-title">Catalog Origin & Vector Core</h2>
               <span className="sv-info-section-sub">Curated foundation & multi-source ecosystem</span>
             </div>
           </div>
 
           <p className="sv-info-text">
-            The foundation of SVG.IO comprises <strong>6,517+ core brand and developer icons</strong> curated and normalized from the established <code>theSVG</code> open-source icon catalog, Simple Icons, and trusted developer registries.
+            The foundation of SVG.IO comprises <strong>6,500+ core brand and developer icons</strong> curated and normalized from open-source icon collections, developer registries, and verified brand repositories.
           </p>
 
           <p className="sv-info-text">

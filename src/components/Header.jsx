@@ -26,7 +26,8 @@ export function Header({
   allIcons = [],
   searchInputRef,
   onNavigate,
-  onSubmitIconClick
+  onSubmitIconClick,
+  currentView = 'icons'
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const [searchHistory, setSearchHistory] = useState(() => getSearchHistory());
@@ -115,14 +116,22 @@ export function Header({
           
         </div>
 
-        {}
+        {/* Global Search Bar */}
         <div className={`md-search-bar ${isFocused ? 'focused' : ''}`} ref={searchContainerRef}>
           <Search size={17} className="md-search-icon" />
           <input
             ref={searchInputRef}
             type="text"
             className="md-search-input"
-            placeholder="Search 6,500+ vector icons by name or brand (e.g., 'React', 'Vercel', 'Next')..."
+            placeholder={
+              currentView === 'categories'
+                ? "Search all categories & tech domains (e.g. AI, Pakistani Brands, DevTools)..."
+                : currentView === 'favorites'
+                ? "Filter your saved favorite icons..."
+                : currentView === 'blog'
+                ? "Search blog articles & guides..."
+                : `Search ${totalIcons ? totalIcons.toLocaleString() : '6,500+'}+ vector icons by name or brand (e.g., 'React', 'Vercel', 'Next')...`
+            }
             value={searchQuery || ''}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={handleFocus}

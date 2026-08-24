@@ -21,7 +21,8 @@ import {
   FileImage,
   CheckCircle2,
   Share2,
-  Link2 } from
+  Link2,
+  ArrowLeft } from
 'lucide-react';
 import {
   getSvgContent,
@@ -47,6 +48,9 @@ export function IconDetailPage({
   initialVariant = 'default',
   allIcons = [],
   onBack,
+  onNavigateHome,
+  onNavigateLibrary,
+  onSelectCategory,
   onSelectIcon,
   isFavorite,
   onToggleFavorite,
@@ -493,19 +497,67 @@ export function IconDetailPage({
 
   return (
     <div className="thesvg-view-page">
-      {}
-      <nav className="thesvg-breadcrumb" aria-label="Breadcrumb">
-        <button className="thesvg-breadcrumb-btn" onClick={onBack}>
-          <Home size={14} className="thesvg-bc-icon" />
-          <span>Home</span>
+      {/* Top Breadcrumb Navigation & Back Action */}
+      <div className="thesvg-top-nav-bar">
+        <nav className="thesvg-breadcrumb" aria-label="Breadcrumb">
+          <button
+            type="button"
+            className="thesvg-breadcrumb-btn"
+            onClick={() => {
+              if (onNavigateHome) onNavigateHome();
+              else onBack?.();
+            }}
+            title="Go to Home Catalog"
+          >
+            <Home size={14} className="thesvg-bc-icon" />
+            <span>Home</span>
+          </button>
+
+          <span className="thesvg-bc-sep">/</span>
+
+          <button
+            type="button"
+            className="thesvg-breadcrumb-btn"
+            onClick={() => {
+              if (onNavigateLibrary) onNavigateLibrary();
+              else onBack?.();
+            }}
+            title="Browse Full Vector Library"
+          >
+            <span>Library</span>
+          </button>
+
+          {primaryCategory && (
+            <>
+              <span className="thesvg-bc-sep">/</span>
+              <button
+                type="button"
+                className="thesvg-breadcrumb-btn category-pill-link"
+                onClick={() => onSelectCategory?.(primaryCategory)}
+                title={`View ${primaryCategory} category`}
+              >
+                <span>{primaryCategory}</span>
+              </button>
+            </>
+          )}
+
+          <span className="thesvg-bc-sep">/</span>
+          <span className="thesvg-bc-active">{icon.name}</span>
+        </nav>
+
+        <button
+          type="button"
+          className="thesvg-back-btn"
+          onClick={() => {
+            if (onNavigateLibrary) onNavigateLibrary();
+            else onBack?.();
+          }}
+          title="Return to Library"
+        >
+          <ArrowLeft size={14} />
+          <span>Back to Library</span>
         </button>
-        <span className="thesvg-bc-sep">/</span>
-        <button className="thesvg-breadcrumb-btn" onClick={onBack}>
-          <span>Library</span>
-        </button>
-        <span className="thesvg-bc-sep">/</span>
-        <span className="thesvg-bc-active">{icon.name}</span>
-      </nav>
+      </div>
 
       {}
       <div className="thesvg-main-grid">

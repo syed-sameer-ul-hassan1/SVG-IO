@@ -21,7 +21,13 @@ import MobileDeviceNotice from './components/MobileDeviceNotice';
 import Fuse from 'fuse.js';
 
 import { saveSearchHistoryItem } from './utils/historyUtils';
-import { getCachedCatalog, setCachedCatalog, preloadIconBatch } from './utils/dbUtils';
+import {
+  getCachedCatalog,
+  setCachedCatalog,
+  preloadIconBatch,
+  getCachedFavorites,
+  setCachedFavorites
+} from './utils/dbUtils';
 import { updatePageSeo } from './utils/seoUtils';
 
 export function App() {
@@ -71,6 +77,23 @@ export function App() {
     }
   });
 
+  // Revalidate favorites from IndexedDB storage
+  useEffect(() => {
+    let active = true;
+    getCachedFavorites().then((cached) => {
+      if (active && Array.isArray(cached) && cached.length > 0) {
+        setFavorites((prev) => {
+          if (prev.length === 0) return cached;
+          // Merge unique
+          const ids = new Set(prev.map((f) => f.id || f.slug));
+          const additions = cached.filter((c) => !ids.has(c.id || c.slug));
+          return additions.length > 0 ? [...prev, ...additions] : prev;
+        });
+      }
+    });
+    return () => { active = false; };
+  }, []);
+
 
   const [toast, setToast] = useState(null);
   const toastTimeoutRef = useRef(null);
@@ -90,11 +113,7 @@ export function App() {
 
 
   useEffect(() => {
-    try {
-      localStorage.setItem('orildo_svg_favorites', JSON.stringify(favorites));
-    } catch (e) {
-      console.warn('LocalStorage error:', e);
-    }
+    setCachedFavorites(favorites);
   }, [favorites]);
 
 
@@ -311,6 +330,7 @@ export function App() {
     }
     setSelectedIcon(icon);
     setSelectedVariant(variant);
+    setSearchQuery(''); // Automatically clear search when opening an icon
     try {
       if (icon) {
         // Clean shareable URL: /icon/[slug]
@@ -337,6 +357,7 @@ export function App() {
     setSelectedCategory(category);
     setSelectedIcon(null);
     setCurrentView('icons');
+    setSearchQuery(''); // Automatically clear search when choosing a category
     try {
       if (category && category !== 'all') {
         // Clean shareable URL: /category/[name]
@@ -351,6 +372,7 @@ export function App() {
   const handleNavigate = (view) => {
     setCurrentView(view);
     setSelectedIcon(null);
+    setSearchQuery(''); // Automatically clear search when navigating
     try {
       if (view && view !== 'icons') {
         window.history.pushState(null, '', `/?view=${view}`);
@@ -465,7 +487,7 @@ export function App() {
 
   return (
     <div className="md-page-wrapper">
-      {}
+      {/* Top Navigation Header */}
       <Header
         theme={theme}
         toggleTheme={toggleTheme}
@@ -476,19 +498,21 @@ export function App() {
           setSearchQuery(q);
           if (q) {
             setSelectedIcon(null);
-            setCurrentView('icons');
+            if (currentView !== 'categories' && currentView !== 'favorites') {
+              setCurrentView('icons');
+            }
           }
         }}
         totalIcons={totalCount}
         allIcons={metadata?.icons || []}
         searchInputRef={searchInputRef}
         onNavigate={handleNavigate}
-        onSubmitIconClick={handleSubmitIconModal} />
-      
+        onSubmitIconClick={handleSubmitIconModal}
+        currentView={currentView} />
 
-      {}
+      {/* Main Layout Container */}
       <div className="md-app-layout">
-        {}
+        {/* Sidebar Navigation */}
         <Sidebar
           theme={theme}
           categories={categoriesWithCounts}
@@ -505,17 +529,30 @@ export function App() {
             }
           }}
           totalIcons={totalCount} />
-        
 
-        {}
+        {/* Content Area */}
         <main className="md-main-content">
-          {}
+          {/* Detailed Icon View */}
           {selectedIcon ?
           <IconDetailPage
             icon={selectedIcon}
             initialVariant={selectedVariant}
             allIcons={metadata?.icons || []}
-            onBack={() => setSelectedIcon(null)}
+            onBack={() => {
+              setSelectedIcon(null);
+              try { window.history.pushState(null, '', '/'); } catch {}
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onNavigateHome={() => resetFilters()}
+            onNavigateLibrary={() => {
+              setSelectedIcon(null);
+              setSelectedCategory('all');
+              setCurrentView('icons');
+              setSearchQuery('');
+              try { window.history.pushState(null, '', '/'); } catch {}
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSelectCategory={handleCategorySelect}
             onSelectIcon={handleSelectIcon}
             isFavorite={favoritesSet.has(selectedIcon.id)}
             onToggleFavorite={toggleFavorite}
@@ -525,6 +562,8 @@ export function App() {
           <CategoriesPage
             categories={categoriesWithCounts}
             allIcons={metadata?.icons || []}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
             onSelectCategory={handleCategorySelect}
             onSelectIcon={handleSelectIcon} /> :
 
@@ -543,6 +582,8 @@ export function App() {
           <FavoritesPage
             favorites={favorites}
             allIcons={metadata?.icons || []}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
             onSelectIcon={handleSelectIcon}
             favoritesSet={favoritesSet}
             onToggleFavorite={toggleFavorite}
