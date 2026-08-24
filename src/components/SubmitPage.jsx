@@ -51,7 +51,7 @@ const POPULAR_CATEGORIES = [
 "Social"];
 
 
-const TOTAL_PIPELINE_SECONDS = 600; // 10 minutes
+const TOTAL_PIPELINE_SECONDS = 420; // 7 minutes
 
 function formatPipelineTime(seconds) {
   if (seconds <= 0) return '00:00';
@@ -786,7 +786,7 @@ export function SubmitPage({
                 {isDone ? <CheckCircle2 size={36} className="text-emerald" /> : formatPipelineTime(countdown)}
               </div>
               <div className="sv-pipeline-time-label">
-                {isDone ? 'Ready in Library' : 'Estimated Time (10m)'}
+                {isDone ? 'Ready in Library' : 'Estimated Time (7m)'}
               </div>
             </div>
           </div>

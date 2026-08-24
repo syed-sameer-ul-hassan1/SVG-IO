@@ -178,7 +178,7 @@ export async function onRequest(context) {
 
   return json({
     success: true,
-    message: `Icon "${title}" submitted! It will appear in the library after processing (usually 1-2 minutes).`,
+    message: `Icon "${title}" submitted! It will appear in the library after processing (usually within 7 minutes).`,
     submission_id: submission?.id,
     storage_urls: storagePublicUrls,
     slug,
