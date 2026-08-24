@@ -1,9 +1,68 @@
-# Robots.txt for SVG.IO (https://svg.io.orildo.tech)
+# Robots.txt — SVG.IO (https://svg.io.orildo.tech)
+# Generated for maximum crawl efficiency & indexing coverage
+
+# ── ALL CRAWLERS ────────────────────────────────────────────────
 User-agent: *
 Allow: /
+Allow: /icons/
+Allow: /assets/
+Allow: /sitemap.xml
+Allow: /robots.txt
+Disallow: /dist/
+Crawl-delay: 0
 
-# Host
+# ── GOOGLEBOT ───────────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# ── GOOGLE IMAGE BOT ────────────────────────────────────────────
+User-agent: Googlebot-Image
+Allow: /
+Allow: /icons/
+Allow: /assets/
+Crawl-delay: 0
+
+# ── BINGBOT ─────────────────────────────────────────────────────
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# ── DUCKDUCKBOT ─────────────────────────────────────────────────
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# ── YANDEX ──────────────────────────────────────────────────────
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+
+# ── BAIDU ───────────────────────────────────────────────────────
+User-agent: Baiduspider
+Allow: /
+
+# ── SLACKBOT / DISCORDBOT (Open Graph preview) ──────────────────
+User-agent: Slackbot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# ── HOST ────────────────────────────────────────────────────────
 Host: https://svg.io.orildo.tech
 
-# Sitemaps
+# ── SITEMAPS ────────────────────────────────────────────────────
 Sitemap: https://svg.io.orildo.tech/sitemap.xml
