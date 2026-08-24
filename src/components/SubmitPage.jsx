@@ -58,6 +58,29 @@ function formatPipelineTime(seconds) {
   return `${m}:${s < 10 ? '0' : ''}${s}`;
 }
 
+const CUSTOM_CATEGORIES_KEY = "svgio_custom_created_categories";
+
+const getSavedCustomCategories = () => {
+  try {
+    const raw = localStorage.getItem(CUSTOM_CATEGORIES_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return parsed;
+    }
+  } catch (e) {
+    console.warn("Could not read custom categories from localStorage:", e);
+  }
+  return [];
+};
+
+const saveCustomCategoriesToStorage = (categories) => {
+  try {
+    localStorage.setItem(CUSTOM_CATEGORIES_KEY, JSON.stringify(categories));
+  } catch (e) {
+    console.warn("Could not save custom categories to localStorage:", e);
+  }
+};
+
 const PRESET_VARIANT_NAMES = [
 "default",
 "light",
@@ -86,7 +109,17 @@ export function SubmitPage({
   const [detectedHexes, setDetectedHexes] = useState([]);
   const [license, setLicense] = useState("Apache-2.0");
   const [selectedCategories, setSelectedCategories] = useState(["Software"]);
-  const [categoriesList, setCategoriesList] = useState(POPULAR_CATEGORIES);
+  const [customCategories, setCustomCategories] = useState(() => getSavedCustomCategories());
+  const [categoriesList, setCategoriesList] = useState(() => {
+    const saved = getSavedCustomCategories();
+    const unique = [...saved];
+    POPULAR_CATEGORIES.forEach((c) => {
+      if (!unique.some((u) => u.toLowerCase() === c.toLowerCase())) {
+        unique.push(c);
+      }
+    });
+    return unique;
+  });
   const [newCategoryInput, setNewCategoryInput] = useState("");
 
 
@@ -145,19 +178,41 @@ export function SubmitPage({
     );
     const finalCat = existing || formatted;
 
-    if (!categoriesList.includes(finalCat)) {
-      setCategoriesList([finalCat, ...categoriesList]);
+    // Update categoriesList
+    if (!categoriesList.some((c) => c.toLowerCase() === finalCat.toLowerCase())) {
+      setCategoriesList((prev) => [finalCat, ...prev]);
     }
 
+    // Persist permanently in customCategories state & localStorage
+    const updatedCustom = [finalCat, ...customCategories.filter((c) => c.toLowerCase() !== finalCat.toLowerCase())];
+    setCustomCategories(updatedCustom);
+    saveCustomCategoriesToStorage(updatedCustom);
+
     if (!selectedCategories.includes(finalCat)) {
-      setSelectedCategories([...selectedCategories, finalCat]);
+      setSelectedCategories((prev) => [...prev, finalCat]);
     }
 
     setNewCategoryInput("");
     onShowToast?.({
       type: "success",
-      title: "Category Created",
-      message: `"${finalCat}" added and selected for this icon.`
+      title: "Category Created & Saved Permanently",
+      message: `"${finalCat}" is now permanently available in your categories list.`
+    });
+  };
+
+  const handleRemoveCustomCategory = (e, catToRemove) => {
+    e.stopPropagation();
+    const updatedCustom = customCategories.filter((c) => c !== catToRemove);
+    setCustomCategories(updatedCustom);
+    saveCustomCategoriesToStorage(updatedCustom);
+    setCategoriesList((prev) => prev.filter((c) => c !== catToRemove));
+    if (selectedCategories.includes(catToRemove)) {
+      setSelectedCategories((prev) => prev.filter((c) => c !== catToRemove));
+    }
+    onShowToast?.({
+      type: "info",
+      title: "Category Removed",
+      message: `"${catToRemove}" removed from custom categories.`
     });
   };
 
@@ -1467,16 +1522,37 @@ export function SubmitPage({
               <div className="sv-cat-tags-selector">
                 {categoriesList.map((cat) => {
                   const isSelected = selectedCategories.includes(cat);
+                  const isCustom = customCategories.includes(cat);
                   return (
-                    <button
+                    <div
                       key={cat}
-                      type="button"
-                      className={`sv-cat-pill-toggle ${isSelected ? "active" : ""}`}
-                      onClick={() => handleToggleCategory(cat)}
-                      title={isSelected ? `Click to deselect ${cat}` : `Click to select ${cat}`}>
-                      {isSelected && <Check size={12} style={{ marginRight: 4 }} />}
-                      <span>{cat}</span>
-                    </button>
+                      className={`sv-cat-pill-toggle-wrap ${isSelected ? "active" : ""} ${isCustom ? "custom" : ""}`}
+                    >
+                      <button
+                        type="button"
+                        className={`sv-cat-pill-toggle ${isSelected ? "active" : ""}`}
+                        onClick={() => handleToggleCategory(cat)}
+                        title={isSelected ? `Click to deselect ${cat}` : `Click to select ${cat}`}>
+                        {isSelected ? (
+                          <Check size={12} style={{ marginRight: 4 }} />
+                        ) : isCustom ? (
+                          <Sparkles size={11} style={{ marginRight: 4, color: '#FF5F02' }} />
+                        ) : null}
+                        <span>{cat}</span>
+                      </button>
+
+                      {isCustom && (
+                        <button
+                          type="button"
+                          className="sv-cat-pill-remove-btn"
+                          onClick={(e) => handleRemoveCustomCategory(e, cat)}
+                          title={`Delete custom category "${cat}"`}
+                          aria-label={`Delete custom category "${cat}"`}
+                        >
+                          <X size={11} />
+                        </button>
+                      )}
+                    </div>
                   );
                 })}
               </div>
