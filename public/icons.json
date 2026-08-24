@@ -1,5 +1,34 @@
 [
   {
+    "slug": "name-com",
+    "title": "Name.com",
+    "aliases": [],
+    "hex": "282828",
+    "hexes": [
+      "282828",
+      "6EDA78"
+    ],
+    "categories": [
+      "Global",
+      "Social",
+      "Cloud",
+      "Developer Tools",
+      "Education"
+    ],
+    "variants": {
+      "dark": "/icons/name-com/dark.svg",
+      "default": "/icons/name-com/default.svg",
+      "light": "/icons/name-com/light.svg",
+      "wordmark-dark": "/icons/name-com/wordmark-dark.svg",
+      "wordmark-default": "/icons/name-com/wordmark-default.svg",
+      "wordmark-light": "/icons/name-com/wordmark-light.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://name.com",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
     "slug": "ptcl",
     "title": "Ptcl",
     "aliases": [],
