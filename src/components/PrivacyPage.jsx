@@ -56,8 +56,8 @@ export function PrivacyPage({ onNavigate }) {
           </p>
           <ul>
             <li><strong>Browser Storage:</strong> Your icon favorites and recent search history are stored exclusively in your browser's local storage and never transmitted to our remote servers.</li>
-            <li><strong>Submissions:</strong> When you submit a community icon, we process the vector SVG XML, icon title, and brand metadata through automated GitHub Actions workflows.</li>
-            <li><strong>Server Logs:</strong> Standard HTTP server access logs (such as IP address, user-agent, and requested file path) may be temporarily processed by Cloudflare and CDN networks for DDoS prevention and caching optimization.</li>
+            <li><strong>Submissions:</strong> When you submit a community icon, we process the vector SVG XML, icon title, and brand metadata through automated validation and packaging workflows.</li>
+            <li><strong>Server Logs:</strong> Standard HTTP server access logs (such as IP address, user-agent, and requested file path) may be temporarily processed by edge networks for DDoS prevention and caching optimization.</li>
           </ul>
         </section>
 
@@ -79,9 +79,9 @@ export function PrivacyPage({ onNavigate }) {
             SVG.IO utilizes trusted infrastructure partners to provide high-performance delivery:
           </p>
           <ul>
-            <li><strong>Cloudflare / Vercel / Netlify:</strong> Edge network caching and HTTPS delivery.</li>
-            <li><strong>GitHub Actions:</strong> Automated validation and open-source continuous deployment.</li>
-            <li><strong>Supabase:</strong> Scalable PostgreSQL and storage for incoming community icon submissions.</li>
+            <li><strong>Global Edge CDN:</strong> High-performance edge network caching and HTTPS delivery.</li>
+            <li><strong>Automated CI/CD Engine:</strong> Automated vector asset validation and continuous deployment.</li>
+            <li><strong>Secure Cloud Staging:</strong> High-availability storage and buffer for incoming community submissions.</li>
           </ul>
         </section>
 

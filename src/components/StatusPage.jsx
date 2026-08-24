@@ -43,15 +43,15 @@ export function StatusPage({ onNavigate, totalIcons = 6520 }) {
     icon: Database
   },
   {
-    name: 'Automated GitHub Submission Pipeline',
+    name: 'Automated Vector Ingestion Pipeline',
     desc: 'Continuous integration for incoming community vector submissions',
     status: 'Operational',
     uptime: '99.98%',
     icon: Zap
   },
   {
-    name: 'Supabase Ingestion API',
-    desc: 'Temporary staging buffer and submission tracking database',
+    name: 'Cloud Vector Ingestion & Staging API',
+    desc: 'High-availability staging buffer and vector asset normalization cluster',
     status: 'Operational',
     uptime: '99.95%',
     icon: Server

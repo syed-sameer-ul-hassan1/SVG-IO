@@ -673,7 +673,7 @@ export function SubmitPage({
                 </>
               ) : (
                 <>
-                  Vector assets uploaded to Supabase. GitHub Actions CI is compiling <code>icons.json</code> and deploying to edge CDN.
+                  Vector assets uploaded and verified. Automated Edge Build Engine is compiling <code>icons.json</code> and propagating to global CDN.
                 </>
               )}
             </p>
@@ -709,7 +709,7 @@ export function SubmitPage({
               <div className="sv-stage-step-num"><Check size={14} /></div>
               <div className="sv-stage-info">
                 <div className="sv-stage-title-row">
-                  <span className="sv-stage-title">1. Supabase Secure Ingestion</span>
+                  <span className="sv-stage-title">1. Vector Asset Validation & Ingestion</span>
                   <span className="sv-stage-tag done">COMPLETED</span>
                 </div>
                 <p className="sv-stage-desc">
@@ -724,13 +724,13 @@ export function SubmitPage({
               </div>
               <div className="sv-stage-info">
                 <div className="sv-stage-title-row">
-                  <span className="sv-stage-title">2. GitHub Action Repository Dispatch</span>
+                  <span className="sv-stage-title">2. Automated CI/CD Compilation Engine</span>
                   <span className={`sv-stage-tag ${countdown <= 55 ? 'done' : 'active'}`}>
-                    {countdown <= 55 ? 'TRIGGERED' : 'DISPATCHING'}
+                    {countdown <= 55 ? 'PROCESSED' : 'DISPATCHING'}
                   </span>
                 </div>
                 <p className="sv-stage-desc">
-                  Triggered <code>process-icon-submission</code> on <code>syed-sameer-ul-hassan/SVG.IO</code>.
+                  Triggered automated packaging workflow and verified vector asset integrity.
                 </p>
               </div>
             </div>
@@ -978,8 +978,8 @@ export function SubmitPage({
             <div className="sv-form-header">
               <h2 className="sv-form-title">Quick Submit</h2>
               <p className="sv-form-sub">
-                Drop one or multiple SVGs, name each variant, and save directly
-                to Supabase &amp; GitHub.
+                Drop one or multiple SVGs, name each variant, and publish directly
+                to the global vector library.
               </p>
             </div>
 
