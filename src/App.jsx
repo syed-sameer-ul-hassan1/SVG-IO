@@ -330,7 +330,7 @@ export function App() {
     }
     setSelectedIcon(icon);
     setSelectedVariant(variant);
-    setSearchQuery(''); // Automatically clear search when opening an icon
+    setSearchQuery(''); // Clear search when opening an icon
     try {
       if (icon) {
         // Clean shareable URL: /icon/[slug]
@@ -357,7 +357,7 @@ export function App() {
     setSelectedCategory(category);
     setSelectedIcon(null);
     setCurrentView('icons');
-    setSearchQuery(''); // Automatically clear search when choosing a category
+    setSearchQuery(''); // Clear search when choosing a category
     try {
       if (category && category !== 'all') {
         // Clean shareable URL: /category/[name]
@@ -372,7 +372,7 @@ export function App() {
   const handleNavigate = (view) => {
     setCurrentView(view);
     setSelectedIcon(null);
-    setSearchQuery(''); // Automatically clear search when navigating
+    setSearchQuery(''); // Clear search when navigating
     try {
       if (view && view !== 'icons') {
         window.history.pushState(null, '', `/?view=${view}`);

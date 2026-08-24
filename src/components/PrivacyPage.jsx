@@ -56,7 +56,7 @@ export function PrivacyPage({ onNavigate }) {
           </p>
           <ul>
             <li><strong>Browser Storage:</strong> Your icon favorites and recent search history are stored exclusively in your browser's local storage and never transmitted to our remote servers.</li>
-            <li><strong>Submissions:</strong> When you submit a community icon, we process the vector SVG XML, icon title, and brand metadata through automated validation and packaging workflows.</li>
+            <li><strong>Submissions:</strong> When you submit a community icon, we process the vector SVG XML, icon title, and brand metadata through our vector validation and packaging pipeline.</li>
             <li><strong>Server Logs:</strong> Standard HTTP server access logs (such as IP address, user-agent, and requested file path) may be temporarily processed by edge networks for DDoS prevention and caching optimization.</li>
           </ul>
         </section>
@@ -64,12 +64,12 @@ export function PrivacyPage({ onNavigate }) {
         <section className="md-legal-section">
           <h2>2. How We Use Information</h2>
           <p>
-            Any telemetry or technical log data collected is utilized solely to:
+            Any technical log data is utilized solely to:
           </p>
           <ul>
             <li>Maintain fast, uninterrupted global vector asset delivery.</li>
-            <li>Process automated icon quality checks, normalization, and optimization.</li>
-            <li>Protect our infrastructure from spam and automated abuse.</li>
+            <li>Process vector quality checks, normalization, and optimization.</li>
+            <li>Protect our infrastructure from spam and malicious abuse.</li>
           </ul>
         </section>
 
@@ -80,7 +80,7 @@ export function PrivacyPage({ onNavigate }) {
           </p>
           <ul>
             <li><strong>Global Edge CDN:</strong> High-performance edge network caching and HTTPS delivery.</li>
-            <li><strong>Automated CI/CD Engine:</strong> Automated vector asset validation and continuous deployment.</li>
+            <li><strong>Build Engine:</strong> Vector asset validation and continuous deployment.</li>
             <li><strong>Secure Cloud Staging:</strong> High-availability storage and buffer for incoming community submissions.</li>
           </ul>
         </section>

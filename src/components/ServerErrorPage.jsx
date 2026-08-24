@@ -44,7 +44,7 @@ export function ServerErrorPage({ onNavigate, onRetry }) {
 
         <h1 className="md-error-title">Unexpected System Error</h1>
         <p className="md-error-desc">
-          Something went wrong while processing your request or communicating with the backend storage. Our automated edge health checkers have been alerted.
+          Something went wrong while processing your request. Please try refreshing the page or clearing your browser cache.
         </p>
 
         {}

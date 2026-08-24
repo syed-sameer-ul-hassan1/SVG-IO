@@ -29,7 +29,7 @@ export function Hero({
         </h1>
 
         <p className="md-hero-description">
-          Upload individual vector icons or complete icon packs. We automatically validate, optimize paths, and host them with dedicated shareable web pages, global CDN links, and 1-click integration code for React, React Native, Next.js, Vue, Svelte, and HTML.
+          Upload individual vector icons or complete icon packs. We validate, optimize paths, and host them with dedicated shareable web pages, global CDN links, and 1-click integration code for React, React Native, Next.js, Vue, Svelte, and HTML.
         </p>
 
         {/* Action Buttons Row */}
@@ -60,7 +60,7 @@ export function Hero({
           </div>
           <div className="md-hero-feat-item">
             <CheckCircle2 size={14} className="text-emerald" />
-            <span>Automated 7-Min Ingestion</span>
+            <span>Fast 7-Min Ingestion</span>
           </div>
           <div className="md-hero-feat-item">
             <CheckCircle2 size={14} className="text-emerald" />

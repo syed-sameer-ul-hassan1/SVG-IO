@@ -35,7 +35,7 @@ export function InfoPage({
         </h1>
 
         <p className="sv-info-hero-desc">
-          SVG.IO is the modern, 100% free and open-source <strong>SVG hosting, publishing, and distribution platform</strong>. Upload individual vector icons or entire icon packs, and our automated engine validates, optimizes, packages, and hosts them with dedicated shareable web pages and instant CDN delivery.
+          SVG.IO is the modern, 100% free and open-source <strong>SVG hosting, publishing, and distribution platform</strong>. Upload individual vector icons or entire icon packs, and our processing engine validates, optimizes, packages, and hosts them with dedicated shareable web pages and instant CDN delivery.
         </p>
 
         {/* Stats Row */}
@@ -52,7 +52,7 @@ export function InfoPage({
 
           <div className="sv-info-stat-card glass-panel">
             <span className="sv-info-stat-num">7 Min</span>
-            <span className="sv-info-stat-label">Automated Ingestion</span>
+            <span className="sv-info-stat-label">Ingestion Pipeline</span>
           </div>
 
           <div className="sv-info-stat-card glass-panel">
@@ -100,24 +100,24 @@ export function InfoPage({
           </div>
         </section>
 
-        {/* Section 2: Automated Pipeline */}
+        {/* Section 2: Ingestion Pipeline */}
         <section className="sv-info-card glass-panel">
           <div className="sv-info-card-header">
             <div className="sv-info-icon-box">
               <Zap size={18} />
             </div>
             <div>
-              <h2 className="sv-info-section-title">Automated 7-Minute Ingestion</h2>
+              <h2 className="sv-info-section-title">7-Minute Ingestion Pipeline</h2>
               <span className="sv-info-section-sub">Subpixel precision &amp; path sanitization</span>
             </div>
           </div>
 
           <p className="sv-info-text">
-            Our automated ingestion pipeline processes submissions in real time. Vector markup is validated, sanitized of unnecessary editor metadata, and calibrated for crisp subpixel rendering.
+            Our ingestion pipeline processes submissions in real time. Vector markup is validated, sanitized of unnecessary editor metadata, and calibrated for crisp subpixel rendering.
           </p>
 
           <p className="sv-info-text">
-            Brand colors are automatically extracted into responsive hex palettes, and production-ready components are generated for seamless integration into modern applications.
+            Brand colors are parsed into responsive hex palettes, and production-ready components are generated for seamless integration into modern applications.
           </p>
 
           <div className="sv-info-highlights">
@@ -127,7 +127,7 @@ export function InfoPage({
             </div>
             <div className="sv-info-highlight-item">
               <CheckCircle2 size={15} className="text-emerald" />
-              <span>Automatic brand palette detection and hex swatch generation</span>
+              <span>Brand palette detection and hex swatch generation</span>
             </div>
             <div className="sv-info-highlight-item">
               <CheckCircle2 size={15} className="text-emerald" />

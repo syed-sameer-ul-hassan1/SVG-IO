@@ -18,8 +18,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 
 
-const slug = process.env.ICON_SLUG;
-const title = process.env.ICON_TITLE;
+const rawSlug = process.env.ICON_SLUG;
+const title = (process.env.ICON_TITLE || '').trim();
+const slug = (rawSlug || '').toLowerCase().replace(/[^a-z0-9_-]/g, '');
 const hex = (process.env.ICON_HEX || 'FF5F02').replace(/^#/, '');
 const hexes = JSON.parse(process.env.ICON_HEXES || '[]');
 const license = process.env.ICON_LICENSE || 'Apache-2.0';
@@ -31,7 +32,7 @@ const aliases = JSON.parse(process.env.ICON_ALIASES || '[]');
 const variantsUrls = JSON.parse(process.env.ICON_VARIANTS || '{}');
 
 if (!slug || !title) {
-  console.error('[ERROR] ICON_SLUG and ICON_TITLE are required');
+  console.error('[ERROR] ICON_SLUG and ICON_TITLE are required and must be alphanumeric');
   process.exit(1);
 }
 
@@ -107,9 +108,11 @@ console.log(`[DIR] Created directory: public/icons/${slug}/`);
 
 const savedVariantPaths = {};
 
-for (const [variantKey, variantUrl] of Object.entries(variantsUrls)) {
+for (const [rawVariantKey, variantUrl] of Object.entries(variantsUrls)) {
+  const variantKey = rawVariantKey.toLowerCase().replace(/[^a-z0-9_-]/g, '');
+  if (!variantKey) continue;
   const destFile = path.join(iconDir, `${variantKey}.svg`);
-  console.log(`[DOWNLOAD] Fetching ${variantKey}.svg from Supabase...`);
+  console.log(`[DOWNLOAD] Fetching ${variantKey}.svg from storage...`);
   try {
     await downloadFile(variantUrl, destFile);
     savedVariantPaths[variantKey] = `/icons/${slug}/${variantKey}.svg`;

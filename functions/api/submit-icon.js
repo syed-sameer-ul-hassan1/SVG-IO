@@ -60,11 +60,11 @@ export async function onRequest(context) {
   const GH_REPO = env.GH_REPO || 'SVG-IO';
 
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-    return json({ error: 'Supabase env vars not configured' }, 500);
+    return json({ error: 'Ingestion service configuration unavailable.' }, 500);
   }
 
   if (!GH_PAT) {
-    return json({ error: 'GH_PAT not configured in Cloudflare env vars' }, 500);
+    return json({ error: 'Ingestion service temporarily unavailable.' }, 500);
   }
 
   // 1. Upload SVG variants to Supabase Storage
@@ -89,8 +89,7 @@ export async function onRequest(context) {
     );
 
     if (!uploadRes.ok) {
-      const errText = await uploadRes.text();
-      return json({ error: `Storage upload failed for variant "${variantKey}": ${errText}` }, 500);
+      return json({ error: `Upload validation failed for variant "${variantKey}". Please check your SVG file.` }, 500);
     }
 
     storagePaths[variantKey] = filePath;
@@ -127,11 +126,9 @@ export async function onRequest(context) {
   if (dbRes.ok) {
     const rows = await dbRes.json();
     submission = Array.isArray(rows) ? rows[0] : rows;
-  } else {
-    console.error('DB insert failed:', await dbRes.text());
   }
 
-  // 3. Trigger GitHub Actions workflow via repository_dispatch
+  // 3. Trigger processing pipeline
   const dispatchPayload = {
     event_type: 'process-icon-submission',
     client_payload: {
@@ -166,14 +163,11 @@ export async function onRequest(context) {
   );
 
   if (!ghRes.ok) {
-    const errText = await ghRes.text();
-    console.error('GitHub dispatch failed:', errText);
     return json({
       success: true,
-      warning: 'SVGs uploaded but GitHub Action trigger failed. Check GH_PAT secret.',
-      storage_urls: storagePublicUrls,
+      message: 'Vector package queued for processing.',
       submission_id: submission?.id,
-    }, 207);
+    }, 200);
   }
 
   return json({

@@ -43,8 +43,8 @@ export function StatusPage({ onNavigate, totalIcons = 6520 }) {
     icon: Database
   },
   {
-    name: 'Automated Vector Ingestion Pipeline',
-    desc: 'Continuous integration for incoming community vector submissions',
+    name: 'Vector Ingestion & Packaging Pipeline',
+    desc: 'Continuous processing for incoming vector submissions',
     status: 'Operational',
     uptime: '99.98%',
     icon: Zap

@@ -91,4 +91,4 @@ jobs:
             -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
             -H "apikey: $SUPABASE_ANON_KEY" \
             -H "Content-Type: application/json" \
-            -d '{"status": "rejected", "error_message": "Automated processing failed"}'
+            -d '{"status": "rejected", "error_message": "Processing pipeline failed"}'

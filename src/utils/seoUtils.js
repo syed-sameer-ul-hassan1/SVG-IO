@@ -176,7 +176,7 @@ export function updatePageSeo({
   // ── Default (Homepage) ─────────────────────────────────────────
   let finalTitle = 'SVG.IO — Open-Source SVG Hosting & Publishing Platform | 6,500+ Vectors';
   let finalDesc =
-    'SVG.IO is the modern, free open-source SVG hosting, publishing, and distribution platform. Upload icons or complete packs, get automated optimization, dedicated live shareable pages, CDN delivery, and instant React, Vue, Svelte & HTML code.';
+    'SVG.IO is the modern, free open-source SVG hosting, publishing, and distribution platform. Upload icons or complete packs, get path optimization, dedicated live shareable pages, CDN delivery, and instant React, Vue, Svelte & HTML code.';
   let finalKeywords = `${BRAND_KEYWORDS_BASE}, ${TECH_ICON_KEYWORDS}, svg hosting, svg publishing, vector distribution platform, react jsx icons, vue component icons, svelte icons, angular icons, liquid glass icons, brand logos svg`;
   let canonicalUrl = BASE_URL + '/';
   let schema = null;
@@ -218,7 +218,7 @@ export function updatePageSeo({
   // ── About / Info Page ──────────────────────────────────────────
   else if (view === 'about' || view === 'info') {
     finalTitle = 'About SVG.IO — Open-Source SVG Hosting, Publishing & Distribution Platform';
-    finalDesc = 'Learn about SVG.IO — the free open-source vector hosting platform. Upload icons or packs, automated 7-min ingestion, live shareable preview pages, and zero-telemetry browser caching.';
+    finalDesc = 'Learn about SVG.IO — the free open-source vector hosting platform. Upload icons or packs, fast 7-min ingestion, live shareable preview pages, and zero-telemetry browser caching.';
     finalKeywords = 'about svg.io, svg hosting, svg publishing platform, open source icon library, vector platform specs, shareable icon pages';
     canonicalUrl = `${BASE_URL}/?view=about`;
   }
@@ -234,7 +234,7 @@ export function updatePageSeo({
   // ── Submit / Contribute Page ───────────────────────────────────
   else if (view === 'submit') {
     finalTitle = 'Publish & Host SVG Icons — Open Vector Publishing Platform | SVG.IO';
-    finalDesc = 'Publish and host your SVG icons and packs on SVG.IO. Automated 7-minute ingestion validates viewBoxes, optimizes paths, creates dedicated shareable live web pages, and delivers fast CDN links under Apache 2.0.';
+    finalDesc = 'Publish and host your SVG icons and packs on SVG.IO. 7-minute ingestion pipeline validates viewBoxes, optimizes paths, creates dedicated shareable live web pages, and delivers fast CDN links under Apache 2.0.';
     finalKeywords = 'publish svg, host svg icons, upload icon pack, open source vector hosting, svg distribution, svg ingestion, developer icon publishing';
     canonicalUrl = `${BASE_URL}/?view=submit`;
   }

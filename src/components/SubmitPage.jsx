@@ -716,7 +716,7 @@ export function SubmitPage({
           <div className="sv-pipeline-hero-left">
             <div className="sv-pipeline-status-badge">
               <span className={`sv-pipeline-pulse-dot ${isDone ? 'done' : 'active'}`} />
-              <span>{isDone ? 'PUBLISHED & HOSTED' : 'AUTOMATED INGESTION PIPELINE ACTIVE'}</span>
+              <span>{isDone ? 'PUBLISHED & HOSTED' : 'VECTOR INGESTION PIPELINE ACTIVE'}</span>
             </div>
 
             <h1 className="sv-pipeline-hero-title">
@@ -731,7 +731,7 @@ export function SubmitPage({
                 </>
               ) : (
                 <>
-                  Vector assets uploaded and verified. Automated pipeline is optimizing paths, generating framework code, and deploying to global CDN.
+                  Vector assets uploaded and verified. Processing pipeline is optimizing paths, generating framework code, and deploying to global CDN.
                 </>
               )}
             </p>
@@ -1031,7 +1031,7 @@ export function SubmitPage({
             <div className="sv-form-header">
               <h2 className="sv-form-title">Publish & Host SVG Assets</h2>
               <p className="sv-form-sub">
-                Upload individual icons or complete multi-variant icon packs. We automatically validate, optimize paths, package, and host them with live shareable preview pages and CDN links.
+                Upload individual icons or complete multi-variant icon packs. We validate, optimize paths, package, and host them with live shareable preview pages and CDN links.
               </p>
             </div>
 

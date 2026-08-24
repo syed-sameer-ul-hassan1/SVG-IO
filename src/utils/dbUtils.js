@@ -3,7 +3,7 @@
  * Features:
  * - Dual-layer storage (Synchronous localStorage + Asynchronous IndexedDB)
  * - Raw SVG vector caching in IndexedDB for 0ms offline copies/exports
- * - Full favorites persistence with automatic sync & corruption recovery
+ * - Full favorites persistence with direct sync & corruption recovery
  * - Fast catalog caching (<5ms hydration)
  * - Intelligent background SVG pre-warming
  */
