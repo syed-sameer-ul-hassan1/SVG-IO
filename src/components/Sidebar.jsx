@@ -59,12 +59,15 @@ export function Sidebar({
 
         <button
           className={`md-side-nav-item ${currentView === 'favorites' ? 'active' : ''}`}
-          onClick={() => onNavigate?.('favorites')}>
+          onClick={() => onNavigate?.('favorites')}
+          title={favoritesCount > 0 ? `${favoritesCount} Saved Icons` : 'Favorites'}>
           
-          <Heart size={16} className="md-side-nav-icon" />
-          <span className="md-side-nav-label">Favorites</span>
+          <div className="md-side-nav-left">
+            <Heart size={16} className="md-side-nav-icon" />
+            <span className="md-side-nav-label">Favorites</span>
+          </div>
           {favoritesCount > 0 &&
-          <span className="md-side-count-badge active">{favoritesCount}</span>
+          <span className="md-side-fav-dot" aria-label={`${favoritesCount} favorites`} />
           }
         </button>
 

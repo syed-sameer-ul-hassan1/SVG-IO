@@ -235,28 +235,6 @@
     "collection": "community"
   },
   {
-    "slug": "demo-brand",
-    "title": "Demo Brand",
-    "aliases": [],
-    "hex": "FF5F02",
-    "hexes": [
-      "FF5F02",
-      "111827"
-    ],
-    "categories": [
-      "Software",
-      "Developer Tools"
-    ],
-    "variants": {
-      "dark": "/icons/demo-brand/dark.svg",
-      "default": "/icons/demo-brand/default.svg"
-    },
-    "license": "Apache-2.0",
-    "url": "https://demobrand.example.com",
-    "dateAdded": "2026-08-23",
-    "collection": "community"
-  },
-  {
     "slug": "thesvg",
     "title": "TheSvg",
     "aliases": [],

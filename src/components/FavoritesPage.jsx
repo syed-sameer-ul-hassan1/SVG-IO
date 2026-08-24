@@ -114,11 +114,6 @@ export function FavoritesPage({
       {}
       <div className="md-page-header-banner glass-panel">
         <div className="md-page-header-text">
-          <div className="md-hero-pill-badge badge-subtle-primary" style={{ width: 'fit-content', marginBottom: 12 }}>
-            <Heart size={13} fill="#FF5F02" color="#FF5F02" />
-            <span>Saved Collection • {favorites.length} Vectors</span>
-          </div>
-
           <h1 className="md-page-header-title">
             Your Personal <span className="text-orange">Vector Collection</span>
           </h1>

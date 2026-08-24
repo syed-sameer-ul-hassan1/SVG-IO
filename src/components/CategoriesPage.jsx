@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import {
-  FolderTree,
   Search,
   ArrowRight,
   Sparkles,
@@ -126,11 +125,6 @@ export function CategoriesPage({
         <div className="md-cat-hero-glow" aria-hidden="true" />
 
         <div className="md-cat-hero-content">
-          <div className="md-hero-pill-badge badge-subtle-primary">
-            <FolderTree size={13} />
-            <span>Category Explorer</span>
-          </div>
-
           <h1 className="md-cat-hero-title">
             Explore <span className="text-orange">{categories.length} Curated</span> Categories
           </h1>

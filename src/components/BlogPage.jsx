@@ -387,13 +387,6 @@ export function BlogPage({ onExploreAll, onNavigate }) {
     <div className="sv-blog-page-container">
       {}
       <div className="sv-blog-index-header">
-        <div className="sv-blog-pill-row">
-          <span className="sv-blog-hero-pill">
-            <Sparkles size={11} />
-            <span>Updates</span>
-          </span>
-        </div>
-
         <div className="sv-blog-title-row">
           <div className="sv-blog-headings">
             <h1 className="sv-blog-main-title">Blog</h1>
