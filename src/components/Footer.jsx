@@ -61,16 +61,19 @@ export function Footer({
 
           {}
           <a
-            href="https://www.producthunt.com"
+            href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
             target="_blank"
             rel="noopener noreferrer"
-            className="md-footer-ph-card">
+            className="md-footer-ph-card"
+            title="Star & Follow on GitHub">
             
             <div className="md-ph-left">
-              <div className="md-ph-logo">P</div>
+              <div className="md-ph-logo md-gh-logo">
+                <Github size={13} />
+              </div>
               <div className="md-ph-text">
-                <span className="md-ph-sub">LEAVE A REVIEW ON</span>
-                <span className="md-ph-main">Product Hunt</span>
+                <span className="md-ph-sub">FOLLOW ON</span>
+                <span className="md-ph-main">GitHub Org</span>
               </div>
             </div>
             <Star size={14} className="md-ph-star" />

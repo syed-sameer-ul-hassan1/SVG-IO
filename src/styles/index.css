@@ -1613,6 +1613,18 @@ button,
   justify-content: center;
 }
 
+.md-gh-logo {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme='light'] .md-gh-logo {
+  background: #0F172A;
+  color: #FFFFFF;
+  border-color: #0F172A;
+}
+
 .md-ph-text {
   display: flex;
   flex-direction: column;
