@@ -38,7 +38,7 @@ export function MobileDeviceNotice() {
         <div className="sv-mobile-brand">
           <div className="sv-mobile-logo-wrap">
             <img
-              src="/assets/logo-light.svg"
+              src="/assets/logo-dark.svg"
               alt="SVG.IO Logo"
               className="sv-mobile-logo-img"
             />

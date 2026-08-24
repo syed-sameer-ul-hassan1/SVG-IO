@@ -12040,16 +12040,15 @@ a:focus {
   }
 
   .sv-mobile-logo-wrap {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: #000000;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6px;
-    box-shadow: 0 4px 12px rgba(255, 95, 2, 0.2);
+    padding: 0;
+    box-shadow: none;
   }
 
   .sv-mobile-logo-img {
