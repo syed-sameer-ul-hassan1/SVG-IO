@@ -650,129 +650,191 @@ export function SubmitPage({
 
   if (submissionResult?.success) {
     const isDone = countdown <= 0;
-    const progress = (60 - countdown) / 60 * 100;
-    const circumference = 2 * Math.PI * 44;
+    const progress = Math.min(100, Math.max(0, ((60 - countdown) / 60) * 100));
 
     return (
-      <div className="sv-submit-page-container">
-        <div className="sv-submit-success-card glass-panel">
-          {}
-          <div className="sv-countdown-ring-wrap">
-            <svg className="sv-countdown-svg" viewBox="0 0 100 100">
-              {}
-              <circle cx="50" cy="50" r="44" className="sv-ring-track" />
-              {}
-              <circle
-                cx="50"
-                cy="50"
-                r="44"
-                className={`sv-ring-fill ${isDone ? "sv-ring-done" : ""}`}
-                style={{
-                  strokeDasharray: circumference,
-                  strokeDashoffset:
-                  circumference - circumference * progress / 100
-                }} />
-              
-            </svg>
-            <div className="sv-countdown-center">
-              {isDone ?
-              <CheckCircle2 size={32} className="sv-success-icon" /> :
-
-              <span className="sv-countdown-number">{countdown}</span>
-              }
+      <div className="sv-pipeline-page-container">
+        <div className="sv-pipeline-hero glass-panel">
+          <div className="sv-pipeline-hero-left">
+            <div className="sv-pipeline-status-badge">
+              <span className={`sv-pipeline-pulse-dot ${isDone ? 'done' : 'active'}`} />
+              <span>{isDone ? 'DEPLOYMENT COMPLETED' : 'AUTOMATED CI/CD PIPELINE ACTIVE'}</span>
             </div>
+
+            <h1 className="sv-pipeline-hero-title">
+              {isDone ? 'Successfully Published' : 'Processing'}{' '}
+              <span className="text-orange">{submissionResult.title}</span>
+            </h1>
+
+            <p className="sv-pipeline-hero-desc">
+              {isDone ? (
+                <>
+                  <strong>{submissionResult.title}</strong> has been committed to the repository and compiled into the global index.
+                </>
+              ) : (
+                <>
+                  Vector assets uploaded to Supabase. GitHub Actions CI is compiling <code>icons.json</code> and deploying to edge CDN.
+                </>
+              )}
+            </p>
           </div>
 
-          <div className="sv-submit-badge-row" style={{ marginBottom: 4 }}>
-            <span className="sv-submit-hero-pill">
-              <Sparkles size={11} />
-              <span>Supabase → GitHub Action → Cloudflare Pages</span>
-            </span>
-          </div>
-
-          <h2 className="sv-success-title">
-            {isDone ? "Icon Live" : "Processing..."}
-          </h2>
-
-          <p className="sv-success-desc">
-            {isDone ?
-            <>
-                <strong>{submissionResult.title}</strong> has been committed to
-                the repo. Refresh the icon library to see it!
-              </> :
-
-            <>
-                GitHub Action is downloading{" "}
-                <strong>{submissionResult.title}</strong> from Supabase and
-                committing it to the repo. Should be live in{" "}
-                <strong>{countdown}s</strong>.
-              </>
-            }
-          </p>
-
-          {}
-          <div className="sv-success-meta-grid">
-            <div className="sv-success-meta-item">
-              <span className="sv-success-meta-label">SLUG</span>
-              <code className="sv-success-meta-val">
-                {submissionResult.slug}
-              </code>
-            </div>
-            <div className="sv-success-meta-item">
-              <span className="sv-success-meta-label">VARIANTS</span>
-              <code className="sv-success-meta-val">
-                {submissionResult.variantCount} uploaded
-              </code>
-            </div>
-            {submissionResult.colors && submissionResult.colors.length > 0 &&
-            <div className="sv-success-meta-item sv-success-colors-item">
-                <span className="sv-success-meta-label">BRAND COLORS</span>
-                <div className="sv-success-color-dots-row">
-                  {submissionResult.colors.map((c, cIdx) =>
-                <span
-                  key={cIdx}
-                  className="sv-success-color-pill"
-                  style={{ borderLeftColor: `#${c}` }}
-                  title={`#${c}`}>
-                  
-                      <span
-                    className="sv-dot"
-                    style={{ backgroundColor: `#${c}` }} />
-                  
-                      #{c}
-                    </span>
-                )}
-                </div>
+          <div className="sv-pipeline-hero-right">
+            <div className="sv-pipeline-countdown-card glass-panel">
+              <div className="sv-pipeline-time-num">
+                {isDone ? <CheckCircle2 size={36} className="text-emerald" /> : `${countdown}s`}
               </div>
-            }
-          </div>
-
-          <div className="sv-success-actions-row">
-            <a
-              href="https://github.com/syed-sameer-ul-hassan/SVG.IO/actions"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="sv-repo-action-btn">
-              
-              <Eye size={14} />
-              <span>Watch Action</span>
-              <ExternalLink size={12} />
-            </a>
-            <button
-              className="sv-submit-action-btn"
-              style={{ flex: 1 }}
-              onClick={() => {
-                setSubmissionResult(null);
-                setCountdown(60);
-              }}>
-              
-              <Plus size={16} />
-              <span>Submit Another Icon</span>
-            </button>
+              <div className="sv-pipeline-time-label">
+                {isDone ? 'Ready in Library' : 'Estimated Time'}
+              </div>
+            </div>
           </div>
         </div>
-      </div>);
 
+        <div className="sv-pipeline-progress-bar-wrap glass-panel">
+          <div className="sv-pipeline-progress-header">
+            <span>Overall Pipeline Progress</span>
+            <span className="sv-pipeline-percent">{isDone ? '100%' : `${Math.round(progress)}%`}</span>
+          </div>
+          <div className="sv-pipeline-track">
+            <div className="sv-pipeline-fill" style={{ width: `${isDone ? 100 : progress}%` }} />
+          </div>
+        </div>
+
+        <div className="sv-pipeline-grid">
+          <div className="sv-pipeline-stages-col">
+            <h3 className="sv-pipeline-col-title">Pipeline Execution Stages</h3>
+
+            <div className="sv-pipeline-stage-card glass-panel completed">
+              <div className="sv-stage-step-num"><Check size={14} /></div>
+              <div className="sv-stage-info">
+                <div className="sv-stage-title-row">
+                  <span className="sv-stage-title">1. Supabase Secure Ingestion</span>
+                  <span className="sv-stage-tag done">COMPLETED</span>
+                </div>
+                <p className="sv-stage-desc">
+                  Validated SVG markup, verified viewBox integrity, and uploaded {submissionResult.variantCount} variant(s).
+                </p>
+              </div>
+            </div>
+
+            <div className={`sv-pipeline-stage-card glass-panel ${countdown <= 55 ? 'completed' : 'active'}`}>
+              <div className="sv-stage-step-num">
+                {countdown <= 55 ? <Check size={14} /> : <div className="sv-spinner-sm" />}
+              </div>
+              <div className="sv-stage-info">
+                <div className="sv-stage-title-row">
+                  <span className="sv-stage-title">2. GitHub Action Repository Dispatch</span>
+                  <span className={`sv-stage-tag ${countdown <= 55 ? 'done' : 'active'}`}>
+                    {countdown <= 55 ? 'TRIGGERED' : 'DISPATCHING'}
+                  </span>
+                </div>
+                <p className="sv-stage-desc">
+                  Triggered <code>process-icon-submission</code> on <code>syed-sameer-ul-hassan/SVG.IO</code>.
+                </p>
+              </div>
+            </div>
+
+            <div className={`sv-pipeline-stage-card glass-panel ${isDone ? 'completed' : countdown <= 30 ? 'active' : 'pending'}`}>
+              <div className="sv-stage-step-num">
+                {isDone ? <Check size={14} /> : countdown <= 30 ? <div className="sv-spinner-sm" /> : <span>3</span>}
+              </div>
+              <div className="sv-stage-info">
+                <div className="sv-stage-title-row">
+                  <span className="sv-stage-title">3. Catalog Compilation & Indexing</span>
+                  <span className={`sv-stage-tag ${isDone ? 'done' : countdown <= 30 ? 'active' : 'pending'}`}>
+                    {isDone ? 'COMPILED' : countdown <= 30 ? 'IN PROGRESS' : 'QUEUED'}
+                  </span>
+                </div>
+                <p className="sv-stage-desc">
+                  Parsing hex swatches, updating <code>public/icons.json</code>, and generating vector assets.
+                </p>
+              </div>
+            </div>
+
+            <div className={`sv-pipeline-stage-card glass-panel ${isDone ? 'completed' : 'pending'}`}>
+              <div className="sv-stage-step-num">
+                {isDone ? <Check size={14} /> : <span>4</span>}
+              </div>
+              <div className="sv-stage-info">
+                <div className="sv-stage-title-row">
+                  <span className="sv-stage-title">4. Edge CDN Global Release</span>
+                  <span className={`sv-stage-tag ${isDone ? 'done' : 'pending'}`}>
+                    {isDone ? 'LIVE ON EDGE' : 'PENDING'}
+                  </span>
+                </div>
+                <p className="sv-stage-desc">
+                  Atomic deployment to global edge CDN at <code>svg.io.orildo.tech</code>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="sv-pipeline-spec-col">
+            <h3 className="sv-pipeline-col-title">Submitted Asset Specifications</h3>
+
+            <div className="sv-pipeline-spec-card glass-panel">
+              <div className="sv-spec-row">
+                <span className="sv-spec-label">IDENTIFIER SLUG</span>
+                <code className="sv-spec-val">{submissionResult.slug}</code>
+              </div>
+
+              <div className="sv-spec-row">
+                <span className="sv-spec-label">CANONICAL TITLE</span>
+                <span className="sv-spec-val-text">{submissionResult.title}</span>
+              </div>
+
+              <div className="sv-spec-row">
+                <span className="sv-spec-label">VARIANTS UPLOADED</span>
+                <span className="sv-spec-badge">{submissionResult.variantCount} Variant Sets</span>
+              </div>
+
+              {submissionResult.colors && submissionResult.colors.length > 0 && (
+                <div className="sv-spec-row">
+                  <span className="sv-spec-label">HEX PALETTE</span>
+                  <div className="sv-spec-colors-wrap">
+                    {submissionResult.colors.map((c, cIdx) => (
+                      <span key={cIdx} className="sv-spec-color-chip" title={`#${c}`}>
+                        <span className="sv-spec-color-dot" style={{ backgroundColor: `#${c}` }} />
+                        #{c}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="sv-spec-row">
+                <span className="sv-spec-label">TARGET PATH</span>
+                <code className="sv-spec-path">public/icons/{submissionResult.slug}/</code>
+              </div>
+            </div>
+
+            <div className="sv-pipeline-actions-card glass-panel">
+              <a
+                href="https://github.com/syed-sameer-ul-hassan/SVG.IO/actions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sv-pipeline-gh-btn">
+                <Github size={15} />
+                <span>View GitHub Action Run</span>
+                <ExternalLink size={13} />
+              </a>
+
+              <button
+                type="button"
+                className="sv-pipeline-new-btn"
+                onClick={() => {
+                  setSubmissionResult(null);
+                  setCountdown(60);
+                }}>
+                <Plus size={16} />
+                <span>Submit Another Vector</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
