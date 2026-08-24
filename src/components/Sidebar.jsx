@@ -11,8 +11,50 @@ import {
   ChevronDown,
   Sparkles,
   Flame,
-  Search } from
-'lucide-react';
+  Search,
+  Grid,
+  Code2,
+  Terminal,
+  Cpu,
+  Server,
+  Database,
+  Palette,
+  TrendingUp,
+  Shield,
+  ShoppingBag,
+  Coins,
+  Gamepad2,
+  Smartphone,
+  Megaphone,
+  DollarSign,
+  Film,
+  GraduationCap,
+  Share2,
+  Layers
+} from 'lucide-react';
+
+const getCategoryIcon = (name = '') => {
+  const n = name.toLowerCase();
+  if (n === 'ai' || n.includes('machine') || n.includes('neural')) return Sparkles;
+  if (n.includes('cloud') || n.includes('hosting') || n.includes('server')) return Server;
+  if (n.includes('devops') || n.includes('infra') || n.includes('cpu')) return Cpu;
+  if (n.includes('developer') || n.includes('terminal') || n.includes('cli')) return Terminal;
+  if (n.includes('framework') || n.includes('code') || n.includes('software')) return Code2;
+  if (n.includes('database') || n.includes('data') || n.includes('storage')) return Database;
+  if (n.includes('design') || n.includes('creative') || n.includes('art')) return Palette;
+  if (n.includes('analytic') || n.includes('metric') || n.includes('chart')) return TrendingUp;
+  if (n.includes('security') || n.includes('auth') || n.includes('shield')) return Shield;
+  if (n.includes('commerce') || n.includes('shop') || n.includes('store')) return ShoppingBag;
+  if (n.includes('crypto') || n.includes('blockchain') || n.includes('bitcoin')) return Coins;
+  if (n.includes('game') || n.includes('gaming')) return Gamepad2;
+  if (n.includes('mobile') || n.includes('app') || n.includes('ios') || n.includes('android')) return Smartphone;
+  if (n.includes('market') || n.includes('ad') || n.includes('brand')) return Megaphone;
+  if (n.includes('finance') || n.includes('money') || n.includes('bank') || n.includes('pay')) return DollarSign;
+  if (n.includes('media') || n.includes('video') || n.includes('audio') || n.includes('music')) return Film;
+  if (n.includes('education') || n.includes('school') || n.includes('learn')) return GraduationCap;
+  if (n.includes('social') || n.includes('community') || n.includes('share')) return Share2;
+  return Layers;
+};
 
 export function Sidebar({
   theme = 'dark',
@@ -177,8 +219,10 @@ export function Sidebar({
               onNavigate?.('icons');
               onSelectCategory('all');
             }}>
-            
-            <span className="md-side-cat-name">All Icons</span>
+            <div className="md-side-cat-left">
+              <Grid size={14} className="md-side-cat-icon" />
+              <span className="md-side-cat-name">All Icons</span>
+            </div>
             <span className="md-side-cat-count">
               {totalIcons || categories.reduce((sum, c) => sum + (c.count || 0), 0)}
             </span>
@@ -186,6 +230,7 @@ export function Sidebar({
 
           {filteredCategories.map((cat) => {
             const isSelected = currentView === 'icons' && selectedCategory === cat.name;
+            const CatIcon = getCategoryIcon(cat.name);
             return (
               <button
                 key={cat.name}
@@ -195,20 +240,22 @@ export function Sidebar({
                   onSelectCategory(cat.name);
                 }}
                 title={`${cat.name} (${cat.count || 0} icons)`}>
-                
-                <span className="md-side-cat-name">{cat.name}</span>
+                <div className="md-side-cat-left">
+                  <CatIcon size={14} className="md-side-cat-icon" />
+                  <span className="md-side-cat-name">{cat.name}</span>
+                </div>
                 <span className={`md-side-cat-count ${isSelected ? 'active' : ''}`}>
                   {cat.count || 0}
                 </span>
-              </button>);
-
+              </button>
+            );
           })}
 
-          {filteredCategories.length === 0 &&
-          <div className="md-side-empty-cat">
+          {filteredCategories.length === 0 && (
+            <div className="md-side-empty-cat">
               <span>No categories matching "{categorySearch}"</span>
             </div>
-          }
+          )}
         </div>
       </div>
     </aside>);
