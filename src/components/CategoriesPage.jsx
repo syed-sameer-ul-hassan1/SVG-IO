@@ -39,18 +39,12 @@ const getCategoryIcon = (name = '') => {
 
 const getIconSvgUrl = (icon) => {
   if (!icon) return '';
-  if (icon.variantPaths && typeof icon.variantPaths === 'object') {
-    if (icon.variantPaths.default) return icon.variantPaths.default;
-    const firstKey = Object.keys(icon.variantPaths)[0];
-    if (firstKey && icon.variantPaths[firstKey]) return icon.variantPaths[firstKey];
-  }
+  const s = icon.slug || icon.id;
   if (icon.variants && typeof icon.variants === 'object' && !Array.isArray(icon.variants)) {
     if (icon.variants.default) return icon.variants.default;
-    const firstKey = Object.keys(icon.variants)[0];
-    if (firstKey && icon.variants[firstKey]) return icon.variants[firstKey];
+    const firstVal = Object.values(icon.variants)[0];
+    if (firstVal) return firstVal;
   }
-  if (icon.path) return icon.path;
-  const s = icon.slug || icon.id;
   return `/icons/${s}/default.svg`;
 };
 
@@ -64,11 +58,9 @@ export function CategoriesPage({
   const [sortBy, setSortBy] = useState('count-desc');
   const [activeFilter, setActiveFilter] = useState('all');
 
-
   const totalAssetsCount = useMemo(() => {
     return allIcons.length;
   }, [allIcons]);
-
 
   const categoryIconMap = useMemo(() => {
     const map = {};
@@ -94,14 +86,12 @@ export function CategoriesPage({
     return map;
   }, [categories, allIcons]);
 
-
   const filteredCategories = useMemo(() => {
     let list = categories.filter((c) => {
       if (!c.name) return false;
       if (!search.trim()) return true;
       return c.name.toLowerCase().includes(search.toLowerCase().trim());
     });
-
 
     if (activeFilter === 'popular') {
       list = list.filter((c) => (c.count || 0) >= 20);
@@ -132,7 +122,6 @@ export function CategoriesPage({
 
   return (
     <div className="md-categories-page">
-      {}
       <div className="md-cat-hero-banner">
         <div className="md-cat-hero-glow" aria-hidden="true" />
 
@@ -150,7 +139,6 @@ export function CategoriesPage({
             Discover over <strong>{totalAssetsCount.toLocaleString()}+</strong> high-quality brand logos, developer tools, cloud platforms, and vector icons organized by topic.
           </p>
 
-          {}
           <div className="md-cat-stats-row">
             <div className="md-cat-stat-chip">
               <span className="md-cat-stat-val">{categories.length}</span>
@@ -169,7 +157,6 @@ export function CategoriesPage({
           </div>
         </div>
 
-        {}
         <div className="md-cat-toolbar">
           <div className="md-cat-search-wrap">
             <Search size={15} className="md-cat-search-icon" />
@@ -186,7 +173,6 @@ export function CategoriesPage({
               onClick={() => setSearch('')}
               title="Clear search"
               aria-label="Clear category search">
-              
                 <X size={13} />
               </button>
             }
@@ -196,27 +182,23 @@ export function CategoriesPage({
             <button
               className={`md-cat-pill ${activeFilter === 'all' ? 'active' : ''}`}
               onClick={() => setActiveFilter('all')}>
-              
               All ({categories.length})
             </button>
             <button
               className={`md-cat-pill ${activeFilter === 'popular' ? 'active' : ''}`}
               onClick={() => setActiveFilter('popular')}>
-              
               <TrendingUp size={12} />
               Popular
             </button>
             <button
               className={`md-cat-pill ${activeFilter === 'tech' ? 'active' : ''}`}
               onClick={() => setActiveFilter('tech')}>
-              
               <Code2 size={12} />
               Tech & Dev
             </button>
             <button
               className={`md-cat-pill ${activeFilter === 'creative' ? 'active' : ''}`}
               onClick={() => setActiveFilter('creative')}>
-              
               <Palette size={12} />
               Design & Social
             </button>
@@ -228,7 +210,6 @@ export function CategoriesPage({
               onChange={(e) => setSortBy(e.target.value)}
               className="md-cat-sort-select"
               aria-label="Sort categories">
-              
               <option value="count-desc">Sort: Most Icons</option>
               <option value="count-asc">Sort: Fewest Icons</option>
               <option value="name-asc">Sort: A to Z</option>
@@ -238,7 +219,6 @@ export function CategoriesPage({
         </div>
       </div>
 
-      {}
       {filteredCategories.length > 0 ?
       <div className="md-cat-card-grid">
           {filteredCategories.map((cat) => {
@@ -259,7 +239,6 @@ export function CategoriesPage({
                   onSelectCategory(cat.name);
                 }
               }}>
-              
                 <div className="md-cat-card-header">
                   <div className="md-cat-icon-badge">
                     <CatIconComponent size={16} />
@@ -279,37 +258,35 @@ export function CategoriesPage({
                   </div>
                 </div>
 
-                {}
                 <div className="md-cat-preview-cluster">
                   {previewIcons.slice(0, 6).map((icon) => {
                   const svgUrl = getIconSvgUrl(icon);
+                  const iconName = icon.title || icon.name || icon.slug || icon.id;
+                  const iconKey = icon.slug || icon.id || iconName;
                   const brandColor = icon.hex ? icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}` : '#FF5F02';
 
                   return (
                     <div
-                      key={icon.id}
+                      key={iconKey}
                       className="md-cat-preview-item"
-                      title={`${icon.name} (${icon.id})`}
+                      title={iconName}
                       onClick={(e) => {
                         e.stopPropagation();
                         onSelectIcon?.(icon);
                       }}>
-                      
                         <img
                         src={svgUrl}
-                        alt={icon.name}
+                        alt={iconName}
                         className="md-cat-preview-img"
                         loading="lazy"
                         width="24"
                         height="24"
                         onError={(e) => {
-
                           e.target.style.display = 'none';
                           if (e.target.nextSibling) {
                             e.target.nextSibling.style.display = 'flex';
                           }
                         }} />
-                      
                         <div
                         className="md-cat-fallback-avatar"
                         style={{
@@ -317,11 +294,9 @@ export function CategoriesPage({
                           backgroundColor: `${brandColor}20`,
                           color: brandColor
                         }}>
-                        
-                          {icon.name?.charAt(0) || '•'}
+                          {iconName.charAt(0) || '•'}
                         </div>
                       </div>);
-
                 })}
 
                   {previewIcons.length === 0 &&
@@ -339,7 +314,6 @@ export function CategoriesPage({
                   </span>
                 </div>
               </div>);
-
         })}
         </div> :
 
