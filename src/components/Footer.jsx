@@ -86,6 +86,7 @@ export function Footer({
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">RESOURCES</h4>
           <ul className="md-footer-links">
+            <li><button onClick={() => onNavigate?.('info')}>About Platform</button></li>
             <li><button onClick={() => onNavigate?.('status')}>System Status</button></li>
             <li><button onClick={() => onNavigate?.('404')}>404 Preview</button></li>
             <li><a href="https://github.com/Orildo-Tech/SVG-IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribution Specs</a></li>

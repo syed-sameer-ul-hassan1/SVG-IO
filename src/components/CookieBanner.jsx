@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Cookie, ShieldCheck, Check, X, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Check, X, ArrowRight, Sparkles, Database, Lock } from 'lucide-react';
 
 const COOKIE_CONSENT_KEY = 'orildo_svg_cookie_consent';
 
@@ -10,8 +10,7 @@ export function CookieBanner({ onNavigate }) {
     try {
       const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
       if (!consent) {
-
-        const timer = setTimeout(() => setIsVisible(true), 800);
+        const timer = setTimeout(() => setIsVisible(true), 600);
         return () => clearTimeout(timer);
       }
     } catch (e) {}
@@ -36,63 +35,71 @@ export function CookieBanner({ onNavigate }) {
   if (!isVisible) return null;
 
   return (
-    <div className="md-cookie-banner-wrap" role="region" aria-label="Cookie consent">
-      <div className="md-cookie-banner-card">
-        <div className="md-cookie-top-row">
-          <div className="md-cookie-icon-box">
-            <Cookie size={20} className="md-cookie-icon" />
-          </div>
-
-          <div className="md-cookie-text-box">
-            <h3 className="md-cookie-title">We Value Your Privacy</h3>
-            <p className="md-cookie-desc">
-              SVG.IO uses essential client-side cookies and local storage to remember your custom theme, icon favorites, and search preferences. We do not sell your data or inject third-party ad trackers.
-            </p>
-          </div>
+    <aside className="sv-cookie-container" role="region" aria-label="Privacy & Cookie Preferences">
+      <div className="sv-cookie-card glass-panel">
+        {/* Top Header */}
+        <div className="sv-cookie-header">
+          <h4 className="sv-cookie-title">Zero-Tracking. Pure Performance.</h4>
 
           <button
             type="button"
-            className="md-cookie-close-btn"
+            className="sv-cookie-dismiss-btn"
             onClick={handleReject}
-            title="Dismiss & keep essential only"
-            aria-label="Close cookie banner">
-            
-            <X size={15} />
+            title="Dismiss & keep essential storage only"
+            aria-label="Close banner">
+            <X size={14} />
           </button>
         </div>
 
-        <div className="md-cookie-bottom-row">
+        {/* Content */}
+        <div className="sv-cookie-body">
+          <p className="sv-cookie-desc">
+            SVG.IO uses local browser storage and IndexedDB memory caching to remember your favorites, recent searches, and custom theme. We never sell your data or inject third-party ad trackers.
+          </p>
+
+          {/* Feature Badges */}
+          <div className="sv-cookie-pills-row">
+            <span className="sv-cookie-pill">
+              <Lock size={11} className="text-emerald" />
+              <span>Zero Telemetry</span>
+            </span>
+            <span className="sv-cookie-pill">
+              <Database size={11} className="text-orange" />
+              <span>Offline IndexedDB Cache</span>
+            </span>
+          </div>
+        </div>
+
+        {/* Footer Actions */}
+        <div className="sv-cookie-footer">
           <button
             type="button"
-            className="md-cookie-policy-link"
+            className="sv-cookie-policy-btn"
             onClick={() => onNavigate?.('privacy')}>
-            
-            <span>Learn more in Privacy Policy</span>
-            <ArrowRight size={12} />
+            <span>Privacy Specs</span>
+            <ArrowRight size={11} />
           </button>
 
-          <div className="md-cookie-actions">
+          <div className="sv-cookie-btn-group">
             <button
               type="button"
-              className="md-btn md-btn-secondary md-cookie-reject-btn"
+              className="sv-cookie-btn-ghost"
               onClick={handleReject}>
-              
-              <span>Reject Non-Essential</span>
+              Essential Only
             </button>
 
             <button
               type="button"
-              className="md-btn md-btn-primary md-cookie-accept-btn"
+              className="sv-cookie-btn-primary"
               onClick={handleAccept}>
-              
-              <Check size={14} />
-              <span>Accept All</span>
+              <Check size={13} />
+              <span>Accept &amp; Continue</span>
             </button>
           </div>
         </div>
       </div>
-    </div>);
-
+    </aside>
+  );
 }
 
 export default CookieBanner;

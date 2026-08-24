@@ -25,17 +25,11 @@ export const IconCard = memo(function IconCard({
   const [copiedType, setCopiedType] = useState(null);
 
   const iconUrl =
-  icon?.variantPaths?.[selectedVariant] ||
-  icon?.variants && typeof icon.variants === 'object' && !Array.isArray(icon.variants) && icon.variants[selectedVariant] ||
-  `/icons/${icon.id || icon.slug}/${selectedVariant}.svg`;
+    icon?.variantPaths?.[selectedVariant] ||
+    (icon?.variants && typeof icon.variants === 'object' && !Array.isArray(icon.variants) && icon.variants[selectedVariant]) ||
+    `/icons/${icon.id || icon.slug}/${selectedVariant}.svg`;
 
   const brandColor = icon?.hex ? icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}` : '#FF5F02';
-
-  const isLiquidGlass =
-    icon?.slug === 'instagram-glass' ||
-    icon?.id === 'instagram-glass' ||
-    (Array.isArray(icon?.categories) && icon.categories.some((c) => typeof c === 'string' && c.toLowerCase().includes('liquid glass'))) ||
-    categoryName?.toLowerCase().includes('liquid glass');
 
   const handleQuickCopySvg = async (e) => {
     e.stopPropagation();
@@ -88,7 +82,7 @@ export const IconCard = memo(function IconCard({
 
   return (
     <div
-      className={`md-card ${isLiquidGlass ? 'is-liquid-glass' : ''}`}
+      className="md-card"
       onClick={() => onSelect(icon, selectedVariant)}
       tabIndex={0}
       role="button"
@@ -115,7 +109,7 @@ export const IconCard = memo(function IconCard({
       </div>
 
       {/* Icon Graphic Container */}
-      <div className={`md-card-icon-frame ${isLiquidGlass ? 'glass-orange-frame' : ''}`}>
+      <div className="md-card-icon-frame">
         <img
           src={iconUrl}
           alt={icon.name}

@@ -1361,30 +1361,17 @@ export function SubmitPage({
             </div>
 
             {}
+            {/* License */}
             <div className="sv-form-group">
-              <div className="sv-label-with-help">
-                <label className="sv-form-label">
-                  License <span className="req">*</span>
-                </label>
-                <a
-                  href="https://choosealicense.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="sv-help-link">
-                  
-                  Help me pick · Licensing guide
-                </a>
-              </div>
+              <label className="sv-form-label">
+                License <span className="req">*</span>
+              </label>
               <select
                 className="sv-form-select"
-                value={license}
-                onChange={(e) => setLicense(e.target.value)}>
-                
-                <option value="Apache-2.0">Apache 2.0 (Official)</option>
-                <option value="MIT">MIT</option>
-                <option value="CC0-1.0">CC0-1.0 (Public Domain)</option>
-                <option value="BSD-3-Clause">BSD-3-Clause</option>
-                <option value="Custom">Custom Brand License</option>
+                value="Apache-2.0"
+                disabled
+                style={{ opacity: 0.9, cursor: 'default' }}>
+                <option value="Apache-2.0">Apache 2.0 (Official Open-Source License)</option>
               </select>
             </div>
 

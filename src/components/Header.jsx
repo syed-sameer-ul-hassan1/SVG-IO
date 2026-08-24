@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Search, X, Sun, Moon, History, TrendingUp, Trash2, ArrowUpRight, Sparkles, Plus } from 'lucide-react';
+import { Search, X, Sun, Moon, History, TrendingUp, Trash2, ArrowUpRight, Sparkles, Plus, Info } from 'lucide-react';
 
 import {
   getSearchHistory,
@@ -269,19 +269,29 @@ export function Header({
             </svg>
           </a>
 
-          {}
+          {/* Info / About Button */}
           <button
+            type="button"
+            className="md-icon-btn"
+            onClick={() => onNavigate?.('info')}
+            title="About Platform & Specifications"
+            aria-label="About Platform">
+            <Info size={16} />
+          </button>
+
+          {/* Theme Toggle */}
+          <button
+            type="button"
             className="md-icon-btn"
             onClick={toggleTheme}
             title={theme === 'dark' ? 'Switch to Light theme' : 'Switch to Dark theme'}
             aria-label="Toggle theme">
-            
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
         </div>
       </header>
-    </div>);
-
+    </div>
+  );
 }
 
 export default Header;

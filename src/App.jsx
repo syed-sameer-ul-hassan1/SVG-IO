@@ -15,6 +15,7 @@ import ServerErrorPage from './components/ServerErrorPage';
 import PrivacyPage from './components/PrivacyPage';
 import TermsPage from './components/TermsPage';
 import StatusPage from './components/StatusPage';
+import InfoPage from './components/InfoPage';
 import CookieBanner from './components/CookieBanner';
 import Fuse from 'fuse.js';
 
@@ -496,6 +497,11 @@ export function App() {
 
           currentView === 'status' ?
           <StatusPage
+            totalIcons={totalCount}
+            onNavigate={handleNavigate} /> :
+
+          currentView === 'info' || currentView === 'about' ?
+          <InfoPage
             totalIcons={totalCount}
             onNavigate={handleNavigate} /> :
 
