@@ -1,5 +1,29 @@
 [
   {
+    "slug": "onic",
+    "title": "Onic",
+    "aliases": [],
+    "hex": "A829F4",
+    "hexes": [
+      "A829F4"
+    ],
+    "categories": [
+      "Pakistani Brands"
+    ],
+    "variants": {
+      "dark": "/icons/onic/dark.svg",
+      "default": "/icons/onic/default.svg",
+      "light": "/icons/onic/light.svg",
+      "wordmark-dark": "/icons/onic/wordmark-dark.svg",
+      "wordmark-default": "/icons/onic/wordmark-default.svg",
+      "wordmark-light": "/icons/onic/wordmark-light.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://onic.pk",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
     "slug": "j-dot",
     "title": "J dot",
     "aliases": [],
