@@ -1,5 +1,27 @@
 [
   {
+    "slug": "j-dot",
+    "title": "J dot",
+    "aliases": [],
+    "hex": "000000",
+    "hexes": [
+      "000000"
+    ],
+    "categories": [
+      "Pakistani Brands"
+    ],
+    "variants": {
+      "dark": "/icons/j-dot/dark.svg",
+      "light": "/icons/j-dot/light.svg",
+      "wordmark-dark": "/icons/j-dot/wordmark-dark.svg",
+      "wordmark-light": "/icons/j-dot/wordmark-light.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://j.com",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
     "slug": "name-com",
     "title": "Name.com",
     "aliases": [],
