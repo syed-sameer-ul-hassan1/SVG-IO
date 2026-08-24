@@ -2800,13 +2800,28 @@ a:focus {
   justify-content: center;
   margin: 10px 0;
   padding: 12px;
-  transition: border-color 0.35s ease, transform 0.35s ease;
+  transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .md-card:hover .md-card-icon-frame {
   background: #FFFFFF;
   border-color: #FF5F02;
   transform: scale(1.05);
+}
+
+.md-card-icon-frame.glass-orange-frame,
+.md-card.is-liquid-glass .md-card-icon-frame {
+  background: #FF5F02 !important;
+  border-color: rgba(255, 95, 2, 0.7) !important;
+  box-shadow: 0 4px 18px rgba(255, 95, 2, 0.35);
+}
+
+.md-card.is-liquid-glass:hover .md-card-icon-frame,
+.md-card:hover .md-card-icon-frame.glass-orange-frame {
+  background: #FF5F02 !important;
+  border-color: #FFFFFF !important;
+  transform: scale(1.06);
+  box-shadow: 0 6px 24px rgba(255, 95, 2, 0.5);
 }
 
 .md-card-icon-img {

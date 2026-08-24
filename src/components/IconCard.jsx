@@ -31,6 +31,12 @@ export const IconCard = memo(function IconCard({
 
   const brandColor = icon?.hex ? icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}` : '#FF5F02';
 
+  const isLiquidGlass =
+    icon?.slug === 'instagram-glass' ||
+    icon?.id === 'instagram-glass' ||
+    (Array.isArray(icon?.categories) && icon.categories.some((c) => typeof c === 'string' && c.toLowerCase().includes('liquid glass'))) ||
+    categoryName?.toLowerCase().includes('liquid glass');
+
   const handleQuickCopySvg = async (e) => {
     e.stopPropagation();
     const svgText = await getSvgContent(icon.id, selectedVariant);
@@ -82,7 +88,7 @@ export const IconCard = memo(function IconCard({
 
   return (
     <div
-      className="md-card"
+      className={`md-card ${isLiquidGlass ? 'is-liquid-glass' : ''}`}
       onClick={() => onSelect(icon, selectedVariant)}
       tabIndex={0}
       role="button"
@@ -94,7 +100,7 @@ export const IconCard = memo(function IconCard({
         }
       }}>
       
-      {}
+      {/* Top Tag & Favorite */}
       <div className="md-card-top-bar" onClick={(e) => e.stopPropagation()}>
         <span className="md-card-single-tag">{categoryName}</span>
 
@@ -108,8 +114,8 @@ export const IconCard = memo(function IconCard({
         </button>
       </div>
 
-      {}
-      <div className="md-card-icon-frame">
+      {/* Icon Graphic Container */}
+      <div className={`md-card-icon-frame ${isLiquidGlass ? 'glass-orange-frame' : ''}`}>
         <img
           src={iconUrl}
           alt={icon.name}

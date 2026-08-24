@@ -1,5 +1,3679 @@
 [
   {
+    "slug": "business-group",
+    "title": "Business Group",
+    "aliases": [
+      "business group"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "business-group": "/icons/business-group/business-group.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "businessman",
+    "title": "Businessman",
+    "aliases": [
+      "businessman"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "businessman": "/icons/businessman/businessman.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "businesswoman",
+    "title": "Businesswoman",
+    "aliases": [
+      "businesswoman"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "businesswoman": "/icons/businesswoman/businesswoman.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "collaboration",
+    "title": "Collaboration",
+    "aliases": [
+      "collaboration"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "collaboration": "/icons/collaboration/collaboration.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "landlord",
+    "title": "Landlord",
+    "aliases": [
+      "landlord"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "landlord": "/icons/landlord/landlord.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "man-with-money",
+    "title": "Man With Money",
+    "aliases": [
+      "man with money"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "man-with-money": "/icons/man-with-money/man-with-money.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "manager",
+    "title": "Manager",
+    "aliases": [
+      "manager"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "manager": "/icons/manager/manager.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "name-tag-woman-horizontal",
+    "title": "Name Tag Woman Horizontal",
+    "aliases": [
+      "name tag woman horizontal"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "name-tag-woman-horizontal": "/icons/name-tag-woman-horizontal/name-tag-woman-horizontal.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "name-tag-woman",
+    "title": "Name Tag Woman",
+    "aliases": [
+      "name tag woman"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "name-tag-woman": "/icons/name-tag-woman/name-tag-woman.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "name-tag",
+    "title": "Name Tag",
+    "aliases": [
+      "name tag"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "name-tag": "/icons/name-tag/name-tag.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "office-worker-in-a-suit",
+    "title": "Office Worker In A Suit",
+    "aliases": [
+      "office worker in a suit"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "office-worker-in-a-suit": "/icons/office-worker-in-a-suit/office-worker-in-a-suit.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "onboarding",
+    "title": "Onboarding",
+    "aliases": [
+      "onboarding"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "onboarding": "/icons/onboarding/onboarding.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "online-support",
+    "title": "Online Support",
+    "aliases": [
+      "online support"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "online-support": "/icons/online-support/online-support.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "personal-growth-384",
+    "title": "Personal Growth 384",
+    "aliases": [
+      "personal growth 384"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "personal-growth-384": "/icons/personal-growth-384/personal-growth-384.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "personal-growth",
+    "title": "Personal Growth",
+    "aliases": [
+      "personal growth"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "personal-growth": "/icons/personal-growth/personal-growth.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "purposeful-man",
+    "title": "Purposeful Man",
+    "aliases": [
+      "purposeful man"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "purposeful-man": "/icons/purposeful-man/purposeful-man.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "purposeful-woman",
+    "title": "Purposeful Woman",
+    "aliases": [
+      "purposeful woman"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "purposeful-woman": "/icons/purposeful-woman/purposeful-woman.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "salary-male",
+    "title": "Salary Male",
+    "aliases": [
+      "salary male"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "salary-male": "/icons/salary-male/salary-male.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "salary",
+    "title": "Salary",
+    "aliases": [
+      "salary"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "salary": "/icons/salary/salary.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "security-pass",
+    "title": "Security Pass",
+    "aliases": [
+      "security pass"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "security-pass": "/icons/security-pass/security-pass.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "supplier",
+    "title": "Supplier",
+    "aliases": [
+      "supplier"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "supplier": "/icons/supplier/supplier.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "technical-support-wearing-glasses",
+    "title": "Technical Support Wearing Glasses",
+    "aliases": [
+      "technical support wearing glasses"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "technical-support-wearing-glasses": "/icons/technical-support-wearing-glasses/technical-support-wearing-glasses.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "technical-support",
+    "title": "Technical Support",
+    "aliases": [
+      "technical support"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "technical-support": "/icons/technical-support/technical-support.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "vip",
+    "title": "Vip",
+    "aliases": [
+      "vip"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business People"
+    ],
+    "variants": {
+      "vip": "/icons/vip/vip.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "add-reminder",
+    "title": "Add Reminder",
+    "aliases": [
+      "add reminder"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "add-reminder": "/icons/add-reminder/add-reminder.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "analytics",
+    "title": "Analytics",
+    "aliases": [
+      "analytics"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "analytics": "/icons/analytics/analytics.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "analyzing-skill",
+    "title": "Analyzing Skill",
+    "aliases": [
+      "analyzing skill"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "analyzing-skill": "/icons/analyzing-skill/analyzing-skill.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "appointment-scheduling",
+    "title": "Appointment Scheduling",
+    "aliases": [
+      "appointment scheduling"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "appointment-scheduling": "/icons/appointment-scheduling/appointment-scheduling.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "approval",
+    "title": "Approval",
+    "aliases": [
+      "approval"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "approval": "/icons/approval/approval.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "bad-idea",
+    "title": "Bad Idea",
+    "aliases": [
+      "bad idea"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "bad-idea": "/icons/bad-idea/bad-idea.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "business-model-canvas",
+    "title": "Business Model Canvas",
+    "aliases": [
+      "business model canvas"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "business-model-canvas": "/icons/business-model-canvas/business-model-canvas.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "business-strategy",
+    "title": "Business Strategy",
+    "aliases": [
+      "business strategy"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "business-strategy": "/icons/business-strategy/business-strategy.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "delivery-time",
+    "title": "Delivery Time",
+    "aliases": [
+      "delivery time"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "delivery-time": "/icons/delivery-time/delivery-time.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "enterprise-resource-planning",
+    "title": "Enterprise Resource Planning",
+    "aliases": [
+      "enterprise resource planning"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "enterprise-resource-planning": "/icons/enterprise-resource-planning/enterprise-resource-planning.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "erp-system",
+    "title": "Erp System",
+    "aliases": [
+      "erp system"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "erp-system": "/icons/erp-system/erp-system.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "estimates",
+    "title": "Estimates",
+    "aliases": [
+      "estimates"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "estimates": "/icons/estimates/estimates.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "expired",
+    "title": "Expired",
+    "aliases": [
+      "expired"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "expired": "/icons/expired/expired.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "financial-analytics",
+    "title": "Financial Analytics",
+    "aliases": [
+      "financial analytics"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "financial-analytics": "/icons/financial-analytics/financial-analytics.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "financial-changes",
+    "title": "Financial Changes",
+    "aliases": [
+      "financial changes"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "financial-changes": "/icons/financial-changes/financial-changes.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "financial-tasks",
+    "title": "Financial Tasks",
+    "aliases": [
+      "financial tasks"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "financial-tasks": "/icons/financial-tasks/financial-tasks.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "global-finance",
+    "title": "Global Finance",
+    "aliases": [
+      "global finance"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "global-finance": "/icons/global-finance/global-finance.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "goal",
+    "title": "Goal",
+    "aliases": [
+      "goal"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "goal": "/icons/goal/goal.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "golden-opportunity",
+    "title": "Golden Opportunity",
+    "aliases": [
+      "golden opportunity"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "golden-opportunity": "/icons/golden-opportunity/golden-opportunity.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "group-of-projects",
+    "title": "Group Of Projects",
+    "aliases": [
+      "group of projects"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "group-of-projects": "/icons/group-of-projects/group-of-projects.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "hierarchy",
+    "title": "Hierarchy",
+    "aliases": [
+      "hierarchy"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "hierarchy": "/icons/hierarchy/hierarchy.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "high-priority",
+    "title": "High Priority",
+    "aliases": [
+      "high priority"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "high-priority": "/icons/high-priority/high-priority.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "important-book",
+    "title": "Important Book",
+    "aliases": [
+      "important book"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "important-book": "/icons/important-book/important-book.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "journal",
+    "title": "Journal",
+    "aliases": [
+      "journal"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "journal": "/icons/journal/journal.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "leave",
+    "title": "Leave",
+    "aliases": [
+      "leave"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "leave": "/icons/leave/leave.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "management",
+    "title": "Management",
+    "aliases": [
+      "management"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "management": "/icons/management/management.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "mark-view-as-hidden",
+    "title": "Mark View As Hidden",
+    "aliases": [
+      "mark view as hidden"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "mark-view-as-hidden": "/icons/mark-view-as-hidden/mark-view-as-hidden.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "mark-view-as-non-hidden",
+    "title": "Mark View As Non Hidden",
+    "aliases": [
+      "mark view as non hidden"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "mark-view-as-non-hidden": "/icons/mark-view-as-non-hidden/mark-view-as-non-hidden.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "notifications",
+    "title": "Notifications",
+    "aliases": [
+      "notifications"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "notifications": "/icons/notifications/notifications.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "path-steps",
+    "title": "Path Steps",
+    "aliases": [
+      "path steps"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "path-steps": "/icons/path-steps/path-steps.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "planned-path",
+    "title": "Planned Path",
+    "aliases": [
+      "planned path"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "planned-path": "/icons/planned-path/planned-path.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "planner",
+    "title": "Planner",
+    "aliases": [
+      "planner"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "planner": "/icons/planner/planner.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "process-improvement",
+    "title": "Process Improvement",
+    "aliases": [
+      "process improvement"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "process-improvement": "/icons/process-improvement/process-improvement.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "process",
+    "title": "Process",
+    "aliases": [
+      "process"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "process": "/icons/process/process.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "project",
+    "title": "Project",
+    "aliases": [
+      "project"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "project": "/icons/project/project.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "recurring-appointment-exception",
+    "title": "Recurring Appointment Exception",
+    "aliases": [
+      "recurring appointment exception"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "recurring-appointment-exception": "/icons/recurring-appointment-exception/recurring-appointment-exception.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "rescheduling-a-task",
+    "title": "Rescheduling A Task",
+    "aliases": [
+      "rescheduling a task"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "rescheduling-a-task": "/icons/rescheduling-a-task/rescheduling-a-task.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "reset",
+    "title": "Reset",
+    "aliases": [
+      "reset"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "reset": "/icons/reset/reset.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "retirement",
+    "title": "Retirement",
+    "aliases": [
+      "retirement"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "retirement": "/icons/retirement/retirement.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "room-finder",
+    "title": "Room Finder",
+    "aliases": [
+      "room finder"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "room-finder": "/icons/room-finder/room-finder.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "schedule",
+    "title": "Schedule",
+    "aliases": [
+      "schedule"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "schedule": "/icons/schedule/schedule.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "stacked-organizational-chart-highlighted-first-node",
+    "title": "Stacked Organizational Chart Highlighted First Node",
+    "aliases": [
+      "stacked organizational chart highlighted first node"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "stacked-organizational-chart-highlighted-first-node": "/icons/stacked-organizational-chart-highlighted-first-node/stacked-organizational-chart-highlighted-first-node.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "stacked-organizational-chart-highlighted-parent-node",
+    "title": "Stacked Organizational Chart Highlighted Parent Node",
+    "aliases": [
+      "stacked organizational chart highlighted parent node"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "stacked-organizational-chart-highlighted-parent-node": "/icons/stacked-organizational-chart-highlighted-parent-node/stacked-organizational-chart-highlighted-parent-node.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "stacked-organizational-chart",
+    "title": "Stacked Organizational Chart",
+    "aliases": [
+      "stacked organizational chart"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "stacked-organizational-chart": "/icons/stacked-organizational-chart/stacked-organizational-chart.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "survey",
+    "title": "Survey",
+    "aliases": [
+      "survey"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "survey": "/icons/survey/survey.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "target-glass",
+    "title": "Target",
+    "aliases": [
+      "target"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "target": "/icons/target-glass/target.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "task-completed",
+    "title": "Task Completed",
+    "aliases": [
+      "task completed"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "task-completed": "/icons/task-completed/task-completed.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "task-planning",
+    "title": "Task Planning",
+    "aliases": [
+      "task planning"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "task-planning": "/icons/task-planning/task-planning.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "task-glass",
+    "title": "Task",
+    "aliases": [
+      "task"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "task": "/icons/task-glass/task.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "tasks",
+    "title": "Tasks",
+    "aliases": [
+      "tasks"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "tasks": "/icons/tasks/tasks.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "to-do-list",
+    "title": "To Do List",
+    "aliases": [
+      "to do list"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "to-do-list": "/icons/to-do-list/to-do-list.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "to-do",
+    "title": "To Do",
+    "aliases": [
+      "to do"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "to-do": "/icons/to-do/to-do.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "two-goals",
+    "title": "Two Goals",
+    "aliases": [
+      "two goals"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "two-goals": "/icons/two-goals/two-goals.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "weak-financial-growth",
+    "title": "Weak Financial Growth",
+    "aliases": [
+      "weak financial growth"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "weak-financial-growth": "/icons/weak-financial-growth/weak-financial-growth.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "web-analytics",
+    "title": "Web Analytics",
+    "aliases": [
+      "web analytics"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Planning"
+    ],
+    "variants": {
+      "web-analytics": "/icons/web-analytics/web-analytics.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "accounting",
+    "title": "Accounting",
+    "aliases": [
+      "accounting"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "accounting": "/icons/accounting/accounting.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "alcoholic-beverage-licensing",
+    "title": "Alcoholic Beverage Licensing",
+    "aliases": [
+      "alcoholic beverage licensing"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "alcoholic-beverage-licensing": "/icons/alcoholic-beverage-licensing/alcoholic-beverage-licensing.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "b2b",
+    "title": "B2b",
+    "aliases": [
+      "b2b"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "b2b": "/icons/b2b/b2b.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "barbershop",
+    "title": "Barbershop",
+    "aliases": [
+      "barbershop"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "barbershop": "/icons/barbershop/barbershop.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "blog",
+    "title": "Blog",
+    "aliases": [
+      "blog"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "blog": "/icons/blog/blog.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "business",
+    "title": "Business",
+    "aliases": [
+      "business"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "business": "/icons/business/business.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "cleaning-service",
+    "title": "Cleaning Service",
+    "aliases": [
+      "cleaning service"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "cleaning-service": "/icons/cleaning-service/cleaning-service.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "cloud-business",
+    "title": "Cloud Business",
+    "aliases": [
+      "cloud business"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "cloud-business": "/icons/cloud-business/cloud-business.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "confectionery",
+    "title": "Confectionery",
+    "aliases": [
+      "confectionery"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "confectionery": "/icons/confectionery/confectionery.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "coworking",
+    "title": "Coworking",
+    "aliases": [
+      "coworking"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "coworking": "/icons/coworking/coworking.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "craft-work",
+    "title": "Craft Work",
+    "aliases": [
+      "craft work"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "craft-work": "/icons/craft-work/craft-work.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "department-shop",
+    "title": "Department Shop",
+    "aliases": [
+      "department shop"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "department-shop": "/icons/department-shop/department-shop.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "department",
+    "title": "Department",
+    "aliases": [
+      "department"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "department": "/icons/department/department.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "fast-food-drive-thru",
+    "title": "Fast Food Drive Thru",
+    "aliases": [
+      "fast food drive thru"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "fast-food-drive-thru": "/icons/fast-food-drive-thru/fast-food-drive-thru.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "franchise",
+    "title": "Franchise",
+    "aliases": [
+      "franchise"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "franchise": "/icons/franchise/franchise.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "growing-money",
+    "title": "Growing Money",
+    "aliases": [
+      "growing money"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "growing-money": "/icons/growing-money/growing-money.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "innovation",
+    "title": "Innovation",
+    "aliases": [
+      "innovation"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "innovation": "/icons/innovation/innovation.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "kiosk-on-wheels",
+    "title": "Kiosk On Wheels",
+    "aliases": [
+      "kiosk on wheels"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "kiosk-on-wheels": "/icons/kiosk-on-wheels/kiosk-on-wheels.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "management-glass",
+    "title": "Management",
+    "aliases": [
+      "management"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "management": "/icons/management-glass/management.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "new-store",
+    "title": "New Store",
+    "aliases": [
+      "new store"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "new-store": "/icons/new-store/new-store.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "non-profit-organisation",
+    "title": "Non Profit Organisation",
+    "aliases": [
+      "non profit organisation"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "non-profit-organisation": "/icons/non-profit-organisation/non-profit-organisation.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "organization",
+    "title": "Organization",
+    "aliases": [
+      "organization"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "organization": "/icons/organization/organization.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "rent",
+    "title": "Rent",
+    "aliases": [
+      "rent"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "rent": "/icons/rent/rent.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "rental-house-contract",
+    "title": "Rental House Contract",
+    "aliases": [
+      "rental house contract"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "rental-house-contract": "/icons/rental-house-contract/rental-house-contract.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "shopping-mall",
+    "title": "Shopping Mall",
+    "aliases": [
+      "shopping mall"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "shopping-mall": "/icons/shopping-mall/shopping-mall.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "small-business",
+    "title": "Small Business",
+    "aliases": [
+      "small business"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "small-business": "/icons/small-business/small-business.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "travel-agency",
+    "title": "Travel Agency",
+    "aliases": [
+      "travel agency"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "travel-agency": "/icons/travel-agency/travel-agency.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "vastu-consultancy",
+    "title": "Vastu Consultancy",
+    "aliases": [
+      "vastu consultancy"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "vastu-consultancy": "/icons/vastu-consultancy/vastu-consultancy.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "web-development",
+    "title": "Web Development",
+    "aliases": [
+      "web development"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "web-development": "/icons/web-development/web-development.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "yard-sale",
+    "title": "Yard Sale",
+    "aliases": [
+      "yard sale"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Business Types"
+    ],
+    "variants": {
+      "yard-sale": "/icons/yard-sale/yard-sale.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "area-chart",
+    "title": "Area Chart",
+    "aliases": [
+      "area chart"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "area-chart": "/icons/area-chart/area-chart.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "bar-chart",
+    "title": "Bar Chart",
+    "aliases": [
+      "bar chart"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "bar-chart": "/icons/bar-chart/bar-chart.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "circle-chart",
+    "title": "Circle Chart",
+    "aliases": [
+      "circle chart"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "circle-chart": "/icons/circle-chart/circle-chart.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "close-position",
+    "title": "Close Position",
+    "aliases": [
+      "close position"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "close-position": "/icons/close-position/close-position.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "combo-chart",
+    "title": "Combo Chart",
+    "aliases": [
+      "combo chart"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "combo-chart": "/icons/combo-chart/combo-chart.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "doughnut-chart",
+    "title": "Doughnut Chart",
+    "aliases": [
+      "doughnut chart"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "doughnut-chart": "/icons/doughnut-chart/doughnut-chart.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "futures",
+    "title": "Futures",
+    "aliases": [
+      "futures"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "futures": "/icons/futures/futures.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "gantt-chart",
+    "title": "Gantt Chart",
+    "aliases": [
+      "gantt chart"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "gantt-chart": "/icons/gantt-chart/gantt-chart.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "growth-and-flag",
+    "title": "Growth And Flag",
+    "aliases": [
+      "growth and flag"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "growth-and-flag": "/icons/growth-and-flag/growth-and-flag.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "increase-profits",
+    "title": "Increase Profits",
+    "aliases": [
+      "increase profits"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "increase-profits": "/icons/increase-profits/increase-profits.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "increase",
+    "title": "Increase",
+    "aliases": [
+      "increase"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "increase": "/icons/increase/increase.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "investment-portfolio",
+    "title": "Investment Portfolio",
+    "aliases": [
+      "investment portfolio"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "investment-portfolio": "/icons/investment-portfolio/investment-portfolio.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "line-chart",
+    "title": "Line Chart",
+    "aliases": [
+      "line chart"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "line-chart": "/icons/line-chart/line-chart.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "long-position",
+    "title": "Long Position",
+    "aliases": [
+      "long position"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "long-position": "/icons/long-position/long-position.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "maslow-pyramid",
+    "title": "Maslow Pyramid",
+    "aliases": [
+      "maslow pyramid"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "maslow-pyramid": "/icons/maslow-pyramid/maslow-pyramid.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "mind-map",
+    "title": "Mind Map",
+    "aliases": [
+      "mind map"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "mind-map": "/icons/mind-map/mind-map.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "options",
+    "title": "Options",
+    "aliases": [
+      "options"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "options": "/icons/options/options.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "parallel-workflow",
+    "title": "Parallel Workflow",
+    "aliases": [
+      "parallel workflow"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "parallel-workflow": "/icons/parallel-workflow/parallel-workflow.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "peak-performance",
+    "title": "Peak Performance",
+    "aliases": [
+      "peak performance"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "peak-performance": "/icons/peak-performance/peak-performance.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "percentage-growth",
+    "title": "Percentage Growth",
+    "aliases": [
+      "percentage growth"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "percentage-growth": "/icons/percentage-growth/percentage-growth.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "pie-chart",
+    "title": "Pie Chart",
+    "aliases": [
+      "pie chart"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "pie-chart": "/icons/pie-chart/pie-chart.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "pipeline",
+    "title": "Pipeline",
+    "aliases": [
+      "pipeline"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "pipeline": "/icons/pipeline/pipeline.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "positive-dynamic",
+    "title": "Positive Dynamic",
+    "aliases": [
+      "positive dynamic"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "positive-dynamic": "/icons/positive-dynamic/positive-dynamic.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "reducing-churn",
+    "title": "Reducing Churn",
+    "aliases": [
+      "reducing churn"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "reducing-churn": "/icons/reducing-churn/reducing-churn.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "sankey",
+    "title": "Sankey",
+    "aliases": [
+      "sankey"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "sankey": "/icons/sankey/sankey.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "short-position",
+    "title": "Short Position",
+    "aliases": [
+      "short position"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "short-position": "/icons/short-position/short-position.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "stocks-growth",
+    "title": "Stocks Growth",
+    "aliases": [
+      "stocks growth"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "stocks-growth": "/icons/stocks-growth/stocks-growth.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "stocks",
+    "title": "Stocks",
+    "aliases": [
+      "stocks"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "stocks": "/icons/stocks/stocks.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "upward-trend",
+    "title": "Upward Trend",
+    "aliases": [
+      "upward trend"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "upward-trend": "/icons/upward-trend/upward-trend.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "vertical-timeline",
+    "title": "Vertical Timeline",
+    "aliases": [
+      "vertical timeline"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "vertical-timeline": "/icons/vertical-timeline/vertical-timeline.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "workflow",
+    "title": "Workflow",
+    "aliases": [
+      "workflow"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Charts"
+    ],
+    "variants": {
+      "workflow": "/icons/workflow/workflow.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "business-building",
+    "title": "Business Building",
+    "aliases": [
+      "business building"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Company"
+    ],
+    "variants": {
+      "business-building": "/icons/business-building/business-building.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "company",
+    "title": "Company",
+    "aliases": [
+      "company"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Company"
+    ],
+    "variants": {
+      "company": "/icons/company/company.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "new-company",
+    "title": "New Company",
+    "aliases": [
+      "new company"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Company"
+    ],
+    "variants": {
+      "new-company": "/icons/new-company/new-company.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "office",
+    "title": "Office",
+    "aliases": [
+      "office"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Company"
+    ],
+    "variants": {
+      "office": "/icons/office/office.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "related-companies",
+    "title": "Related Companies",
+    "aliases": [
+      "related companies"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Company"
+    ],
+    "variants": {
+      "related-companies": "/icons/related-companies/related-companies.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "copyleft",
+    "title": "Copyleft",
+    "aliases": [
+      "copyleft"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "copyleft": "/icons/copyleft/copyleft.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "copyright-all-rights-reserved",
+    "title": "Copyright All Rights Reserved",
+    "aliases": [
+      "copyright all rights reserved"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "copyright-all-rights-reserved": "/icons/copyright-all-rights-reserved/copyright-all-rights-reserved.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "copyright",
+    "title": "Copyright",
+    "aliases": [
+      "copyright"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "copyright": "/icons/copyright/copyright.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-by",
+    "title": "Creative Commons By",
+    "aliases": [
+      "creative commons by"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-by": "/icons/creative-commons-by/creative-commons-by.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-commercial",
+    "title": "Creative Commons Commercial",
+    "aliases": [
+      "creative commons commercial"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-commercial": "/icons/creative-commons-commercial/creative-commons-commercial.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-nc-eu",
+    "title": "Creative Commons Nc Eu",
+    "aliases": [
+      "creative commons nc eu"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-nc-eu": "/icons/creative-commons-nc-eu/creative-commons-nc-eu.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-nc-jp",
+    "title": "Creative Commons Nc Jp",
+    "aliases": [
+      "creative commons nc jp"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-nc-jp": "/icons/creative-commons-nc-jp/creative-commons-nc-jp.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-nc",
+    "title": "Creative Commons Nc",
+    "aliases": [
+      "creative commons nc"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-nc": "/icons/creative-commons-nc/creative-commons-nc.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-nd",
+    "title": "Creative Commons Nd",
+    "aliases": [
+      "creative commons nd"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-nd": "/icons/creative-commons-nd/creative-commons-nd.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-pd-sign",
+    "title": "Creative Commons Pd Sign",
+    "aliases": [
+      "creative commons pd sign"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-pd-sign": "/icons/creative-commons-pd-sign/creative-commons-pd-sign.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-pd",
+    "title": "Creative Commons Pd",
+    "aliases": [
+      "creative commons pd"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-pd": "/icons/creative-commons-pd/creative-commons-pd.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-remix",
+    "title": "Creative Commons Remix",
+    "aliases": [
+      "creative commons remix"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-remix": "/icons/creative-commons-remix/creative-commons-remix.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-sa",
+    "title": "Creative Commons Sa",
+    "aliases": [
+      "creative commons sa"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-sa": "/icons/creative-commons-sa/creative-commons-sa.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-sampling-plus",
+    "title": "Creative Commons Sampling Plus",
+    "aliases": [
+      "creative commons sampling plus"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-sampling-plus": "/icons/creative-commons-sampling-plus/creative-commons-sampling-plus.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-sampling",
+    "title": "Creative Commons Sampling",
+    "aliases": [
+      "creative commons sampling"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-sampling": "/icons/creative-commons-sampling/creative-commons-sampling.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-share",
+    "title": "Creative Commons Share",
+    "aliases": [
+      "creative commons share"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-share": "/icons/creative-commons-share/creative-commons-share.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-zero",
+    "title": "Creative Commons Zero",
+    "aliases": [
+      "creative commons zero"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons-zero": "/icons/creative-commons-zero/creative-commons-zero.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "creative-commons-glass",
+    "title": "Creative Commons",
+    "aliases": [
+      "creative commons"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "creative-commons": "/icons/creative-commons-glass/creative-commons.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "registered-trademark",
+    "title": "Registered Trademark",
+    "aliases": [
+      "registered trademark"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "registered-trademark": "/icons/registered-trademark/registered-trademark.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "service-mark",
+    "title": "Service Mark",
+    "aliases": [
+      "service mark"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "service-mark": "/icons/service-mark/service-mark.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "sound-recording-copyright",
+    "title": "Sound Recording Copyright",
+    "aliases": [
+      "sound recording copyright"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Copyright"
+    ],
+    "variants": {
+      "sound-recording-copyright": "/icons/sound-recording-copyright/sound-recording-copyright.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
+    "slug": "cent",
+    "title": "Cent",
+    "aliases": [
+      "cent"
+    ],
+    "hex": "FF5F02",
+    "hexes": [
+      "FF5F02"
+    ],
+    "categories": [
+      "Liquid Glass",
+      "Currency"
+    ],
+    "variants": {
+      "cent": "/icons/cent/cent.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://icons8.com/icons/set/business--style-liquid-glass",
+    "dateAdded": "2026-08-24",
+    "collection": "community"
+  },
+  {
     "slug": "facbook-glass",
     "title": "Facbook-glass",
     "aliases": [],
@@ -8,6 +3682,7 @@
       "FFFFFF"
     ],
     "categories": [
+      "Liquid Glass",
       "Software",
       "Developer Tools",
       "Media",
@@ -104,6 +3779,7 @@
       "FFFFFF"
     ],
     "categories": [
+      "Liquid Glass",
       "Software",
       "Social",
       "Mobile",
@@ -188,6 +3864,7 @@
       "825AFF"
     ],
     "categories": [
+      "Liquid Glass",
       "Software",
       "Cloud",
       "Developer Tools",
@@ -352,7 +4029,7 @@
   },
   {
     "slug": "01dotai",
-    "title": "01.AI (零一万物)",
+    "title": "01.AI (\u96f6\u4e00\u4e07\u7269)",
     "aliases": [],
     "hex": "003425",
     "categories": [
@@ -1739,7 +5416,7 @@
   },
   {
     "slug": "aeromexico",
-    "title": "Aeroméxico",
+    "title": "Aerom\u00e9xico",
     "aliases": [],
     "hex": "0B2343",
     "categories": [
@@ -1774,7 +5451,7 @@
     "slug": "afdian",
     "title": "AFDIAN",
     "aliases": [
-      "爱发电"
+      "\u7231\u53d1\u7535"
     ],
     "hex": "946CE6",
     "categories": [
@@ -2128,7 +5805,7 @@
   },
   {
     "slug": "ai360-360",
-    "title": "Ai360 (360智脑)",
+    "title": "Ai360 (360\u667a\u8111)",
     "aliases": [],
     "hex": "006ffb",
     "categories": [
@@ -2167,7 +5844,7 @@
   },
   {
     "slug": "aihubmix",
-    "title": "AiHubMix (推理时代)",
+    "title": "AiHubMix (\u63a8\u7406\u65f6\u4ee3)",
     "aliases": [],
     "hex": "006FFB",
     "categories": [
@@ -2186,7 +5863,7 @@
   },
   {
     "slug": "aimass",
-    "title": "AiMass (紫东太初)",
+    "title": "AiMass (\u7d2b\u4e1c\u592a\u521d)",
     "aliases": [],
     "hex": "fff",
     "categories": [
@@ -2260,7 +5937,7 @@
   },
   {
     "slug": "air-algerie",
-    "title": "Air Algérie",
+    "title": "Air Alg\u00e9rie",
     "aliases": [],
     "hex": "E2001A",
     "categories": [
@@ -2893,7 +6570,7 @@
   },
   {
     "slug": "aldi-sud",
-    "title": "Aldi Süd",
+    "title": "Aldi S\u00fcd",
     "aliases": [],
     "hex": "00005F",
     "categories": [
@@ -3037,7 +6714,7 @@
   },
   {
     "slug": "alibabacloud",
-    "title": "AlibabaCloud (阿里云)",
+    "title": "AlibabaCloud (\u963f\u91cc\u4e91)",
     "aliases": [],
     "hex": "FF6A00",
     "categories": [
@@ -3524,7 +7201,7 @@
     "aliases": [
       "Ameba Blog",
       "Ameblo",
-      "アメブロ"
+      "\u30a2\u30e1\u30d6\u30ed"
     ],
     "hex": "2D8C3C",
     "categories": [
@@ -36779,7 +40456,7 @@
   },
   {
     "slug": "baai",
-    "title": "BAAI (智源研究院)",
+    "title": "BAAI (\u667a\u6e90\u7814\u7a76\u9662)",
     "aliases": [],
     "hex": "000",
     "categories": [
@@ -36979,7 +40656,7 @@
   },
   {
     "slug": "baichuan",
-    "title": "Baichuan (百川)",
+    "title": "Baichuan (\u767e\u5ddd)",
     "aliases": [],
     "hex": "FF6933",
     "categories": [
@@ -37016,7 +40693,7 @@
   },
   {
     "slug": "baiducloud",
-    "title": "BaiduCloud (百度智能云)",
+    "title": "BaiduCloud (\u767e\u5ea6\u667a\u80fd\u4e91)",
     "aliases": [],
     "hex": "2468f2",
     "categories": [
@@ -37035,7 +40712,7 @@
   },
   {
     "slug": "bailian",
-    "title": "Bailian (阿里云百炼)",
+    "title": "Bailian (\u963f\u91cc\u4e91\u767e\u70bc)",
     "aliases": [],
     "hex": "615ced",
     "categories": [
@@ -37071,7 +40748,7 @@
   },
   {
     "slug": "bakalari",
-    "title": "Bakaláři",
+    "title": "Bakal\u00e1\u0159i",
     "aliases": [],
     "hex": "00A2E2",
     "categories": [
@@ -40198,7 +43875,7 @@
     "slug": "btk",
     "title": "BTK",
     "aliases": [
-      "Bilgi Teknolojileri ve İletişim Kurumu",
+      "Bilgi Teknolojileri ve \u0130leti\u015fim Kurumu",
       "Information and Communication Technologies Authority"
     ],
     "hex": "000000",
@@ -41754,7 +45431,7 @@
     "title": "CBC",
     "aliases": [
       "Canadian Broadcasting Company",
-      "Société Radio-Canada"
+      "Soci\u00e9t\u00e9 Radio-Canada"
     ],
     "hex": "E60505",
     "categories": [
@@ -42347,7 +46024,7 @@
   },
   {
     "slug": "chatglm",
-    "title": "ChatGLM (智谱)",
+    "title": "ChatGLM (\u667a\u8c31)",
     "aliases": [],
     "hex": "4268FA",
     "categories": [
@@ -43109,7 +46786,7 @@
     "slug": "citroen",
     "title": "Citroen",
     "aliases": [
-      "Citroeën"
+      "Citroe\u00ebn"
     ],
     "hex": "8B8B8B",
     "categories": [
@@ -47670,7 +51347,7 @@
   },
   {
     "slug": "dall-e-openai",
-    "title": "DALL·E (OpenAI)",
+    "title": "DALL\u00b7E (OpenAI)",
     "aliases": [],
     "hex": "000",
     "categories": [
@@ -48171,7 +51848,7 @@
     "slug": "dazhong-dianping",
     "title": "Dazhong Dianping",
     "aliases": [
-      "大众点评"
+      "\u5927\u4f17\u70b9\u8bc4"
     ],
     "hex": "FF6633",
     "categories": [
@@ -49027,7 +52704,7 @@
     "aliases": [
       "T-Mobile",
       "Magenta Telekom",
-      "Македонски Телеком"
+      "\u041c\u0430\u043a\u0435\u0434\u043e\u043d\u0441\u043a\u0438 \u0422\u0435\u043b\u0435\u043a\u043e\u043c"
     ],
     "hex": "E20074",
     "categories": [
@@ -50641,7 +54318,7 @@
   },
   {
     "slug": "doubao",
-    "title": "Doubao (豆包)",
+    "title": "Doubao (\u8c46\u5305)",
     "aliases": [],
     "hex": "FFF",
     "categories": [
@@ -51543,7 +55220,7 @@
     "slug": "easyeda",
     "title": "EasyEDA",
     "aliases": [
-      "嘉立创EDA"
+      "\u5609\u7acb\u521bEDA"
     ],
     "hex": "1765F6",
     "categories": [
@@ -56942,7 +60619,7 @@
   },
   {
     "slug": "frequencia-invisivel",
-    "title": "Frequência Invisível",
+    "title": "Frequ\u00eancia Invis\u00edvel",
     "aliases": [],
     "hex": "D59629",
     "categories": [
@@ -63824,7 +67501,7 @@
     "slug": "google",
     "title": "Google",
     "aliases": [
-      "구글"
+      "\uad6c\uae00"
     ],
     "hex": "4285F4",
     "categories": [
@@ -66775,7 +70452,7 @@
   },
   {
     "slug": "hailuo",
-    "title": "Hailuo (海螺)",
+    "title": "Hailuo (\u6d77\u87ba)",
     "aliases": [],
     "hex": "fff",
     "categories": [
@@ -67935,7 +71612,7 @@
     "slug": "hexlet",
     "title": "Hexlet",
     "aliases": [
-      "Хекслет"
+      "\u0425\u0435\u043a\u0441\u043b\u0435\u0442"
     ],
     "hex": "116EF5",
     "categories": [
@@ -68937,7 +72614,7 @@
   },
   {
     "slug": "huaweicloud",
-    "title": "HuaweiCloud (华为云)",
+    "title": "HuaweiCloud (\u534e\u4e3a\u4e91)",
     "aliases": [],
     "hex": "C7000B",
     "categories": [
@@ -69107,7 +72784,7 @@
   },
   {
     "slug": "hunyuan",
-    "title": "Hunyuan (腾讯混元)",
+    "title": "Hunyuan (\u817e\u8baf\u6df7\u5143)",
     "aliases": [],
     "hex": "0053e0",
     "categories": [
@@ -69741,7 +73418,7 @@
   },
   {
     "slug": "iflytekcloud",
-    "title": "IFlyTekCloud (讯飞开放平台)",
+    "title": "IFlyTekCloud (\u8baf\u98de\u5f00\u653e\u5e73\u53f0)",
     "aliases": [],
     "hex": "2A80E2",
     "categories": [
@@ -69870,7 +73547,7 @@
   },
   {
     "slug": "ile-de-france-mobilites",
-    "title": "Île-de-France Mobilités",
+    "title": "\u00cele-de-France Mobilit\u00e9s",
     "aliases": [],
     "hex": "67B4E7",
     "categories": [
@@ -70444,7 +74121,7 @@
   },
   {
     "slug": "infinigence",
-    "title": "Infinigence (无问芯穹)",
+    "title": "Infinigence (\u65e0\u95ee\u82af\u7a79)",
     "aliases": [],
     "hex": "7952ea",
     "categories": [
@@ -71532,7 +75209,7 @@
     "slug": "isc2",
     "title": "ISC2",
     "aliases": [
-      "(ISC)²"
+      "(ISC)\u00b2"
     ],
     "hex": "468145",
     "categories": [
@@ -71607,7 +75284,7 @@
   },
   {
     "slug": "itau",
-    "title": "Itaú",
+    "title": "Ita\u00fa",
     "aliases": [],
     "hex": "EC7000",
     "categories": [
@@ -72394,7 +76071,7 @@
   },
   {
     "slug": "jimeng",
-    "title": "Jimeng (即梦)",
+    "title": "Jimeng (\u5373\u68a6)",
     "aliases": [],
     "hex": "000",
     "categories": [
@@ -74252,7 +77929,7 @@
     "slug": "kakao",
     "title": "Kakao",
     "aliases": [
-      "카카오"
+      "\uce74\uce74\uc624"
     ],
     "hex": "FFCD00",
     "categories": [
@@ -74289,7 +77966,7 @@
     "slug": "kakaotalk",
     "title": "KakaoTalk",
     "aliases": [
-      "카카오톡"
+      "\uce74\uce74\uc624\ud1a1"
     ],
     "hex": "FFCD00",
     "categories": [
@@ -75327,7 +79004,7 @@
     "slug": "kinopoisk",
     "title": "Kinopoisk",
     "aliases": [
-      "КиноПоиск"
+      "\u041a\u0438\u043d\u043e\u041f\u043e\u0438\u0441\u043a"
     ],
     "hex": "FF5500",
     "categories": [
@@ -75507,7 +79184,7 @@
   },
   {
     "slug": "kling",
-    "title": "Kling (可灵)",
+    "title": "Kling (\u53ef\u7075)",
     "aliases": [],
     "hex": "000",
     "categories": [
@@ -75890,7 +79567,7 @@
   },
   {
     "slug": "kolors",
-    "title": "Kolors (快手可图)",
+    "title": "Kolors (\u5feb\u624b\u53ef\u56fe)",
     "aliases": [],
     "hex": "83FF63",
     "categories": [
@@ -76055,7 +79732,7 @@
     "slug": "kotlin",
     "title": "Kotlin",
     "aliases": [
-      "코틀린"
+      "\ucf54\ud2c0\ub9b0"
     ],
     "hex": "7F52FF",
     "categories": [
@@ -76582,7 +80259,7 @@
   },
   {
     "slug": "l-equipe",
-    "title": "L'Équipe",
+    "title": "L'\u00c9quipe",
     "aliases": [],
     "hex": "E42829",
     "categories": [
@@ -76638,7 +80315,7 @@
     "slug": "lada",
     "title": "LADA",
     "aliases": [
-      "Лада"
+      "\u041b\u0430\u0434\u0430"
     ],
     "hex": "ED6B21",
     "categories": [
@@ -78264,8 +81941,8 @@
     "slug": "line",
     "title": "LINE",
     "aliases": [
-      "ライン",
-      "라인"
+      "\u30e9\u30a4\u30f3",
+      "\ub77c\uc778"
     ],
     "hex": "00C300",
     "categories": [
@@ -79606,7 +83283,7 @@
     "slug": "love2d",
     "title": "Love2d",
     "aliases": [
-      "Löve"
+      "L\u00f6ve"
     ],
     "hex": "FFF",
     "categories": [
@@ -82029,7 +85706,7 @@
     "slug": "meituan",
     "title": "Meituan",
     "aliases": [
-      "美团"
+      "\u7f8e\u56e2"
     ],
     "hex": "FFD100",
     "categories": [
@@ -82049,7 +85726,7 @@
     "slug": "meizu",
     "title": "Meizu",
     "aliases": [
-      "魅族"
+      "\u9b45\u65cf"
     ],
     "hex": "FF4132",
     "categories": [
@@ -82562,7 +86239,7 @@
   },
   {
     "slug": "metro-de-la-ciudad-de-mexico",
-    "title": "Metro de la Ciudad de México",
+    "title": "Metro de la Ciudad de M\u00e9xico",
     "aliases": [],
     "hex": "F77E1C",
     "categories": [
@@ -82596,7 +86273,7 @@
   },
   {
     "slug": "metro-de-paris",
-    "title": "Métro de Paris",
+    "title": "M\u00e9tro de Paris",
     "aliases": [],
     "hex": "003E95",
     "categories": [
@@ -84687,7 +88364,7 @@
     "aliases": [
       "Mixue Ice Cream & Tea",
       "Mixue Bingcheng",
-      "蜜雪冰城"
+      "\u871c\u96ea\u51b0\u57ce"
     ],
     "hex": "000000",
     "categories": [
@@ -85429,7 +89106,7 @@
   },
   {
     "slug": "moonshot",
-    "title": "Moonshot (月之暗面)",
+    "title": "Moonshot (\u6708\u4e4b\u6697\u9762)",
     "aliases": [
       "Moonshot AI",
       "Kimi"
@@ -85925,7 +89602,7 @@
   },
   {
     "slug": "muller",
-    "title": "Müller",
+    "title": "M\u00fcller",
     "aliases": [],
     "hex": "F46519",
     "categories": [
@@ -86447,7 +90124,7 @@
     "slug": "namu-wiki",
     "title": "Namu Wiki",
     "aliases": [
-      "나무위키"
+      "\ub098\ubb34\uc704\ud0a4"
     ],
     "hex": "008275",
     "categories": [
@@ -86760,8 +90437,8 @@
     "slug": "naver",
     "title": "Naver",
     "aliases": [
-      "ネイバー",
-      "네이버"
+      "\u30cd\u30a4\u30d0\u30fc",
+      "\ub124\uc774\ubc84"
     ],
     "hex": "03C75A",
     "categories": [
@@ -87233,7 +90910,7 @@
     "slug": "netease-cloud-music",
     "title": "NetEase Cloud Music",
     "aliases": [
-      "网易云音乐"
+      "\u7f51\u6613\u4e91\u97f3\u4e50"
     ],
     "hex": "D43C33",
     "categories": [
@@ -87458,7 +91135,7 @@
     "title": "New Japan Pro-Wrestling",
     "aliases": [
       "NJPW",
-      "新日本プロレスリング"
+      "\u65b0\u65e5\u672c\u30d7\u30ed\u30ec\u30b9\u30ea\u30f3\u30b0"
     ],
     "hex": "FF160B",
     "categories": [
@@ -89573,7 +93250,7 @@
   },
   {
     "slug": "obb",
-    "title": "ÖBB",
+    "title": "\u00d6BB",
     "aliases": [],
     "hex": "E40327",
     "categories": [
@@ -94450,7 +98127,7 @@
   },
   {
     "slug": "picard-surgeles",
-    "title": "Picard Surgelés",
+    "title": "Picard Surgel\u00e9s",
     "aliases": [],
     "hex": "2D4999",
     "categories": [
@@ -98706,7 +102383,7 @@
   },
   {
     "slug": "qingyan",
-    "title": "Qingyan (智谱清言)",
+    "title": "Qingyan (\u667a\u8c31\u6e05\u8a00)",
     "aliases": [],
     "hex": "1041F3",
     "categories": [
@@ -98725,7 +102402,7 @@
   },
   {
     "slug": "qiniu",
-    "title": "Qiniu (七牛云)",
+    "title": "Qiniu (\u4e03\u725b\u4e91)",
     "aliases": [],
     "hex": "06AEEF",
     "categories": [
@@ -102805,7 +106482,7 @@
   },
   {
     "slug": "rte",
-    "title": "RTÉ",
+    "title": "RT\u00c9",
     "aliases": [],
     "hex": "00A7B3",
     "categories": [
@@ -102859,8 +106536,8 @@
     "slug": "rtm",
     "title": "RTM",
     "aliases": [
-      "Régie des Transports Métropolitains",
-      "Régie des Transports de Marseille"
+      "R\u00e9gie des Transports M\u00e9tropolitains",
+      "R\u00e9gie des Transports de Marseille"
     ],
     "hex": "36474F",
     "categories": [
@@ -103855,7 +107532,7 @@
   },
   {
     "slug": "sao-paulo-metro",
-    "title": "São Paulo Metro",
+    "title": "S\u00e3o Paulo Metro",
     "aliases": [],
     "hex": "004382",
     "categories": [
@@ -104975,7 +108652,7 @@
   },
   {
     "slug": "sensenova",
-    "title": "SenseNova (商汤)",
+    "title": "SenseNova (\u5546\u6c64)",
     "aliases": [],
     "hex": "5B2AD8",
     "categories": [
@@ -106112,12 +109789,12 @@
     "title": "SiYuan",
     "aliases": [
       "sy",
-      "思源笔记",
-      "思源筆記",
-      "思源筆記",
-      "思源笔记",
-      "思源笔记",
-      "思源筆記"
+      "\u601d\u6e90\u7b14\u8bb0",
+      "\u601d\u6e90\u7b46\u8a18",
+      "\u601d\u6e90\u7b46\u8a18",
+      "\u601d\u6e90\u7b14\u8bb0",
+      "\u601d\u6e90\u7b14\u8bb0",
+      "\u601d\u6e90\u7b46\u8a18"
     ],
     "hex": "D23F31",
     "categories": [
@@ -106282,7 +109959,7 @@
     "slug": "skoda",
     "title": "Skoda",
     "aliases": [
-      "Škoda Auto"
+      "\u0160koda Auto"
     ],
     "hex": "4BA82E",
     "categories": [
@@ -106369,7 +110046,7 @@
   },
   {
     "slug": "skywork",
-    "title": "Skywork (天工)",
+    "title": "Skywork (\u5929\u5de5)",
     "aliases": [],
     "hex": "fff",
     "categories": [
@@ -106955,7 +110632,7 @@
   },
   {
     "slug": "softcatala",
-    "title": "Softcatalà",
+    "title": "Softcatal\u00e0",
     "aliases": [],
     "hex": "BA2626",
     "categories": [
@@ -107745,7 +111422,7 @@
   },
   {
     "slug": "spark",
-    "title": "Spark (讯飞星火)",
+    "title": "Spark (\u8baf\u98de\u661f\u706b)",
     "aliases": [],
     "hex": "0070f0",
     "categories": [
@@ -108471,8 +112148,8 @@
     "title": "SRG SSR",
     "aliases": [
       "Schweizerische Radio- und Fernsehgesellschaft",
-      "Société suisse de radiodiffusion et télévision",
-      "Società svizzera di radiotelevisione",
+      "Soci\u00e9t\u00e9 suisse de radiodiffusion et t\u00e9l\u00e9vision",
+      "Societ\u00e0 svizzera di radiotelevisione",
       "Societad Svizra da Radio e Televisiun",
       "Swiss Broadcasting Corporation"
     ],
@@ -109004,7 +112681,7 @@
   },
   {
     "slug": "statecloud",
-    "title": "StateCloud (天翼云)",
+    "title": "StateCloud (\u5929\u7ffc\u4e91)",
     "aliases": [],
     "hex": "DF0428",
     "categories": [
@@ -109331,7 +113008,7 @@
   },
   {
     "slug": "stepfun",
-    "title": "Stepfun (阶跃星辰)",
+    "title": "Stepfun (\u9636\u8dc3\u661f\u8fb0)",
     "aliases": [],
     "hex": "005AFF",
     "categories": [
@@ -110988,7 +114665,7 @@
     "slug": "tabelog",
     "title": "Tabelog",
     "aliases": [
-      "食べログ"
+      "\u98df\u3079\u30ed\u30b0"
     ],
     "hex": "F2CC38",
     "categories": [
@@ -111076,7 +114753,7 @@
   },
   {
     "slug": "tado",
-    "title": "tado°",
+    "title": "tado\u00b0",
     "aliases": [],
     "hex": "FFA900",
     "categories": [
@@ -111905,7 +115582,7 @@
   },
   {
     "slug": "tele-quebec",
-    "title": "Télé-Québec",
+    "title": "T\u00e9l\u00e9-Qu\u00e9bec",
     "aliases": [],
     "hex": "1343FB",
     "categories": [
@@ -111921,7 +115598,7 @@
   },
   {
     "slug": "telefonica",
-    "title": "Telefónica",
+    "title": "Telef\u00f3nica",
     "aliases": [],
     "hex": "0066FF",
     "categories": [
@@ -112106,7 +115783,7 @@
   },
   {
     "slug": "tencentcloud",
-    "title": "TencentCloud (腾讯云)",
+    "title": "TencentCloud (\u817e\u8baf\u4e91)",
     "aliases": [],
     "hex": "2151d1",
     "categories": [
@@ -113234,7 +116911,7 @@
   },
   {
     "slug": "tiangong",
-    "title": "Tiangong (天工)",
+    "title": "Tiangong (\u5929\u5de5)",
     "aliases": [],
     "hex": "0057ff",
     "categories": [
@@ -113662,7 +117339,7 @@
     "slug": "tistory",
     "title": "Tistory",
     "aliases": [
-      "티스토리"
+      "\ud2f0\uc2a4\ud1a0\ub9ac"
     ],
     "hex": "000000",
     "categories": [
@@ -116449,7 +120126,7 @@
     "slug": "uniqlo",
     "title": "Uniqlo",
     "aliases": [
-      "ユニクロ"
+      "\u30e6\u30cb\u30af\u30ed"
     ],
     "hex": "FF0000",
     "categories": [
@@ -118089,7 +121766,7 @@
     "title": "VictoriaMetrics",
     "aliases": [
       "VM",
-      "빅토리아메트릭스"
+      "\ube45\ud1a0\ub9ac\uc544\uba54\ud2b8\ub9ad\uc2a4"
     ],
     "hex": "621773",
     "categories": [
@@ -119067,7 +122744,7 @@
   },
   {
     "slug": "volcengine",
-    "title": "Volcengine (火山引擎)",
+    "title": "Volcengine (\u706b\u5c71\u5f15\u64ce)",
     "aliases": [],
     "hex": "fff",
     "categories": [
@@ -120704,7 +124381,7 @@
   },
   {
     "slug": "wenxin",
-    "title": "Wenxin (文心)",
+    "title": "Wenxin (\u6587\u5fc3)",
     "aliases": [],
     "hex": "167ADF",
     "categories": [
@@ -122342,7 +126019,7 @@
     "slug": "xiaohongshu",
     "title": "Xiaohongshu",
     "aliases": [
-      "小红书"
+      "\u5c0f\u7ea2\u4e66"
     ],
     "hex": "FF2442",
     "categories": [
@@ -122562,7 +126239,7 @@
   },
   {
     "slug": "xuanyuan",
-    "title": "Xuanyuan (度小满轩辕)",
+    "title": "Xuanyuan (\u5ea6\u5c0f\u6ee1\u8f69\u8f95)",
     "aliases": [],
     "hex": "fff",
     "categories": [
@@ -122947,7 +126624,7 @@
   },
   {
     "slug": "yi",
-    "title": "Yi (零一万物)",
+    "title": "Yi (\u96f6\u4e00\u4e07\u7269)",
     "aliases": [],
     "hex": "003425",
     "categories": [
@@ -123226,7 +126903,7 @@
   },
   {
     "slug": "yuanbao",
-    "title": "Yuanbao (腾讯元宝)",
+    "title": "Yuanbao (\u817e\u8baf\u5143\u5b9d)",
     "aliases": [],
     "hex": "fff",
     "categories": [
@@ -123333,7 +127010,7 @@
   },
   {
     "slug": "zabka",
-    "title": "Żabka",
+    "title": "\u017babka",
     "aliases": [],
     "hex": "006420",
     "categories": [
@@ -123964,7 +127641,7 @@
   },
   {
     "slug": "zhipu",
-    "title": "Zhipu (智谱)",
+    "title": "Zhipu (\u667a\u8c31)",
     "aliases": [],
     "hex": "3859FF",
     "categories": [

@@ -35,6 +35,7 @@ import {
 
 const getCategoryIcon = (name = '') => {
   const n = name.toLowerCase();
+  if (n.includes('liquid') || n.includes('glass')) return Sparkles;
   if (n === 'ai' || n.includes('machine') || n.includes('neural')) return Sparkles;
   if (n.includes('cloud') || n.includes('hosting') || n.includes('server')) return Server;
   if (n.includes('devops') || n.includes('infra') || n.includes('cpu')) return Cpu;
