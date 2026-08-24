@@ -1,7 +1,64 @@
 
 
+/* ==========================================================================
+   SELF-HOSTED K2D FONT SUITE (DIRECT HARDCODED LOCAL VECTORS)
+   ========================================================================== */
+@font-face {
+  font-family: 'K2D';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/k2d/K2D-Light.woff2') format('woff2'),
+       url('/fonts/k2d/K2D-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'K2D';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/k2d/K2D-Regular.woff2') format('woff2'),
+       url('/fonts/k2d/K2D-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'K2D';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/k2d/K2D-Medium.woff2') format('woff2'),
+       url('/fonts/k2d/K2D-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'K2D';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/k2d/K2D-SemiBold.woff2') format('woff2'),
+       url('/fonts/k2d/K2D-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'K2D';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/k2d/K2D-Bold.woff2') format('woff2'),
+       url('/fonts/k2d/K2D-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'K2D';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/k2d/K2D-ExtraBold.woff2') format('woff2'),
+       url('/fonts/k2d/K2D-ExtraBold.ttf') format('truetype');
+}
+
 :root {
-  --md-font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --md-font-sans: 'K2D', 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --md-font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
 
   

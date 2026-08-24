@@ -64,9 +64,10 @@
 * ❌ **NEVER USE SCRIPTS OR TERMINAL TO MODIFY CODE FILES**:
   * **DO NOT** write or execute ad-hoc scripts (Node, Python, Bash, etc.) to perform regex, bulk replaces, or automated edits on codebase files.
   * **ALWAYS** use built-in IDE editing tools (`replace_file_content`, `multi_replace_file_content`, `write_to_file`) with explicit verification of every change.
-* ❌ **NEVER COMMIT OR PUSH TO GITHUB**:
-  * **DO NOT** run `git commit`, `git push`, or alter remote repository git history under any circumstances.
-  * All git commits and repository pushes must be handled exclusively by the human user.
+* ❌ **NEVER CHECK GIT STATUS OR USE ANY GIT COMMANDS (STRICTLY FORBIDDEN)**:
+  * **DO NOT** run `git status`, `git diff`, `git log`, `git add`, `git commit`, `git push`, `git checkout`, `git branch`, `git remote`, or ANY `git` command under any circumstances.
+  * You are **NOT allowed** to use Git or inspect Git repository status in any capacity.
+  * All version control, git status checks, commits, and pushes must be handled exclusively by the human user.
 
 ### 5. Security & Information Leaks
 * ❌ **DO NOT leak backend secrets or environment variable names** (e.g. `GH_PAT`, `SUPABASE_ANON_KEY`, `DATABASE_URL`) in API responses, console logs, or client-side bundles.
