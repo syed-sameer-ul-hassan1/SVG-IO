@@ -363,11 +363,10 @@ export function BlogPage({ onExploreAll, onNavigate }) {
               <span>RSS Feed</span>
             </a>
             <a
-              href="https://github.com/syed-sameer-ul-hassan1/SVG-IO"
+              href="https://github.com/Orildo-Tech/SVG-IO"
               target="_blank"
               rel="noopener noreferrer"
               className="sv-loop-btn-primary">
-              
               <Star size={13} />
               <span>Star on GitHub</span>
             </a>
@@ -516,11 +515,10 @@ export function BlogPage({ onExploreAll, onNavigate }) {
             <span>RSS Feed</span>
           </a>
           <a
-            href="https://github.com/syed-sameer-ul-hassan1/SVG-IO"
+            href="https://github.com/Orildo-Tech/SVG-IO"
             target="_blank"
             rel="noopener noreferrer"
             className="sv-loop-btn-primary">
-            
             <Star size={13} />
             <span>Star on GitHub</span>
           </a>

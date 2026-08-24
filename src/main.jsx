@@ -4,6 +4,28 @@ import App from './App';
 import '@hummingbirdui/hummingbird/dist/hummingbird.css';
 import './styles/index.css';
 
+// Prevent browser zoom gestures & keyboard zoom shortcuts
+if (typeof window !== 'undefined') {
+  window.addEventListener('wheel', (e) => {
+    if (e.ctrlKey) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  window.addEventListener('keydown', (e) => {
+    if (
+      (e.ctrlKey || e.metaKey) &&
+      (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '_' || e.key === '0')
+    ) {
+      e.preventDefault();
+    }
+  });
+
+  window.addEventListener('gesturestart', (e) => e.preventDefault());
+  window.addEventListener('gesturechange', (e) => e.preventDefault());
+  window.addEventListener('gestureend', (e) => e.preventDefault());
+}
+
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);

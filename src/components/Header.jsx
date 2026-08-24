@@ -246,7 +246,7 @@ export function Header({
 
           {}
           <a
-            href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
+            href="https://github.com/Orildo-Tech/SVG-IO"
             target="_blank"
             rel="noopener noreferrer"
             className="md-icon-btn github-btn"

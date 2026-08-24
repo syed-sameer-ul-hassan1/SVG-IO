@@ -43,9 +43,9 @@ export function Footer({
             Powered by <a href="https://orildo.dev" target="_blank" rel="noopener noreferrer" style={{ color: '#FF5F02', fontWeight: 700 }}>Orildo</a>
           </span>
 
-          {}
+          {/* Ecosystem Badges */}
           <div className="md-footer-eco-badges">
-            <a href="https://github.com/syed-sameer-ul-hassan/SVG.IO" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="GitHub">
+            <a href="https://github.com/Orildo-Tech/SVG-IO" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="GitHub">
               <Github size={14} />
             </a>
             <a href="https://orildo.dev" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="Orildo Official">
@@ -53,14 +53,13 @@ export function Footer({
             </a>
           </div>
 
-          {}
+          {/* GitHub Organization Card */}
           <a
-            href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
+            href="https://github.com/Orildo-Tech"
             target="_blank"
             rel="noopener noreferrer"
             className="md-footer-gh-org-card"
-            title="Visit SVG.IO on GitHub">
-            
+            title="Visit Orildo-Tech on GitHub">
             <div className="md-gh-card-icon-wrap">
               <Github size={15} />
             </div>
@@ -72,7 +71,7 @@ export function Footer({
           </a>
         </div>
 
-        {}
+        {/* Product Navigation */}
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">PRODUCT</h4>
           <ul className="md-footer-links">
@@ -83,25 +82,25 @@ export function Footer({
           </ul>
         </div>
 
-        {}
+        {/* Resources */}
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">RESOURCES</h4>
           <ul className="md-footer-links">
             <li><button onClick={() => onNavigate?.('status')}>System Status</button></li>
             <li><button onClick={() => onNavigate?.('404')}>404 Preview</button></li>
-            <li><a href="https://github.com/syed-sameer-ul-hassan/SVG.IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribution Specs</a></li>
+            <li><a href="https://github.com/Orildo-Tech/SVG-IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribution Specs</a></li>
             <li><button onClick={() => onNavigate?.('terms')}>Vector Licensing</button></li>
           </ul>
         </div>
 
-        {}
+        {/* Community & Open Source */}
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">COMMUNITY</h4>
           <ul className="md-footer-links">
-            <li><a href="https://github.com/syed-sameer-ul-hassan/SVG.IO" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://github.com/syed-sameer-ul-hassan/SVG.IO/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
-            <li><a href="https://github.com/syed-sameer-ul-hassan/SVG.IO/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
-            <li><a href="https://github.com/syed-sameer-ul-hassan/SVG.IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a></li>
+            <li><a href="https://github.com/Orildo-Tech/SVG-IO" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://github.com/Orildo-Tech/SVG-IO/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
+            <li><a href="https://github.com/Orildo-Tech/SVG-IO/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+            <li><a href="https://github.com/Orildo-Tech/SVG-IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a></li>
           </ul>
         </div>
 

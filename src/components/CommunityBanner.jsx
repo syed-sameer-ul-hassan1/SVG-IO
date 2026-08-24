@@ -25,11 +25,10 @@ export function CommunityBanner({
             Submit an Icon
           </button>
           <a
-            href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
+            href="https://github.com/Orildo-Tech/SVG-IO"
             target="_blank"
             rel="noopener noreferrer"
             className="md-community-btn-dark">
-            
             <Star size={14} />
             <span>Star on GitHub</span>
           </a>

@@ -811,7 +811,7 @@ export function SubmitPage({
 
             <div className="sv-pipeline-actions-card glass-panel">
               <a
-                href="https://github.com/syed-sameer-ul-hassan/SVG.IO/actions"
+                href="https://github.com/Orildo-Tech/SVG-IO/actions"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="sv-pipeline-gh-btn">
@@ -933,7 +933,7 @@ export function SubmitPage({
           {}
           <div className="sv-repo-links-row">
             <a
-              href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
+              href="https://github.com/Orildo-Tech/SVG-IO"
               target="_blank"
               rel="noopener noreferrer"
               className="sv-repo-action-btn">
@@ -943,7 +943,7 @@ export function SubmitPage({
               <ExternalLink size={12} />
             </a>
             <a
-              href="https://github.com/syed-sameer-ul-hassan/SVG.IO/issues"
+              href="https://github.com/Orildo-Tech/SVG-IO/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="sv-repo-action-btn">

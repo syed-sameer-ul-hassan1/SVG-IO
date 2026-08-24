@@ -565,21 +565,19 @@ export function IconDetailPage({
               <span className="thesvg-missing-title">Missing a variant?</span>
               <div className="thesvg-missing-buttons">
                 <a
-                  href="https://github.com/syed-sameer-ul-hassan/SVG.IO/issues/new"
+                  href="https://github.com/Orildo-Tech/SVG-IO/issues/new"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="thesvg-action-outline-btn">
-                  
                   <Github size={13} />
                   <span>Request via Issue</span>
                 </a>
 
                 <a
-                  href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
+                  href="https://github.com/Orildo-Tech/SVG-IO"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="thesvg-action-outline-btn">
-                  
                   <GitPullRequest size={14} />
                   <span>Suggest Edit</span>
                 </a>
