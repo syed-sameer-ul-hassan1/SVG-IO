@@ -451,3 +451,53 @@ export async function downloadBulkZip(iconList, zipName = 'svgio-vector-bundle.z
   const content = await zip.generateAsync({ type: 'blob' });
   saveAs(content, zipName);
 }
+
+
+
+
+/**
+ * Exports all favorited icons including all their available asset variants
+ * (mono, default, dark, light, wordmark, color, etc.) into an organized ZIP bundle.
+ */
+export async function downloadFavoritesFullZip(favorites = [], zipName = 'svgio-favorites-all-variants.zip') {
+  if (!Array.isArray(favorites) || favorites.length === 0) return;
+
+  const zip = new JSZip();
+  const folder = zip.folder('icons');
+  const variantCandidates = ['default', 'mono', 'dark', 'light', 'wordmark', 'color'];
+
+  await Promise.all(
+    favorites.map(async (icon) => {
+      const iconId = icon.slug || icon.id;
+      if (!iconId) return;
+
+      const targetVariants = new Set();
+
+      if (Array.isArray(icon.variants) && icon.variants.length > 0) {
+        icon.variants.forEach((v) => targetVariants.add(v));
+      }
+      if (icon.variantPaths && typeof icon.variantPaths === 'object') {
+        Object.keys(icon.variantPaths).forEach((v) => targetVariants.add(v));
+      }
+
+      // Always include standard asset variants
+      variantCandidates.forEach((v) => targetVariants.add(v));
+
+      const variantList = Array.from(targetVariants);
+
+      await Promise.all(
+        variantList.map(async (variant) => {
+          try {
+            const content = await getSvgContent(iconId, variant);
+            if (content && content.includes('<svg')) {
+              folder.file(`${iconId}-${variant}.svg`, content);
+            }
+          } catch {}
+        })
+      );
+    })
+  );
+
+  const content = await zip.generateAsync({ type: 'blob' });
+  saveAs(content, zipName);
+}

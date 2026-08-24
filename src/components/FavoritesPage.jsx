@@ -15,7 +15,7 @@ import {
   X } from
 'lucide-react';
 import IconCard from './IconCard';
-import { downloadBulkZip, getSvgContent, convertSvgToReact } from '../utils/exportUtils';
+import { downloadFavoritesFullZip, getSvgContent, convertSvgToReact } from '../utils/exportUtils';
 
 export function FavoritesPage({
   favorites = [],
@@ -53,12 +53,11 @@ export function FavoritesPage({
     if (favorites.length === 0) return;
     setIsZipping(true);
     try {
-      const items = favorites.map((f) => ({ id: f.id, variant: 'default' }));
-      await downloadBulkZip(items, `svgio-collection-${favorites.length}-icons.zip`);
+      await downloadFavoritesFullZip(favorites, `svgio-favorites-${favorites.length}-icons-all-assets.zip`);
       onShowToast?.({
         type: 'success',
-        title: 'ZIP Archive Exported',
-        message: `${favorites.length} icons bundled into archive.`
+        title: 'All Asset Variants Exported',
+        message: `Exported all variants (Mono, Default, Dark, Light, Wordmark) for ${favorites.length} saved icons.`
       });
     } catch (err) {
       console.error(err);
@@ -129,7 +128,7 @@ export function FavoritesPage({
             disabled={isZipping}>
             
               <Archive size={14} />
-              <span>{isZipping ? 'Creating Archive...' : `Download ${favorites.length} Icons (.ZIP)`}</span>
+              <span>{isZipping ? 'Bundling All Assets...' : `Download ${favorites.length} Icons (All Assets .ZIP)`}</span>
             </button>
 
             <button

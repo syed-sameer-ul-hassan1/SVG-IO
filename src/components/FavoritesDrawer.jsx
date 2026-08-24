@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Trash2, Download, Heart, Archive } from 'lucide-react';
-import { downloadBulkZip } from '../utils/exportUtils';
+import { downloadFavoritesFullZip } from '../utils/exportUtils';
 
 export function FavoritesDrawer({
   isOpen,
@@ -15,25 +15,15 @@ export function FavoritesDrawer({
 
   if (!isOpen) return null;
 
-  const getVariants = (fav) => Array.isArray(fav?.variants) ? fav.variants : Object.keys(fav?.variants || {});
-
   const handleDownloadAllZip = async () => {
     if (favorites.length === 0) return;
     setIsZipping(true);
     try {
-      const items = favorites.map((fav) => {
-        const vList = getVariants(fav);
-        return {
-          id: fav.id,
-          name: fav.name,
-          variant: vList.includes('color') ? 'color' : vList[0] || 'default'
-        };
-      });
-      await downloadBulkZip(items, `svgio-saved-collection-${favorites.length}-icons.zip`);
+      await downloadFavoritesFullZip(favorites, `svgio-favorites-${favorites.length}-icons-all-assets.zip`);
       onShowToast?.({
         type: 'success',
-        title: 'ZIP Archive Exported',
-        message: `${favorites.length} icons bundled into archive.`
+        title: 'All Asset Variants Exported',
+        message: `Exported all variants (Mono, Default, Dark, Light, Wordmark) for ${favorites.length} saved icons.`
       });
     } catch (err) {
       console.error(err);
@@ -117,7 +107,7 @@ export function FavoritesDrawer({
             disabled={isZipping}>
             
               <Archive size={16} />
-              <span>{isZipping ? 'Generating ZIP...' : `Download ${favorites.length} Icons (.ZIP)`}</span>
+              <span>{isZipping ? 'Bundling All Assets...' : `Download ${favorites.length} Icons (All Assets .ZIP)`}</span>
             </button>
             <button className="md-btn md-btn-text" onClick={onClearFavorites}>
               <Trash2 size={14} />
