@@ -22,7 +22,9 @@ import {
   Trash2,
   Eye,
   Package,
-  ShieldCheck
+  ShieldCheck,
+  Timer,
+  Clock
 } from "lucide-react";
 import { setCachedSvgVector } from "../utils/dbUtils";
 
@@ -62,6 +64,28 @@ function formatPipelineTime(seconds) {
 }
 
 const CUSTOM_CATEGORIES_KEY = "svgio_custom_created_categories";
+const ACTIVE_SUBMISSION_KEY = "svgio_active_submission_pipeline";
+
+const getSavedActiveSubmission = () => {
+  try {
+    const raw = localStorage.getItem(ACTIVE_SUBMISSION_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.endTime) {
+        const remaining = Math.ceil((parsed.endTime - Date.now()) / 1000);
+        if (remaining > -300) { // Keep accessible up to 5 min after completion
+          return {
+            submission: parsed,
+            countdown: Math.max(0, remaining)
+          };
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("Could not read active submission from localStorage:", e);
+  }
+  return null;
+};
 
 const getSavedCustomCategories = () => {
   try {
@@ -85,17 +109,17 @@ const saveCustomCategoriesToStorage = (categories) => {
 };
 
 const PRESET_VARIANT_NAMES = [
-"default",
-"light",
-"dark",
-"wordmark-dark",
-"wordmark-light",
-"mono",
-"symbol",
-"outline",
-"solid",
-"duotone"];
-
+  "default",
+  "light",
+  "dark",
+  "wordmark-dark",
+  "wordmark-light",
+  "mono",
+  "symbol",
+  "outline",
+  "solid",
+  "duotone"
+];
 
 export function SubmitPage({
   onIconAdded,
@@ -103,6 +127,7 @@ export function SubmitPage({
   onNavigate,
   totalIcons = 6516
 }) {
+  const savedActive = useMemo(() => getSavedActiveSubmission(), []);
 
   const [iconName, setIconName] = useState("");
   const [iconSlug, setIconSlug] = useState("");
@@ -125,13 +150,12 @@ export function SubmitPage({
   });
   const [newCategoryInput, setNewCategoryInput] = useState("");
 
-
   const [variants, setVariants] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
-  const [submissionResult, setSubmissionResult] = useState(null);
-  const [countdown, setCountdown] = useState(TOTAL_PIPELINE_SECONDS);
+  const [submissionResult, setSubmissionResult] = useState(() => savedActive?.submission || null);
+  const [countdown, setCountdown] = useState(() => savedActive ? savedActive.countdown : TOTAL_PIPELINE_SECONDS);
 
   const fileInputRef = useRef(null);
   const addMoreInputRef = useRef(null);
@@ -821,13 +845,21 @@ export function SubmitPage({
         message: `"${title}" has been submitted and is entering the 7-minute ingestion pipeline.`
       });
 
-      setSubmissionResult({
+      const submissionData = {
         success: true,
         slug,
         title,
         variantCount: variants.length,
-        colors: allHexes
-      });
+        colors: allHexes,
+        startTime: Date.now(),
+        endTime: Date.now() + TOTAL_PIPELINE_SECONDS * 1000
+      };
+
+      try {
+        localStorage.setItem(ACTIVE_SUBMISSION_KEY, JSON.stringify(submissionData));
+      } catch {}
+
+      setSubmissionResult(submissionData);
       setCountdown(TOTAL_PIPELINE_SECONDS);
 
       // Reset form fields
@@ -1033,6 +1065,9 @@ export function SubmitPage({
                 type="button"
                 className="sv-pipeline-new-btn"
                 onClick={() => {
+                  try {
+                    localStorage.removeItem(ACTIVE_SUBMISSION_KEY);
+                  } catch {}
                   setSubmissionResult(null);
                   setCountdown(TOTAL_PIPELINE_SECONDS);
                 }}>
@@ -1193,6 +1228,9 @@ export function SubmitPage({
 
             {}
             <div className="sv-quality-badges-row">
+              <span className="sv-q-badge sv-q-timer-badge">
+                <Timer size={11} /> 7-Minute Processing SLA
+              </span>
               <span className="sv-q-badge">
                 <Check size={11} /> Max 20 KB / SVG
               </span>

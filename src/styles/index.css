@@ -11321,6 +11321,13 @@ a:focus {
   color: #10B981;
 }
 
+.sv-q-timer-badge {
+  background: rgba(255, 95, 2, 0.1);
+  border-color: rgba(255, 95, 2, 0.35);
+  color: #FF5F02;
+  box-shadow: 0 0 10px rgba(255, 95, 2, 0.15);
+}
+
 [data-theme='light'] .sv-pack-requirement-card {
   background: linear-gradient(135deg, rgba(255, 95, 2, 0.06), rgba(59, 130, 246, 0.04));
   border-color: rgba(255, 95, 2, 0.2);
