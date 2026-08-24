@@ -32,3 +32,8 @@
 /manifest.json
   Cache-Control: public, max-age=86400
   Content-Type: application/manifest+json
+
+# RSS Feed — short cache so crawlers pick up new icons
+/feed.xml
+  Cache-Control: public, max-age=3600, must-revalidate
+  Content-Type: application/rss+xml; charset=utf-8

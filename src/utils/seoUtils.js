@@ -55,7 +55,7 @@ function buildIconKeywords(icon) {
 /**
  * Generates comprehensive Schema.org JSON-LD for an icon.
  */
-function buildIconSchema(icon, iconUrl, finalDesc) {
+function buildIconSchema(icon, iconUrl, finalDesc, canonicalUrl) {
   const name = icon.name || icon.title || icon.slug || '';
   const slug = icon.slug || icon.id;
   const cats = Array.isArray(icon.categories) && icon.categories.length > 0
@@ -136,7 +136,7 @@ function buildIconSchema(icon, iconUrl, finalDesc) {
 /**
  * Generates comprehensive Schema.org JSON-LD for a category page.
  */
-function buildCategorySchema(category, finalDesc) {
+function buildCategorySchema(category, finalDesc, canonicalUrl) {
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -193,8 +193,8 @@ export function updatePageSeo({
     finalTitle = `${iconName} SVG Icon & Logo — Free Download React JSX, Vue 3, PNG | SVG.IO`;
     finalDesc = `Download the free ${iconName} SVG vector icon and brand logo on SVG.IO. Instantly copy ready-to-use React JSX, Vue 3, Angular, Svelte, or raw SVG XML code. Category: ${catsStr}. License: ${icon.license || 'Apache-2.0'}. No signup required.`;
     finalKeywords = buildIconKeywords(icon);
-    canonicalUrl = `${BASE_URL}/?icon=${slug}`;
-    schema = buildIconSchema(icon, iconUrl, finalDesc);
+    canonicalUrl = `${BASE_URL}/icon/${slug}`;    // clean shareable URL
+    schema = buildIconSchema(icon, iconUrl, finalDesc, canonicalUrl);
   }
 
   // ── Category Page ──────────────────────────────────────────────
@@ -211,8 +211,8 @@ export function updatePageSeo({
       `${category} developer icons`,
       BRAND_KEYWORDS_BASE
     ].join(', ');
-    canonicalUrl = `${BASE_URL}/?category=${encodeURIComponent(category)}`;
-    schema = buildCategorySchema(category, finalDesc);
+    canonicalUrl = `${BASE_URL}/category/${encodeURIComponent(category)}`;   // clean shareable URL
+    schema = buildCategorySchema(category, finalDesc, canonicalUrl);
   }
 
   // ── About / Info Page ──────────────────────────────────────────

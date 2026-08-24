@@ -4,10 +4,14 @@
 # ── ALL CRAWLERS ────────────────────────────────────────────────
 User-agent: *
 Allow: /
+Allow: /icon/
+Allow: /category/
 Allow: /icons/
 Allow: /assets/
 Allow: /sitemap.xml
+Allow: /feed.xml
 Allow: /robots.txt
+Allow: /manifest.json
 Disallow: /dist/
 Crawl-delay: 0
 
@@ -66,3 +70,4 @@ Host: https://svg.io.orildo.tech
 
 # ── SITEMAPS ────────────────────────────────────────────────────
 Sitemap: https://svg.io.orildo.tech/sitemap.xml
+Sitemap: https://svg.io.orildo.tech/feed.xml

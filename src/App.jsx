@@ -27,15 +27,29 @@ export function App() {
   const [metadata, setMetadata] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   
-  // Read initial state from URL search params
+  // Parse initial state from URL — supports both:
+  //   Clean path:  /icon/react        (shareable)
+  //   Legacy param: /?icon=react      (backwards compat)
   const initialParams = useMemo(() => {
     if (typeof window === 'undefined') return { view: 'icons', category: 'all', search: '', icon: '' };
     const sp = new URLSearchParams(window.location.search);
+    const pathname = window.location.pathname;
+
+    // Detect /icon/[slug] path
+    const iconPathMatch = pathname.match(/^\/icon\/([^/]+)\/?$/);
+    const iconSlug = iconPathMatch ? iconPathMatch[1] : (sp.get('icon') || '');
+
+    // Detect /category/[slug] path
+    const catPathMatch = pathname.match(/^\/category\/([^/]+)\/?$/);
+    const categorySlug = catPathMatch
+      ? decodeURIComponent(catPathMatch[1])
+      : (sp.get('category') || 'all');
+
     return {
-      view: sp.get('view') || (sp.get('icon') ? 'icons' : 'icons'),
-      category: sp.get('category') || 'all',
+      view: sp.get('view') || (iconSlug ? 'icons' : 'icons'),
+      category: categorySlug,
       search: sp.get('search') || sp.get('q') || '',
-      icon: sp.get('icon') || ''
+      icon: iconSlug
     };
   }, []);
 
@@ -239,9 +253,7 @@ export function App() {
       } else if (e.key === 'Escape' && selectedIcon) {
         setSelectedIcon(null);
         try {
-          const url = new URL(window.location.href);
-          url.searchParams.delete('icon');
-          window.history.pushState(null, '', url.toString());
+          window.history.pushState(null, '', '/');
         } catch (err) {}
       }
     };
@@ -299,13 +311,13 @@ export function App() {
     setSelectedIcon(icon);
     setSelectedVariant(variant);
     try {
-      const url = new URL(window.location.href);
       if (icon) {
-        url.searchParams.set('icon', icon.slug || icon.id);
+        // Clean shareable URL: /icon/[slug]
+        const slug = icon.slug || icon.id;
+        window.history.pushState(null, '', `/icon/${slug}`);
       } else {
-        url.searchParams.delete('icon');
+        window.history.pushState(null, '', '/');
       }
-      window.history.pushState(null, '', url.toString());
     } catch (e) {}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -316,9 +328,7 @@ export function App() {
     setSelectedIcon(null);
     setCurrentView('icons');
     try {
-      const url = new URL(window.location.href);
-      url.search = '';
-      window.history.pushState(null, '', url.toString());
+      window.history.pushState(null, '', '/');
     } catch (e) {}
   };
 
@@ -327,14 +337,12 @@ export function App() {
     setSelectedIcon(null);
     setCurrentView('icons');
     try {
-      const url = new URL(window.location.href);
-      url.searchParams.delete('icon');
       if (category && category !== 'all') {
-        url.searchParams.set('category', category);
+        // Clean shareable URL: /category/[name]
+        window.history.pushState(null, '', `/category/${encodeURIComponent(category)}`);
       } else {
-        url.searchParams.delete('category');
+        window.history.pushState(null, '', '/');
       }
-      window.history.pushState(null, '', url.toString());
     } catch (e) {}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -343,14 +351,11 @@ export function App() {
     setCurrentView(view);
     setSelectedIcon(null);
     try {
-      const url = new URL(window.location.href);
-      url.searchParams.delete('icon');
       if (view && view !== 'icons') {
-        url.searchParams.set('view', view);
+        window.history.pushState(null, '', `/?view=${view}`);
       } else {
-        url.searchParams.delete('view');
+        window.history.pushState(null, '', '/');
       }
-      window.history.pushState(null, '', url.toString());
     } catch (e) {}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

@@ -19,7 +19,9 @@ import {
   Sliders,
   X,
   FileImage,
-  CheckCircle2 } from
+  CheckCircle2,
+  Share2,
+  Link2 } from
 'lucide-react';
 import {
   getSvgContent,
@@ -56,6 +58,7 @@ export function IconDetailPage({
   const [copied, setCopied] = useState(false);
   const [copiedCli, setCopiedCli] = useState(false);
   const [copiedCdn, setCopiedCdn] = useState(false);
+  const [copiedShare, setCopiedShare] = useState(false);
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [copyFormat, setCopyFormat] = useState('png');
   const [copySize, setCopySize] = useState(256);
@@ -216,6 +219,34 @@ export function IconDetailPage({
       title: 'CDN URL Copied',
       message: `https://${cdnUrl}`
     });
+  };
+
+  const handleShare = async () => {
+    const slug = icon.id || icon.slug;
+    const shareUrl = `https://svg.io.orildo.tech/icon/${slug}`;
+    const iconName = icon.name || icon.title || slug;
+    // Try native Web Share API first (mobile/Android/iOS)
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title: `${iconName} SVG Icon — SVG.IO`,
+          text: `Download the free ${iconName} SVG vector icon on SVG.IO — React JSX, Vue, Svelte & PNG export.`,
+          url: shareUrl
+        });
+        return;
+      } catch (e) { /* fallback to clipboard */ }
+    }
+    // Clipboard fallback
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopiedShare(true);
+      setTimeout(() => setCopiedShare(false), 2000);
+      onShowToast?.({
+        type: 'success',
+        title: '🔗 Link Copied!',
+        message: `svg.io.orildo.tech/icon/${slug}`
+      });
+    } catch (e) {}
   };
 
   const handleDownloadSvg = () => {
@@ -899,6 +930,16 @@ export function IconDetailPage({
                   </div>
                 }
               </div>
+
+              {/* Share Button — icon-only using site theme */}
+              <button
+                type="button"
+                className={`thesvg-action-btn thesvg-share-btn ${copiedShare ? 'copied' : ''}`}
+                onClick={handleShare}
+                title={copiedShare ? 'Link Copied!' : `Share link: svg.io.orildo.tech/icon/${icon.id || icon.slug}`}
+                aria-label="Share icon link">
+                {copiedShare ? <Check size={16} /> : <Share2 size={16} />}
+              </button>
             </div>
           </div>
 

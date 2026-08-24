@@ -3461,6 +3461,60 @@ a:focus {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
+/* ── Share button (Icon-only, site theme) ──────────── */
+.thesvg-share-btn {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  padding: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: var(--md-sys-color-on-surface, #F1F5F9) !important;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.thesvg-share-btn:hover {
+  background: rgba(255, 95, 2, 0.12) !important;
+  border-color: rgba(255, 95, 2, 0.45) !important;
+  color: #FF5F02 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255, 95, 2, 0.25) !important;
+}
+
+.thesvg-share-btn.copied {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+  color: #10B981 !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.3) !important;
+}
+
+[data-theme='light'] .thesvg-share-btn {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  color: #0F172A !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme='light'] .thesvg-share-btn:hover {
+  background: rgba(255, 95, 2, 0.08) !important;
+  border-color: rgba(255, 95, 2, 0.5) !important;
+  color: #FF5F02 !important;
+  box-shadow: 0 4px 14px rgba(255, 95, 2, 0.15) !important;
+}
+
+[data-theme='light'] .thesvg-share-btn.copied {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+  color: #059669 !important;
+}
 
 .thesvg-primary-download-btn {
   display: inline-flex;
