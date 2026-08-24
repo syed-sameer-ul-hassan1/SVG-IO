@@ -1,5 +1,5 @@
 import React from 'react';
-import { UploadCloud, Package, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import { UploadCloud, Package, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export function Hero({
   theme = 'dark',
@@ -16,13 +16,6 @@ export function Hero({
 
       {/* Main Text Content */}
       <div className="md-hero-content">
-        <div className="md-hero-badge-row">
-          <span className="md-hero-pill-badge">
-            <Sparkles size={13} className="text-orange" />
-            <span>Open-Source SVG Hosting &amp; Publishing Platform</span>
-          </span>
-        </div>
-
         <h1 className="md-hero-headline">
           Open-Source <span className="md-hero-gradient-text">SVG Hosting &amp; Publishing</span> <br />
           for Modern Creators &amp; Developers

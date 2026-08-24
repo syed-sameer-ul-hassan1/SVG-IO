@@ -25,11 +25,6 @@ export function InfoPage({
     <div className="sv-info-page-wrapper">
       {/* Hero Header */}
       <div className="sv-info-hero glass-panel">
-        <div className="sv-info-hero-badge">
-          <Sparkles size={13} />
-          <span>OPEN-SOURCE SVG HOSTING &amp; DISTRIBUTION PLATFORM</span>
-        </div>
-
         <h1 className="sv-info-hero-title">
           About <span className="text-orange">SVG.IO</span>
         </h1>
