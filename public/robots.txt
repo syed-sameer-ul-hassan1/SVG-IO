@@ -1,0 +1,9 @@
+# Robots.txt for SVG.IO (https://svg.io.orildo.tech)
+User-agent: *
+Allow: /
+
+# Host
+Host: https://svg.io.orildo.tech
+
+# Sitemaps
+Sitemap: https://svg.io.orildo.tech/sitemap.xml

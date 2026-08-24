@@ -21,14 +21,27 @@ import Fuse from 'fuse.js';
 
 import { saveSearchHistoryItem } from './utils/historyUtils';
 import { getCachedCatalog, setCachedCatalog, preloadIconBatch } from './utils/dbUtils';
+import { updatePageSeo } from './utils/seoUtils';
 
 export function App() {
   const [metadata, setMetadata] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [currentView, setCurrentView] = useState('icons');
+  
+  // Read initial state from URL search params
+  const initialParams = useMemo(() => {
+    if (typeof window === 'undefined') return { view: 'icons', category: 'all', search: '', icon: '' };
+    const sp = new URLSearchParams(window.location.search);
+    return {
+      view: sp.get('view') || (sp.get('icon') ? 'icons' : 'icons'),
+      category: sp.get('category') || 'all',
+      search: sp.get('search') || sp.get('q') || '',
+      icon: sp.get('icon') || ''
+    };
+  }, []);
 
+  const [searchQuery, setSearchQuery] = useState(initialParams.search);
+  const [selectedCategory, setSelectedCategory] = useState(initialParams.category);
+  const [currentView, setCurrentView] = useState(initialParams.view);
 
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [selectedVariant, setSelectedVariant] = useState('default');
@@ -180,6 +193,16 @@ export function App() {
           setIsLoading(false);
           setCachedCatalog(freshCatalog);
           preloadIconBatch(normalized, 48);
+
+          // If URL has ?icon=slug, open it immediately
+          if (initialParams.icon) {
+            const found = normalized.find(
+              (i) => i.id === initialParams.icon || i.slug === initialParams.icon
+            );
+            if (found) {
+              setSelectedIcon(found);
+            }
+          }
         }
       } catch (err) {
         console.error('Error loading icons.json:', err);
@@ -192,6 +215,14 @@ export function App() {
     return () => { isMounted = false; };
   }, []);
 
+  // Dynamic SEO Engine Sync
+  useEffect(() => {
+    updatePageSeo({
+      icon: selectedIcon,
+      category: selectedCategory,
+      view: currentView
+    });
+  }, [selectedIcon, selectedCategory, currentView]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -207,6 +238,11 @@ export function App() {
         searchInputRef.current?.focus();
       } else if (e.key === 'Escape' && selectedIcon) {
         setSelectedIcon(null);
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.delete('icon');
+          window.history.pushState(null, '', url.toString());
+        } catch (err) {}
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -262,6 +298,15 @@ export function App() {
     }
     setSelectedIcon(icon);
     setSelectedVariant(variant);
+    try {
+      const url = new URL(window.location.href);
+      if (icon) {
+        url.searchParams.set('icon', icon.slug || icon.id);
+      } else {
+        url.searchParams.delete('icon');
+      }
+      window.history.pushState(null, '', url.toString());
+    } catch (e) {}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -270,18 +315,43 @@ export function App() {
     setSelectedCategory('all');
     setSelectedIcon(null);
     setCurrentView('icons');
+    try {
+      const url = new URL(window.location.href);
+      url.search = '';
+      window.history.pushState(null, '', url.toString());
+    } catch (e) {}
   };
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setSelectedIcon(null);
     setCurrentView('icons');
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('icon');
+      if (category && category !== 'all') {
+        url.searchParams.set('category', category);
+      } else {
+        url.searchParams.delete('category');
+      }
+      window.history.pushState(null, '', url.toString());
+    } catch (e) {}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleNavigate = (view) => {
     setCurrentView(view);
     setSelectedIcon(null);
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('icon');
+      if (view && view !== 'icons') {
+        url.searchParams.set('view', view);
+      } else {
+        url.searchParams.delete('view');
+      }
+      window.history.pushState(null, '', url.toString());
+    } catch (e) {}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
