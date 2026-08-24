@@ -48,12 +48,6 @@ export function Footer({
             <a href="https://github.com/syed-sameer-ul-hassan/SVG.IO" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="GitHub">
               <Github size={14} />
             </a>
-            <a href="https://www.npmjs.com/package/@hummingbirdui/hummingbird" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="NPM Package">
-              <span style={{ fontSize: 10, fontWeight: 800 }}>NPM</span>
-            </a>
-            <a href="https://figma.com" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="Figma">
-              <span style={{ fontSize: 10, fontWeight: 800 }}>FIG</span>
-            </a>
             <a href="https://orildo.dev" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="Orildo Official">
               <img src={orildoIconSrc} alt="Orildo" width="14" height="14" style={{ objectFit: 'contain' }} />
             </a>
@@ -84,7 +78,6 @@ export function Footer({
           <ul className="md-footer-links">
             <li><button onClick={() => onNavigate?.('icons')}>Browse Icons</button></li>
             <li><button onClick={() => onNavigate?.('categories')}>Categories</button></li>
-            <li><button onClick={() => onNavigate?.('extensions')}>Extensions</button></li>
             <li><button onClick={() => onSubmitIconClick ? onSubmitIconClick() : onNavigate?.('submit')}>Submit Icon</button></li>
             <li><button onClick={() => onNavigate?.('blog')}>Blog & Guides</button></li>
           </ul>
@@ -94,11 +87,10 @@ export function Footer({
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">RESOURCES</h4>
           <ul className="md-footer-links">
-            <li><button onClick={() => onNavigate?.('extensions')}>Figma Plugin</button></li>
-            <li><button onClick={() => onNavigate?.('extensions')}>VS Code Extension</button></li>
             <li><button onClick={() => onNavigate?.('status')}>System Status</button></li>
-            <li><a href="https://www.npmjs.com/package/@hummingbirdui/hummingbird" target="_blank" rel="noopener noreferrer">npm Package</a></li>
             <li><button onClick={() => onNavigate?.('404')}>404 Preview</button></li>
+            <li><a href="https://github.com/syed-sameer-ul-hassan/SVG.IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribution Specs</a></li>
+            <li><button onClick={() => onNavigate?.('terms')}>Vector Licensing</button></li>
           </ul>
         </div>
 

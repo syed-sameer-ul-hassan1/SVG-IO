@@ -5,7 +5,6 @@ import Hero from './components/Hero';
 import IconGrid from './components/IconGrid';
 import IconDetailPage from './components/IconDetailPage';
 import CategoriesPage from './components/CategoriesPage';
-import ExtensionsPage from './components/ExtensionsPage';
 import BlogPage from './components/BlogPage';
 import FavoritesPage from './components/FavoritesPage';
 import SubmitPage from './components/SubmitPage';
@@ -405,10 +404,6 @@ export function App() {
             allIcons={metadata?.icons || []}
             onSelectCategory={handleCategorySelect}
             onSelectIcon={handleSelectIcon} /> :
-
-          currentView === 'extensions' ?
-          <ExtensionsPage
-            onExploreAll={() => handleNavigate('icons')} /> :
 
           currentView === 'blog' ?
           <BlogPage

@@ -69,17 +69,6 @@ export function Sidebar({
         </button>
 
         <button
-          className={`md-side-nav-item has-sub ${currentView === 'extensions' ? 'active' : ''}`}
-          onClick={() => onNavigate?.('extensions')}>
-          
-          <div className="md-side-nav-left">
-            <Puzzle size={16} className="md-side-nav-icon" />
-            <span className="md-side-nav-label">Extensions</span>
-          </div>
-          <ChevronRight size={13} className="md-side-chevron" />
-        </button>
-
-        <button
           className="md-side-nav-item"
           onClick={() => onOpenViewer?.()}>
           
