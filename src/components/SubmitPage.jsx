@@ -49,6 +49,15 @@ const POPULAR_CATEGORIES = [
 "Social"];
 
 
+const TOTAL_PIPELINE_SECONDS = 600; // 10 minutes
+
+function formatPipelineTime(seconds) {
+  if (seconds <= 0) return '00:00';
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
 const PRESET_VARIANT_NAMES = [
 "default",
 "light",
@@ -86,7 +95,7 @@ export function SubmitPage({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const [submissionResult, setSubmissionResult] = useState(null);
-  const [countdown, setCountdown] = useState(60);
+  const [countdown, setCountdown] = useState(TOTAL_PIPELINE_SECONDS);
 
   const fileInputRef = useRef(null);
   const addMoreInputRef = useRef(null);
@@ -655,7 +664,7 @@ export function SubmitPage({
         colors: allHexes,
         storageUrls
       });
-      setCountdown(60);
+      setCountdown(TOTAL_PIPELINE_SECONDS);
 
 
       setIconName("");
@@ -691,7 +700,7 @@ export function SubmitPage({
 
   if (submissionResult?.success) {
     const isDone = countdown <= 0;
-    const progress = Math.min(100, Math.max(0, ((60 - countdown) / 60) * 100));
+    const progress = Math.min(100, Math.max(0, ((TOTAL_PIPELINE_SECONDS - countdown) / TOTAL_PIPELINE_SECONDS) * 100));
 
     return (
       <div className="sv-pipeline-page-container">
@@ -723,10 +732,10 @@ export function SubmitPage({
           <div className="sv-pipeline-hero-right">
             <div className="sv-pipeline-countdown-card glass-panel">
               <div className="sv-pipeline-time-num">
-                {isDone ? <CheckCircle2 size={36} className="text-emerald" /> : `${countdown}s`}
+                {isDone ? <CheckCircle2 size={36} className="text-emerald" /> : formatPipelineTime(countdown)}
               </div>
               <div className="sv-pipeline-time-label">
-                {isDone ? 'Ready in Library' : 'Estimated Time'}
+                {isDone ? 'Ready in Library' : 'Estimated Time (10m)'}
               </div>
             </div>
           </div>
@@ -759,15 +768,15 @@ export function SubmitPage({
               </div>
             </div>
 
-            <div className={`sv-pipeline-stage-card glass-panel ${countdown <= 55 ? 'completed' : 'active'}`}>
+            <div className={`sv-pipeline-stage-card glass-panel ${countdown <= (TOTAL_PIPELINE_SECONDS - 45) ? 'completed' : 'active'}`}>
               <div className="sv-stage-step-num">
-                {countdown <= 55 ? <Check size={14} /> : <div className="sv-spinner-sm" />}
+                {countdown <= (TOTAL_PIPELINE_SECONDS - 45) ? <Check size={14} /> : <div className="sv-spinner-sm" />}
               </div>
               <div className="sv-stage-info">
                 <div className="sv-stage-title-row">
                   <span className="sv-stage-title">2. Automated CI/CD Compilation Engine</span>
-                  <span className={`sv-stage-tag ${countdown <= 55 ? 'done' : 'active'}`}>
-                    {countdown <= 55 ? 'PROCESSED' : 'DISPATCHING'}
+                  <span className={`sv-stage-tag ${countdown <= (TOTAL_PIPELINE_SECONDS - 45) ? 'done' : 'active'}`}>
+                    {countdown <= (TOTAL_PIPELINE_SECONDS - 45) ? 'PROCESSED' : 'DISPATCHING'}
                   </span>
                 </div>
                 <p className="sv-stage-desc">
@@ -776,15 +785,15 @@ export function SubmitPage({
               </div>
             </div>
 
-            <div className={`sv-pipeline-stage-card glass-panel ${isDone ? 'completed' : countdown <= 30 ? 'active' : 'pending'}`}>
+            <div className={`sv-pipeline-stage-card glass-panel ${isDone ? 'completed' : countdown <= (TOTAL_PIPELINE_SECONDS - 90) ? 'active' : 'pending'}`}>
               <div className="sv-stage-step-num">
-                {isDone ? <Check size={14} /> : countdown <= 30 ? <div className="sv-spinner-sm" /> : <span>3</span>}
+                {isDone ? <Check size={14} /> : countdown <= (TOTAL_PIPELINE_SECONDS - 90) ? <div className="sv-spinner-sm" /> : <span>3</span>}
               </div>
               <div className="sv-stage-info">
                 <div className="sv-stage-title-row">
                   <span className="sv-stage-title">3. Catalog Compilation & Indexing</span>
-                  <span className={`sv-stage-tag ${isDone ? 'done' : countdown <= 30 ? 'active' : 'pending'}`}>
-                    {isDone ? 'COMPILED' : countdown <= 30 ? 'IN PROGRESS' : 'QUEUED'}
+                  <span className={`sv-stage-tag ${isDone ? 'done' : countdown <= (TOTAL_PIPELINE_SECONDS - 90) ? 'active' : 'pending'}`}>
+                    {isDone ? 'COMPILED' : countdown <= (TOTAL_PIPELINE_SECONDS - 90) ? 'IN PROGRESS' : 'QUEUED'}
                   </span>
                 </div>
                 <p className="sv-stage-desc">
@@ -793,15 +802,15 @@ export function SubmitPage({
               </div>
             </div>
 
-            <div className={`sv-pipeline-stage-card glass-panel ${isDone ? 'completed' : 'pending'}`}>
+            <div className={`sv-pipeline-stage-card glass-panel ${isDone ? 'completed' : countdown <= 90 ? 'active' : 'pending'}`}>
               <div className="sv-stage-step-num">
-                {isDone ? <Check size={14} /> : <span>4</span>}
+                {isDone ? <Check size={14} /> : countdown <= 90 ? <div className="sv-spinner-sm" /> : <span>4</span>}
               </div>
               <div className="sv-stage-info">
                 <div className="sv-stage-title-row">
                   <span className="sv-stage-title">4. Edge CDN Global Release</span>
-                  <span className={`sv-stage-tag ${isDone ? 'done' : 'pending'}`}>
-                    {isDone ? 'LIVE ON EDGE' : 'PENDING'}
+                  <span className={`sv-stage-tag ${isDone ? 'done' : countdown <= 90 ? 'active' : 'pending'}`}>
+                    {isDone ? 'LIVE ON EDGE' : countdown <= 90 ? 'PROPAGATING' : 'PENDING'}
                   </span>
                 </div>
                 <p className="sv-stage-desc">
@@ -830,27 +839,24 @@ export function SubmitPage({
                 <span className="sv-spec-badge">{submissionResult.variantCount} Variant Sets</span>
               </div>
 
-              {submissionResult.colors && submissionResult.colors.length > 0 && (
-                <div className="sv-spec-row">
-                  <span className="sv-spec-label">HEX PALETTE</span>
-                  <div className="sv-spec-colors-wrap">
-                    {submissionResult.colors.map((c, cIdx) => (
-                      <span key={cIdx} className="sv-spec-color-chip" title={`#${c}`}>
-                        <span className="sv-spec-color-dot" style={{ backgroundColor: `#${c}` }} />
-                        #{c}
-                      </span>
-                    ))}
-                  </div>
+              <div className="sv-spec-row">
+                <span className="sv-spec-label">PRIMARY HEX</span>
+                <div className="sv-spec-hex-row">
+                  <span
+                    className="sv-spec-color-dot"
+                    style={{ backgroundColor: `#${submissionResult.colors?.[0] || 'FF5F02'}` }}
+                  />
+                  <code>#{submissionResult.colors?.[0] || 'FF5F02'}</code>
                 </div>
-              )}
+              </div>
 
               <div className="sv-spec-row">
-                <span className="sv-spec-label">TARGET PATH</span>
-                <code className="sv-spec-path">public/icons/{submissionResult.slug}/</code>
+                <span className="sv-spec-label">LICENSE</span>
+                <span className="sv-spec-badge license">Apache-2.0</span>
               </div>
             </div>
 
-            <div className="sv-pipeline-actions-card glass-panel">
+            <div className="sv-pipeline-actions-row">
               <a
                 href="https://github.com/Orildo-Tech/SVG-IO/actions"
                 target="_blank"
@@ -866,7 +872,7 @@ export function SubmitPage({
                 className="sv-pipeline-new-btn"
                 onClick={() => {
                   setSubmissionResult(null);
-                  setCountdown(60);
+                  setCountdown(TOTAL_PIPELINE_SECONDS);
                 }}>
                 <Plus size={16} />
                 <span>Submit Another Vector</span>
