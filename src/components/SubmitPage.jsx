@@ -77,6 +77,8 @@ export function SubmitPage({
   const [detectedHexes, setDetectedHexes] = useState([]);
   const [license, setLicense] = useState("Apache-2.0");
   const [selectedCategories, setSelectedCategories] = useState(["Software"]);
+  const [categoriesList, setCategoriesList] = useState(POPULAR_CATEGORIES);
+  const [newCategoryInput, setNewCategoryInput] = useState("");
 
 
   const [variants, setVariants] = useState([]);
@@ -105,10 +107,49 @@ export function SubmitPage({
     if (selectedCategories.includes(cat)) {
       if (selectedCategories.length > 1) {
         setSelectedCategories(selectedCategories.filter((c) => c !== cat));
+      } else {
+        onShowToast?.({
+          type: "info",
+          title: "Minimum 1 Category",
+          message: "An icon must belong to at least one category."
+        });
       }
     } else {
       setSelectedCategories([...selectedCategories, cat]);
     }
+  };
+
+  const handleAddNewCategory = (e) => {
+    if (e) e.preventDefault();
+    const trimmed = newCategoryInput.trim();
+    if (!trimmed) return;
+
+    // Capitalize first letters neatly
+    const formatted = trimmed
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
+    // Check if category already exists (case-insensitive check)
+    const existing = categoriesList.find(
+      (c) => c.toLowerCase() === formatted.toLowerCase()
+    );
+    const finalCat = existing || formatted;
+
+    if (!categoriesList.includes(finalCat)) {
+      setCategoriesList([finalCat, ...categoriesList]);
+    }
+
+    if (!selectedCategories.includes(finalCat)) {
+      setSelectedCategories([...selectedCategories, finalCat]);
+    }
+
+    setNewCategoryInput("");
+    onShowToast?.({
+      type: "success",
+      title: "Category Created",
+      message: `"${finalCat}" added and selected for this icon.`
+    });
   };
 
 
@@ -1375,22 +1416,62 @@ export function SubmitPage({
               </select>
             </div>
 
-            {}
+            {/* Categories & Multiple Category Creation */}
             <div className="sv-form-group">
-              <label className="sv-form-label">Categories</label>
+              <div className="sv-cat-header-row">
+                <label className="sv-form-label" style={{ marginBottom: 0 }}>
+                  Categories <span className="req">*</span>
+                </label>
+                <span className="sv-cat-count-badge">
+                  {selectedCategories.length} category{selectedCategories.length !== 1 ? 'ies' : ''} selected
+                </span>
+              </div>
+              <p className="sv-cat-help-text">
+                Select one or multiple categories, or create a new custom category for this icon:
+              </p>
+
+              {/* Create new category input row */}
+              <div className="sv-add-category-row">
+                <input
+                  type="text"
+                  className="sv-form-input sv-add-category-input"
+                  placeholder="Create custom category (e.g. AI Tools, Web3, FinTech)..."
+                  value={newCategoryInput}
+                  onChange={(e) => setNewCategoryInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleAddNewCategory();
+                    }
+                  }}
+                  maxLength={40}
+                />
+                <button
+                  type="button"
+                  className="sv-add-category-btn"
+                  onClick={handleAddNewCategory}
+                  disabled={!newCategoryInput.trim()}
+                  title="Create and select new category">
+                  <Plus size={15} />
+                  <span>Create</span>
+                </button>
+              </div>
+
+              {/* Category pills */}
               <div className="sv-cat-tags-selector">
-                {POPULAR_CATEGORIES.map((cat) => {
+                {categoriesList.map((cat) => {
                   const isSelected = selectedCategories.includes(cat);
                   return (
                     <button
                       key={cat}
                       type="button"
                       className={`sv-cat-pill-toggle ${isSelected ? "active" : ""}`}
-                      onClick={() => handleToggleCategory(cat)}>
-                      
-                      {cat}
-                    </button>);
-
+                      onClick={() => handleToggleCategory(cat)}
+                      title={isSelected ? `Click to deselect ${cat}` : `Click to select ${cat}`}>
+                      {isSelected && <Check size={12} style={{ marginRight: 4 }} />}
+                      <span>{cat}</span>
+                    </button>
+                  );
                 })}
               </div>
             </div>
