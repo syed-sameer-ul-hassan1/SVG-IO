@@ -1,7 +1,4 @@
-/**
- * High-performance IndexedDB & memory cache for 6,500+ icon catalog metadata & SVG assets.
- * Provides instant (<10ms) zero-network second load and preloading mechanism.
- */
+
 
 const DB_NAME = 'orildo_svg_catalog_db';
 const DB_VERSION = 1;
