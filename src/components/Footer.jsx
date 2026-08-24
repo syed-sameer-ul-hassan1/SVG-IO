@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Flame, Star, ExternalLink, ArrowUp, Github, Code2, HeartHandshake } from 'lucide-react';
+import { Sparkles, Flame, Star, ExternalLink, ArrowUp, Github, Code2, HeartHandshake, ArrowUpRight } from 'lucide-react';
 
 export function Footer({
   theme = 'dark',
@@ -64,19 +64,17 @@ export function Footer({
             href="https://github.com/syed-sameer-ul-hassan/SVG.IO"
             target="_blank"
             rel="noopener noreferrer"
-            className="md-footer-ph-card"
-            title="Star & Follow on GitHub">
+            className="md-footer-gh-org-card"
+            title="Visit SVG.IO on GitHub">
             
-            <div className="md-ph-left">
-              <div className="md-ph-logo md-gh-logo">
-                <Github size={13} />
-              </div>
-              <div className="md-ph-text">
-                <span className="md-ph-sub">FOLLOW ON</span>
-                <span className="md-ph-main">GitHub Org</span>
-              </div>
+            <div className="md-gh-card-icon-wrap">
+              <Github size={15} />
             </div>
-            <Star size={14} className="md-ph-star" />
+            <div className="md-gh-card-info">
+              <span className="md-gh-card-label">OPEN SOURCE ON</span>
+              <span className="md-gh-card-title">GitHub Organization</span>
+            </div>
+            <ArrowUpRight size={13} className="md-gh-card-arrow" />
           </a>
         </div>
 
