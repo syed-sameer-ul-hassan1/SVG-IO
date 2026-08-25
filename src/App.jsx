@@ -281,6 +281,36 @@ export function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedIcon]);
 
+  // Handle browser back/forward buttons with clean shareable URLs
+  useEffect(() => {
+    const handlePopState = () => {
+      const sp = new URLSearchParams(window.location.search);
+      const pathname = window.location.pathname;
+
+      const iconPathMatch = pathname.match(/^\/icon\/([^/]+)\/?$/);
+      const iconSlug = iconPathMatch ? iconPathMatch[1] : (sp.get('icon') || '');
+
+      const catPathMatch = pathname.match(/^\/category\/([^/]+)\/?$/);
+      const categorySlug = catPathMatch ? decodeURIComponent(catPathMatch[1]) : (sp.get('category') || 'all');
+
+      const view = sp.get('view') || 'icons';
+
+      if (iconSlug && metadata && metadata.icons) {
+        const found = metadata.icons.find((i) => i.id === iconSlug || i.slug === iconSlug);
+        if (found) setSelectedIcon(found);
+      } else {
+        setSelectedIcon(null);
+      }
+
+      setSelectedCategory(categorySlug);
+      setCurrentView(view);
+      setSearchQuery(sp.get('search') || sp.get('q') || '');
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [metadata]);
+
   const toggleTheme = () => {
     setTheme((prev) => prev === 'dark' ? 'light' : 'dark');
   };

@@ -27,8 +27,10 @@ import {
 import {
   getSvgContent,
   convertSvgToReact,
+  convertSvgToReactNative,
   convertSvgToVue,
   convertSvgToSvelte,
+  convertSvgToAngular,
   convertSvgToDataUri,
   renderSvgToCanvas,
   downloadSvgFile,
@@ -159,10 +161,15 @@ export function IconDetailPage({
       case 'react':
       case 'jsx':
         return convertSvgToReact(svgContent, icon.name);
+      case 'react-native':
+      case 'reactnative':
+        return convertSvgToReactNative(svgContent, icon.name);
       case 'vue':
         return convertSvgToVue(svgContent);
       case 'svelte':
         return convertSvgToSvelte(svgContent);
+      case 'angular':
+        return convertSvgToAngular(svgContent, icon.name);
       case 'html':
       case 'svg':
         return svgContent.trim();
@@ -1062,31 +1069,41 @@ export function IconDetailPage({
                 <button
                   className={`thesvg-tab-btn ${activeTab === 'react' ? 'active' : ''}`}
                   onClick={() => setActiveTab('react')}>
-                  
                   <span>React</span>
                 </button>
                 <button
-                  className={`thesvg-tab-btn ${activeTab === 'vue' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('vue')}>
-                  
-                  <span>Vue</span>
-                </button>
-                <button
-                  className={`thesvg-tab-btn ${activeTab === 'html' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('html')}>
-                  
-                  <span>HTML</span>
+                  className={`thesvg-tab-btn ${activeTab === 'react-native' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('react-native')}>
+                  <span>React Native</span>
                 </button>
                 <button
                   className={`thesvg-tab-btn ${activeTab === 'nextjs' ? 'active' : ''}`}
                   onClick={() => setActiveTab('nextjs')}>
-                  
                   <span>Next.js</span>
+                </button>
+                <button
+                  className={`thesvg-tab-btn ${activeTab === 'vue' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('vue')}>
+                  <span>Vue</span>
+                </button>
+                <button
+                  className={`thesvg-tab-btn ${activeTab === 'svelte' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('svelte')}>
+                  <span>Svelte</span>
+                </button>
+                <button
+                  className={`thesvg-tab-btn ${activeTab === 'angular' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('angular')}>
+                  <span>Angular</span>
+                </button>
+                <button
+                  className={`thesvg-tab-btn ${activeTab === 'html' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('html')}>
+                  <span>HTML</span>
                 </button>
                 <button
                   className={`thesvg-tab-btn ${activeTab === 'css' ? 'active' : ''}`}
                   onClick={() => setActiveTab('css')}>
-                  
                   <span>CSS</span>
                 </button>
               </div>

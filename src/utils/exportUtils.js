@@ -180,6 +180,92 @@ ${svelteSvg.trim()}`;
 
 
 
+export function convertSvgToReactNative(svgString, iconName = 'Icon') {
+  if (!svgString) return '';
+  const componentName = toPascalCase(iconName) + 'Icon';
+  let rnsSvg = svgString
+    .replace(/<svg\b/gi, '<Svg')
+    .replace(/<\/svg>/gi, '</Svg>')
+    .replace(/<path\b/gi, '<Path')
+    .replace(/<\/path>/gi, '</Path>')
+    .replace(/<g\b/gi, '<G')
+    .replace(/<\/g>/gi, '</G>')
+    .replace(/<circle\b/gi, '<Circle')
+    .replace(/<\/circle>/gi, '</Circle>')
+    .replace(/<rect\b/gi, '<Rect')
+    .replace(/<\/rect>/gi, '</Rect>')
+    .replace(/<defs\b/gi, '<Defs')
+    .replace(/<\/defs>/gi, '</Defs>')
+    .replace(/<linearGradient\b/gi, '<LinearGradient')
+    .replace(/<\/linearGradient>/gi, '</LinearGradient>')
+    .replace(/<radialGradient\b/gi, '<RadialGradient')
+    .replace(/<\/radialGradient>/gi, '</RadialGradient>')
+    .replace(/<stop\b/gi, '<Stop')
+    .replace(/<\/stop>/gi, '</Stop>')
+    .replace(/<clipPath\b/gi, '<ClipPath')
+    .replace(/<\/clipPath>/gi, '</ClipPath>')
+    .replace(/class="[^"]*"/g, '')
+    .replace(/fill-rule=/g, 'fillRule=')
+    .replace(/clip-rule=/g, 'clipRule=')
+    .replace(/stroke-width=/g, 'strokeWidth=')
+    .replace(/stroke-linecap=/g, 'strokeLinecap=')
+    .replace(/stroke-linejoin=/g, 'strokeLinejoin=')
+    .replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
+    .replace(/stroke-dasharray=/g, 'strokeDasharray=')
+    .replace(/stroke-dashoffset=/g, 'strokeDashoffset=')
+    .replace(/stroke-opacity=/g, 'strokeOpacity=')
+    .replace(/fill-opacity=/g, 'fillOpacity=')
+    .replace(/stop-color=/g, 'stopColor=')
+    .replace(/stop-opacity=/g, 'stopOpacity=')
+    .replace(/xmlns:xlink=/g, 'xmlnsXlink=')
+    .replace(/xlink:href=/g, 'xlinkHref=')
+    .replace(/<!--[\s\S]*?-->/g, '');
+
+  rnsSvg = rnsSvg.replace(
+    /<Svg\b([^>]*)>/i,
+    `<Svg\n  width={size}\n  height={size}\n  $1\n  {...props}\n>`
+  );
+
+  return `import React from 'react';
+import Svg, { Path, G, Circle, Rect, Defs, LinearGradient, RadialGradient, Stop, ClipPath } from 'react-native-svg';
+
+export function ${componentName}({ size = 24, ...props }) {
+  return (
+${rnsSvg
+  .split('\n')
+  .map((line) => '    ' + line)
+  .join('\n')}
+  );
+}
+
+export default ${componentName};`;
+}
+
+export function convertSvgToAngular(svgString, iconName = 'Icon') {
+  if (!svgString) return '';
+  const componentName = toPascalCase(iconName) + 'IconComponent';
+  const selector = 'icon-' + (iconName || 'custom').toLowerCase().replace(/[^a-z0-9]/g, '-');
+  return `import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: '${selector}',
+  standalone: true,
+  template: \`
+    ${svgString.trim()}
+  \`,
+  styles: [\`
+    :host {
+      display: inline-block;
+      width: var(--icon-size, 24px);
+      height: var(--icon-size, 24px);
+    }
+  \`]
+})
+export class ${componentName} {
+  @Input() size = 24;
+}`;
+}
+
 export function convertSvgToDataUri(svgString) {
   if (!svgString) return { utf8: '', base64: '' };
   const cleanSvg = svgString.replace(/[\n\r\t]/g, ' ').replace(/\s{2,}/g, ' ');
