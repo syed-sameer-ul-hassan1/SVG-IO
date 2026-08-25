@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import BrandLoader from './BrandLoader';
 import {
   Rss,
   ArrowRight,
@@ -233,8 +234,8 @@ export function BlogPage({ onExploreAll, onNavigate }) {
   if (isLoading) {
     return (
       <div className="sv-blog-loading">
-        <div className="sv-loading-spinner" />
-        <span>Loading SvgIo Blog...</span>
+        <BrandLoader size={48} />
+        <span>Loading SVG.IO Blog...</span>
       </div>);
 
   }

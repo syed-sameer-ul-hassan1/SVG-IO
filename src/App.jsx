@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import SplashScreen from './components/SplashScreen';
+import BrandLoader from './components/BrandLoader';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
@@ -672,11 +673,12 @@ export function App() {
 
             }
 
-              {}
-              {isLoading ?
-            <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--md-sys-color-on-surface-variant)' }}>
-                  <p>Loading SVG icon catalog...</p>
-                </div> :
+              {isLoading ? (
+                <div style={{ textAlign: 'center', padding: '80px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px', color: 'var(--md-sys-color-on-surface-variant)' }}>
+                  <BrandLoader size={56} theme={theme} />
+                  <p style={{ margin: 0, fontSize: '0.95rem', fontWeight: 500 }}>Loading SVG icon catalog...</p>
+                </div>
+              ) : (
 
             <IconGrid
               icons={filteredIcons}
@@ -687,8 +689,7 @@ export function App() {
               onShowToast={showToast}
               selectedCategory={selectedCategory}
               onResetFilters={resetFilters} />
-
-            }
+              )}
 
               {}
               <CommunityBanner

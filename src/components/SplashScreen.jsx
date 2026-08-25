@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 /**
- * Centered Logo Splash Screen for SVG.IO.
+ * Centered Brand Logo Splash Screen for SVG.IO.
  * 1. Starts BIG at 45° angle in the center.
  * 2. Scales down (becomes small) while holding 45° angle.
  * 3. Rotates smoothly to 0° upright orientation.

@@ -1,8 +1,8 @@
 import React from 'react';
 
 /**
- * Reusable Brand Loader Component for SVG.IO.
- * Outer side brackets spin continuously around the center square.
+ * In-Site Brand Loader for SVG.IO.
+ * The outer side brackets spin continuously around the center square.
  * Zero shadows strictly enforced per GUIDELINES.md.
  */
 export default function BrandLoader({ size = 48, theme = 'dark', className = '' }) {
@@ -23,7 +23,7 @@ export default function BrandLoader({ size = 48, theme = 'dark', className = '' 
         xmlns="http://www.w3.org/2000/svg"
         style={{ width: size, height: size }}
       >
-        {/* Center Square & Slash */}
+        {/* Center Square & Diagonal Slash */}
         <g className="svgio-loader-center">
           <path
             fillRule="evenodd"
