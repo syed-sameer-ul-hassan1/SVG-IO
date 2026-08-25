@@ -12815,3 +12815,100 @@ a:focus {
   }
 }
 
+/* ==========================================================================
+   SVG.IO SPLASH SCREEN (Big 45° -> Small 45° -> Rotate to 0° -> Exit)
+   ========================================================================== */
+
+.svgio-splash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #07090E;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.4s ease;
+}
+
+[data-theme='light'] .svgio-splash-overlay {
+  background-color: #F8FAFC;
+}
+
+.svgio-splash-overlay.splash-exit {
+  opacity: 0;
+  transform: scale(1.06);
+  pointer-events: none;
+}
+
+.svgio-splash-center {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  animation: svgio-splash-scale-rotate 2.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.svgio-animated-logo {
+  width: 108px;
+  height: 108px;
+  max-width: 108px;
+  max-height: 108px;
+  display: block;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* Keyframes: Big at 45° -> Shrinks to Normal Size at 45° -> Rotates back to 0° */
+@keyframes svgio-splash-scale-rotate {
+  0% {
+    transform: scale(3.4) rotate(45deg);
+    opacity: 0;
+  }
+  12% {
+    transform: scale(3.0) rotate(45deg);
+    opacity: 1;
+  }
+  45% {
+    /* Becomes small while staying on 45 degree angle */
+    transform: scale(1) rotate(45deg);
+    opacity: 1;
+  }
+  72% {
+    /* Smoothly rotates back toward original position */
+    transform: scale(1) rotate(-2deg);
+    opacity: 1;
+  }
+  88%, 100% {
+    /* Settled in 0 degree original rotation position */
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

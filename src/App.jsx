@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import SplashScreen from './components/SplashScreen';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
@@ -519,6 +520,9 @@ export function App() {
 
   return (
     <div className="md-page-wrapper">
+      {/* Brand Splash Screen */}
+      <SplashScreen isLoading={isLoading} theme={theme} />
+
       {/* Top Navigation Header */}
       <Header
         theme={theme}
