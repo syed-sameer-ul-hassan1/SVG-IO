@@ -10916,6 +10916,41 @@ a:focus {
   transform: translateY(0);
 }
 
+.sv-pipeline-done-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  color: #FFFFFF;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.02em;
+}
+
+.sv-pipeline-done-btn:hover {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  transform: translateY(-1px);
+}
+
+.sv-pipeline-done-btn:active {
+  transform: translateY(0);
+}
+
+[data-theme='light'] .sv-pipeline-done-btn {
+  background: linear-gradient(135deg, #059669, #047857);
+}
+
+[data-theme='light'] .sv-pipeline-done-btn:hover {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
 [data-theme='light'] .sv-pipeline-gh-btn {
   background: rgba(15, 23, 42, 0.04);
   border-color: rgba(15, 23, 42, 0.12);
