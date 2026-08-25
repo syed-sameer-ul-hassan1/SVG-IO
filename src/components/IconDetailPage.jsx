@@ -507,44 +507,55 @@ export function IconDetailPage({
       {/* Top Breadcrumb Navigation & Back Action */}
       <div className="thesvg-top-nav-bar">
         <nav className="thesvg-breadcrumb" aria-label="Breadcrumb">
-          <button
-            type="button"
+          <a
+            href="/"
             className="thesvg-breadcrumb-btn"
-            onClick={() => {
-              if (onNavigateHome) onNavigateHome();
-              else onBack?.();
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                if (onNavigateHome) onNavigateHome();
+                else onBack?.();
+              }
             }}
             title="Go to Home Catalog"
           >
             <Home size={14} className="thesvg-bc-icon" />
             <span>Home</span>
-          </button>
+          </a>
 
           <span className="thesvg-bc-sep">/</span>
 
-          <button
-            type="button"
+          <a
+            href="/?view=categories"
             className="thesvg-breadcrumb-btn"
-            onClick={() => {
-              if (onNavigateLibrary) onNavigateLibrary();
-              else onBack?.();
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                if (onNavigateLibrary) onNavigateLibrary();
+                else onBack?.();
+              }
             }}
             title="Browse Full Vector Library"
           >
             <span>Library</span>
-          </button>
+          </a>
 
           {primaryCategory && (
             <>
               <span className="thesvg-bc-sep">/</span>
-              <button
-                type="button"
+              <a
+                href={`/category/${encodeURIComponent(primaryCategory)}`}
                 className="thesvg-breadcrumb-btn category-pill-link"
-                onClick={() => onSelectCategory?.(primaryCategory)}
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    onSelectCategory?.(primaryCategory);
+                  }
+                }}
                 title={`View ${primaryCategory} category`}
               >
                 <span>{primaryCategory}</span>
-              </button>
+              </a>
             </>
           )}
 
@@ -626,12 +637,25 @@ export function IconDetailPage({
 
             <div className="thesvg-meta-divider" />
 
-            {}
+            {/* Categories */}
             <div className="thesvg-categories-group">
               <span className="thesvg-meta-label">CATEGORIES</span>
               <div className="thesvg-cat-tags">
                 {(Array.isArray(icon.categories) && icon.categories.length > 0 ? icon.categories : [primaryCategory]).map((c, i) =>
-                <span key={i} className="thesvg-cat-chip">{c}</span>
+                  <a
+                    key={i}
+                    href={`/category/${encodeURIComponent(c)}`}
+                    className="thesvg-cat-chip"
+                    onClick={(e) => {
+                      if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                        e.preventDefault();
+                        onSelectCategory?.(c);
+                      }
+                    }}
+                    title={`Browse all ${c} SVG icons`}
+                  >
+                    {c}
+                  </a>
                 )}
               </div>
             </div>

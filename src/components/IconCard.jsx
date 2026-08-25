@@ -80,13 +80,19 @@ export const IconCard = memo(function IconCard({
     onToggleFavorite(icon);
   };
 
+  const iconSlug = icon.slug || icon.id;
+
   return (
-    <div
+    <a
+      href={`/icon/${iconSlug}`}
       className="md-card"
-      onClick={() => onSelect(icon, selectedVariant)}
-      tabIndex={0}
-      role="button"
-      aria-label={`View ${icon.name} icon`}
+      onClick={(e) => {
+        if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+          e.preventDefault();
+          onSelect(icon, selectedVariant);
+        }
+      }}
+      aria-label={`View ${icon.name} SVG vector icon`}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -99,10 +105,11 @@ export const IconCard = memo(function IconCard({
         <span className="md-card-single-tag">{categoryName}</span>
 
         <button
+          type="button"
           className={`md-card-fav-btn ${isFavorite ? 'active' : ''}`}
           onClick={handleFavoriteClick}
           title={isFavorite ? 'Remove from favorites' : 'Add to collection'}
-          aria-label="Favorite toggle">
+          aria-label={`Add ${icon.name} to favorites`}>
           
           <Heart size={14} fill={isFavorite ? 'currentColor' : 'none'} />
         </button>
@@ -112,7 +119,7 @@ export const IconCard = memo(function IconCard({
       <div className="md-card-icon-frame">
         <img
           src={iconUrl}
-          alt={icon.name}
+          alt={`${icon.name} SVG vector icon`}
           width="40"
           height="40"
           loading={priority ? 'eager' : 'lazy'}
@@ -127,7 +134,7 @@ export const IconCard = memo(function IconCard({
         
       </div>
 
-      {}
+      {/* Title & Metadata */}
       <div className="md-card-meta">
         <div className="md-card-title" title={icon.name}>
           {icon.name}
@@ -137,35 +144,41 @@ export const IconCard = memo(function IconCard({
         </div>
       </div>
 
-      {}
+      {/* Hover Actions */}
       <div className="md-card-hover-toolbar" onClick={(e) => e.stopPropagation()}>
         <button
+          type="button"
           className={`md-card-action-pill ${copiedType === 'svg' ? 'copied' : ''}`}
           onClick={handleQuickCopySvg}
-          title="Copy SVG XML">
+          title="Copy SVG XML"
+          aria-label={`Copy ${icon.name} SVG XML`}>
           
           {copiedType === 'svg' ? <Check size={13} /> : <Copy size={13} />}
           <span>{copiedType === 'svg' ? 'Copied' : 'SVG'}</span>
         </button>
 
         <button
+          type="button"
           className={`md-card-action-pill ${copiedType === 'react' ? 'copied' : ''}`}
           onClick={handleQuickCopyReact}
-          title="Copy React JSX">
+          title="Copy React JSX"
+          aria-label={`Copy ${icon.name} React JSX`}>
           
           {copiedType === 'react' ? <Check size={13} /> : <Code2 size={13} />}
           <span>{copiedType === 'react' ? 'Copied' : 'JSX'}</span>
         </button>
 
         <button
+          type="button"
           className="md-card-action-icon"
           onClick={handleQuickDownload}
-          title="Download .SVG">
+          title="Download .SVG"
+          aria-label={`Download ${icon.name} SVG`}>
           
           <Download size={14} />
         </button>
       </div>
-    </div>);
+    </a>);
 
 });
 

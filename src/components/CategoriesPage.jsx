@@ -217,13 +217,17 @@ export function CategoriesPage({
           const CatIconComponent = getCategoryIcon(cat.name);
 
           return (
-            <div
+            <a
               key={cat.name}
+              href={`/category/${encodeURIComponent(cat.name)}`}
               className="md-cat-premium-card"
-              onClick={() => onSelectCategory(cat.name)}
-              tabIndex={0}
-              role="button"
-              aria-label={`Explore ${cat.name} with ${cat.count || 0} icons`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  onSelectCategory(cat.name);
+                }
+              }}
+              aria-label={`Explore ${cat.name} category with ${cat.count || 0} icons`}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
@@ -254,20 +258,26 @@ export function CategoriesPage({
                   const svgUrl = getIconSvgUrl(icon);
                   const iconName = icon.title || icon.name || icon.slug || icon.id;
                   const iconKey = icon.slug || icon.id || iconName;
+                  const iconSlug = icon.slug || icon.id;
                   const brandColor = icon.hex ? icon.hex.startsWith('#') ? icon.hex : `#${icon.hex}` : '#FF5F02';
 
                   return (
-                    <div
+                    <a
                       key={iconKey}
+                      href={`/icon/${iconSlug}`}
                       className="md-cat-preview-item"
-                      title={iconName}
+                      title={`View ${iconName} icon`}
+                      aria-label={`View ${iconName} icon`}
                       onClick={(e) => {
                         e.stopPropagation();
-                        onSelectIcon?.(icon);
+                        if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                          e.preventDefault();
+                          onSelectIcon?.(icon);
+                        }
                       }}>
                         <img
                         src={svgUrl}
-                        alt={iconName}
+                        alt={`${iconName} SVG icon`}
                         className="md-cat-preview-img"
                         loading="lazy"
                         width="24"
@@ -287,7 +297,7 @@ export function CategoriesPage({
                         }}>
                           {iconName.charAt(0) || '•'}
                         </div>
-                      </div>);
+                      </a>);
                 })}
 
                   {previewIcons.length === 0 &&
@@ -304,7 +314,7 @@ export function CategoriesPage({
                     <ArrowRight size={12} className="md-cat-link-icon" />
                   </span>
                 </div>
-              </div>);
+              </a>);
         })}
         </div> :
 

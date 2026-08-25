@@ -106,15 +106,25 @@ export function Header({
   return (
     <div className="md-header-wrapper">
       <header className="md-header">
-        {}
-        <div className="md-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        {/* Logo */}
+        <a
+          href="/"
+          className="md-logo"
+          aria-label="SVG.IO Home"
+          onClick={(e) => {
+            if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+              e.preventDefault();
+              onNavigate?.('icons');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
+        >
           <img
             src={theme === 'light' ? '/assets/wordmark-light.svg' : '/assets/wordmark-dark.svg'}
-            alt="SvgIo Logo"
+            alt="SVG.IO Logo"
             height="28"
             style={{ display: 'block', height: '28px', width: 'auto', objectFit: 'contain' }} />
-          
-        </div>
+        </a>
 
         {/* Global Search Bar */}
         <div className={`md-search-bar ${isFocused ? 'focused' : ''}`} ref={searchContainerRef}>

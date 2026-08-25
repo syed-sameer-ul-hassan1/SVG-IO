@@ -79,30 +79,46 @@ export function Sidebar({
 
   return (
     <aside className="md-side-menu glass-panel">
-      {}
+      {/* Main Nav Items */}
       <div className="md-side-nav-group">
-        <button
+        <a
+          href="/"
           className={`md-side-nav-item ${currentView === 'icons' && selectedCategory === 'all' ? 'active' : ''}`}
-          onClick={() => {
-            onNavigate?.('icons');
-            onSelectCategory('all');
+          onClick={(e) => {
+            if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+              e.preventDefault();
+              onNavigate?.('icons');
+              onSelectCategory('all');
+            }
           }}>
           
           <LayoutGrid size={16} className="md-side-nav-icon" />
           <span className="md-side-nav-label">All Icons</span>
-        </button>
+        </a>
 
-        <button
+        <a
+          href="/?view=categories"
           className={`md-side-nav-item ${currentView === 'categories' ? 'active' : ''}`}
-          onClick={() => onNavigate?.('categories')}>
+          onClick={(e) => {
+            if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+              e.preventDefault();
+              onNavigate?.('categories');
+            }
+          }}>
           
           <FolderTree size={16} className="md-side-nav-icon" />
           <span className="md-side-nav-label">Categories</span>
-        </button>
+        </a>
 
-        <button
+        <a
+          href="/?view=favorites"
           className={`md-side-nav-item ${currentView === 'favorites' ? 'active' : ''}`}
-          onClick={() => onNavigate?.('favorites')}
+          onClick={(e) => {
+            if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+              e.preventDefault();
+              onNavigate?.('favorites');
+            }
+          }}
           title={favoritesCount > 0 ? `${favoritesCount} Saved Icons` : 'Favorites'}>
           
           <div className="md-side-nav-left">
@@ -112,9 +128,10 @@ export function Sidebar({
           {favoritesCount > 0 &&
           <span className="md-side-fav-dot" aria-label={`${favoritesCount} favorites`} />
           }
-        </button>
+        </a>
 
         <button
+          type="button"
           className="md-side-nav-item"
           onClick={() => onOpenViewer?.()}>
           
@@ -122,17 +139,24 @@ export function Sidebar({
           <span className="md-side-nav-label">Viewer</span>
         </button>
 
-        <button
+        <a
+          href="/?view=blog"
           className={`md-side-nav-item ${currentView === 'blog' ? 'active' : ''}`}
-          onClick={() => onNavigate?.('blog')}>
+          onClick={(e) => {
+            if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+              e.preventDefault();
+              onNavigate?.('blog');
+            }
+          }}>
           
           <FileText size={16} className="md-side-nav-icon" />
           <span className="md-side-nav-label">Blog</span>
-        </button>
+        </a>
       </div>
 
-      {}
+      {/* Submit Button */}
       <button
+        type="button"
         className="md-side-submit-btn"
         onClick={() => onSubmitIconClick?.()}>
         
@@ -140,9 +164,10 @@ export function Sidebar({
         <span>Submit Icon</span>
       </button>
 
-      {}
+      {/* Featured Section */}
       <div className="md-side-section">
         <button
+          type="button"
           className="md-side-section-header"
           onClick={() => setIsFeaturedOpen(!isFeaturedOpen)}>
           
@@ -155,9 +180,15 @@ export function Sidebar({
 
         {isFeaturedOpen &&
         <div className="md-side-featured-list">
-            <button
+            <a
+            href="/category/Orildo"
             className={`md-side-featured-item ${selectedCategory === 'Orildo' ? 'active' : ''}`}
-            onClick={() => onSelectCategory('Orildo')}>
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                onSelectCategory('Orildo');
+              }
+            }}>
             
               <div className="md-side-featured-left">
                 <img
@@ -169,27 +200,32 @@ export function Sidebar({
               
                 <span>Orildo </span>
               </div>
-            </button>
+            </a>
           </div>
         }
       </div>
 
-      {}
+      {/* Categories Section */}
       <div className="md-side-section md-side-categories-section">
         <div className="md-side-section-header no-toggle">
           <span>CATEGORIES</span>
-          <button
-            type="button"
+          <a
+            href="/?view=categories"
             className="md-side-view-all-link"
-            onClick={() => onNavigate?.('categories')}
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                onNavigate?.('categories');
+              }
+            }}
             title="Open Full Categories Directory">
             
             <span>View All ({categories.length})</span>
             <ChevronRight size={11} />
-          </button>
+          </a>
         </div>
 
-        {}
+        {/* Categories Search/Filter */}
         <div className="md-side-cat-search-box">
           <Search size={12} className="md-side-cat-search-icon" />
           <input
@@ -212,13 +248,17 @@ export function Sidebar({
           }
         </div>
 
-        {}
+        {/* Scrollable Categories List */}
         <div className="md-side-category-scroll">
-          <button
+          <a
+            href="/"
             className={`md-side-cat-item ${currentView === 'icons' && selectedCategory === 'all' ? 'active' : ''}`}
-            onClick={() => {
-              onNavigate?.('icons');
-              onSelectCategory('all');
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                onNavigate?.('icons');
+                onSelectCategory('all');
+              }
             }}>
             <div className="md-side-cat-left">
               <Grid size={14} className="md-side-cat-icon" />
@@ -227,18 +267,22 @@ export function Sidebar({
             <span className="md-side-cat-count">
               {totalIcons || categories.reduce((sum, c) => sum + (c.count || 0), 0)}
             </span>
-          </button>
+          </a>
 
           {filteredCategories.map((cat) => {
             const isSelected = currentView === 'icons' && selectedCategory === cat.name;
             const CatIcon = getCategoryIcon(cat.name);
             return (
-              <button
+              <a
                 key={cat.name}
+                href={`/category/${encodeURIComponent(cat.name)}`}
                 className={`md-side-cat-item ${isSelected ? 'active' : ''}`}
-                onClick={() => {
-                  onNavigate?.('icons');
-                  onSelectCategory(cat.name);
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    onNavigate?.('icons');
+                    onSelectCategory(cat.name);
+                  }
                 }}
                 title={`${cat.name} (${cat.count || 0} icons)`}>
                 <div className="md-side-cat-left">
@@ -248,7 +292,7 @@ export function Sidebar({
                 <span className={`md-side-cat-count ${isSelected ? 'active' : ''}`}>
                   {cat.count || 0}
                 </span>
-              </button>
+              </a>
             );
           })}
 
