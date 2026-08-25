@@ -2,7 +2,11 @@
   {
     "slug": "in-drive",
     "title": "In Drive",
-    "aliases": [],
+    "aliases": [
+      "indrive",
+      "inDrive",
+      "InDrive"
+    ],
     "hex": "1B1C1C",
     "hexes": [
       "1B1C1C",
@@ -12,6 +16,7 @@
       "1C1D1C"
     ],
     "categories": [
+      "Pakistani Brands",
       "Pakistani Compani"
     ],
     "variants": {
