@@ -669,11 +669,8 @@ export function SubmitPage({
       rawVariants[variantKey] = v.svgContent;
     });
 
-    const SUPABASE_FALLBACK_URL = "https://wexavetbwvlazhusuouu.supabase.co";
-    const SUPABASE_FALLBACK_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndleGF2ZXRid3ZsYXpodXN1b3V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MDA2NzgsImV4cCI6MjEwMzA3NjY3OH0.dWhB2MYM-yNdmvGIkHRf53tTSsgVD6sFcfY_xIAnEms";
-    const GH_FALLBACK_PAT = "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";
-    const GH_OWNER = "syed-sameer-ul-hassan1";
-    const GH_REPO = "SVG-IO";
+    const SUPABASE_URL = import.meta.env.VITE_DATABASE_URL || "https://wexavetbwvlazhusuouu.supabase.co";
+    const SUPABASE_KEY = import.meta.env.VITE_DATABASE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndleGF2ZXRid3ZsYXpodXN1b3V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MDA2NzgsImV4cCI6MjEwMzA3NjY3OH0.dWhB2MYM-yNdmvGIkHRf53tTSsgVD6sFcfY_xIAnEms";
 
     let submittedSuccessfully = false;
 
@@ -704,106 +701,40 @@ export function SubmitPage({
         console.warn("/api/submit-icon endpoint returned non-OK status:", response.status);
       }
     } catch (apiErr) {
-      console.warn("Direct /api/submit-icon call failed, falling back to direct ingestion:", apiErr);
+      console.warn("Direct /api/submit-icon call failed, falling back to Supabase Edge Function:", apiErr);
     }
 
-    // ── Attempt 2: Direct Supabase Ingestion Fallback ──
+    // ── Attempt 2: Direct Supabase Edge Function Ingestion Fallback ──
     if (!submittedSuccessfully) {
       try {
-        const storagePaths = {};
-        const storagePublicUrls = {};
+        const edgeFnRes = await fetch(`${SUPABASE_URL}/functions/v1/submit-icon`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`
+          },
+          body: JSON.stringify({
+            slug,
+            title,
+            hex: primaryHex,
+            hexes: allHexes,
+            categories: finalCategories,
+            aliases: [],
+            license,
+            url: iconUrl,
+            guidelines: brandGuidelines,
+            variants: rawVariants
+          })
+        });
 
-        // 1. Upload variants to Supabase Storage
-        for (const [vKey, svgStr] of Object.entries(rawVariants)) {
-          const filePath = `${slug}/${vKey}.svg`;
-          try {
-            await fetch(`${SUPABASE_FALLBACK_URL}/storage/v1/object/svg-icons/${filePath}`, {
-              method: 'POST',
-              headers: {
-                'Authorization': `Bearer ${SUPABASE_FALLBACK_KEY}`,
-                'Content-Type': 'image/svg+xml',
-                'x-upsert': 'true'
-              },
-              body: new TextEncoder().encode(svgStr)
-            });
-            storagePaths[vKey] = filePath;
-            storagePublicUrls[vKey] = `${SUPABASE_FALLBACK_URL}/storage/v1/object/public/svg-icons/${filePath}`;
-          } catch (stErr) {
-            console.warn("Storage upload error for variant:", vKey, stErr);
-          }
+        if (edgeFnRes.ok) {
+          submittedSuccessfully = true;
+        } else {
+          console.warn("Supabase Edge Function returned non-OK status:", edgeFnRes.status);
         }
-
-        // 2. Insert into icon_submissions table
-        let submissionId = null;
-        try {
-          const dbRes = await fetch(`${SUPABASE_FALLBACK_URL}/rest/v1/icon_submissions`, {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${SUPABASE_FALLBACK_KEY}`,
-              'apikey': SUPABASE_FALLBACK_KEY,
-              'Content-Type': 'application/json',
-              'Prefer': 'return=representation'
-            },
-            body: JSON.stringify({
-              slug,
-              title,
-              hex: primaryHex,
-              hexes: allHexes,
-              categories: finalCategories,
-              license,
-              url: iconUrl,
-              variants: Object.keys(rawVariants).reduce((acc, k) => {
-                acc[k] = `/icons/${slug}/${k}.svg`;
-                return acc;
-              }, {}),
-              status: 'pending',
-              storage_paths: storagePaths
-            })
-          });
-          if (dbRes.ok) {
-            const rows = await dbRes.json();
-            submissionId = (Array.isArray(rows) ? rows[0]?.id : rows?.id) || null;
-          }
-        } catch (dbErr) {
-          console.warn("Supabase DB insert error:", dbErr);
-        }
-
-        // 3. Trigger GitHub Dispatch
-        try {
-          await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/dispatches`, {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${GH_FALLBACK_PAT}`,
-              'Accept': 'application/vnd.github.v3+json',
-              'Content-Type': 'application/json',
-              'User-Agent': 'SVG-IO/1.0'
-            },
-            body: JSON.stringify({
-              event_type: 'process-icon-submission',
-              client_payload: {
-                submission_id: submissionId,
-                slug,
-                title,
-                hex: primaryHex,
-                hexes: allHexes,
-                categories: finalCategories,
-                license,
-                url: iconUrl,
-                aliases: [],
-                variants: Object.keys(rawVariants).reduce((acc, k) => {
-                  acc[k] = storagePublicUrls[k] || `/icons/${slug}/${k}.svg`;
-                  return acc;
-                }, {})
-              }
-            })
-          });
-        } catch (ghErr) {
-          console.warn("GitHub dispatch error:", ghErr);
-        }
-
-        submittedSuccessfully = true;
-      } catch (fallbackErr) {
-        console.error("Direct fallback failed:", fallbackErr);
+      } catch (edgeErr) {
+        console.warn("Supabase Edge Function call failed:", edgeErr);
       }
     }
 
