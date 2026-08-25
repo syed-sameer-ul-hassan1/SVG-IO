@@ -1,5 +1,27 @@
 [
   {
+    "slug": "u-fone",
+    "title": "U fone",
+    "aliases": [],
+    "hex": "FF6601",
+    "hexes": [
+      "FF6601",
+      "8CB517"
+    ],
+    "categories": [
+      "Pakistani Brands"
+    ],
+    "variants": {
+      "dark": "/icons/u-fone/dark.svg",
+      "default": "/icons/u-fone/default.svg",
+      "light": "/icons/u-fone/light.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://www.ufone.com/",
+    "dateAdded": "2026-08-25",
+    "collection": "community"
+  },
+  {
     "slug": "onic",
     "title": "Onic",
     "aliases": [],
