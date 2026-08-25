@@ -1,5 +1,27 @@
 [
   {
+    "slug": "jazz-cash",
+    "title": "Jazz Cash",
+    "aliases": [],
+    "hex": "FFC906",
+    "hexes": [
+      "FFC906",
+      "F21E25"
+    ],
+    "categories": [
+      "Pakistani Brands"
+    ],
+    "variants": {
+      "dark": "/icons/jazz-cash/dark.svg",
+      "default": "/icons/jazz-cash/default.svg",
+      "light": "/icons/jazz-cash/light.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://jazz-cash.com",
+    "dateAdded": "2026-08-25",
+    "collection": "community"
+  },
+  {
     "slug": "u-fone",
     "title": "U fone",
     "aliases": [],
