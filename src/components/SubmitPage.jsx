@@ -125,6 +125,7 @@ export function SubmitPage({
   onIconAdded,
   onShowToast,
   onNavigate,
+  onSelectIcon,
   totalIcons = 6516
 }) {
   const savedActive = useMemo(() => getSavedActiveSubmission(), []);
@@ -986,10 +987,37 @@ export function SubmitPage({
             <div className="sv-pipeline-actions-row">
               <button
                 type="button"
+                className="sv-pipeline-live-btn"
+                onClick={() => {
+                  if (onSelectIcon && submissionResult?.slug) {
+                    onSelectIcon({
+                      id: submissionResult.slug,
+                      slug: submissionResult.slug,
+                      name: submissionResult.title,
+                      title: submissionResult.title,
+                      category: 'Pakistani Brands',
+                      hex: `#${submissionResult.colors?.[0] || 'FF5F02'}`,
+                      path: `/icons/${submissionResult.slug}/default.svg`,
+                      variants: ['default'],
+                      variantPaths: { default: `/icons/${submissionResult.slug}/default.svg` },
+                      variantCount: submissionResult.variantCount || 1,
+                      availableVariants: ['default'],
+                      license: 'Apache-2.0'
+                    });
+                  } else {
+                    onNavigate?.('icons');
+                  }
+                }}>
+                <Eye size={15} />
+                <span>View Live Icon</span>
+              </button>
+
+              <button
+                type="button"
                 className="sv-pipeline-gh-btn"
                 onClick={() => onNavigate?.('icons')}>
                 <Package size={15} />
-                <span>Explore Hosted Catalog</span>
+                <span>Explore Catalog</span>
               </button>
 
               <button
@@ -1003,7 +1031,7 @@ export function SubmitPage({
                   setCountdown(TOTAL_PIPELINE_SECONDS);
                 }}>
                 <Plus size={16} />
-                <span>Upload Another Asset</span>
+                <span>Upload Another</span>
               </button>
             </div>
           </div>

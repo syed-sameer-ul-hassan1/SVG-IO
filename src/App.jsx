@@ -476,13 +476,15 @@ export function App() {
     setMetadata((prev) => {
       if (!prev) return prev;
       const icons = [newIcon, ...(prev.icons || []).filter((i) => i.id !== newIcon.id && i.slug !== newIcon.slug)];
-      return {
+      const updatedCatalog = {
         ...prev,
         totalIcons: icons.length,
         icons
       };
+      setCachedCatalog(updatedCatalog);
+      return updatedCatalog;
     });
-    handleSelectIcon(newIcon);
+    // Stay on SubmitPage 7-minute timer view so user can track the live ingestion pipeline
   };
 
   return (
@@ -576,7 +578,8 @@ export function App() {
             totalIcons={totalCount}
             onIconAdded={handleIconAdded}
             onShowToast={showToast}
-            onNavigate={handleNavigate} /> :
+            onNavigate={handleNavigate}
+            onSelectIcon={handleSelectIcon} /> :
 
           currentView === 'favorites' ?
           <FavoritesPage
