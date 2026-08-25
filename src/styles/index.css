@@ -10827,13 +10827,13 @@ a:focus {
 .sv-pipeline-actions-row,
 .sv-pipeline-actions-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
   margin-top: 12px;
 }
 
 .sv-pipeline-live-btn {
-  width: 100%;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
