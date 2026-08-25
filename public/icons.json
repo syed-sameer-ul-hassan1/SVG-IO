@@ -1,5 +1,33 @@
 [
   {
+    "slug": "in-drive",
+    "title": "In Drive",
+    "aliases": [],
+    "hex": "1B1C1C",
+    "hexes": [
+      "1B1C1C",
+      "A6E82E",
+      "1B1B1C",
+      "1C1C1C",
+      "1C1D1C"
+    ],
+    "categories": [
+      "Pakistani Compani"
+    ],
+    "variants": {
+      "dark": "/icons/in-drive/dark.svg",
+      "default": "/icons/in-drive/default.svg",
+      "light": "/icons/in-drive/light.svg",
+      "wordmark-dark": "/icons/in-drive/wordmark-dark.svg",
+      "wordmark-default": "/icons/in-drive/wordmark-default.svg",
+      "wordmark-light": "/icons/in-drive/wordmark-light.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://indrive.com",
+    "dateAdded": "2026-08-25",
+    "collection": "community"
+  },
+  {
     "slug": "jazz-cash",
     "title": "Jazz Cash",
     "aliases": [],
