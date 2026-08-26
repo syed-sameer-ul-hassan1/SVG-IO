@@ -1,5 +1,26 @@
 [
   {
+    "slug": "kamran-shawls",
+    "title": "Kamran Shawls",
+    "aliases": [],
+    "hex": "B8934A",
+    "hexes": [
+      "B8934A"
+    ],
+    "categories": [
+      "Pakistani Brands",
+      "E-commerce"
+    ],
+    "variants": {
+      "dark": "/icons/kamran-shawls/dark.svg",
+      "default": "/icons/kamran-shawls/default.svg"
+    },
+    "license": "Apache-2.0",
+    "url": "https://KamranShawls.com.pk",
+    "dateAdded": "2026-08-26",
+    "collection": "community"
+  },
+  {
     "slug": "in-drive",
     "title": "In Drive",
     "aliases": [
