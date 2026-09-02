@@ -4185,28 +4185,28 @@
     "collection": "community"
   },
   {
-    "slug": "svg-space",
-    "title": "SVG SPACE",
-    "aliases": [],
-    "hex": "FF5F02",
-    "categories": [
-      "Pakistani Compani",
-      "Software",
-      "Media",
-      "Design"
-    ],
-    "variants": {
-      "default": "/icons/svgspace/default.svg",
-      "dark": "/icons/svgspace/dark.svg",
-      "light": "/icons/svgspace/light.svg",
-      "wordmark-dark": "/icons/svgspace/wordmark-dark.svg",
-      "wordmark-light": "/icons/svgspace/wordmark-light.svg"
-    },
-    "license": "Apache-2.0",
-    "url": "https://svgspace.sbs",
-    "dateAdded": "2026-08-23",
-    "collection": "community"
+  "slug": "svg-space",
+  "title": "SVG SPACE",
+  "aliases": [],
+  "hex": "FF5F02",
+  "categories": [
+    "Pakistani Compani",
+    "Software",
+    "Media",
+    "Design"
+  ],
+  "variants": {
+    "default": "/icons/svgspace/default.svg",
+    "dark": "/icons/svgspace/dark.svg",
+    "light": "/icons/svgspace/light.svg",
+    "wordmark-dark": "/icons/svgspace/wordmark-dark.svg",
+    "wordmark-light": "/icons/svgspace/wordmark-light.svg"
   },
+  "license": "Apache-2.0",
+  "url": "https://svgspace.sbs",
+  "dateAdded": "2026-08-23",
+  "collection": "community"
+},
   {
     "slug": "01dotai",
     "title": "01.AI (零一万物)",
