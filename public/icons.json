@@ -1,26 +1,5 @@
 [
   {
-    "slug": "kamran-shawls",
-    "title": "Kamran Shawls",
-    "aliases": [],
-    "hex": "B8934A",
-    "hexes": [
-      "B8934A"
-    ],
-    "categories": [
-      "Pakistani Brands",
-      "E-commerce"
-    ],
-    "variants": {
-      "dark": "/icons/kamran-shawls/dark.svg",
-      "default": "/icons/kamran-shawls/default.svg"
-    },
-    "license": "Apache-2.0",
-    "url": "https://KamranShawls.com.pk",
-    "dateAdded": "2026-08-26",
-    "collection": "community"
-  },
-  {
     "slug": "in-drive",
     "title": "In Drive",
     "aliases": [
@@ -4189,7 +4168,7 @@
     "aliases": [],
     "hex": "FFF",
     "categories": [
-      "Pakistani Brands",
+      "Pakistani Compani",
       "Software",
       "Security",
       "Developer Tools"
@@ -4206,25 +4185,25 @@
     "collection": "community"
   },
   {
-    "slug": "svgio",
-    "title": "SvgIo",
+    "slug": "svg-space",
+    "title": "SVG SPACE",
     "aliases": [],
     "hex": "FF5F02",
     "categories": [
-      "Pakistani Brands",
+      "Pakistani Compani",
       "Software",
       "Media",
       "Design"
     ],
     "variants": {
-      "default": "/icons/svgio/default.svg",
-      "dark": "/icons/svgio/dark.svg",
-      "light": "/icons/svgio/light.svg",
-      "wordmark-dark": "/icons/svgio/wordmark-dark.svg",
-      "wordmark-light": "/icons/svgio/wordmark-light.svg"
+      "default": "/icons/svgspace/default.svg",
+      "dark": "/icons/svgspace/dark.svg",
+      "light": "/icons/svgspace/light.svg",
+      "wordmark-dark": "/icons/svgspace/wordmark-dark.svg",
+      "wordmark-light": "/icons/svgspace/wordmark-light.svg"
     },
     "license": "Apache-2.0",
-    "url": "https://svgio.orildo.tech",
+    "url": "https://svgspace.sbs",
     "dateAdded": "2026-08-23",
     "collection": "community"
   },
