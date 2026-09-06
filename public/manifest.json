@@ -1,6 +1,6 @@
 {
-  "name": "SVG.IO — Free SVG Icons & Brand Logo Library",
-  "short_name": "SVG.IO",
+  "name": "SVGSpace — Free SVG Icons & Brand Logo Library",
+  "short_name": "SVGSpace",
   "description": "6,517+ free brand logos, developer icons & Liquid Glass SVG vectors. Instant React JSX, Vue 3, Svelte, Angular, PNG & SVG XML export. Zero tracking. Apache 2.0.",
   "start_url": "/?source=pwa",
   "display": "standalone",
@@ -11,7 +11,7 @@
   "lang": "en-US",
   "dir": "ltr",
   "categories": ["design", "developer tools", "utilities", "productivity"],
-  "id": "svg-io-orildo",
+  "id": "svgspace",
   "prefer_related_applications": false,
   "icons": [
     {
@@ -39,14 +39,14 @@
       "sizes": "1280x800",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "SVG.IO icon library homepage — browse 6,517+ brand SVG icons"
+      "label": "SVGSpace icon library homepage — browse 6,517+ brand SVG icons"
     },
     {
       "src": "/assets/screenshot-mobile.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "SVG.IO on mobile — search and copy SVG icons anywhere"
+      "label": "SVGSpace on mobile — search and copy SVG icons anywhere"
     }
   ],
   "shortcuts": [

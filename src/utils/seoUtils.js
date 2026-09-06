@@ -1,16 +1,16 @@
 /**
  * ╔═══════════════════════════════════════════════════════════════╗
- * ║  SVG.IO — Enterprise SEO Engine (svg.io.orildo.tech)         ║
+ * ║  SVGSpace — Enterprise SEO Engine (svgspace.sbs)            ║
  * ║  Dynamic title, description, keywords, OpenGraph,            ║
  * ║  Twitter Card, canonical URLs, hreflang, and Schema.org      ║
  * ║  JSON-LD rich results for SVG Hosting, Publishing & NPM.     ║
  * ╚═══════════════════════════════════════════════════════════════╝
  */
 
-const BASE_URL = 'https://svg.io.orildo.tech';
+const BASE_URL = 'https://svgspace.sbs';
 
 const BRAND_KEYWORDS_BASE =
-  'svg io, svg.io, svgio, svg.io.orildo.tech, svg hosting, svg publishing, vector hosting platform, icon distribution, free svg icons, free svg logos, brand icon download, svg icon library, open source icons, vector assets, download svg, tech logos, developer icons, npm svg icons, react svg icons, vue svg icons, svelte svg icons, liquid glass icons, flaticon alternative, iconscout alternative';
+  'svgspace, svg space, svgspace.sbs, svg hosting, svg publishing, vector hosting platform, icon distribution, free svg icons, free svg logos, brand icon download, svg icon library, open source icons, vector assets, download svg, tech logos, developer icons, npm svg icons, react svg icons, vue svg icons, svelte svg icons, liquid glass icons, flaticon alternative, iconscout alternative';
 
 const TECH_ICON_KEYWORDS =
   'react svg, react native svg, nextjs svg, vue svg, angular svg, svelte svg, nodejs svg, python svg, typescript svg, javascript svg, docker svg, kubernetes svg, aws svg, gcp svg, azure svg, github svg, gitlab svg, figma svg, vercel svg, netlify svg, cloudflare svg, tailwind svg, postgresql svg, mongodb svg, redis svg, stripe svg, supabase svg, openai svg, tensorflow svg, linux svg, ubuntu svg';
@@ -45,7 +45,7 @@ function buildIconKeywords(icon) {
     `${name} angular icon`,
     `${name} svelte icon`,
     `${name} html icon`,
-    `npx @orildo/icons add ${slug}`,
+    `npx @svgspace/icons add ${slug}`,
     `npm ${name} icon`,
     `${name} cdn link`,
     `${name} icon download free`,
@@ -91,12 +91,12 @@ function buildIconSchema(icon, iconUrl, finalDesc, canonicalUrl) {
         dateModified: icon.dateAdded || today,
         license: 'https://www.apache.org/licenses/LICENSE-2.0',
         acquireLicensePage: `${BASE_URL}/?view=terms`,
-        creditText: 'SVG.IO via Orildo-Tech',
+        creditText: 'SVGSpace via SVGSpace',
         copyrightNotice: 'Apache 2.0 — Free to use commercially',
         keywords: [...cats, name, 'svg', 'vector', 'icon', 'npm package', 'cdn'].join(', '),
         creator: {
           '@type': 'Organization',
-          name: 'Orildo-Tech',
+          name: 'SVGSpace',
           url: BASE_URL
         }
       },
@@ -104,7 +104,7 @@ function buildIconSchema(icon, iconUrl, finalDesc, canonicalUrl) {
         '@type': 'WebPage',
         '@id': `${BASE_URL}/icon/${slug}#webpage`,
         url: canonicalUrl,
-        name: `${name} SVG Icon & Logo — Free Hosting, NPM Package, React JSX, Vue 3, CDN | SVG.IO`,
+        name: `${name} SVG Icon & Logo — Free Hosting, NPM Package, React JSX, Vue 3, CDN | SVGSpace`,
         description: finalDesc,
         inLanguage: 'en-US',
         dateModified: icon.dateAdded || today,
@@ -129,9 +129,9 @@ function buildIconSchema(icon, iconUrl, finalDesc, canonicalUrl) {
         '@type': 'SoftwareSourceCode',
         '@id': `${BASE_URL}/icon/${slug}#sourcecode`,
         name: `${name} React, Vue & NPM Component`,
-        description: `Install via NPM (npx @orildo/icons add ${slug}) or copy ready-to-use React JSX, React Native, Next.js, Vue 3, Svelte, Angular, and raw HTML SVG component code for ${name}.`,
+        description: `Install via NPM (npx @svgspace/icons add ${slug}) or copy ready-to-use React JSX, React Native, Next.js, Vue 3, Svelte, Angular, and raw HTML SVG component code for ${name}.`,
         programmingLanguage: ['React JSX', 'React Native', 'Next.js', 'Vue 3', 'Svelte', 'Angular', 'HTML SVG', 'TypeScript', 'JavaScript'],
-        codeRepository: 'https://github.com/Orildo-Tech/SVG-IO',
+        codeRepository: 'https://github.com/SVGSpace/SVG-IO',
         license: 'https://www.apache.org/licenses/LICENSE-2.0',
         runtimePlatform: 'Browser, Node.js, Webpack, Vite, Next.js'
       }
@@ -150,7 +150,7 @@ function buildCategorySchema(category, finalDesc, canonicalUrl) {
         '@type': 'CollectionPage',
         '@id': `${canonicalUrl}#collectionpage`,
         url: canonicalUrl,
-        name: `${category} SVG Icons & Vector Logos — Free Hosting & Download | SVG.IO`,
+        name: `${category} SVG Icons & Vector Logos — Free Hosting & Download | SVGSpace`,
         description: finalDesc,
         inLanguage: 'en-US',
         isPartOf: { '@id': `${BASE_URL}/#website` },
@@ -178,7 +178,7 @@ function buildAboutSchema(finalDesc, canonicalUrl) {
         '@type': 'AboutPage',
         '@id': `${canonicalUrl}#aboutpage`,
         url: canonicalUrl,
-        name: 'About SVG.IO — Free Open-Source SVG Hosting, Publishing & Distribution Platform',
+        name: 'About SVGSpace — Free Open-Source SVG Hosting, Publishing & Distribution Platform',
         description: finalDesc,
         inLanguage: 'en-US',
         isPartOf: { '@id': `${BASE_URL}/#website` },
@@ -199,7 +199,7 @@ function buildSubmitSchema(finalDesc, canonicalUrl) {
         '@type': 'WebPage',
         '@id': `${canonicalUrl}#submitpage`,
         url: canonicalUrl,
-        name: 'Publish & Host SVG Icons — Open Vector Publishing Platform | SVG.IO',
+        name: 'Publish & Host SVG Icons — Open Vector Publishing Platform | SVGSpace',
         description: finalDesc,
         inLanguage: 'en-US',
         isPartOf: { '@id': `${BASE_URL}/#website` }
@@ -207,7 +207,7 @@ function buildSubmitSchema(finalDesc, canonicalUrl) {
       {
         '@type': 'HowTo',
         '@id': `${canonicalUrl}#howto`,
-        name: 'How to Publish and Host SVG Icons on SVG.IO',
+        name: 'How to Publish and Host SVG Icons on SVGSpace',
         description: 'Upload your single vector or multi-variant icon pack. Our 7-minute ingestion pipeline validates, optimizes, packages, and provisions live shareable pages and CDN links.',
         totalTime: 'PT7M',
         step: [
@@ -227,7 +227,7 @@ function buildSubmitSchema(finalDesc, canonicalUrl) {
             '@type': 'HowToStep',
             position: 3,
             name: 'Share and Integrate',
-            text: 'Access your live shareable preview URL, install via NPM (npx @orildo/icons add <slug>), or copy React/Vue/Svelte code.'
+            text: 'Access your live shareable preview URL, install via NPM (npx @svgspace/icons add <slug>), or copy React/Vue/Svelte code.'
           }
         ]
       }
@@ -246,7 +246,7 @@ function buildBlogSchema(finalDesc, canonicalUrl) {
         '@type': 'Blog',
         '@id': `${canonicalUrl}#blog`,
         url: canonicalUrl,
-        name: 'SVG Engineering Blog — Design Systems, Vector Optimization & Dev Guides | SVG.IO',
+        name: 'SVG Engineering Blog — Design Systems, Vector Optimization & Dev Guides | SVGSpace',
         description: finalDesc,
         inLanguage: 'en-US',
         publisher: { '@id': `${BASE_URL}/#organization` },
@@ -267,7 +267,7 @@ function buildStatusSchema(finalDesc, canonicalUrl) {
         '@type': 'WebPage',
         '@id': `${canonicalUrl}#statuspage`,
         url: canonicalUrl,
-        name: 'SVG.IO Platform Status — Global CDN & Vector Ingestion Health',
+        name: 'SVGSpace Platform Status — Global CDN & Vector Ingestion Health',
         description: finalDesc,
         inLanguage: 'en-US',
         isPartOf: { '@id': `${BASE_URL}/#website` }
@@ -289,9 +289,9 @@ export function updatePageSeo({
   if (typeof document === 'undefined') return;
 
   // ── Default (Homepage) ─────────────────────────────────────────
-  let finalTitle = 'SVG.IO — Free Open-Source SVG Hosting, Publishing & Distribution Platform | 6,500+ Vectors';
+  let finalTitle = 'SVGSpace — Free Open-Source SVG Hosting, Publishing & Distribution Platform | 6,500+ Vectors';
   let finalDesc =
-    'SVG.IO is the free, open-source SVG hosting, publishing, and distribution platform. Upload individual icons or complete multi-variant icon packs. Ingestion pipeline validates, optimizes, packages, and hosts them with live shareable preview pages, NPM package distribution, global CDN delivery, and ready-to-use React, React Native, Next.js, Vue, Svelte, and HTML code.';
+    'SVGSpace is the free, open-source SVG hosting, publishing, and distribution platform. Upload individual icons or complete multi-variant icon packs. Ingestion pipeline validates, optimizes, packages, and hosts them with live shareable preview pages, NPM package distribution, global CDN delivery, and ready-to-use React, React Native, Next.js, Vue, Svelte, and HTML code.';
   let finalKeywords = `${BRAND_KEYWORDS_BASE}, ${TECH_ICON_KEYWORDS}, svg hosting, svg publishing, vector distribution platform, react jsx icons, vue component icons, svelte icons, angular icons, liquid glass icons, brand logos svg, npm svg icons`;
   let canonicalUrl = BASE_URL + '/';
   let schema = null;
@@ -305,8 +305,8 @@ export function updatePageSeo({
     const catsStr = cats.join(', ');
     const iconUrl = `${BASE_URL}/icons/${slug}/${slug}.svg`;
 
-    finalTitle = `${iconName} SVG Icon & Logo — Free Hosting, NPM Package, React JSX, Vue 3, CDN | SVG.IO`;
-    finalDesc = `Download, host, and embed the free ${iconName} SVG vector icon and brand logo on SVG.IO. Dedicated live preview page, NPM package (npx @orildo/icons add ${slug}), CDN endpoint, and instant React JSX, React Native, Next.js, Vue 3, Svelte, or raw SVG code. Category: ${catsStr}. License: ${icon.license || 'Apache-2.0'}.`;
+    finalTitle = `${iconName} SVG Icon & Logo — Free Hosting, NPM Package, React JSX, Vue 3, CDN | SVGSpace`;
+    finalDesc = `Download, host, and embed the free ${iconName} SVG vector icon and brand logo on SVGSpace. Dedicated live preview page, NPM package (npx @svgspace/icons add ${slug}), CDN endpoint, and instant React JSX, React Native, Next.js, Vue 3, Svelte, or raw SVG code. Category: ${catsStr}. License: ${icon.license || 'Apache-2.0'}.`;
     finalKeywords = buildIconKeywords(icon);
     canonicalUrl = `${BASE_URL}/icon/${slug}`;
     schema = buildIconSchema(icon, iconUrl, finalDesc, canonicalUrl);
@@ -314,8 +314,8 @@ export function updatePageSeo({
 
   // ── Category Page ──────────────────────────────────────────────
   else if (category && category !== 'all') {
-    finalTitle = `${category} SVG Icons & Packs — Free Hosting, NPM & Download | SVG.IO`;
-    finalDesc = `Browse, host, and download free ${category} SVG icons and brand packs on SVG.IO. Dedicated live shareable pages, NPM package installation, instant React JSX, Vue 3, Angular, Svelte, and PNG high-res export. Apache 2.0 licensed.`;
+    finalTitle = `${category} SVG Icons & Packs — Free Hosting, NPM & Download | SVGSpace`;
+    finalDesc = `Browse, host, and download free ${category} SVG icons and brand packs on SVGSpace. Dedicated live shareable pages, NPM package installation, instant React JSX, Vue 3, Angular, Svelte, and PNG high-res export. Apache 2.0 licensed.`;
     finalKeywords = [
       `${category} svg icons`,
       `${category} svg logo`,
@@ -332,8 +332,8 @@ export function updatePageSeo({
 
   // ── About / Info Page ──────────────────────────────────────────
   else if (view === 'about' || view === 'info') {
-    finalTitle = 'About SVG.IO — Free Open-Source SVG Hosting, Publishing & Distribution Platform';
-    finalDesc = 'Learn about SVG.IO — the free open-source vector hosting platform. Upload single icons or packs, fast 7-min ingestion pipeline, live shareable preview pages, NPM package distribution, global CDN delivery, and zero-telemetry browser caching.';
+    finalTitle = 'About SVGSpace — Free Open-Source SVG Hosting, Publishing & Distribution Platform';
+    finalDesc = 'Learn about SVGSpace — the free open-source vector hosting platform. Upload single icons or packs, fast 7-min ingestion pipeline, live shareable preview pages, NPM package distribution, global CDN delivery, and zero-telemetry browser caching.';
     finalKeywords = 'about svg.io, svg hosting, svg publishing platform, vector distribution, open source icon library, vector platform specs, shareable icon pages, npm svg icons';
     canonicalUrl = `${BASE_URL}/?view=about`;
     schema = buildAboutSchema(finalDesc, canonicalUrl);
@@ -341,16 +341,16 @@ export function updatePageSeo({
 
   // ── Categories Page ────────────────────────────────────────────
   else if (view === 'categories') {
-    finalTitle = 'All SVG Icon Categories & Collections — 6,500+ Vectors | SVG.IO';
-    finalDesc = 'Browse all 6,500+ hosted vector brand icons organized across Software, AI, Cloud, Frameworks, Liquid Glass, Pakistani Brands, DevOps, and 50+ developer tool categories on SVG.IO.';
+    finalTitle = 'All SVG Icon Categories & Collections — 6,500+ Vectors | SVGSpace';
+    finalDesc = 'Browse all 6,500+ hosted vector brand icons organized across Software, AI, Cloud, Frameworks, Liquid Glass, Pakistani Brands, DevOps, and 50+ developer tool categories on SVGSpace.';
     finalKeywords = 'svg icon categories, brand logo categories, software icons, ai icons, cloud icons, framework icons, devops icons, liquid glass icons, developer tool icons, svg io categories, browse svg icons';
     canonicalUrl = `${BASE_URL}/?view=categories`;
   }
 
   // ── Submit / Contribute Page ───────────────────────────────────
   else if (view === 'submit') {
-    finalTitle = 'Publish & Host SVG Icons — Open Vector Publishing Platform | SVG.IO';
-    finalDesc = 'Publish and host your SVG icons and multi-variant packs on SVG.IO. 7-minute ingestion pipeline validates viewBoxes, optimizes paths, creates dedicated shareable live web pages, generates NPM package support, and delivers fast CDN links under Apache 2.0.';
+    finalTitle = 'Publish & Host SVG Icons — Open Vector Publishing Platform | SVGSpace';
+    finalDesc = 'Publish and host your SVG icons and multi-variant packs on SVGSpace. 7-minute ingestion pipeline validates viewBoxes, optimizes paths, creates dedicated shareable live web pages, generates NPM package support, and delivers fast CDN links under Apache 2.0.';
     finalKeywords = 'publish svg, host svg icons, upload icon pack, open source vector hosting, svg distribution, svg ingestion pipeline, developer icon publishing, npm icon publishing';
     canonicalUrl = `${BASE_URL}/?view=submit`;
     schema = buildSubmitSchema(finalDesc, canonicalUrl);
@@ -358,8 +358,8 @@ export function updatePageSeo({
 
   // ── Blog Page ──────────────────────────────────────────────────
   else if (view === 'blog') {
-    finalTitle = 'SVG Engineering Blog — Design Systems, Vector Optimization & Dev Guides | SVG.IO';
-    finalDesc = 'Read in-depth engineering guides, SVG vector optimization best practices, React and Vue component tutorials, design system articles, and NPM package distribution guides from the SVG.IO team.';
+    finalTitle = 'SVG Engineering Blog — Design Systems, Vector Optimization & Dev Guides | SVGSpace';
+    finalDesc = 'Read in-depth engineering guides, SVG vector optimization best practices, React and Vue component tutorials, design system articles, and NPM package distribution guides from the SVGSpace team.';
     finalKeywords = 'svg blog, svg engineering, vector optimization, react svg tutorial, design systems guide, svg component, svg io blog, developer design guide, frontend engineering';
     canonicalUrl = `${BASE_URL}/?view=blog`;
     schema = buildBlogSchema(finalDesc, canonicalUrl);
@@ -367,16 +367,16 @@ export function updatePageSeo({
 
   // ── Favorites Page ─────────────────────────────────────────────
   else if (view === 'favorites') {
-    finalTitle = 'Your Saved SVG Icons Collection — SVG.IO';
-    finalDesc = 'View, organize, and batch export your personal saved SVG icon collection on SVG.IO. Download favorites in multi-variant ZIP bundles, React JSX components, Vue, PNG, or raw SVG format.';
+    finalTitle = 'Your Saved SVG Icons Collection — SVGSpace';
+    finalDesc = 'View, organize, and batch export your personal saved SVG icon collection on SVGSpace. Download favorites in multi-variant ZIP bundles, React JSX components, Vue, PNG, or raw SVG format.';
     finalKeywords = 'saved svg icons, svg favorites, personal icon collection, svg io bookmarks, batch svg export';
     canonicalUrl = `${BASE_URL}/?view=favorites`;
   }
 
   // ── Status Page ────────────────────────────────────────────────
   else if (view === 'status') {
-    finalTitle = 'Platform Status & CDN Health — SVG.IO';
-    finalDesc = 'Real-time service health, edge network latency, and uptime monitoring across the global SVG.IO vector delivery infrastructure and ingestion pipeline.';
+    finalTitle = 'Platform Status & CDN Health — SVGSpace';
+    finalDesc = 'Real-time service health, edge network latency, and uptime monitoring across the global SVGSpace vector delivery infrastructure and ingestion pipeline.';
     finalKeywords = 'svg io status, platform health, edge cdn uptime, vector ingestion pipeline status, svg.io monitoring';
     canonicalUrl = `${BASE_URL}/?view=status`;
     schema = buildStatusSchema(finalDesc, canonicalUrl);
@@ -384,32 +384,32 @@ export function updatePageSeo({
 
   // ── Privacy Page ───────────────────────────────────────────────
   else if (view === 'privacy') {
-    finalTitle = 'Privacy Policy — Zero Tracking, Local-First Storage | SVG.IO';
-    finalDesc = 'SVG.IO collects no user data, has zero telemetry, and stores all preferences locally in your browser via IndexedDB and localStorage. Read our full privacy policy.';
+    finalTitle = 'Privacy Policy — Zero Tracking, Local-First Storage | SVGSpace';
+    finalDesc = 'SVGSpace collects no user data, has zero telemetry, and stores all preferences locally in your browser via IndexedDB and localStorage. Read our full privacy policy.';
     finalKeywords = 'svg io privacy policy, zero tracking, local first, no telemetry, browser storage, svg.io privacy';
     canonicalUrl = `${BASE_URL}/?view=privacy`;
   }
 
   // ── Terms Page ─────────────────────────────────────────────────
   else if (view === 'terms' || view === 'trademark' || view === 'legal') {
-    finalTitle = 'Terms of Use & Apache 2.0 Vector Licensing — SVG.IO';
-    finalDesc = 'All SVG.IO code and platform tools are published under the Apache 2.0 open-source license. Read our terms of use, brand trademark guidelines, and vector licensing policies.';
+    finalTitle = 'Terms of Use & Apache 2.0 Vector Licensing — SVGSpace';
+    finalDesc = 'All SVGSpace code and platform tools are published under the Apache 2.0 open-source license. Read our terms of use, brand trademark guidelines, and vector licensing policies.';
     finalKeywords = 'svg io terms, apache 2.0 license, svg licensing, vector license, free to use svg, commercial use svg, svg io legal, trademark policy';
     canonicalUrl = `${BASE_URL}/?view=terms`;
   }
 
   // ── 404 Not Found Page ─────────────────────────────────────────
   else if (view === '404') {
-    finalTitle = 'Page or Asset Not Found (404) — SVG.IO';
-    finalDesc = 'The page or vector icon collection you requested could not be found on SVG.IO. Search 6,500+ free brand logos and developer tools.';
+    finalTitle = 'Page or Asset Not Found (404) — SVGSpace';
+    finalDesc = 'The page or vector icon collection you requested could not be found on SVGSpace. Search 6,500+ free brand logos and developer tools.';
     finalKeywords = BRAND_KEYWORDS_BASE;
     canonicalUrl = `${BASE_URL}/?view=404`;
   }
 
   // ── 500 Server Error Page ──────────────────────────────────────
   else if (view === '500') {
-    finalTitle = 'Service Temporarily Unavailable (500) — SVG.IO';
-    finalDesc = 'An unexpected server issue occurred on SVG.IO. Our systems are working to restore service.';
+    finalTitle = 'Service Temporarily Unavailable (500) — SVGSpace';
+    finalDesc = 'An unexpected server issue occurred on SVGSpace. Our systems are working to restore service.';
     finalKeywords = BRAND_KEYWORDS_BASE;
     canonicalUrl = `${BASE_URL}/?view=500`;
   }
@@ -455,13 +455,13 @@ export function updatePageSeo({
   setMeta('property', 'og:description', finalDesc);
   setMeta('property', 'og:url', canonicalUrl);
   setMeta('property', 'og:type', icon ? 'article' : 'website');
-  setMeta('property', 'og:site_name', 'SVG.IO');
+  setMeta('property', 'og:site_name', 'SVGSpace');
   setMeta('property', 'og:locale', 'en_US');
   setMeta('property', 'og:image', ogImage);
   setMeta('property', 'og:image:secure_url', ogImage);
   setMeta('property', 'og:image:alt', icon
-    ? `${icon.name || icon.title} SVG vector icon and brand logo — free hosting on SVG.IO`
-    : 'SVG.IO — Free Open-Source SVG Hosting & Publishing Platform with 6,500+ vectors'
+    ? `${icon.name || icon.title} SVG vector icon and brand logo — free hosting on SVGSpace`
+    : 'SVGSpace — Free Open-Source SVG Hosting & Publishing Platform with 6,500+ vectors'
   );
   setMeta('property', 'og:image:width', icon ? '512' : '1200');
   setMeta('property', 'og:image:height', icon ? '512' : '630');
@@ -471,7 +471,7 @@ export function updatePageSeo({
   if (icon) {
     setMeta('property', 'article:published_time', icon.dateAdded ? `${icon.dateAdded}T00:00:00Z` : todayISO);
     setMeta('property', 'article:modified_time', todayISO);
-    setMeta('property', 'article:author', 'https://github.com/Orildo-Tech');
+    setMeta('property', 'article:author', 'https://github.com/SVGSpace');
     setMeta('property', 'article:section', (Array.isArray(icon.categories) && icon.categories[0]) || icon.category || 'Developer Icons');
     setMeta('property', 'article:tag', icon.name || icon.title || '');
   } else {
@@ -490,13 +490,13 @@ export function updatePageSeo({
   setMeta('name', 'twitter:card', 'summary_large_image');
   setMeta('name', 'twitter:image', ogImage);
   setMeta('name', 'twitter:image:alt', icon
-    ? `${icon.name || icon.title} SVG Vector Icon — SVG.IO`
-    : 'SVG.IO Free SVG Hosting & Icon Library'
+    ? `${icon.name || icon.title} SVG Vector Icon — SVGSpace`
+    : 'SVGSpace Free SVG Hosting & Icon Library'
   );
   if (icon) {
     const slug = icon.slug || icon.id || '';
     setMeta('name', 'twitter:label1', 'NPM Install');
-    setMeta('name', 'twitter:data1', `npx @orildo/icons add ${slug}`);
+    setMeta('name', 'twitter:data1', `npx @svgspace/icons add ${slug}`);
     setMeta('name', 'twitter:label2', 'License');
     setMeta('name', 'twitter:data2', icon.license || 'Apache-2.0 — Free');
   } else {

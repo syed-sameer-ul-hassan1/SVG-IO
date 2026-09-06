@@ -23,9 +23,9 @@ export function Footer({
         {}
         <div className="md-footer-brand-col">
           <a
-            href="https://svg.io.orildo.tech"
+            href="https://svgspace.sbs"
             className="md-footer-logo-row"
-            title="Visit SvgIo">
+            title="Visit SVGSpace">
             
             <img
               src={wordmarkSrc}
@@ -40,20 +40,18 @@ export function Footer({
           </p>
 
           <span className="md-footer-project-tag">
-            Powered by <a href="https://orildo.dev" target="_blank" rel="noopener noreferrer" style={{ color: '#FF5F02', fontWeight: 700 }}>Orildo</a>
+            Powered by <a href="https://orildo.tech" target="_blank" rel="noopener noreferrer" style={{ color: '#FF5F02', fontWeight: 700 }}>Orildo</a>
           </span>
 
-          {/* Ecosystem Badges */}
           <div className="md-footer-eco-badges">
-            <a href="https://github.com/Orildo-Tech/SVG-IO" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="GitHub">
+            <a href="https://github.com/Orildo-Tech/SVG-SPACE" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="GitHub">
               <Github size={14} />
             </a>
-            <a href="https://orildo.dev" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="Orildo Official">
+            <a href="https://orildo.tech" target="_blank" rel="noopener noreferrer" className="md-eco-badge" title="Orildo Official">
               <img src={orildoIconSrc} alt="Orildo" width="14" height="14" style={{ objectFit: 'contain' }} />
             </a>
           </div>
 
-          {/* GitHub Organization Card */}
           <a
             href="https://github.com/Orildo-Tech"
             target="_blank"
@@ -71,7 +69,6 @@ export function Footer({
           </a>
         </div>
 
-        {/* Product Navigation */}
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">PRODUCT</h4>
           <ul className="md-footer-links">
@@ -82,26 +79,24 @@ export function Footer({
           </ul>
         </div>
 
-        {/* Resources */}
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">RESOURCES</h4>
           <ul className="md-footer-links">
             <li><button onClick={() => onNavigate?.('info')}>About Platform</button></li>
             <li><button onClick={() => onNavigate?.('status')}>System Status</button></li>
             <li><button onClick={() => onNavigate?.('404')}>404 Preview</button></li>
-            <li><a href="https://github.com/Orildo-Tech/SVG-IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribution Specs</a></li>
+            <li><a href="https://github.com/Orildo-Tech/SVG-SPACE/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribution Specs</a></li>
             <li><button onClick={() => onNavigate?.('terms')}>Vector Licensing</button></li>
           </ul>
         </div>
 
-        {/* Community & Open Source */}
         <div className="md-footer-nav-col">
           <h4 className="md-footer-col-title">COMMUNITY</h4>
           <ul className="md-footer-links">
-            <li><a href="https://github.com/Orildo-Tech/SVG-IO" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://github.com/Orildo-Tech/SVG-IO/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
-            <li><a href="https://github.com/Orildo-Tech/SVG-IO/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
-            <li><a href="https://github.com/Orildo-Tech/SVG-IO/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a></li>
+            <li><a href="https://github.com/Orildo-Tech/SVG-SPACE" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://github.com/Orildo-Tech/SVG-SPACE/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
+            <li><a href="https://github.com/Orildo-Tech/SVG-SPACE/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+            <li><a href="https://github.com/Orildo-Tech/SVG-SPACE/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing</a></li>
           </ul>
         </div>
 
@@ -126,7 +121,7 @@ export function Footer({
         <div className="md-credits-section">
           <span className="md-credits-label">POWERED BY</span>
           <a
-            href="https://orildo.dev"
+            href="https://orildo.tech"
             target="_blank"
             rel="noopener noreferrer"
             className="md-credits-chip"
@@ -136,8 +131,8 @@ export function Footer({
               <img src={orildoIconSrc} alt="Orildo" width="22" height="22" style={{ objectFit: 'contain' }} />
             </div>
             <div className="md-credits-info">
-              <span className="md-credits-title">orildo.dev</span>
-              <span className="md-credits-sub">Vector Engine & Design Studio</span>
+              <span className="md-credits-title">Orildo</span>
+              <span className="md-credits-sub">orildo.tech</span>
             </div>
           </a>
         </div>
@@ -169,14 +164,14 @@ export function Footer({
       {}
       <div className="md-footer-bottom-row">
         <span className="md-footer-copy-text">
-          © {new Date().getFullYear()} <a href="https://orildo.dev" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', fontWeight: 600 }}>Orildo</a>. All rights reserved. Developed by <a href="https://sameer.orildo.dev" target="_blank" rel="noopener noreferrer" style={{ color: '#FF5F02', fontWeight: 600 }}>Syed Sameer Ul Hassan</a>.
+          © {new Date().getFullYear()} <a href="https://orildo.tech" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', fontWeight: 600 }}>Orildo</a>. All rights reserved. Developed by <a href="https://sameer.orildo.dev" target="_blank" rel="noopener noreferrer" style={{ color: '#FF5F02', fontWeight: 600 }}>Syed Sameer Ul Hassan</a>.
         </span>
 
         <div className="md-footer-disclaimer">
-          <span>All brand logos and trademarks belong to their respective owners.</span>
-          <a href="#trademark" className="md-footer-sub-link">Trademark Policy</a>
+          <span>All brand logos and trademarks belong to their respective owners.</span> 
           <span>|</span>
-          <span>Built with Orildo Design Studio</span>
+          <a href="#trademark" className="md-footer-sub-link">Trademark Policy</a>
+         
         </div>
       </div>
     </footer>);

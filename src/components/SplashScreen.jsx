@@ -1,13 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
-/**
- * Centered Brand Logo Splash Screen for SVG.IO.
- * 1. Starts BIG at 45° angle in the center.
- * 2. Scales down (becomes small) while holding 45° angle.
- * 3. Rotates smoothly to 0° upright orientation.
- * 4. Stays on screen for 3 full seconds before dissolving cleanly.
- * Zero shadows strictly enforced per GUIDELINES.md.
- */
 export default function SplashScreen({ isLoading, theme }) {
   const [shouldRender, setShouldRender] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -36,7 +27,7 @@ export default function SplashScreen({ isLoading, theme }) {
     <div
       className={`svgio-splash-overlay ${isFadingOut ? 'splash-exit' : ''}`}
       role="status"
-      aria-label="Loading SVG.IO"
+      aria-label="Loading SVG SPACE"
       aria-live="polite"
     >
       <div className="svgio-splash-center">

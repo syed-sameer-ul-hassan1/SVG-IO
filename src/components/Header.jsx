@@ -110,7 +110,7 @@ export function Header({
         <a
           href="/"
           className="md-logo"
-          aria-label="SVG.IO Home"
+          aria-label="SVG-SPACE Home"
           onClick={(e) => {
             if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
               e.preventDefault();
@@ -121,7 +121,7 @@ export function Header({
         >
           <img
             src={theme === 'light' ? '/assets/wordmark-light.svg' : '/assets/wordmark-dark.svg'}
-            alt="SVG.IO Logo"
+            alt="SVG-SPACE Logo"
             height="28"
             style={{ display: 'block', height: '28px', width: 'auto', objectFit: 'contain' }} />
         </a>
@@ -266,7 +266,7 @@ export function Header({
 
           {}
           <a
-            href="https://github.com/Orildo-Tech/SVG-IO"
+            href="https://github.com/Orildo-Tech/SVG-SPACE"
             target="_blank"
             rel="noopener noreferrer"
             className="md-icon-btn github-btn"

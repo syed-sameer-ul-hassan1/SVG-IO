@@ -39,11 +39,11 @@ export function MobileDeviceNotice() {
           <div className="sv-mobile-logo-wrap">
             <img
               src="/assets/logo-dark.svg"
-              alt="SVG.IO Logo"
+              alt="SVG SPACE Logo"
               className="sv-mobile-logo-img"
             />
           </div>
-          <span className="sv-mobile-brand-name">SVG.IO</span>
+          <span className="sv-mobile-brand-name">SVG SPACE</span>
         </div>
 
         {/* Visual Device Indicator */}
@@ -82,7 +82,7 @@ export function MobileDeviceNotice() {
             Desktop & Tablet Required
           </h1>
           <p className="sv-mobile-desc">
-            <strong>SVG.IO</strong> is an advanced vector engineering workbench with 6,500+ brand icons, live React/Vue code generation, and multi-resolution vector export.
+            <strong>SVG SPACE</strong> is an advanced vector engineering workbench with 6,500+ brand icons, live React/Vue code generation, and multi-resolution vector export.
           </p>
           <p className="sv-mobile-highlight">
             This site is not available for mobile devices. Please open on a <strong>Desktop</strong> or <strong>Tablet</strong> to access the full vector library.

@@ -51,7 +51,7 @@ export function TermsPage({ onNavigate }) {
         <section className="md-legal-section">
           <h2>1. Permitted Use</h2>
           <p>
-            You are permitted to download, copy, embed, and convert SVG assets from SVG.IO for:
+            You are permitted to download, copy, embed, and convert SVG assets from SVG SPACE for:
           </p>
           <ul>
             <li>Software applications, dashboards, landing pages, and documentation.</li>
@@ -64,7 +64,7 @@ export function TermsPage({ onNavigate }) {
         <section className="md-legal-section">
           <h2>2. Trademark Notice & Disclaimer</h2>
           <p>
-            The logos, brand names, and service marks made available through SVG.IO are the registered trademarks of their respective owners. SVG.IO does not claim ownership or endorsement of these third-party brands.
+            The logos, brand names, and service marks made available through SVG SPACE are the registered trademarks of their respective owners. SVG SPACE does not claim ownership or endorsement of these third-party brands.
           </p>
           <p>
             When utilizing brand logos in your products, you are responsible for adhering to each respective brand owner's official trademark and branding guidelines (e.g. minimum padding, original colors, aspect ratios).
@@ -74,7 +74,7 @@ export function TermsPage({ onNavigate }) {
         <section className="md-legal-section">
           <h2>3. Disclaimer of Warranties</h2>
           <p>
-            SVG.IO AND ALL VECTOR ASSETS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY.
+            SVG SPACE AND ALL VECTOR ASSETS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY.
           </p>
         </section>
 
