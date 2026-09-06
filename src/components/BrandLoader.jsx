@@ -1,10 +1,4 @@
 import React from 'react';
-
-/**
- * In-Site Brand Loader for SVG.IO.
- * The outer side brackets spin continuously around the center square.
- * Zero shadows strictly enforced per GUIDELINES.md.
- */
 export default function BrandLoader({ size = 48, theme = 'dark', className = '' }) {
   const isLight = theme === 'light';
   const bracketColor = isLight ? '#0F172A' : '#FFFFFF';

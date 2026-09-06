@@ -66,7 +66,7 @@ export function Hero({
       <div className="md-hero-right-logo">
         <img
           src={logoSrc}
-          alt="SVG.IO Vector Platform"
+          alt="SVG SPACE Vector Platform"
           className="md-hero-logo-img"
         />
       </div>

@@ -150,8 +150,8 @@ export function IconDetailPage({
   }, [svgContent]);
 
 
-  const cliCommand = `npx @orildo/icons add ${icon?.id || ''}`;
-  const cdnUrl = `svg.io.orildo.tech/icons/${icon?.id || ''}/${selectedVariant}.svg`;
+  const cliCommand = `npx @svgspace/icons add ${icon?.id || ''}`;
+  const cdnUrl = `svgspace.sbs/icons/${icon?.id || ''}/${selectedVariant}.svg`;
 
 
   const getActiveCode = () => {
@@ -234,28 +234,27 @@ export function IconDetailPage({
 
   const handleShare = async () => {
     const slug = icon.id || icon.slug;
-    const shareUrl = `https://svg.io.orildo.tech/icon/${slug}`;
+    const shareUrl = `https://svgspace.sbs/icon/${slug}`;
     const iconName = icon.name || icon.title || slug;
     // Try native Web Share API first (mobile/Android/iOS)
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share({
-          title: `${iconName} SVG Icon — SVG.IO`,
-          text: `Download the free ${iconName} SVG vector icon on SVG.IO — React JSX, Vue, Svelte & PNG export.`,
+          title: `${iconName} SVG Icon — SVG SPACE`,
+          text: `Download the free ${iconName} SVG vector icon on SVG SPACE — React JSX, Vue, Svelte & PNG export.`,
           url: shareUrl
         });
         return;
       } catch (e) { /* fallback to clipboard */ }
     }
-    // Clipboard fallback
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopiedShare(true);
       setTimeout(() => setCopiedShare(false), 2000);
       onShowToast?.({
         type: 'success',
-        title: '🔗 Link Copied!',
-        message: `svg.io.orildo.tech/icon/${slug}`
+        title: 'Link Copied!',
+        message: `svgspace.sbs/icon/${slug}`
       });
     } catch (e) {}
   };
@@ -679,7 +678,7 @@ export function IconDetailPage({
               <span className="thesvg-missing-title">Missing a variant?</span>
               <div className="thesvg-missing-buttons">
                 <a
-                  href="https://github.com/Orildo-Tech/SVG-IO/issues/new"
+                  href="https://github.com/Orildo-Tech/SVG-SPACE/issues/new"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="thesvg-action-outline-btn">
@@ -688,7 +687,7 @@ export function IconDetailPage({
                 </a>
 
                 <a
-                  href="https://github.com/Orildo-Tech/SVG-IO"
+                  href="https://github.com/Orildo-Tech/SVG-SPACE"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="thesvg-action-outline-btn">
@@ -1019,7 +1018,7 @@ export function IconDetailPage({
                 type="button"
                 className={`thesvg-action-btn thesvg-share-btn ${copiedShare ? 'copied' : ''}`}
                 onClick={handleShare}
-                title={copiedShare ? 'Link Copied!' : `Share link: svg.io.orildo.tech/icon/${icon.id || icon.slug}`}
+                title={copiedShare ? 'Link Copied!' : `Share link: svgspace.sbs/icon/${icon.id || icon.slug}`}
                 aria-label="Share icon link">
                 {copiedShare ? <Check size={16} /> : <Share2 size={16} />}
               </button>

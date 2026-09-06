@@ -1,12 +1,3 @@
-/**
- * Cloudflare Pages Function: /api/submit-icon
- *
- * Flow:
- * 1. Validate the POST payload
- * 2. Upload each SVG variant to Supabase Storage bucket `svg-icons`
- * 3. Insert a row into `icon_submissions` table (status: pending)
- * 4. Trigger GitHub Actions `repository_dispatch` → workflow processes & commits to repo
- */
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',

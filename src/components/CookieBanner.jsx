@@ -54,7 +54,7 @@ export function CookieBanner({ onNavigate }) {
         {/* Content */}
         <div className="sv-cookie-body">
           <p className="sv-cookie-desc">
-            SVG.IO uses local browser storage and IndexedDB memory caching to remember your favorites, recent searches, and custom theme. We never sell your data or inject third-party ad trackers.
+            SVG SPACE uses local browser storage and IndexedDB memory caching to remember your favorites, recent searches, and custom theme. We never sell your data or inject third-party ad trackers.
           </p>
 
           {/* Feature Badges */}

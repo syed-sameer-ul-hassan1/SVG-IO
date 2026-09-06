@@ -11,7 +11,7 @@ export function PrivacyPage({ onNavigate }) {
         </div>
         <h1 className="md-legal-title">Privacy Policy</h1>
         <p className="md-legal-subtitle">
-          Last updated: August 2026 • Effective immediately across all SVG.IO services and API endpoints.
+          Last updated: August 2026 • Effective immediately across all SVG SPACE services and API endpoints.
         </p>
       </div>
 
@@ -52,7 +52,7 @@ export function PrivacyPage({ onNavigate }) {
         <section className="md-legal-section">
           <h2>1. Information We Collect</h2>
           <p>
-            SVG.IO is engineered to minimize data retention to the utmost standard. When you interact with our platform:
+            SVG SPACE is engineered to minimize data retention to the utmost standard. When you interact with our platform:
           </p>
           <ul>
             <li><strong>Browser Storage:</strong> Your icon favorites and recent search history are stored exclusively in your browser's local storage and never transmitted to our remote servers.</li>
@@ -76,7 +76,7 @@ export function PrivacyPage({ onNavigate }) {
         <section className="md-legal-section">
           <h2>3. Third-Party Services</h2>
           <p>
-            SVG.IO utilizes trusted infrastructure partners to provide high-performance delivery:
+            SVG SPACE utilizes trusted infrastructure partners to provide high-performance delivery:
           </p>
           <ul>
             <li><strong>Global Edge CDN:</strong> High-performance edge network caching and HTTPS delivery.</li>

@@ -1,12 +1,3 @@
-/**
- * Advanced Browser Storage & High-Speed Cache Utility
- * Features:
- * - Dual-layer storage (Synchronous localStorage + Asynchronous IndexedDB)
- * - Raw SVG vector caching in IndexedDB for 0ms offline copies/exports
- * - Full favorites persistence with direct sync & corruption recovery
- * - Fast catalog caching (<5ms hydration)
- * - Intelligent background SVG pre-warming
- */
 
 const DB_NAME = 'svgio_browser_cache_db';
 const DB_VERSION = 2;

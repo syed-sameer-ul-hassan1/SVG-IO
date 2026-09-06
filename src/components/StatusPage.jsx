@@ -79,7 +79,7 @@ export function StatusPage({ onNavigate, totalIcons = 6520 }) {
           </button>
         </div>
 
-        <h1 className="md-status-main-title">SVG.IO Platform Status</h1>
+        <h1 className="md-status-main-title">SVG SPACE Platform Status</h1>
         <p className="md-status-main-desc">
           Real-time service health, edge network latency, and uptime monitoring across the global vector delivery infrastructure.
         </p>

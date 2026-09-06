@@ -26,11 +26,11 @@ export function InfoPage({
       {/* Hero Header */}
       <div className="sv-info-hero glass-panel">
         <h1 className="sv-info-hero-title">
-          About <span className="text-orange">SVG.IO</span>
+          About <span className="text-orange">SVG SPACE</span>
         </h1>
 
         <p className="sv-info-hero-desc">
-          SVG.IO is the modern, 100% free and open-source <strong>SVG hosting, publishing, and distribution platform</strong>. Upload individual vector icons or entire icon packs, and our processing engine validates, optimizes, packages, and hosts them with dedicated shareable web pages and instant CDN delivery.
+          SVG SPACE is the modern, 100% free and open-source <strong>SVG hosting, publishing, and distribution platform</strong>. Upload individual vector icons or entire icon packs, and our processing engine validates, optimizes, packages, and hosts them with dedicated shareable web pages and instant CDN delivery.
         </p>
 
         {/* Stats Row */}
@@ -72,7 +72,7 @@ export function InfoPage({
           </div>
 
           <p className="sv-info-text">
-            Anyone can upload individual SVG brand assets or complete icon sets. SVG.IO acts as your free vector cloud host, packaging every icon into an organized distribution network.
+            Anyone can upload individual SVG brand assets or complete icon sets. SVG SPACE acts as your free vector cloud host, packaging every icon into an organized distribution network.
           </p>
 
           <p className="sv-info-text">
@@ -144,7 +144,7 @@ export function InfoPage({
           </div>
 
           <p className="sv-info-text">
-            Every hosted vector on SVG.IO includes 1-click copyable integration code tailored for <strong>React, React Native, Next.js, Vue, Svelte, HTML, and Data URIs</strong>.
+            Every hosted vector on SVG SPACE includes 1-click copyable integration code tailored for <strong>React, React Native, Next.js, Vue, Svelte, HTML, and Data URIs</strong>.
           </p>
 
           <p className="sv-info-text">
@@ -227,7 +227,7 @@ export function InfoPage({
           </button>
 
           <a
-            href="https://github.com/Orildo-Tech/SVG-IO"
+            href="https://github.com/Orildo-Tech/SVG-SPACE"
             target="_blank"
             rel="noopener noreferrer"
             className="sv-info-btn-ghost">
